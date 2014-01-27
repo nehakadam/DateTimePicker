@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>jQuery Date & Time Picker</title>
+	
+		<link rel="stylesheet" type="text/css" href="../dist/DateTimePicker.min.css" />
+	
+		<script type="text/javascript" src="jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="../dist/DateTimePicker.min.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../dist/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../dist/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+	
+	</head>
+	
+	<body>
+	
+		<div>
+			<p>Date : </p>
+			<input type="text" data-field="date" data-max="20-07-2016" data-min="20-07-2012" readonly>
+		</div>
+	
+		<div>
+			<p>Time : </p>
+			<input type="text" data-field="time" readonly>
+		</div>
+	
+		<div>
+			<p>DateTime : </p>
+			<input type="text" data-field="datetime" readonly>
+		</div>
+	
+		<div>
+			<p>Date : </p>
+			<input type="date" data-field="date" readonly>
+		</div>
+	
+		<div>
+			<p>Time : </p>
+			<input type="time" data-field="time" readonly>
+		</div>
+	
+		<div>
+			<p>DateTime : </p>
+			<input type="datetime" data-field="datetime" readonly>
+		</div>
+			
+		<div id="dtBox"></div>
+	
+		<script type="text/javascript">
+		
+			$(document).ready(function()
+			{
+				$("#dtBox").DateTimePicker({
+				
+					dateTimeFormat: "dd-MM-yyyy hh:mm:ss AA",
+					maxDateTime: "20-07-2016 12:00:00 AM",
+					minDateTime: "20-07-2012 12:00:00 AM",
+				
+					minTime: "10:00",
+					maxTime: "17:00",
+				
+					animationDuration: 100
+				});
+			});
+		
+		</script>
+	
+	</body>
+
+</html>

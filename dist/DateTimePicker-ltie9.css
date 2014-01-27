@@ -1,0 +1,14 @@
+
+.dtpicker-cont
+{
+	top: 25%;
+}
+
+.dtpicker-overlay
+{
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#20000000,endColorstr=#20000000)";
+	/* For IE 5.5 to 7 */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#20000000, endColorstr=#20000000);
+	zoom: 1!important;
+}
