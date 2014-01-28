@@ -1,6 +1,6 @@
 ##DateTimePicker
-Responsive Flat design jQuery based DateTime Picker for Web &amp; Mobile
-![](//GitHub-Mark-Large-SmartObject.png)
+Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
+![](//DTP.png)
 
 
 ##Browser Support
