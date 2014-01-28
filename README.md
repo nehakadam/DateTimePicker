@@ -1,6 +1,6 @@
 ##DateTimePicker
 Responsive Flat design jQuery based DateTime Picker for Web &amp; Mobile
-![](/http://curioussolutions.in/wp-content/uploads/2014/01/Witz512-270x270.png)
+![](//GitHub-Mark-Large-SmartObject.png)
 
 
 ##Browser Support
