@@ -13,6 +13,8 @@ For web, picker can be binded relative to reference element, were it will appear
 - Chrome, Firefox, Safari, Opera, IE 9+
 - Android 2.3+, iOS 6+, Windows Phone 8
 
+## More Details
+For demo & api documentation visit [Plugin Page](http://curioussolutions.github.io/DateTimePicker/ "DateTime Picker")
 
 ##Authors
 [@nehakadam](https://github.com/nehakadam)
