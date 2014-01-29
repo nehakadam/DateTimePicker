@@ -1,5 +1,6 @@
 ##DateTimePicker
 Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
+![](/https://quirkli.com/Content/images/Untitled.png)
 
 DateTime Picker is a quick highly customizable jQuery plugin. The design is clutter free & well suited for embedding it into mobile application development.
 
