@@ -1,81 +1,360 @@
-<!doctype html>
-
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="chrome=1">
-		<title>DateTimePicker by CuriousSolutions</title>
-
-		<link rel="stylesheet" href="stylesheets/styles.css">
-		<link rel="stylesheet" href="stylesheets/pygment_trac.css">
-		<script src="javascripts/scale.fix.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+        <meta charset="utf-8">
+        <title>DateTime Picker</title>
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+        
+        <!--[if lt IE 9]>
+          <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        
+        <script type='text/javascript' src="javascripts/jquery-1.11.0.min.js"></script>
+        <script type='text/javascript' src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="src/DateTimePicker.css" />
+		<script type="text/javascript" src="src/DateTimePicker.js"></script>
 		<!--[if lt IE 9]>
-		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+			<link rel="stylesheet" type="text/css" href="src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="src/DateTimePicker-ltie9.js"></script>
 		<![endif]-->
-
-	</head>
-	
-	<body>
-		<div class="wrapper">
 		
-			<header>
-				
-				<h1 class="header">DateTime Picker</h1>
-				<p class="header">Responsive Flat design jQuery based DateTime Picker for Web &amp; Mobile</p>
+		<link rel="stylesheet" type="text/css" href="stylesheets/index.css" />
+		<script type="text/javascript" src="javascripts/index.js"></script>
+	
+        <link rel="shortcut icon" href="/bootstrap/img/favicon.ico">
+        <link rel="apple-touch-icon" href="/bootstrap/img/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/bootstrap/img/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/bootstrap/img/apple-touch-icon-114x114.png">
 
-				<ul>
-					<li class="download">
-						<a class="buttons" href="https://github.com/CuriousSolutions/DateTimePicker/zipball/master">Download ZIP</a>
-					</li>
-					<li class="download">
-						<a class="buttons" href="https://github.com/CuriousSolutions/DateTimePicker/tarball/master">Download TAR</a>
-					</li>
-					<li>
-						<a class="buttons github" href="https://github.com/CuriousSolutions/DateTimePicker">View On GitHub</a>
-					</li>
-				</ul>
+    </head>
+    
+    <body>
+        
+		<div class="container">
 
-				<p class="header">This project is maintained by <a class="header name" href="https://github.com/CuriousSolutions">CuriousSolutions</a></p>
-			
-			</header>
-			
-			<section>
-			
-				<img class="screenshot" src="images/dp-screenshot.png" />
-			
-				<div class="exampleSection1">
-				
-					<div class="examples example1">
-						<p>Date</p>
-						<input type="text" data-field="date" readonly>
+			<div class="jumbotron">
+
+				<h2 class="text-center">DateTime Picker</h2>
+		
+				<p class="text-center">Responsive Flat design jQuery based DateTime Picker for Web &amp; Mobile</p>
+
+				<div class="row text-center">
+
+					<div class="col-sm-4" style="">
+						<a class="btn btn-default" href="https://github.com/CuriousSolutions/DateTimePicker/zipball/master">Download ZIP</a>
 					</div>
-					
-					<div class="examples example2">
-						<p>Time</p>
-						<input type="text" data-field="time" readonly>
+
+					<div class="col-sm-4">
+						<a class="btn btn-default" href="https://github.com/CuriousSolutions/DateTimePicker/tarball/master">Download TAR</a>
 					</div>
-					
-					<div class="examples example3">
-						<p>DateTime</p>
-						<input type="text" data-field="datetime" readonly>
+
+					<div class="col-sm-4">
+						<a class="btn btn-default" href="https://github.com/CuriousSolutions/DateTimePicker">View On Github</a>
 					</div>
-				
+
+			</div>
+
+			</div>
+			
+			<div class="row text-center image-container">
+			
+				<img class="screenshot" src="images/dp-screenshot.png"/>
+			
+			</div>
+
+			<div class="row">
+
+				<div class="col-sm-4">
+
+					<h4 class="h4-margin">Date:</h4>
+					<input type="text" class="form-control">
+
 				</div>
-				
-				<h3>How To Use</h3>
-				
-			</section>
+
+				<div class="col-sm-4">
+
+					<h4 class="h4-margin">Time:</h4>
+					<input type="text" class="form-control">
+
+				</div>
+
+				<div class="col-sm-4">
+
+					<h4 class="h4-margin">DateTime:</h4>
+					<input type="text" class="form-control">
+
+				</div>
+
+			</div>
+
+			<div class="row">
 			
-			<footer>
-			<p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-			</footer>
+				<h3 >How To Use</h3>
+				
+				<h4 class="h4-margin">Include Plugin Files</h4>
+				
+				<script src="https://gist.github.com/nehakadam/8752076.js"></script>
+				
+				<h4 class="h4-margin">HTML code</h4>
+				
+				<script src="https://gist.github.com/nehakadam/8751832.js"></script>
 			
+				<h4 class="h4-margin">Plugin Initialization</h4>
+				
+				<script src="https://gist.github.com/nehakadam/8752223.js"></script>
+			
+			</div>
+			
+			<div class="row">
+			
+				<h3 class="">Options List</h3>
+
+				<table class="table table-responsive table-bordered">
+				
+					<theader>
+					
+						<tr>
+							<td>No</td>
+							<td>Parameter Name</td>
+							<td>Default Value</td>
+							<td>Options</td>
+						</tr>
+					
+					</theader>
+
+					<tbody>
+
+						<tr>
+							<td>1</td>
+							<td>mode</td>
+							<td>date</td>
+							<td>
+								<ul>
+									<li>date</li>
+									<li>time</li>
+									<li>datetime</li>
+								</ul>
+							</td>
+						</tr>
+					
+						<tr>
+							<td>2</td>
+							<td>defaultDate</td>
+							<td>new Date()</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>3</td>
+							<td>dateSeparator</td>
+							<td>dash("-")</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>4</td>
+							<td>timeSeparator</td>
+							<td>colon(":")</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>5</td>
+							<td>timeMeridiemSeparator</td>
+							<td>Space(" ")</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>6</td>
+							<td>dateTimeSeparator</td>
+							<td>Space(" ")</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>7</td>
+							<td>dateTimeFormat</td>
+							<td>"dd-MM-yyyy hh:mm:ss"</td>
+							<td>
+								<ul>
+									<li>"dd-MM-yyyy HH:mm:ss"</li>
+									<li>"dd-MM-yyyy hh:mm:ss AA"</li>
+									<li>"MM-dd-yyyy HH:mm:ss"</li>
+									<li>"MM-dd-yyyy hh:mm:ss AA"</li>
+									<li>"yyyy-MM-dd HH:mm:ss"</li>
+									<li>"yyyy-MM-dd hh:mm:ss AA"</li>
+								</ul>						
+							</td>
+						</tr>
+					
+						<tr>
+							<td>8</td>
+							<td>dateFormat</td>
+							<td>"dd-MM-yyyy"</td>
+							<td>
+								<ul>
+									<li>"dd-MM-yyyy"</li>
+									<li>"MM-dd-yyyy"</li>
+									<li>"yyyy-MM-dd"</li>
+								</ul>
+							</td>
+						</tr>
+					
+						<tr>
+							<td>9</td>
+							<td>timeFormat</td>
+							<td>"HH:mm"</td>
+							<td>
+								<ul>
+									<li>"hh:mm AA"</li>
+									<li>"HH:mm"</li>
+								</ul>
+							</td>
+						</tr>
+					
+						<tr>
+							<td>10</td>
+							<td>maxDate</td>
+							<td>null</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>11</td>
+							<td>minDate</td>
+							<td>null</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>12</td>
+							<td>maxTime</td>
+							<td>null</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>13</td>
+							<td>minTime</td>
+							<td>null</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>14</td>
+							<td>maxDateTime</td>
+							<td>null</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>15</td>
+							<td>minDateTime</td>
+							<td>null</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>16</td>
+							<td>shortDayNames</td>
+							<td>["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>17</td>
+							<td>fullDayNames</td>
+							<td>["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>18</td>
+							<td>shortMonthNames</td>
+							<td>["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>19</td>
+							<td>fullMonthNames</td>
+							<td>["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>20</td>
+							<td>titleContentDate</td>
+							<td>"Set Date"</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>21</td>
+							<td>titleContentTime</td>
+							<td>"Set Time"</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>22</td>
+							<td>titleContentDateTime</td>
+							<td>"Set Date & Time"</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>23</td>
+							<td>setButtonContent</td>
+							<td>"Set"</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>24</td>
+							<td>clearButtonContent</td>
+							<td>"Clear"</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>25</td>
+							<td>animationDuration</td>
+							<td>400</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>26</td>
+							<td>isPopup</td>
+							<td>true</td>
+							<td></td>
+						</tr>
+						
+						<tr>
+							<td>27</td>
+							<td>addEventHandlers</td>
+							<td>function(){}</td>
+							<td></td>
+						</tr>
+					
+					</tbody>
+
+				</table>
+				
+			</div>
+
+			<div class="row text-center">This project is maintained by <a class="btn-link" href="https://github.com/CuriousSolutions">CuriousSolutions</a></div>
+
+			<div id="dtBox"></div>
+
 		</div>
-	
-		<!--[if !IE]><script>fixScale(document);</script><![endif]-->
-	
-	</body>
-  
+        
+    </body>
+    
 </html>
