@@ -15,21 +15,18 @@
         <script type='text/javascript' src="javascripts/jquery-1.11.0.min.js"></script>
         <script type='text/javascript' src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
         
-        <link rel="stylesheet" type="text/css" href="src/DateTimePicker.css" />
-		<script type="text/javascript" src="src/DateTimePicker.js"></script>
+        <link rel="stylesheet" type="text/css" href="stylesheets/DateTimePicker.min.css" />
+		<script type="text/javascript" src="javascripts/DateTimePicker.min.js"></script>
 		<!--[if lt IE 9]>
-			<link rel="stylesheet" type="text/css" href="src/DateTimePicker-ltie9.css" />
-			<script type="text/javascript" src="src/DateTimePicker-ltie9.js"></script>
+			<link rel="stylesheet" type="text/css" href="stylesheets/DateTimePicker-ltie9.min.css" />
+			<script type="text/javascript" src="javascripts/DateTimePicker-ltie9.min.js"></script>
 		<![endif]-->
 		
 		<link rel="stylesheet" type="text/css" href="stylesheets/index.css" />
 		<script type="text/javascript" src="javascripts/index.js"></script>
 	
-        <link rel="shortcut icon" href="/bootstrap/img/favicon.ico">
-        <link rel="apple-touch-icon" href="/bootstrap/img/apple-touch-icon.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/bootstrap/img/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/bootstrap/img/apple-touch-icon-114x114.png">
-
+        <link rel="shortcut icon" href="images/favicon.ico">
+        
     </head>
     
     <body>
@@ -38,25 +35,25 @@
 
 			<div class="jumbotron">
 
-				<h2 class="text-center">DateTime Picker</h2>
+				<h2 class="text-center doc-header">DateTime Picker</h2>
 		
-				<p class="text-center">Responsive Flat design jQuery based DateTime Picker for Web &amp; Mobile</p>
-
-				<div class="row text-center">
-
-					<div class="col-sm-4" style="">
-						<a class="btn btn-default" href="https://github.com/CuriousSolutions/DateTimePicker/zipball/master">Download ZIP</a>
-					</div>
-
-					<div class="col-sm-4">
-						<a class="btn btn-default" href="https://github.com/CuriousSolutions/DateTimePicker/tarball/master">Download TAR</a>
-					</div>
-
-					<div class="col-sm-4">
-						<a class="btn btn-default" href="https://github.com/CuriousSolutions/DateTimePicker">View On Github</a>
-					</div>
+				<p class="text-center doc-description">Responsive Flat design jQuery based DateTime Picker for Web &amp; Mobile</p>
 
 			</div>
+			
+			<div class="row text-center doc-buttons">
+
+					<div class="col-sm-4" style="">
+						<a class="btn btn-default btn-color" href="https://github.com/CuriousSolutions/DateTimePicker/zipball/master">Download ZIP</a>
+					</div>
+
+					<div class="col-sm-4">
+						<a class="btn btn-default btn-color" href="https://github.com/CuriousSolutions/DateTimePicker/tarball/master">Download TAR</a>
+					</div>
+
+					<div class="col-sm-4">
+						<a class="btn btn-default btn-color" href="https://github.com/CuriousSolutions/DateTimePicker">View On Github</a>
+					</div>
 
 			</div>
 			
@@ -66,32 +63,32 @@
 			
 			</div>
 
-			<div class="row">
+			<div class="row  doc-demo">
 
 				<div class="col-sm-4">
 
 					<h4 class="h4-margin">Date:</h4>
-					<input type="text" class="form-control">
+					<input type="text" class="form-control" data-field='date'>
 
 				</div>
 
 				<div class="col-sm-4">
 
 					<h4 class="h4-margin">Time:</h4>
-					<input type="text" class="form-control">
+					<input type="text" class="form-control" data-field='time'>
 
 				</div>
 
 				<div class="col-sm-4">
 
 					<h4 class="h4-margin">DateTime:</h4>
-					<input type="text" class="form-control">
+					<input type="text" class="form-control" data-field='datetime'>
 
 				</div>
 
 			</div>
 
-			<div class="row">
+			<div class="row  doc-howto">
 			
 				<h3 >How To Use</h3>
 				
@@ -109,7 +106,7 @@
 			
 			</div>
 			
-			<div class="row">
+			<div class="row  doc-optionslist">
 			
 				<h3 class="">Options List</h3>
 
@@ -349,7 +346,7 @@
 				
 			</div>
 
-			<div class="row text-center">This project is maintained by <a class="btn-link" href="https://github.com/CuriousSolutions">CuriousSolutions</a></div>
+			<div class="row text-center doc-footer">This project is maintained by <a class="btn-link" href="https://github.com/CuriousSolutions">CuriousSolutions</a></div>
 
 			<div id="dtBox"></div>
 
