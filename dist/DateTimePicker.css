@@ -1,16 +1,10 @@
 .dtpicker-overlay
 {
-	position: fixed;
-	top: 0px;
-	left: 0px;
 	z-index: 100;
-	
 	display:none;
-	width: 100%;
-	height: 100%;
-	
+	min-width: 300px;
+
 	background: rgba(0, 0, 0, 0.2);
-	
 	font-size: 70%;
 	
 	-webkit-touch-callout: none;
@@ -21,6 +15,16 @@
 	user-select: none;
 }
 
+.dtpicker-mobile
+{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	
+	width: 100%;
+	height: 100%;
+}
+
 .dtpicker-overlay * 
 {
 	-webkit-box-sizing: border-box;
@@ -28,7 +32,7 @@
 	box-sizing: border-box;
 	-ms-box-sizing: border-box;
 	
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .dtpicker-bg
@@ -41,29 +45,39 @@
 
 .dtpicker-cont
 {
+	border: 1px solid #ECF0F1;
+}
+
+.dtpicker-mobile .dtpicker-cont
+{
 	position: relative;
 	top: 50%;
 	-webkit-transform: translateY(-50%);
 	-moz-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
+	
+	border: none;
 }
 
 .dtpicker-content
 {
 	margin: 0px auto;
-	
 	padding: 1em 0em;
 	
 	max-width: 500px;
-	width: 97%;	
+	
 	background: #fff;
+}
+
+.dtpicker-mobile .dtpicker-content
+{
+	width: 97%;	
 }
 
 .dtpicker-subcontent
 {
 	position: relative;
-	
 }
 
 .dtpicker-header

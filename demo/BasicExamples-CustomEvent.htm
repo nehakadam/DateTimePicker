@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Date Picker</title>
+	
+		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../src/DateTimePicker.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+	
+		<style>
+		
+			input
+			{
+				padding: 5px 10px;
+			}
+		
+			.pickerButton
+			{
+				background: #A3A3CC;
+				color: #FFFFFF;
+				border-radius: 2px;
+				padding: 5px 10px;
+				
+				cursor: pointer;
+			}
+		
+			.pickerButton:hover
+			{
+				background: #CCA3A3;
+			}
+		
+		</style>
+	
+	</head>
+	
+	<body>
+	
+		<div class="container">
+		
+			<div id="datePicker">
+				<p>Date : </p>
+				<input type="text" data-field="date" readonly>
+				<span class="pickerButton">Show</span>
+			</div>
+		
+			<div id="timePicker">
+				<p>Time : </p>
+				<input type="text" data-field="time" readonly>
+				<span class="pickerButton">Show</span>
+			</div>
+		
+			<div id="dateTimePicker">
+				<p>DateTime : </p>
+				<input type="text" data-field="datetime" readonly>
+				<span class="pickerButton">Show</span>
+			</div>
+		
+		</div>
+		
+		<div id="dtBox"></div>
+		
+		<script type="text/javascript">
+		
+			$(document).ready(function()
+			{
+				$("#dtBox").DateTimePicker({
+				
+					addEventHandlers: function()
+					{
+						var dtPickerObj = this;
+						
+						$("input").attr("disabled", "disabled");
+					
+						$("#datePicker .pickerButton").click(function()
+						{
+							dtPickerObj.showDateTimePicker($("#datePicker input"));
+						});
+						
+						$("#timePicker .pickerButton").click(function()
+						{
+							dtPickerObj.showDateTimePicker($("#timePicker input"));
+						});
+						
+						$("#dateTimePicker .pickerButton").click(function()
+						{
+							dtPickerObj.showDateTimePicker($("#dateTimePicker input"));
+						});
+					}
+				});
+			});
+		
+		</script>
+	
+	</body>
+
+</html>

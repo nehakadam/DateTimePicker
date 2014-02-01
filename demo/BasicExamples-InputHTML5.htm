@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Basic Examples -- Input Type Date | Time | DateTime</title>
+	
+		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../src/DateTimePicker.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+	
+	</head>
+
+	<body>
+	
+		<!---- This will not work on IE Versions less than 9 ------------->
+		
+		<!------------------------ Date Picker ------------------------>
+		<p>Date : </p>
+		<input type="date" readonly>
+	
+		<!------------------------ Time Picker ------------------------>
+		<p>Time : </p>
+		<input type="time" readonly>
+	
+		<!------------------------ DateTime Picker ------------------------>
+		<p>DateTime : </p>
+		<input type="datetime" readonly>
+	
+		<div id="dtBox"></div>
+	
+		<script type="text/javascript">
+		
+			$(document).ready(function()
+			{
+				$("#dtBox").DateTimePicker();
+			});
+		
+		</script>
+	
+	</body>
+
+</html>

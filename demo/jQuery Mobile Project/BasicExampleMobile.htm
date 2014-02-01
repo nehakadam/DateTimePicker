@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Period Range - Parameters</title>
+	
+		<link rel="stylesheet" type="text/css" href="../../src/DateTimePicker.css" />
+		<link rel="stylesheet" type="text/css" href="jquery.mobile-1.4.0.min.css" />
+	
+		<script type="text/javascript" src="../jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="jquery.mobile-1.4.0.min.js"></script>
+	
+		<script type="text/javascript" src="../../src/DateTimePicker.js"></script>
+	
+		<script type="text/javascript">
+		
+			$(document).ready(function()
+			{
+				// DOM Element Insertion and Plugin Initialisation on loading of first page if you are using DatePicker on first page
+				$("#page1").append("<div id='dateBox'></div>"); // Add Element To DOM
+				$("#dateBox").DateTimePicker(); // Plugin Initialization
+			
+			
+				// Otherwise, DOM Element Insertion and Plugin Initialisation can be done on pageshow
+				$("#page1, #page2").on("pageshow", function(event) 
+				{
+					$(this).append("<div id='dateBox'></div>"); // Add Element To DOM
+					$("#dateBox").DateTimePicker(); // Plugin Initialization
+				});
+			
+				// DOM Element Removal on pagehide method
+				$("#page1, #page2").on("pagehide", function(event) 
+				{
+					$("#dateBox").remove(); // Remove Element From DOM
+				});
+			
+			});
+		
+		</script>
+		
+	</head>
+	
+	<body>
+	
+		<!-- Start of first page -->
+		<div data-role="page" id="page1">
+		
+			<div data-role="header">
+				<h1>Page 1</h1>
+			</div><!-- /header -->
+		
+			<div role="main" class="ui-content">
+			
+				<p><a href="#page2">Page 2</a></p>
+				
+				<!------------------------ Date Picker ------------------------>
+				<p>Date : </p>
+				<input type="text" data-field="date" readonly>
+	
+				<!------------------------ Time Picker ------------------------>
+				<p>Time : </p>
+				<input type="text" data-field="time" readonly>
+	
+				<!---------------------- DateTime Picker ---------------------->
+				<p>DateTime : </p>
+				<input type="text" data-field="datetime" readonly>
+				
+			</div><!-- /content -->
+		
+			<div data-role="footer">
+				<h4>Page Footer</h4>
+			</div><!-- /footer -->
+		</div><!-- /page -->
+	
+		<!-- Start of second page -->
+		<div data-role="page" id="page2">
+		
+			<div data-role="header">
+				<h1>Page 2</h1>
+			</div><!-- /header -->
+		
+			<div role="main" class="ui-content">
+				
+				<p><a href="#page1">Page 1</a></p>
+				
+				<!------------------------ Date Picker ------------------------>
+				<p>Date : </p>
+				<input type="text" data-field="date" readonly>
+	
+				<!------------------------ Time Picker ------------------------>
+				<p>Time : </p>
+				<input type="text" data-field="time" readonly>
+	
+				<!---------------------- DateTime Picker ---------------------->
+				<p>DateTime : </p>
+				<input type="text" data-field="datetime" readonly>
+				
+			</div><!-- /content -->
+		
+			<div data-role="footer">
+				<h4>Page Footer</h4>
+			</div><!-- /footer -->
+		
+		</div><!-- /page -->
+	
+	</body>
+	
+</html>
+	

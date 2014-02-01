@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Basic Examples -- Non Input Element</title>
+	
+		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../src/DateTimePicker.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+		
+		<style type="text/css">
+		
+			[data-field]
+			{
+				border: 1px solid gray;
+				
+				display: inline-block;
+				width: 400px;
+				height: 30px;
+				line-height: 30px;
+				padding: 0px 5px;
+			}
+		
+		</style>
+	
+	</head>
+
+	<body>
+	
+		<!------------------------ Date Picker ------------------------>
+		<p>Date : </p>
+		<span data-field="date"></span>
+	
+		<!------------------------ Time Picker ------------------------>
+		<p>Time : </p>
+		<span data-field="time"></span>
+	
+		<!---------------------- DateTime Picker ---------------------->
+		<p>DateTime : </p>
+		<span data-field="datetime"></span>
+	
+	
+		<div id="dtBox"></div>
+	
+	
+		<script type="text/javascript">
+		
+			$(document).ready(function()
+			{
+				$("#dtBox").DateTimePicker();
+			});
+		
+		</script>
+	
+	
+	</body>
+
+</html>
