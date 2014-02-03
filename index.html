@@ -32,7 +32,7 @@
     <body>
         
 		<div class="container">
-
+		
 			<div class="jumbotron">
 
 				<h2 class="text-center doc-header">DateTime Picker</h2>
@@ -40,36 +40,46 @@
 				<p class="text-center doc-description">Responsive Flat design jQuery based DateTime Picker for Web &amp; Mobile</p>
 
 			</div>
-			
-			<div class="row text-center doc-buttons">
+		
+			<div class="row doc-buttons">
 
-					<div class="col-sm-4" style="">
+					<div class="col-sm-4 text-right">
 						<a class="btn btn-default btn-color" href="https://github.com/CuriousSolutions/DateTimePicker/zipball/master">Download ZIP</a>
 					</div>
 
-					<div class="col-sm-4">
+					<div class="col-sm-4 text-center">
 						<a class="btn btn-default btn-color" href="https://github.com/CuriousSolutions/DateTimePicker/tarball/master">Download TAR</a>
 					</div>
 
-					<div class="col-sm-4">
+					<div class="col-sm-4 text-left">
 						<a class="btn btn-default btn-color" href="https://github.com/CuriousSolutions/DateTimePicker">View On Github</a>
 					</div>
 
 			</div>
-			
+		
 			<div class="row text-center image-container">
 			
-				<img class="screenshot" src="images/dp-screenshot.png"/>
+				<div class="col-sm-4 text-right">
+					<img class="screenshot" src="images/dp-screenshot.png"/>
+				</div>
+				
+				<div class="col-sm-4 text-center">
+					<img class="screenshot" src="images/tp-screenshot.png"/>
+				</div>
+				
+				<div class="col-sm-4 text-left">
+					<img class="screenshot" src="images/dtp-screenshot.png"/>
+				</div>
 			
 			</div>
-
-			<div class="row  doc-demo">
-
+		
+			<div class="row doc-demo">
+			
 				<div class="col-sm-4">
-
+				
 					<h4 class="h4-margin">Date:</h4>
 					<input type="text" class="form-control" data-field='date'>
-
+				
 				</div>
 
 				<div class="col-sm-4">
@@ -80,15 +90,15 @@
 				</div>
 
 				<div class="col-sm-4">
-
+				
 					<h4 class="h4-margin">DateTime:</h4>
 					<input type="text" class="form-control" data-field='datetime'>
-
+				
 				</div>
 
 			</div>
-
-			<div class="row  doc-howto">
+		
+			<div class="row doc-howto">
 			
 				<h3 >How To Use</h3>
 				
@@ -105,243 +115,322 @@
 				<script src="https://gist.github.com/nehakadam/8752223.js"></script>
 			
 			</div>
+		
+			<div class="row doc-optionslist">
 			
-			<div class="row  doc-optionslist">
-			
-				<h3 class="">Options List</h3>
+				<h3 class="">Parameter Options List</h3>
 
 				<table class="table table-responsive table-bordered">
 				
-					<theader>
+					<tr>
+						<td>No</td>
+						<td>Parameter Name</td>
+						<td>Default Value</td>
+						<td>Options</td>
+					</tr>
+				
+					<tr>
+						<td>1</td>
+						<td>mode</td>
+						<td>"date"</td>
+						<td>
+							<ul>
+								<li>"date"</li>
+								<li>"time"</li>
+								<li>"datetime"</li>
+							</ul>
+						</td>
+					</tr>
+				
+					<tr>
+						<td>2</td>
+						<td>defaultDate</td>
+						<td>new Date()</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>3</td>
+						<td>dateSeparator</td>
+						<td>dash("-")</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>4</td>
+						<td>timeSeparator</td>
+						<td>colon(":")</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>5</td>
+						<td>timeMeridiemSeparator</td>
+						<td>Space(" ")</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>6</td>
+						<td>dateTimeSeparator</td>
+						<td>Space(" ")</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>7</td>
+						<td>dateTimeFormat</td>
+						<td>"dd-MM-yyyy hh:mm:ss"</td>
+						<td>
+							<ul>
+								<li>"dd-MM-yyyy HH:mm:ss"</li>
+								<li>"dd-MM-yyyy hh:mm:ss AA"</li>
+								<li>"MM-dd-yyyy HH:mm:ss"</li>
+								<li>"MM-dd-yyyy hh:mm:ss AA"</li>
+								<li>"yyyy-MM-dd HH:mm:ss"</li>
+								<li>"yyyy-MM-dd hh:mm:ss AA"</li>
+							</ul>						
+						</td>
+					</tr>
+				
+					<tr>
+						<td>8</td>
+						<td>dateFormat</td>
+						<td>"dd-MM-yyyy"</td>
+						<td>
+							<ul>
+								<li>"dd-MM-yyyy"</li>
+								<li>"MM-dd-yyyy"</li>
+								<li>"yyyy-MM-dd"</li>
+							</ul>
+						</td>
+					</tr>
+				
+					<tr>
+						<td>9</td>
+						<td>timeFormat</td>
+						<td>"HH:mm"</td>
+						<td>
+							<ul>
+								<li>"hh:mm AA"</li>
+								<li>"HH:mm"</li>
+							</ul>
+						</td>
+					</tr>
+				
+					<tr>
+						<td>10</td>
+						<td>maxDate</td>
+						<td>null</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>11</td>
+						<td>minDate</td>
+						<td>null</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>12</td>
+						<td>maxTime</td>
+						<td>null</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>13</td>
+						<td>minTime</td>
+						<td>null</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>14</td>
+						<td>maxDateTime</td>
+						<td>null</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>15</td>
+						<td>minDateTime</td>
+						<td>null</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>16</td>
+						<td>shortDayNames</td>
+						<td>["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>17</td>
+						<td>fullDayNames</td>
+						<td>["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>18</td>
+						<td>shortMonthNames</td>
+						<td>["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>19</td>
+						<td>fullMonthNames</td>
+						<td>["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>20</td>
+						<td>titleContentDate</td>
+						<td>"Set Date"</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>21</td>
+						<td>titleContentTime</td>
+						<td>"Set Time"</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>22</td>
+						<td>titleContentDateTime</td>
+						<td>"Set Date & Time"</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>23</td>
+						<td>setButtonContent</td>
+						<td>"Set"</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>24</td>
+						<td>clearButtonContent</td>
+						<td>"Clear"</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>25</td>
+						<td>animationDuration</td>
+						<td>400</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>26</td>
+						<td>isPopup</td>
+						<td>true</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>27</td>
+						<td>addEventHandlers</td>
+						<td>function(){}</td>
+						<td></td>
+					</tr>
 					
-						<tr>
-							<td>No</td>
-							<td>Parameter Name</td>
-							<td>Default Value</td>
-							<td>Options</td>
-						</tr>
+				</table>
+				
+			</div>
+			
+			<div class="row doc-dataattrlist">
+			
+				<h3 class="">HTML5 Custom Data Attribute List</h3>
+				
+				<table class="table table-responsive table-bordered">
+				
+					<tr>
+						<td>No</td>
+						<td>Attribute</td>
+						<td>Default Value</td>
+						<td>Options</td>
+					</tr>
 					
-					</theader>
-
-					<tbody>
-
-						<tr>
-							<td>1</td>
-							<td>mode</td>
-							<td>date</td>
-							<td>
-								<ul>
-									<li>date</li>
-									<li>time</li>
-									<li>datetime</li>
-								</ul>
-							</td>
-						</tr>
+					<tr>
+						<td>1</td>
+						<td>data-field</td>
+						<td>Default value of mode parameter (required, except in case of HTML5 input types)</td>
+						<td>
+							<ul>
+								<li>"date"</li>
+								<li>"time"</li>
+								<li>"datetime"</li>
+							</ul>
+						</td>
+					</tr>
+				
+					<tr>
+						<td>2</td>
+						<td>data-min</td>
+						<td>null</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>3</td>
+						<td>data-max</td>
+						<td>null</td>
+						<td></td>
+					</tr>
+				
+					<tr>
+						<td>4</td>
+						<td>data-format</td>
+						<td>Default value of dateFormat, timeFormat or dateTimeFormat parameters</td>
+						<td>dateFormat, timeFormat or dateTimeFormat Options</td>
+					</tr>
 					
-						<tr>
-							<td>2</td>
-							<td>defaultDate</td>
-							<td>new Date()</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>3</td>
-							<td>dateSeparator</td>
-							<td>dash("-")</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>4</td>
-							<td>timeSeparator</td>
-							<td>colon(":")</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>5</td>
-							<td>timeMeridiemSeparator</td>
-							<td>Space(" ")</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>6</td>
-							<td>dateTimeSeparator</td>
-							<td>Space(" ")</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>7</td>
-							<td>dateTimeFormat</td>
-							<td>"dd-MM-yyyy hh:mm:ss"</td>
-							<td>
-								<ul>
-									<li>"dd-MM-yyyy HH:mm:ss"</li>
-									<li>"dd-MM-yyyy hh:mm:ss AA"</li>
-									<li>"MM-dd-yyyy HH:mm:ss"</li>
-									<li>"MM-dd-yyyy hh:mm:ss AA"</li>
-									<li>"yyyy-MM-dd HH:mm:ss"</li>
-									<li>"yyyy-MM-dd hh:mm:ss AA"</li>
-								</ul>						
-							</td>
-						</tr>
-					
-						<tr>
-							<td>8</td>
-							<td>dateFormat</td>
-							<td>"dd-MM-yyyy"</td>
-							<td>
-								<ul>
-									<li>"dd-MM-yyyy"</li>
-									<li>"MM-dd-yyyy"</li>
-									<li>"yyyy-MM-dd"</li>
-								</ul>
-							</td>
-						</tr>
-					
-						<tr>
-							<td>9</td>
-							<td>timeFormat</td>
-							<td>"HH:mm"</td>
-							<td>
-								<ul>
-									<li>"hh:mm AA"</li>
-									<li>"HH:mm"</li>
-								</ul>
-							</td>
-						</tr>
-					
-						<tr>
-							<td>10</td>
-							<td>maxDate</td>
-							<td>null</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>11</td>
-							<td>minDate</td>
-							<td>null</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>12</td>
-							<td>maxTime</td>
-							<td>null</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>13</td>
-							<td>minTime</td>
-							<td>null</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>14</td>
-							<td>maxDateTime</td>
-							<td>null</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>15</td>
-							<td>minDateTime</td>
-							<td>null</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>16</td>
-							<td>shortDayNames</td>
-							<td>["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>17</td>
-							<td>fullDayNames</td>
-							<td>["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>18</td>
-							<td>shortMonthNames</td>
-							<td>["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>19</td>
-							<td>fullMonthNames</td>
-							<td>["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>20</td>
-							<td>titleContentDate</td>
-							<td>"Set Date"</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>21</td>
-							<td>titleContentTime</td>
-							<td>"Set Time"</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>22</td>
-							<td>titleContentDateTime</td>
-							<td>"Set Date & Time"</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>23</td>
-							<td>setButtonContent</td>
-							<td>"Set"</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>24</td>
-							<td>clearButtonContent</td>
-							<td>"Clear"</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>25</td>
-							<td>animationDuration</td>
-							<td>400</td>
-							<td></td>
-						</tr>
-					
-						<tr>
-							<td>26</td>
-							<td>isPopup</td>
-							<td>true</td>
-							<td></td>
-						</tr>
+					<tr>
+						<td>5</td>
+						<td>data-view</td>
+						<td>Default value of isPopup parameter</td>
+						<td>
+							<ul>
+								<li>"Popup"</li>
+								<li>"Dropdown"</li>
+							</ul>
+						</td>
+					</tr>
 						
-						<tr>
-							<td>27</td>
-							<td>addEventHandlers</td>
-							<td>function(){}</td>
-							<td></td>
-						</tr>
+				</table>
+				
+			</div>
+			
+			<div class="row doc-functionlist">
+			
+				<h3 class="">Function List</h3>
+				
+				<table class="table table-responsive table-bordered">
+				
+					<tr>
+						<td>Function Name</td>
+						<td>Description</td>
+						<td>Parameters</td>
+						<td>Return Value</td>
+					</tr>
 					
-					</tbody>
-
+					<tr>
+						<td>setIsPopup</td>
+						<td>Set value of isPopup parameter</td>
+						<td>isPopupVal - Boolean</td>
+						<td></td>
+					</tr>
+				
 				</table>
 				
 			</div>

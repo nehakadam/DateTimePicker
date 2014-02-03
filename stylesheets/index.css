@@ -27,6 +27,25 @@
 	color: #777;
 }
 
+.doc-buttons .col-sm-4
+{
+	margin: 5px 0px;
+}
+
+.doc-buttons .col-sm-4 .btn
+{
+	width: 60%;
+}
+
+@media (max-width: 768px)
+{
+	.doc-buttons .col-sm-4
+	{
+		text-align: center;
+		margin: 20px 0px;
+	}
+}
+
 ul
 {
 	padding-left: 10px;
@@ -39,16 +58,34 @@ ul
 
 .image-container
 {
-	margin: 80px 0px 40px 0px;
+	margin: 40px 0px 40px 0px;
 }
 
 .image-container img
 {
-	width: 100%;
+	width: 90%;
 	height: auto;
 
 	max-width: 500px;
 	max-height: 275px;
+}
+
+@media (max-width: 768px)
+{
+	.image-container
+	{
+		margin: 20px 0px;
+	}
+
+	.image-container .col-sm-4
+	{
+		text-align: center;
+	}
+
+	.image-container img
+	{
+		margin: 20px 0px;
+	}
 }
 
 .h4-margin
@@ -59,5 +96,25 @@ ul
 a:hover
 {
 	text-decoration: none !important;
+}
+
+.doc-optionslist table tr:first-child
+{
+	font-weight: bold;
+}
+
+.doc-optionslist table td:nth-child(4)
+{
+	width: 24%;
+}
+
+.doc-dataattrlist table tr:first-child
+{
+	font-weight: bold;
+}
+
+.doc-functionlist table tr:first-child
+{
+	font-weight: bold;
 }
 
