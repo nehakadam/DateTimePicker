@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>View -- Data Attributes</title>
+	
+		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../src/DateTimePicker.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+	
+	</head>
+
+	<body>
+	
+	
+		<!------------------------ Date Picker ------------------------>
+		<p>Date : </p>
+		<input type="text" data-field="date" data-view="Popup" readonly>
+	
+		<!------------------------ Time Picker ------------------------>
+		<p>Time : </p>
+		<input type="text" data-field="time" data-view="Popup" readonly>
+	
+		<!---------------------- DateTime Picker ---------------------->
+		<p>DateTime : </p>
+		<input type="text" data-field="datetime" data-view="Popup" readonly>
+		
+		<!------------------------ Date Picker ------------------------>
+		<p>Date : </p>
+		<input type="text" data-field="date" data-view="Dropdown" readonly>
+	
+		<!------------------------ Time Picker ------------------------>
+		<p>Time : </p>
+		<input type="text" data-field="time" data-view="Dropdown" readonly>
+	
+		<!---------------------- DateTime Picker ---------------------->
+		<p>DateTime : </p>
+		<input type="text" data-field="datetime" data-view="Dropdown" readonly>
+	
+	
+		<div id="dtBox"></div>
+	
+	
+		<script type="text/javascript">
+		
+			$(document).ready(function()
+			{
+				$("#dtBox").DateTimePicker();
+			});
+		
+		</script>
+	
+	
+	</body>
+
+</html>

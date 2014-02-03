@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>View -- Based On Document Width</title>
+	
+		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../src/DateTimePicker.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+	
+	</head>
+
+	<body>
+	
+	
+		<!------------------------ Date Picker ------------------------>
+		<p>Date : </p>
+		<input type="text" data-field="date" readonly>
+	
+		<!------------------------ Time Picker ------------------------>
+		<p>Time : </p>
+		<input type="text" data-field="time" readonly>
+	
+		<!---------------------- DateTime Picker ---------------------->
+		<p>DateTime : </p>
+		<input type="text" data-field="datetime" readonly>
+	
+	
+		<div id="dtBox"></div>
+	
+	
+		<script type="text/javascript">
+		
+			$(document).ready(function() 
+			{
+				var bIsPopup = displayPopup();
+			
+				$("#dtBox").DateTimePicker(
+				{
+					isPopup: bIsPopup,
+				
+					addEventHandlers: function()
+					{
+						var dtPickerObj = this;
+					
+						$(window).resize(function()
+						{
+							bIsPopup = displayPopup();
+							dtPickerObj.setIsPopup(bIsPopup);
+						});
+					}
+				});
+			});
+		
+			function displayPopup()
+			{
+				if($(document).width() >= 768)
+					return false;
+				else
+					return true;
+			}
+		
+		</script>
+	
+	
+	</body>
+
+</html>

@@ -62,7 +62,7 @@
 			iCurrentMinutes: 0,
 			sCurrentMeridiem: "",
 			iMaxNumberOfDays: 0,
-			
+		
 			sDateFormat: "",
 			sTimeFormat: "",
 			sDateTimeFormat: "",
@@ -79,7 +79,7 @@
 			bIs12Hour: false	
 		};
 	
-		function DateTimePicker(element, options) 
+		function DateTimePicker(element, options)
 		{
 			this.element = element;
 			this.settings = $.extend({}, defaults, options);
@@ -90,7 +90,7 @@
 			this.init();
 		}
 	
-		$.fn.DateTimePicker = function ( options ) 
+		$.fn.DateTimePicker = function (options)
 		{
 			return this.each(function() 
 			{
@@ -261,6 +261,21 @@
 				{
 					dtPickerObj.dataObject.oInputElement = element;
 				
+					var sMode = $(element).data("field") || "";
+					var sMinValue = $(element).data("min") || "";
+					var sMaxValue = $(element).data("max") || "";
+					var sFormat = $(element).data("format") || "";
+					var sView = $(element).data("view") || "";
+					var sCurrent = dtPickerObj._getValueOfElement() || "";
+				
+					if(sView != "")
+					{
+						if(dtPickerObj._compare(sView, "Popup"))
+							dtPickerObj.setIsPopup(true);
+						else 
+							dtPickerObj.setIsPopup(false);
+					}
+				
 					if(! dtPickerObj.settings.isPopup)
 					{
 						dtPickerObj._createPicker();
@@ -271,12 +286,6 @@
 					
 						$(dtPickerObj.element).css({position: "absolute", top: iElemTop, left: iElemLeft, width: iElemWidth, height: "auto"});
 					}
-				
-					var sMode = $(element).data("field") || "";
-					var sMinValue = $(element).data("min") || "";
-					var sMaxValue = $(element).data("max") || "";
-					var sFormat = $(element).data("format") || "";
-					var sCurrent = dtPickerObj._getValueOfElement() || "";
 				
 					dtPickerObj._showPicker(sMode, sMinValue, sMaxValue, sFormat, sCurrent, element);
 				}
@@ -446,7 +455,8 @@
 			{
 				var dtPickerObj = this;
 			
-				dtPickerObj.settings.mode = sMode;
+				if(sMode != "")
+					dtPickerObj.settings.mode = sMode;
 			
 				dtPickerObj.dataObject.dMinValue = null;
 				dtPickerObj.dataObject.dMaxValue = null;
@@ -515,7 +525,7 @@
 				$(dtPickerObj.element).fadeIn(dtPickerObj.settings.animationDuration);
 			},
 		
-			_hidePicker: function()
+			_hidePicker: function(iDuration)
 			{
 				var dtPickerObj = this;
 			
@@ -523,13 +533,13 @@
 				{
 					$(dtPickerObj.dataObject.oInputElement).blur();
 					dtPickerObj.dataObject.oInputElement = null;
-				}				
+				}
 			
-				$(dtPickerObj.element).fadeOut(dtPickerObj.settings.animationDuration);
+				$(dtPickerObj.element).fadeOut(iDuration || dtPickerObj.settings.animationDuration);
 				setTimeout(function()
 				{
 					$(dtPickerObj.element).find('.dtpicker-subcontent').html("");
-				}, dtPickerObj.settings.animationDuration);
+				}, (iDuration || dtPickerObj.settings.animationDuration));
 			},
 		
 			_modifyPicker: function()
@@ -606,7 +616,7 @@
 					}
 				}
 				var sColumnClass = "dtpicker-comp" + iNumberOfColumns;
-				
+			
 				//--------------------------------------------------------------------
 			
 				var sHeader = "";
@@ -1319,6 +1329,34 @@
 					return true;
 				else
 					return false;				
+			},
+			
+			setIsPopup: function(isPopup)
+			{
+				var dtPickerObj = this;
+				dtPickerObj.settings.isPopup = isPopup;
+				
+				if($(dtPickerObj.element).css("display") != "none")
+					dtPickerObj._hidePicker(1);
+				if(dtPickerObj.settings.isPopup)
+				{
+					$(dtPickerObj.element).addClass("dtpicker-mobile");
+					
+					$(dtPickerObj.element).css({position: "fixed", top: 0, left: 0, width: "100%", height: "100%"});
+				}
+				else
+				{
+					$(dtPickerObj.element).removeClass("dtpicker-mobile");
+					
+					if(dtPickerObj.dataObject.oInputElement != null)
+					{
+						var iElemTop = $(dtPickerObj.dataObject.oInputElement).offset().top + $(dtPickerObj.dataObject.oInputElement).outerHeight();
+						var iElemLeft = $(dtPickerObj.dataObject.oInputElement).offset().left;
+						var iElemWidth =  $(dtPickerObj.dataObject.oInputElement).outerWidth();
+				
+						$(dtPickerObj.element).css({position: "absolute", top: iElemTop, left: iElemLeft, width: iElemWidth, height: "auto"});
+					}
+				}
 			}
 		};
 	
