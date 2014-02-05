@@ -5,14 +5,8 @@
 
 	"description": "DateTime Picker is a quick highly customizable jQuery plugin. The design is clutter free & well suited for embedding it into mobile application development. Users can change values using +/- buttons or type values directly into the textbox by selecting each value fields. For web, picker can be binded relative to reference element, were it will appear at the bottom of the element. For mobile, the picker can appear as a dialog box covering entire window.",
 
-	"keywords": [
-        "DatePicker",
-        "TimePicker",
-        "DateTimePicker"
-    ],
+	"keywords": ["date", "time", "datetime", "plugin", "picker", "DatePicker", "TimePicker", "DateTimePicker", "Responsive", "Flat", "Mobile", "jquery"],
 
-	"author": "Curious Solutions",
-	
 	"author": {
         "name": "Curious Solutions",
         "url": "http://curioussolutions.in/"
@@ -20,7 +14,8 @@
 	
 	"maintainers": [
         {
-            "name": "Neha Kadam"
+            "name": "Neha Kadam",
+            "url": "https://github.com/nehakadam"
         }
     ],
 
@@ -34,7 +29,7 @@
 
 	"docs": "http://curioussolutions.github.io/DateTimePicker/",
 
-	"version": "1.0",
+	"version": "0.1.0",
 	
 	"licenses": [
         {
