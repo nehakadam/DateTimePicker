@@ -830,6 +830,8 @@
 					$oElem.val(sElemValue);
 				else
 					$oElem.html(sElemValue);
+					
+				$oElem.change();
 			
 				return sElemValue;
 			},
