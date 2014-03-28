@@ -830,6 +830,8 @@
 					$oElem.val(sElemValue);
 				else
 					$oElem.html(sElemValue);
+					
+				$oElem.change();
 			
 				return sElemValue;
 			},
@@ -937,8 +939,8 @@
 					}
 					else if(dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[2]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[3])) // "MM-dd-yyyy HH:mm:ss", "MM-dd-yyyy hh:mm:ss AA"
 					{
-						iMonth = parseInt(sArrDate[0]);
-						iDate = parseInt(sArrDate[1] - 1);
+						iMonth = parseInt(sArrDate[0] - 1);
+						iDate = parseInt(sArrDate[1]);
 						iYear = parseInt(sArrDate[2]);
 					}
 					else if(dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[4]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[5])) // "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd hh:mm:ss AA"
