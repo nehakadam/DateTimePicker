@@ -15,10 +15,39 @@
 			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
 			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
 		<![endif]-->
+		
+		<style type="text/css">
+		
+			p
+			{
+				margin-left: 20px;
+			}
+		
+			input
+			{
+				width: 200px;
+				padding: 10px;
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+		
+		</style>
 	
 	</head>
 
 	<body>
+	
+		<!------------------------ Date Picker ------------------------>
+		<p>Date : </p>
+		<input type="text" data-field="date" data-format="dd-MMM-yyyy" readonly>
+	
+		<!------------------------ Time Picker ------------------------>
+		<p>Time : </p>
+		<input type="text" data-field="time" data-format="hh:mm AA" readonly>
+	
+		<!---------------------- DateTime Picker ---------------------->
+		<p>DateTime : </p>
+		<input type="text" data-field="datetime" data-format="dd-MMM-yyyy hh:mm:ss AA" readonly>
 	
 	
 		<!------------------------ Date Picker ------------------------>

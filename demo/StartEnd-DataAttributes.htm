@@ -37,32 +37,27 @@
 
 	<body>
 	
-	
 		<!------------------------ Date Picker ------------------------>
-		<p>Date : </p>
-		<input type="text" data-field="date" data-view="Popup" readonly>
+		<p>Start Date : </p>
+		<input class="startDate1" type="text" data-field="date" data-startend="start" data-startendelem=".endDate1" readonly>
+	
+		<p>End Date : </p>
+		<input class="endDate1" type="text" data-field="date" data-startend="end" data-startendelem=".startDate1" readonly>
 	
 		<!------------------------ Time Picker ------------------------>
-		<p>Time : </p>
-		<input type="text" data-field="time" data-view="Popup" readonly>
+		<p>Start Time : </p>
+		<input class="startTime1" type="text" data-field="time" data-startend="start" data-format="hh:mm AA" data-startendelem=".endTime1" readonly>
+	
+		<p>End Time : </p>
+		<input class="endTime1" type="text" data-field="time" data-format="hh:mm AA" data-startend="end" data-startendelem=".startTime1" readonly>
 	
 		<!---------------------- DateTime Picker ---------------------->
-		<p>DateTime : </p>
-		<input type="text" data-field="datetime" data-view="Popup" readonly>
+		<p>Start DateTime : </p>
+		<input class="startDateTime1" type="text" data-field="datetime" data-startend="start" data-startendelem=".endDateTime1" readonly>
 		
-		<!------------------------ Date Picker ------------------------>
-		<p>Date : </p>
-		<input type="text" data-field="date" data-view="Dropdown" readonly>
-	
-		<!------------------------ Time Picker ------------------------>
-		<p>Time : </p>
-		<input type="text" data-field="time" data-view="Dropdown" readonly>
-	
-		<!---------------------- DateTime Picker ---------------------->
-		<p>DateTime : </p>
-		<input type="text" data-field="datetime" data-view="Dropdown" readonly>
-	
-	
+		<p>End DateTime : </p>
+		<input class="endDateTime1" type="text" data-field="datetime" data-startend="end" data-startendelem=".startDateTime1" readonly>
+		
 		<div id="dtBox"></div>
 	
 	

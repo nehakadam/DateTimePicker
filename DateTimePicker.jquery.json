@@ -11,7 +11,7 @@
         "name": "Curious Solutions",
         "url": "http://curioussolutions.in/"
     },
-	
+
 	"maintainers": [
         {
             "name": "Neha Kadam",
@@ -29,8 +29,8 @@
 
 	"docs": "http://curioussolutions.github.io/DateTimePicker/",
 
-	"version": "0.1.0",
-	
+	"version": "0.1.1",
+
 	"licenses": [
         {
             "type": "MIT",
@@ -42,6 +42,6 @@
 	{
 		"jquery": ">=1.9.1"
 	},
-	
+
 	"bugs": "https://github.com/CuriousSolutions/DateTimePicker/issues"
 }

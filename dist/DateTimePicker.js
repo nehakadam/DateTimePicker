@@ -1,5 +1,5 @@
 /*  
-	-------------------------	jQuery DateTimePicker v1.0	----------------------------
+	-------------------------	jQuery DateTimePicker v0.1.1	----------------------------
 	
 	https://github.com/CuriousSolutions/DateTimePicker
 	
@@ -137,6 +137,10 @@
 				//  "yyyy-MM-dd"
 				sDate = "yyyy" + dtPickerObj.settings.dateSeparator + "MM" + dtPickerObj.settings.dateSeparator + "dd";
 				dtPickerObj.dataObject.sArrInputDateFormats.push(sDate);
+				
+				// "dd-MMM-yyyy"
+				sDate = "dd" + dtPickerObj.settings.dateSeparator + "MMM" + dtPickerObj.settings.dateSeparator + "yyyy";
+				dtPickerObj.dataObject.sArrInputDateFormats.push(sDate);
 			},
 		
 			_setTimeFormatArray: function()
@@ -197,6 +201,18 @@
 				sTime = "hh" + dtPickerObj.settings.timeSeparator + "mm" + dtPickerObj.settings.timeSeparator + "ss" + dtPickerObj.settings.timeMeridiemSeparator + "AA";
 				sDateTime = sDate + dtPickerObj.settings.dateTimeSeparator + sTime;
 				dtPickerObj.dataObject.sArrInputDateTimeFormats.push(sDateTime);
+				
+				//  "dd-MMM-yyyy hh:mm:ss"
+				sDate = "dd" + dtPickerObj.settings.dateSeparator + "MMM" + dtPickerObj.settings.dateSeparator + "yyyy";
+				sTime = "hh" + dtPickerObj.settings.timeSeparator + "mm" + dtPickerObj.settings.timeSeparator + "ss";
+				sDateTime = sDate + dtPickerObj.settings.dateTimeSeparator + sTime;
+				dtPickerObj.dataObject.sArrInputDateTimeFormats.push(sDateTime);
+				
+				//  "dd-MMM-yyyy hh:mm:ss AA"
+				sDate = "dd" + dtPickerObj.settings.dateSeparator + "MMM" + dtPickerObj.settings.dateSeparator + "yyyy";
+				sTime = "hh" + dtPickerObj.settings.timeSeparator + "mm" + dtPickerObj.settings.timeSeparator + "ss" + dtPickerObj.settings.timeMeridiemSeparator + "AA";
+				sDateTime = sDate + dtPickerObj.settings.dateTimeSeparator + sTime;
+				dtPickerObj.dataObject.sArrInputDateTimeFormats.push(sDateTime);
 			},
 		
 			_createPicker: function()
@@ -230,7 +246,7 @@
 			
 				$("[data-field='date'], [data-field='time'], [data-field='datetime']").unbind("focus", dtPickerObj._inputFieldFocus);
 				$("[data-field='date'], [data-field='time'], [data-field='datetime']").on("focus", {"obj": dtPickerObj}, dtPickerObj._inputFieldFocus);
-				
+			
 				$("[data-field='date'], [data-field='time'], [data-field='datetime']").not('input').click(function()
 				{
 					if(dtPickerObj.dataObject.oInputElement == null)
@@ -266,7 +282,9 @@
 					var sMaxValue = $(element).data("max") || "";
 					var sFormat = $(element).data("format") || "";
 					var sView = $(element).data("view") || "";
-					var sCurrent = dtPickerObj._getValueOfElement() || "";
+					var sStartEnd = $(element).data("startend") || "";
+					var sStartEndElem = $(element).data("startendelem") || "";
+					var sCurrent = dtPickerObj._getValueOfElement(element) || "";
 				
 					if(sView != "")
 					{
@@ -287,7 +305,7 @@
 						$(dtPickerObj.element).css({position: "absolute", top: iElemTop, left: iElemLeft, width: iElemWidth, height: "auto"});
 					}
 				
-					dtPickerObj._showPicker(sMode, sMinValue, sMaxValue, sFormat, sCurrent, element);
+					dtPickerObj._showPicker(sMode, sMinValue, sMaxValue, sFormat, sCurrent, element, sStartEnd, sStartEndElem);
 				}
 			},
 		
@@ -340,6 +358,13 @@
 						var sMonth = (iMonth < 10) ? ("0" + iMonth) : iMonth;
 						
 						sOutput = iYear + dtPickerObj.settings.dateSeparator + sMonth + dtPickerObj.settings.dateSeparator + sDate;
+					}
+					else if(dtPickerObj._compare(dtPickerObj.dataObject.sDateFormat, dtPickerObj.dataObject.sArrInputDateFormats[3]))
+					{
+						var sDate = (iDate < 10) ? ("0" + iDate) : iDate;
+						var sMonth = dtPickerObj.settings.shortMonthNames[iMonth];
+					
+						sOutput = sDate + dtPickerObj.settings.dateSeparator + sMonth + dtPickerObj.settings.dateSeparator + iYear;
 					}
 				}
 				else if(dtPickerObj._compare(dtPickerObj.settings.mode, "time"))
@@ -403,6 +428,13 @@
 					
 						sDateStr = iYear + dtPickerObj.settings.dateSeparator + sMonth + dtPickerObj.settings.dateSeparator + sDate;
 					}
+					else if(dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[6]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[7]))
+					{
+						var sDate = (iDate < 10) ? ("0" + iDate) : iDate;
+						var sMonth = dtPickerObj.settings.shortMonthNames[iMonth];
+					
+						sDateStr = sDate + dtPickerObj.settings.dateSeparator + sMonth + dtPickerObj.settings.dateSeparator + iYear;
+					}
 				
 					if(dtPickerObj.dataObject.bIs12Hour)
 					{
@@ -451,7 +483,7 @@
 				dtPickerObj._hidePicker();
 			},
 		
-			_showPicker: function(sMode, sMinValue, sMaxValue, sFormat, sCurrent, oElement)
+			_showPicker: function(sMode, sMinValue, sMaxValue, sFormat, sCurrent, oElement, sStartEnd, sStartEndElem)
 			{
 				var dtPickerObj = this;
 			
@@ -476,6 +508,40 @@
 					if(sMax != "" && sMax != null)
 						dtPickerObj.dataObject.dMaxValue = dtPickerObj._parseDate(sMax);
 				
+					
+				
+					if(sStartEnd != "" && (dtPickerObj._compare(sStartEnd, "start") || dtPickerObj._compare(sStartEnd, "end")) && sStartEndElem != "")
+					{
+						if($(sStartEndElem).length >= 1)
+						{
+							var sTempDate = dtPickerObj._getValueOfElement($(sStartEndElem));
+							if(sTempDate != "")
+							{
+								var dTempDate = dtPickerObj._parseDate(sTempDate);
+								if(dtPickerObj._compare(sStartEnd, "start"))
+								{
+									if(sMax != "" && sMax != null)
+									{
+										if(dtPickerObj._compareDates(dTempDate, dtPickerObj.dataObject.dMaxValue) == 2)
+											dtPickerObj.dataObject.dMaxValue = new Date(dTempDate);
+									}
+									else
+										dtPickerObj.dataObject.dMaxValue = new Date(dTempDate);
+								}
+								else if(dtPickerObj._compare(sStartEnd, "end"))
+								{
+									if(sMin != "" && sMin != null)
+									{
+										if(dtPickerObj._compareDates(dTempDate, dtPickerObj.dataObject.dMinValue) == 3)
+											dtPickerObj.dataObject.dMinValue = new Date(dTempDate);
+									}
+									else
+										dtPickerObj.dataObject.dMinValue = new Date(dTempDate);
+								}
+							}
+						}
+					}
+				
 					dtPickerObj.dataObject.dCurrentDate = dtPickerObj._parseDate(sCurrent);
 					dtPickerObj.dataObject.dCurrentDate.setHours(0);
 					dtPickerObj.dataObject.dCurrentDate.setMinutes(0);
@@ -495,8 +561,42 @@
 					if(sMax != "" && sMax != null)
 						dtPickerObj.dataObject.dMaxValue = dtPickerObj._parseTime(sMax);
 				
-					dtPickerObj.dataObject.dCurrentDate = dtPickerObj._parseTime(sCurrent);
+					if(sStartEnd != "" && (dtPickerObj._compare(sStartEnd, "start") || dtPickerObj._compare(sStartEnd, "end")) && sStartEndElem != "")
+					{
+						if($(sStartEndElem).length >= 1)
+						{
+							var sTempTime = dtPickerObj._getValueOfElement($(sStartEndElem));
+						
+							if(sTempTime != "")
+							{
+								var dTempTime = dtPickerObj._parseTime(sTempTime);
+								if(dtPickerObj._compare(sStartEnd, "start"))
+								{
+									dTempTime.setMinutes(dTempTime.getMinutes() - 1);
+									if(sMax != "" && sMax != null)
+									{
+										if(dtPickerObj._compareTime(dTempTime, dtPickerObj.dataObject.dMaxValue) == 2)
+											dtPickerObj.dataObject.dMaxValue = new Date(dTempTime);
+									}
+									else
+										dtPickerObj.dataObject.dMaxValue = new Date(dTempTime);
+								}
+								else if(dtPickerObj._compare(sStartEnd, "end"))
+								{
+									dTempTime.setMinutes(dTempTime.getMinutes() + 1);
+									if(sMin != "" && sMin != null)
+									{
+										if(dtPickerObj._compareTime(dTempTime, dtPickerObj.dataObject.dMinValue) == 3)
+											dtPickerObj.dataObject.dMinValue = new Date(dTempTime);
+									}
+									else
+										dtPickerObj.dataObject.dMinValue = new Date(dTempTime);
+								}
+							}
+						}
+					}
 				
+					dtPickerObj.dataObject.dCurrentDate = dtPickerObj._parseTime(sCurrent);
 					dtPickerObj.dataObject.bIs12Hour = dtPickerObj._compare(dtPickerObj.dataObject.sTimeFormat, dtPickerObj.dataObject.sArrInputTimeFormats[0]);
 				}
 				else if(dtPickerObj._compare(dtPickerObj.settings.mode, "datetime"))
@@ -513,11 +613,44 @@
 					if(sMax != "" && sMax != null)
 						dtPickerObj.dataObject.dMaxValue = dtPickerObj._parseDateTime(sMax);
 				
+					if(sStartEnd != "" && (dtPickerObj._compare(sStartEnd, "start") || dtPickerObj._compare(sStartEnd, "end")) && sStartEndElem != "")
+					{
+						if($(sStartEndElem).length >= 1)
+						{
+							var sTempDateTime = dtPickerObj._getValueOfElement($(sStartEndElem));
+							if(sTempDateTime != "")
+							{
+								var dTempDateTime = dtPickerObj._parseDateTime(sTempDateTime);
+								if(dtPickerObj._compare(sStartEnd, "start"))
+								{
+									if(sMax != "" && sMax != null)
+									{
+										if(dtPickerObj._compareDateTime(dTempDateTime, dtPickerObj.dataObject.dMaxValue) == 2)
+											dtPickerObj.dataObject.dMaxValue = new Date(dTempDateTime);
+									}
+									else
+										dtPickerObj.dataObject.dMaxValue = new Date(dTempDateTime);
+								}
+								else if(dtPickerObj._compare(sStartEnd, "end"))
+								{
+									if(sMin != "" && sMin != null)
+									{
+										if(dtPickerObj._compareDateTime(dTempDateTime, dtPickerObj.dataObject.dMinValue) == 3)
+											dtPickerObj.dataObject.dMinValue = new Date(dTempDateTime);
+									}
+									else
+										dtPickerObj.dataObject.dMinValue = new Date(dTempDateTime);
+								}
+							}
+						}
+					}
+				
 					dtPickerObj.dataObject.dCurrentDate = dtPickerObj._parseDateTime(sCurrent);
 				
 					dtPickerObj.dataObject.bIs12Hour = dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[1]) ||
 					dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[3]) ||
-					dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[5]);
+					dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[5]) ||
+					dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[7]);
 				}
 			
 				dtPickerObj._setVariablesForDate();
@@ -564,6 +697,10 @@
 					else if(dtPickerObj._compare(dtPickerObj.dataObject.sDateFormat, dtPickerObj.dataObject.sArrInputDateFormats[2]))  // "yyyy-MM-dd"
 					{
 						sArrFields = ["year", "month", "day"];
+					}
+					else if(dtPickerObj._compare(dtPickerObj.dataObject.sDateFormat, dtPickerObj.dataObject.sArrInputDateFormats[3]))  // "dd-MMM-yyyy"
+					{
+						sArrFields = ["day", "month", "year"];
 					}
 				}
 				else if(dtPickerObj._compare(dtPickerObj.settings.mode, "time"))
@@ -613,6 +750,16 @@
 					{
 						iNumberOfColumns = 6;
 						sArrFields = ["year", "month", "day", "hour", "minutes", "meridiem"];
+					}
+					else if(dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[6]))
+					{
+						iNumberOfColumns = 5;
+						sArrFields = ["day", "month", "year", "hour", "minutes"];
+					}
+					else if(dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[7]))
+					{
+						iNumberOfColumns = 6;
+						sArrFields = ["day", "month", "year", "hour", "minutes", "meridiem"];
 					}
 				}
 				var sColumnClass = "dtpicker-comp" + iNumberOfColumns;
@@ -678,11 +825,11 @@
 					dtPickerObj._getValuesFromInputBoxes();
 					dtPickerObj._setCurrentDate();
 				});
-				
+			
 				$(".dtpicker-comp .dtpicker-compValue").keyup(function()
 				{
 					var $oTextField = $(this);
-					
+				
 					var sTextBoxVal = $oTextField.val();
 					var iLength = sTextBoxVal.length;
 				
@@ -807,16 +954,15 @@
 				});
 			},
 		
-			_getValueOfElement: function()
+			_getValueOfElement: function(oElem)
 			{
 				var dtPickerObj = this;
 				var sElemValue = "";
 			
-				var $oElem = $(dtPickerObj.dataObject.oInputElement);
-				if(dtPickerObj._compare($oElem.prop("tagName"), "INPUT"))
-					sElemValue = $oElem.val();
+				if(dtPickerObj._compare($(oElem).prop("tagName"), "INPUT"))
+					sElemValue = $(oElem).val();
 				else
-					sElemValue = $oElem.html();
+					sElemValue = $(oElem).html();
 			
 				return sElemValue;
 			},
@@ -830,6 +976,8 @@
 					$oElem.val(sElemValue);
 				else
 					$oElem.html(sElemValue);
+					
+				$oElem.change();
 			
 				return sElemValue;
 			},
@@ -867,10 +1015,15 @@
 						iMonth = parseInt(sArrDate[1] - 1);
 						iDate = parseInt(sArrDate[2]);
 					}
+					else if(dtPickerObj._compare(dtPickerObj.dataObject.sDateFormat, dtPickerObj.dataObject.sArrInputDateFormats[3]))  // "dd-MMM-yyyy"
+					{
+						iDate = parseInt(sArrDate[0]);
+						iMonth = dtPickerObj.getShortMonthIndex(sArrDate[1]);
+						iYear = parseInt(sArrDate[2]);
+					}
 				}
 			
 				dTempDate = new Date(iYear, iMonth, iDate, 0, 0, 0, 0);
-			
 				return dTempDate;
 			},
 		
@@ -937,8 +1090,8 @@
 					}
 					else if(dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[2]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[3])) // "MM-dd-yyyy HH:mm:ss", "MM-dd-yyyy hh:mm:ss AA"
 					{
-						iMonth = parseInt(sArrDate[0]);
-						iDate = parseInt(sArrDate[1] - 1);
+						iMonth = parseInt(sArrDate[0] - 1);
+						iDate = parseInt(sArrDate[1]);
 						iYear = parseInt(sArrDate[2]);
 					}
 					else if(dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[4]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[5])) // "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd hh:mm:ss AA"
@@ -946,6 +1099,12 @@
 						iYear = parseInt(sArrDate[0]);
 						iMonth = parseInt(sArrDate[1] - 1);
 						iDate = parseInt(sArrDate[2]);
+					}
+					else if(dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[6]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[7])) // "dd-MMM-yyyy HH:mm:ss", "dd-MMM-yyyy hh:mm:ss AA"
+					{
+						iDate = parseInt(sArrDate[0]);
+						iMonth = dtPickerObj.getShortMonthIndex(sArrDate[1]);
+						iYear = parseInt(sArrDate[2]);
 					}
 				
 					var sTime;
@@ -982,6 +1141,17 @@
 				return dTempDate;
 			},
 		
+			getShortMonthIndex: function(sMonthName)
+			{
+				var dtPickerObj = this;
+				
+				for(var iTempIndex = 0; iTempIndex < dtPickerObj.settings.shortMonthNames.length; iTempIndex++)
+				{
+					if(dtPickerObj._compare(sMonthName, dtPickerObj.settings.shortMonthNames[iTempIndex]))
+						return iTempIndex;
+				}
+			},
+		
 			//-----------------------------------------------------------------
 		
 			_setVariablesForDate: function()
@@ -1012,7 +1182,7 @@
 					dtPickerObj.dataObject.iCurrentHour = dtPickerObj.dataObject.dCurrentDate.getHours();
 					dtPickerObj.dataObject.iCurrentMinutes = dtPickerObj.dataObject.dCurrentDate.getMinutes();
 				
-					if(dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[1]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[3]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[5]))
+					if(dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[1]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[3]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[5]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[7]))
 					{
 						if(dtPickerObj.dataObject.iCurrentHour > 12)
 							dtPickerObj.dataObject.sCurrentMeridiem = "PM";
@@ -1238,86 +1408,126 @@
 				var dTempDate;
 				if(dtPickerObj.dataObject.dMaxValue != null)
 				{
-					// Increment Day
-					dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, dtPickerObj.dataObject.iCurrentMonth, (dtPickerObj.dataObject.iCurrentDay + 1), dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
-					if(dTempDate.getTime() > dtPickerObj.dataObject.dMaxValue.getTime())
-						$(dtPickerObj.element).find(".day .increment").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
-				
-					// Increment Month
-					dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, (dtPickerObj.dataObject.iCurrentMonth + 1), dtPickerObj.dataObject.iCurrentDay, dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
-					if(dTempDate.getTime() > dtPickerObj.dataObject.dMaxValue.getTime())
-						$(dtPickerObj.element).find(".month .increment").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
-				
-					// Increment Year
-					dTempDate = new Date((dtPickerObj.dataObject.iCurrentYear + 1), dtPickerObj.dataObject.iCurrentMonth, dtPickerObj.dataObject.iCurrentDay, dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
-					if(dTempDate.getTime() > dtPickerObj.dataObject.dMaxValue.getTime())
-						$(dtPickerObj.element).find(".year .increment").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
-				
-					// Increment Hour
-					dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, dtPickerObj.dataObject.iCurrentMonth, dtPickerObj.dataObject.iCurrentDay, (dtPickerObj.dataObject.iCurrentHour + 1), dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
-					if(dTempDate.getTime() > dtPickerObj.dataObject.dMaxValue.getTime())
-						$(dtPickerObj.element).find(".hour .increment").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
-				
-					// Increment Minutes
-					dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, dtPickerObj.dataObject.iCurrentMonth, dtPickerObj.dataObject.iCurrentDay, dtPickerObj.dataObject.iCurrentHour, (dtPickerObj.dataObject.iCurrentMinutes + 1), 0, 0);
-					if(dTempDate.getTime() > dtPickerObj.dataObject.dMaxValue.getTime())
-						$(dtPickerObj.element).find(".minutes .increment").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					if(dtPickerObj._compare(dtPickerObj.settings.mode, "time"))
+					{
+						// Decrement Hour
+						if((dtPickerObj.dataObject.iCurrentHour + 1) > dtPickerObj.dataObject.dMaxValue.getHours() || ((dtPickerObj.dataObject.iCurrentHour + 1) == dtPickerObj.dataObject.dMaxValue.getHours() && dtPickerObj.dataObject.iCurrentMinutes > dtPickerObj.dataObject.dMaxValue.getMinutes()))
+							$(dtPickerObj.element).find(".hour .increment").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					
+						// Decrement Minutes
+						if(dtPickerObj.dataObject.iCurrentHour >= dtPickerObj.dataObject.dMaxValue.getHours() && (dtPickerObj.dataObject.iCurrentMinutes + 1) > dtPickerObj.dataObject.dMaxValue.getMinutes())
+							$(dtPickerObj.element).find(".minutes .increment").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					}
+					else
+					{
+						// Increment Day
+						dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, dtPickerObj.dataObject.iCurrentMonth, (dtPickerObj.dataObject.iCurrentDay + 1), dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
+						if(dTempDate.getTime() > dtPickerObj.dataObject.dMaxValue.getTime())
+							$(dtPickerObj.element).find(".day .increment").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					
+						// Increment Month
+						dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, (dtPickerObj.dataObject.iCurrentMonth + 1), dtPickerObj.dataObject.iCurrentDay, dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
+						if(dTempDate.getTime() > dtPickerObj.dataObject.dMaxValue.getTime())
+							$(dtPickerObj.element).find(".month .increment").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					
+						// Increment Year
+						dTempDate = new Date((dtPickerObj.dataObject.iCurrentYear + 1), dtPickerObj.dataObject.iCurrentMonth, dtPickerObj.dataObject.iCurrentDay, dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
+						if(dTempDate.getTime() > dtPickerObj.dataObject.dMaxValue.getTime())
+							$(dtPickerObj.element).find(".year .increment").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					
+						// Increment Hour
+						dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, dtPickerObj.dataObject.iCurrentMonth, dtPickerObj.dataObject.iCurrentDay, (dtPickerObj.dataObject.iCurrentHour + 1), dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
+						if(dTempDate.getTime() > dtPickerObj.dataObject.dMaxValue.getTime())
+							$(dtPickerObj.element).find(".hour .increment").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					
+						// Increment Minutes
+						dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, dtPickerObj.dataObject.iCurrentMonth, dtPickerObj.dataObject.iCurrentDay, dtPickerObj.dataObject.iCurrentHour, (dtPickerObj.dataObject.iCurrentMinutes + 1), 0, 0);
+						if(dTempDate.getTime() > dtPickerObj.dataObject.dMaxValue.getTime())
+							$(dtPickerObj.element).find(".minutes .increment").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					}
 				}
 			
 				if(dtPickerObj.dataObject.dMinValue != null)
 				{
-					// Decrement Day 
-					dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, dtPickerObj.dataObject.iCurrentMonth, (dtPickerObj.dataObject.iCurrentDay - 1), dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
-					if(dTempDate.getTime() < dtPickerObj.dataObject.dMinValue.getTime())
-						$(dtPickerObj.element).find(".day .decrement").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
-				
-					// Decrement Month 
-					dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, (dtPickerObj.dataObject.iCurrentMonth - 1), dtPickerObj.dataObject.iCurrentDay, dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
-					if(dTempDate.getTime() < dtPickerObj.dataObject.dMinValue.getTime())
-						$(dtPickerObj.element).find(".month .decrement").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
-				
-					// Decrement Year 
-					dTempDate = new Date((dtPickerObj.dataObject.iCurrentYear - 1), dtPickerObj.dataObject.iCurrentMonth, dtPickerObj.dataObject.iCurrentDay, dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
-					if(dTempDate.getTime() < dtPickerObj.dataObject.dMinValue.getTime())
-						$(dtPickerObj.element).find(".year .decrement").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
-				
-					// Decrement Hour
-					dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, dtPickerObj.dataObject.iCurrentMonth, dtPickerObj.dataObject.iCurrentDay, (dtPickerObj.dataObject.iCurrentHour - 1), dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
-					if(dTempDate.getTime() < dtPickerObj.dataObject.dMinValue.getTime())
-						$(dtPickerObj.element).find(".hour .decrement").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
-				
-					// Decrement Minutes
-					dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, dtPickerObj.dataObject.iCurrentMonth, dtPickerObj.dataObject.iCurrentDay, dtPickerObj.dataObject.iCurrentHour, (dtPickerObj.dataObject.iCurrentMinutes - 1), 0, 0);
-					if(dTempDate.getTime() < dtPickerObj.dataObject.dMinValue.getTime())
-						$(dtPickerObj.element).find(".minutes .decrement").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					if(dtPickerObj._compare(dtPickerObj.settings.mode, "time"))
+					{
+						// Decrement Hour
+						if((dtPickerObj.dataObject.iCurrentHour - 1) < dtPickerObj.dataObject.dMinValue.getHours() || ((dtPickerObj.dataObject.iCurrentHour - 1) == dtPickerObj.dataObject.dMinValue.getHours() && dtPickerObj.dataObject.iCurrentMinutes < dtPickerObj.dataObject.dMinValue.getMinutes()))
+							$(dtPickerObj.element).find(".hour .decrement").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					
+						// Decrement Minutes
+						if(dtPickerObj.dataObject.iCurrentHour <= dtPickerObj.dataObject.dMinValue.getHours() && (dtPickerObj.dataObject.iCurrentMinutes - 1) < dtPickerObj.dataObject.dMinValue.getMinutes())
+							$(dtPickerObj.element).find(".minutes .decrement").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					}
+					else
+					{
+						// Decrement Day 
+						dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, dtPickerObj.dataObject.iCurrentMonth, (dtPickerObj.dataObject.iCurrentDay - 1), dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
+						if(dTempDate.getTime() < dtPickerObj.dataObject.dMinValue.getTime())
+							$(dtPickerObj.element).find(".day .decrement").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					
+						// Decrement Month 
+						dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, (dtPickerObj.dataObject.iCurrentMonth - 1), dtPickerObj.dataObject.iCurrentDay, dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
+						if(dTempDate.getTime() < dtPickerObj.dataObject.dMinValue.getTime())
+							$(dtPickerObj.element).find(".month .decrement").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					
+						// Decrement Year 
+						dTempDate = new Date((dtPickerObj.dataObject.iCurrentYear - 1), dtPickerObj.dataObject.iCurrentMonth, dtPickerObj.dataObject.iCurrentDay, dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
+						if(dTempDate.getTime() < dtPickerObj.dataObject.dMinValue.getTime())
+							$(dtPickerObj.element).find(".year .decrement").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					
+						// Decrement Hour
+						dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, dtPickerObj.dataObject.iCurrentMonth, dtPickerObj.dataObject.iCurrentDay, (dtPickerObj.dataObject.iCurrentHour - 1), dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
+						if(dTempDate.getTime() < dtPickerObj.dataObject.dMinValue.getTime())
+							$(dtPickerObj.element).find(".hour .decrement").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					
+						// Decrement Minutes
+						dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, dtPickerObj.dataObject.iCurrentMonth, dtPickerObj.dataObject.iCurrentDay, dtPickerObj.dataObject.iCurrentHour, (dtPickerObj.dataObject.iCurrentMinutes - 1), 0, 0);
+						if(dTempDate.getTime() < dtPickerObj.dataObject.dMinValue.getTime())
+							$(dtPickerObj.element).find(".minutes .decrement").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+					}
 				}
-			
+				
 				if(dtPickerObj.dataObject.bIs12Hour)
 				{
 					if(dtPickerObj.dataObject.dMaxValue != null || dtPickerObj.dataObject.dMinValue != null)
 					{
 						var iTempHour = dtPickerObj.dataObject.iCurrentHour;
 						if(dtPickerObj._compare(dtPickerObj.dataObject.sCurrentMeridiem, "AM"))
-						{
 							iTempHour += 12;
-						}
 						else if(dtPickerObj._compare(dtPickerObj.dataObject.sCurrentMeridiem, "PM"))
-						{
 							iTempHour -= 12;
-						}
 					
 						dTempDate = new Date(dtPickerObj.dataObject.iCurrentYear, dtPickerObj.dataObject.iCurrentMonth, dtPickerObj.dataObject.iCurrentDay, iTempHour, dtPickerObj.dataObject.iCurrentMinutes, 0, 0);
 					
 						if(dtPickerObj.dataObject.dMaxValue != null)
 						{
-							if(dTempDate.getTime() > dtPickerObj.dataObject.dMaxValue.getTime())
-								$(dtPickerObj.element).find(".meridiem .dtpicker-compButton").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+							if(dtPickerObj._compare(dtPickerObj.settings.mode, "time"))
+							{
+								var iTempMinutes = dtPickerObj.dataObject.iCurrentMinutes;
+								if(iTempHour > dtPickerObj.dataObject.dMaxValue.getHours() || (iTempHour == dtPickerObj.dataObject.dMaxValue.getHours() && iTempMinutes > dtPickerObj.dataObject.dMaxValue.getMinutes()))
+									$(dtPickerObj.element).find(".meridiem .dtpicker-compButton").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+							}
+							else
+							{
+								if(dTempDate.getTime() > dtPickerObj.dataObject.dMaxValue.getTime())
+									$(dtPickerObj.element).find(".meridiem .dtpicker-compButton").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+							}
 						}
 					
 						if(dtPickerObj.dataObject.dMinValue != null)
 						{
-							if(dTempDate.getTime() < dtPickerObj.dataObject.dMinValue.getTime())
-								$(dtPickerObj.element).find(".meridiem .dtpicker-compButton").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+							if(dtPickerObj._compare(dtPickerObj.settings.mode, "time"))
+							{
+								var iTempMinutes = dtPickerObj.dataObject.iCurrentMinutes;
+								if(iTempHour < dtPickerObj.dataObject.dMinValue.getHours() || (iTempHour == dtPickerObj.dataObject.dMinValue.getHours() && iTempMinutes < dtPickerObj.dataObject.dMinValue.getMinutes()))
+									$(dtPickerObj.element).find(".meridiem .dtpicker-compButton").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+							}
+							else
+							{
+								if(dTempDate.getTime() < dtPickerObj.dataObject.dMinValue.getTime())
+									$(dtPickerObj.element).find(".meridiem .dtpicker-compButton").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
+							}
 						}
 					}
 				}
@@ -1330,12 +1540,12 @@
 				else
 					return false;				
 			},
-			
+		
 			setIsPopup: function(isPopup)
 			{
 				var dtPickerObj = this;
 				dtPickerObj.settings.isPopup = isPopup;
-				
+			
 				if($(dtPickerObj.element).css("display") != "none")
 					dtPickerObj._hidePicker(1);
 				if(dtPickerObj.settings.isPopup)
@@ -1357,7 +1567,102 @@
 						$(dtPickerObj.element).css({position: "absolute", top: iElemTop, left: iElemLeft, width: iElemWidth, height: "auto"});
 					}
 				}
+			},
+		
+			_compareDates: function(dDate1, dDate2)
+			{
+				var iDateMatch = 0;
+				if(dDate1.getDate() == dDate2.getDate() && dDate1.getMonth() == dDate2.getMonth() && dDate1.getFullYear() == dDate2.getFullYear())
+					iDateMatch = 1;  	// 1 = Exact Match
+				else
+				{
+					if(dDate1.getFullYear() < dDate2.getFullYear())
+						iDateMatch = 2;	 // date1 < date2
+					else if(dDate1.getFullYear() > dDate2.getFullYear())
+						iDateMatch = 3; 	// date1 > date2
+					else if(dDate1.getFullYear() == dDate2.getFullYear())
+					{
+						if(dDate1.getMonth() < dDate2.getMonth())
+							iDateMatch = 2;	 // date1 < date2
+						else if(dDate1.getMonth() > dDate2.getMonth())
+							iDateMatch = 3; 	// date1 > date2
+						else if(dDate1.getMonth() == dDate2.getMonth())
+						{
+							if(dDate1.getDate() < dDate2.getDate())
+								iDateMatch = 2;	 // date1 < date2
+							else if(dDate1.getDate() > dDate2.getDate())
+								iDateMatch = 3; 	// date1 > date2
+						}
+					}
+				}
+				return iDateMatch;
+			},
+		
+			_compareTime: function(dTime1, dTime2)
+			{
+				var iTimeMatch = 0;
+				if((dTime1.getHours() == dTime2.getHours()) && (dTime1.getMinutes() == dTime2.getMinutes()))
+					iTimeMatch = 1;  	// 1 = Exact Match
+				else
+				{
+					if(dTime1.getHours() < dTime2.getHours())
+						iTimeMatch = 2;	 // time1 < time2
+					else if(dTime1.getHours() > dTime2.getHours())
+						iTimeMatch = 3; 	// time1 > time2
+					else if(dTime1.getHours() == dTime2.getHours())
+					{
+						if(dTime1.getMinutes() < dTime2.getMinutes())
+							iTimeMatch = 2;	 // time1 < time2
+						else if(dTime1.getMinutes() > dTime2.getMinutes())
+							iTimeMatch = 3; 	// time1 > time2
+					}
+				}
+				return iTimeMatch;
+			},
+		
+			_compareDateTime: function(dDate1, dDate2)
+			{
+				var iDateTimeMatch = 0;
+				if((dDate1.getDate() == dDate2.getDate() && dDate1.getMonth() == dDate2.getMonth() && dDate1.getFullYear() == dDate2.getFullYear()) && (dDate1.getHours() == dDate2.getHours()) && (dDate1.getMinutes() == dDate2.getMinutes()))
+					iDateTimeMatch = 1;  	// 1 = Exact Match
+				else
+				{
+					if(dDate1.getFullYear() < dDate2.getFullYear())
+						iDateTimeMatch = 2;	 // date1 < date2
+					else if(dDate1.getFullYear() > dDate2.getFullYear())
+						iDateTimeMatch = 3; 	// date1 > date2
+					else if(dDate1.getFullYear() == dDate2.getFullYear())
+					{
+						if(dDate1.getMonth() < dDate2.getMonth())
+							iDateTimeMatch = 2;	 // date1 < date2
+						else if(dDate1.getMonth() > dDate2.getMonth())
+							iDateTimeMatch = 3; 	// date1 > date2
+						else if(dDate1.getMonth() == dDate2.getMonth())
+						{
+							if(dDate1.getDate() < dDate2.getDate())
+								iDateTimeMatch = 2;	 // date1 < date2
+							else if(dDate1.getDate() > dDate2.getDate())
+								iDateTimeMatch = 3; 	// date1 > date2
+							else if(dDate1.getDate() == dDate2.getDate())
+							{
+								if(dDate1.getHours() < dDate2.getHours())
+									iDateTimeMatch = 2;	 // date1 < date2
+								else if(dDate1.getHours() > dDate2.getHours())
+									iDateTimeMatch = 3; 	// date1 > date2
+								else if(dDate1.getHours() == dDate2.getHours())
+								{
+									if(dDate1.getMinutes() < dDate2.getMinutes())
+										iDateTimeMatch = 2;	 // date1 < date2
+									else if(dDate1.getMinutes() > dDate2.getMinutes())
+										iDateTimeMatch = 3; 	// date1 > date2
+								}
+							}
+						}
+					}
+				}
+				return iDateTimeMatch;
 			}
+		
 		};
 	
 })( jQuery, window, document );

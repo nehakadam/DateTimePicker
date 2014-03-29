@@ -18,9 +18,17 @@
 	
 		<style>
 		
+			p
+			{
+				margin-left: 20px;
+			}
+		
 			input
 			{
-				padding: 5px 10px;
+				width: 200px;
+				padding: 10px;
+				margin-left: 20px;
+				margin-bottom: 20px;
 			}
 		
 			.pickerButton
@@ -28,8 +36,8 @@
 				background: #A3A3CC;
 				color: #FFFFFF;
 				border-radius: 2px;
-				padding: 5px 10px;
-				
+				padding: 10px 20px;
+			
 				cursor: pointer;
 			}
 		
@@ -77,19 +85,19 @@
 					addEventHandlers: function()
 					{
 						var dtPickerObj = this;
-						
+					
 						$("input").attr("disabled", "disabled");
 					
 						$("#datePicker .pickerButton").click(function()
 						{
 							dtPickerObj.showDateTimePicker($("#datePicker input"));
 						});
-						
+					
 						$("#timePicker .pickerButton").click(function()
 						{
 							dtPickerObj.showDateTimePicker($("#timePicker input"));
 						});
-						
+					
 						$("#dateTimePicker .pickerButton").click(function()
 						{
 							dtPickerObj.showDateTimePicker($("#dateTimePicker input"));

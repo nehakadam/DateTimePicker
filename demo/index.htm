@@ -4,134 +4,186 @@
 
 	<head>
 	
-		<title>DateTimePicker by CuriousSolutions</title>
+		<title>DateTimePicker by Curious Solutions</title>
 	
 		<style>
 		
-			body
+			* 
 			{
-				font-size: 18px;
-			}
-			
-			li
-			{
-				margin: 40px 0px;
-				padding: 10px 0px;
+				-webkit-box-sizing:border-box;
+				-moz-box-sizing:border-box;
+				-o-box-sizing:border-box;
+				box-sizing:border-box;
 			}
 		
-			a
+			html, body
 			{
+				background:#FFFFFF;
+				font-size: 18px;
+			}
+		
+			.jumbotron
+			{
+				background: #FFFFFF;
+				padding-top: 30px;
+				padding-bottom: 20px;
+			
+				text-align: center;
+				font-size: 21px;
+				font-weight: 200;
+			
+				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+			}
+		
+			.doc-header
+			{
+				color: #FF3B30;
+				font-size: 50px;
+			
+				margin-top: 20px;
+				margin-bottom: 10px;
+				font-weight: 500;
+				line-height: 1.1;
+			}
+		
+			.doc-description
+			{
+				color: #22313F;
+				line-height: 1.4;
+			}
+		
+			.acc-container 
+			{
+				width:90%;
+				margin:30px auto;
+				-webkit-border-radius:8px;
+				-moz-border-radius:8px;
+				-o-border-radius:8px;
+				border-radius:8px;
+				overflow:hidden;
+			}
+		
+			.acc-container a 
+			{
+				display: block;
+				width:100%;
+				margin:0 auto;
+				padding:10px 15px;
+				cursor:pointer;
+				background:#F8F8F8;
+				border-bottom:1px solid #EAEAEA;
+			
 				text-decoration: none;
-				color: #0F0800;
+				color: #FF3B30;
+				cursor:pointer;
 			}
-			
-			a:hover
+		
+			.acc-container a:hover
 			{
-				color: #665252;
+				color: #A82626;
 			}
-			
-			p
+		
+			.acc-container a p
 			{
 				color: #A82626;
 				font-size: 60%;
 			}
-			
+		
+			.footer
+			{
+				text-align: center;
+			}
+		
+			.footer a
+			{
+				color: #FF3B30;
+			}
+		
+			.footer a:hover
+			{
+				color: #F2382E;
+			}
+		
 		</style>
 	
 	</head>
 	
 	<body>
 	
-		<h2>DateTimePicker Examples</h2>
+		<div class="jumbotron">
+		
+			<h2 class="doc-header">DateTimePicker</h2>
+		
+			<p class="doc-description">Responsive flat design jQuery DateTime Picker plugin for Web & Mobile</p>
+		
+		</div>
 	
-		<ol>
+		<div class="acc-container">
 		
-			<li>
-				<a href="BasicExamples-InputText.htm">
-					Basic Usage of DateTimePicker with &lt;input type="text"&gt;
-				</a>
-			</li>
+			<a href="BasicExamples-InputText.htm">
+				Basic Usage of DateTimePicker with &lt;input type="text"&gt;
+			</a>
 		
-			<li>
-				<a href="BasicExamples-InputHTML5.htm">
-					Basic Usage of DateTimePicker with &lt;input type="date"&gt; or &lt;input type="time"&gt; or &lt;input type="datetime"&gt;
-				</a>
+			<a href="BasicExamples-InputHTML5.htm">
+				Basic Usage of DateTimePicker with &lt;input type="date"&gt; or &lt;input type="time"&gt; or &lt;input type="datetime"&gt;
 				<p>* This does not work in IE versions less than 9</p>
-			</li>
-		
-			<li>
-				<a href="BasicExamples-NonInputElement.htm">
-					Basic Usage of DateTimePicker with &lt;input type="text"&gt;
-				</a>
-			</li>
+			</a>
 			
-			<li>
-				<a href="BasicExamples-CustomEvent.htm">
-					Show DateTimePicker on Event other than focus of Input Field 
-				</a>
-			</li>
+			<a href="BasicExamples-NonInputElement.htm">
+				Basic Usage of DateTimePicker with &lt;input type="text"&gt;
+			</a>
 		
-			<li>
-				<a href="Format-DataAttributes.htm">
-					DateFormat, TimeFormat or DateTimeFormat specified as a Data Attributes
-				</a>
-			</li>
+			<a href="BasicExamples-CustomEvent.htm">
+				Show DateTimePicker on Event other than focus of Input Field 
+			</a>
 		
-			<li>
-				<a href="Format-Parameters.htm">
-					DateFormat, TimeFormat or DateTimeFormat specified as Plugin Parameters
-				</a>
-			</li>
+			<a href="Format-DataAttributes.htm">
+				DateFormat, TimeFormat or DateTimeFormat specified as a Data Attributes
+			</a>
 		
-			<li>
-				<a href="Format-Both.htm">
-					DateFormat, TimeFormat or DateTimeFormat specified as Plugin Parameters as well as Data Attribute. In this case, Data Attribute has a higher priority. 
-				</a>
-			</li>
+			<a href="Format-Parameters.htm">
+				DateFormat, TimeFormat or DateTimeFormat specified as Plugin Parameters
+			</a>
 		
-			<li>
-				<a href="PeriodRange-DataAttributes.htm">
-					Maximum and Minimum Date, Time or DateTime can be specified as Data Attribute
-				</a>
-			</li>
+			<a href="Format-Both.htm">
+				DateFormat, TimeFormat or DateTimeFormat specified as Plugin Parameters as well as Data Attribute. In this case, Data Attribute has a higher priority. 
+			</a>
 		
-			<li>
-				<a href="PeriodRange-Parameters.htm">
-					Maximum and Minimum Date, Time or DateTime can be specified as Plugin Parameter
-				</a>
-			</li>
+			<a href="PeriodRange-DataAttributes.htm">
+				Maximum and Minimum Date, Time or DateTime can be specified as Data Attribute
+			</a>
 		
-			<li>
-				<a href="PeriodRange-Both.htm">
-					Maximum and Minimum Date, Time or DateTime can be specified as Plugin Parameter and Data Attribute. In this case, Data Attribute has a higher priority. 
-				</a>
-			</li>
+			<a href="PeriodRange-Parameters.htm">
+				Maximum and Minimum Date, Time or DateTime can be specified as Plugin Parameter
+			</a>
 		
-			<li>
-				<a href="ViewPopup-Parameters.htm">
-					DateTimePicker Popup View specified as Parameter
-				</a>
-			</li>
+			<a href="PeriodRange-Both.htm">
+				Maximum and Minimum Date, Time or DateTime can be specified as Plugin Parameter and Data Attribute. In this case, Data Attribute has a higher priority. 
+			</a>
 		
-			<li>
-				<a href="ViewDropdown-Parameters.htm">
-					DateTimePicker Dropdown View specified as Parameter
-				</a>
-			</li>
+			<a href="StartEnd-DataAttributes.htm">
+				Start and End Date, Time and DateTime fields can be specified as Data Attribute
+			</a>		
+		
+			<a href="ViewPopup-Parameters.htm">
+				DateTimePicker Popup View specified as Parameter
+			</a>
+		
+			<a href="ViewDropdown-Parameters.htm">
+				DateTimePicker Dropdown View specified as Parameter
+			</a>
+		
+			<a href="View-DataAttributes.htm">
+				DateTimePicker View specified as HTML5 Custom Data Attribute
+			</a>
+		
+			<a href="View-BasedOnDocumentWidth.htm">
+				DateTimePicker View selected based on Document Width
+			</a>
 			
-			<li>
-				<a href="View-DataAttributes.htm">
-					DateTimePicker View specified as HTML5 Custom Data Attribute
-				</a>
-			</li>
-			
-			<li>
-				<a href="View-BasedOnDocumentWidth.htm">
-					DateTimePicker View selected based on Document Width
-				</a>
-			</li>
+		</div>
 		
-		</ol>
+		<div class="footer">This project is maintained by <a class="btn-link" href="https://github.com/CuriousSolutions">Curious Solutions</a></div>
 	
 	</body>
 
