@@ -7,24 +7,24 @@
 
 .doc-header
 {
-	color: #2980B9;
+	color: #FF3B30;
 }
 
 .doc-description
 {
-	color: #777;
+	color: #22313F;
 }
 
 .btn-color
 {
-	background: #ECF0F1;
-	color: #999;
+	background: #3498DB;
+	color: #FFF;
 }
 
 .btn-color:hover
 {
-	background: #ECF0F1;
-	color: #777;
+	background: #2980B9;
+	color: #FFF;
 }
 
 .doc-buttons .col-sm-4

@@ -21,12 +21,12 @@
 			<link rel="stylesheet" type="text/css" href="stylesheets/DateTimePicker-ltie9.min.css" />
 			<script type="text/javascript" src="javascripts/DateTimePicker-ltie9.min.js"></script>
 		<![endif]-->
-		
+	
 		<link rel="stylesheet" type="text/css" href="stylesheets/index.css" />
 		<script type="text/javascript" src="javascripts/index.js"></script>
 	
-        <link rel="shortcut icon" href="images/favicon.ico">
-        
+        <link rel="shortcut icon" href="http://curioussolutions.in/wp-content/uploads/2014/01/favicon.ico">
+    
     </head>
     
     <body>
@@ -126,7 +126,7 @@
 						<td>No</td>
 						<td>Parameter Name</td>
 						<td>Default Value</td>
-						<td>Options</td>
+						<td>Values/Options</td>
 					</tr>
 				
 					<tr>
@@ -358,7 +358,7 @@
 						<td>No</td>
 						<td>Attribute</td>
 						<td>Default Value</td>
-						<td>Options</td>
+						<td>Values/Options</td>
 					</tr>
 					
 					<tr>
@@ -394,7 +394,7 @@
 						<td>Default value of dateFormat, timeFormat or dateTimeFormat parameters</td>
 						<td>dateFormat, timeFormat or dateTimeFormat Options</td>
 					</tr>
-					
+				
 					<tr>
 						<td>5</td>
 						<td>data-view</td>
@@ -406,7 +406,33 @@
 							</ul>
 						</td>
 					</tr>
-						
+				
+					<tr>
+						<td>6</td>
+						<td>data-startend</td>
+						<td>No Default Value</td>
+						<td>
+							<ul>
+								<li>"start"</li>
+								<li>"end"</li>
+							</ul>
+						</td>
+					</tr>
+				
+					<tr>
+						<td>7</td>
+						<td>data-startendelem</td>
+						<td>No Default Value</td>
+						<td>
+							<p>selector of an datepicker, timepicker or datetimepicker input field to compare date, time or datetime value with</p>
+							<p>For Example,</p>
+							<p>Start DateTime : </p>
+							<p> &lt;input class="startDateTime1" type="text" data-field="datetime" data-startend="start" data-startendelem=".endDateTime1" readonly &gt; </p>
+							<p>End DateTime : </p>
+							<p> &lt;input class="endDateTime1" type="text" data-field="datetime" data-startend="end" data-startendelem=".startDateTime1" readonly &gt; </p>
+						</td>
+					</tr>
+				
 				</table>
 				
 			</div>
