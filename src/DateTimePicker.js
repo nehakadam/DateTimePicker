@@ -1,6 +1,9 @@
 /*  
 	-------------------------	jQuery DateTimePicker v0.1.1	----------------------------
 	
+	Version 0.1.1
+	Copyright 2014 Curious Solutions Pvt Ltd and Neha Kadam
+	
 	https://github.com/CuriousSolutions/DateTimePicker
 	
 */
@@ -42,8 +45,10 @@
 			titleContentTime: "Set Time",
 			titleContentDateTime: "Set Date & Time",
 		
+			buttonsToDisplay: [],
 			setButtonContent: "Set",
 			clearButtonContent: "Clear",
+			setValueInTextboxOnEveryClick: false,
 		
 			animationDuration: 400,
 		
@@ -137,7 +142,7 @@
 				//  "yyyy-MM-dd"
 				sDate = "yyyy" + dtPickerObj.settings.dateSeparator + "MM" + dtPickerObj.settings.dateSeparator + "dd";
 				dtPickerObj.dataObject.sArrInputDateFormats.push(sDate);
-				
+			
 				// "dd-MMM-yyyy"
 				sDate = "dd" + dtPickerObj.settings.dateSeparator + "MMM" + dtPickerObj.settings.dateSeparator + "yyyy";
 				dtPickerObj.dataObject.sArrInputDateFormats.push(sDate);
@@ -220,6 +225,10 @@
 				var dtPickerObj = this;
 			
 				$(dtPickerObj.element).addClass("dtpicker-overlay");
+				$(".dtpicker-overlay").click(function(e)
+				{
+					dtPickerObj._hidePicker();
+				});
 			
 				var sTempStr = "";	
 				sTempStr += "<div class='dtpicker-bg'>";
@@ -237,6 +246,8 @@
 			{
 				var dtPickerObj = this;
 			
+				dtPickerObj.dataObject.oInputElement = null;
+			
 				$("input[type='date'], input[type='time'], input[type='datetime']").each(function()
 				{
 					var sType = $(this).attr("type");
@@ -247,7 +258,7 @@
 				$("[data-field='date'], [data-field='time'], [data-field='datetime']").unbind("focus", dtPickerObj._inputFieldFocus);
 				$("[data-field='date'], [data-field='time'], [data-field='datetime']").on("focus", {"obj": dtPickerObj}, dtPickerObj._inputFieldFocus);
 			
-				$("[data-field='date'], [data-field='time'], [data-field='datetime']").not('input').click(function()
+				$("[data-field='date'], [data-field='time'], [data-field='datetime']").not('input').click(function(e)
 				{
 					if(dtPickerObj.dataObject.oInputElement == null)
 					{
@@ -483,6 +494,17 @@
 				dtPickerObj._hidePicker();
 			},
 		
+			_setOutputOnIncrementOrDecrement: function()
+			{
+				var dtPickerObj = this;
+			
+				if(dtPickerObj.dataObject.oInputElement != null && dtPickerObj.settings.setValueInTextboxOnEveryClick)
+				{
+					var sOutput = dtPickerObj._setOutput();
+					dtPickerObj._setValueOfElement(sOutput);
+				}
+			},
+		
 			_showPicker: function(sMode, sMinValue, sMaxValue, sFormat, sCurrent, oElement, sStartEnd, sStartEndElem)
 			{
 				var dtPickerObj = this;
@@ -507,8 +529,6 @@
 						dtPickerObj.dataObject.dMinValue = dtPickerObj._parseDate(sMin);
 					if(sMax != "" && sMax != null)
 						dtPickerObj.dataObject.dMaxValue = dtPickerObj._parseDate(sMax);
-				
-					
 				
 					if(sStartEnd != "" && (dtPickerObj._compare(sStartEnd, "start") || dtPickerObj._compare(sStartEnd, "end")) && sStartEndElem != "")
 					{
@@ -765,11 +785,26 @@
 				var sColumnClass = "dtpicker-comp" + iNumberOfColumns;
 			
 				//--------------------------------------------------------------------
+				
+				var bDisplayHeaderCloseButton = false;
+				var bDisplaySetButton = false;
+				var bDisplayClearButton = false;
+				
+				for(var iTempIndex = 0; iTempIndex < dtPickerObj.settings.buttonsToDisplay.length; iTempIndex++)
+				{
+					if(dtPickerObj._compare(dtPickerObj.settings.buttonsToDisplay[iTempIndex], "HeaderCloseButton"))
+						bDisplayHeaderCloseButton = true;
+					else if(dtPickerObj._compare(dtPickerObj.settings.buttonsToDisplay[iTempIndex], "SetButton"))
+						bDisplaySetButton = true;
+					else if(dtPickerObj._compare(dtPickerObj.settings.buttonsToDisplay[iTempIndex], "ClearButton"))
+						bDisplayClearButton = true;
+				}
 			
 				var sHeader = "";
 				sHeader += "<div class='dtpicker-header'>";
 				sHeader += "<div class='dtpicker-title'>" + sTitleContent + "</div>";
-				sHeader += "<a class='dtpicker-close'>X</a>";
+				if(bDisplayHeaderCloseButton)
+					sHeader += "<a class='dtpicker-close'>X</a>";
 				sHeader += "<div class='dtpicker-value'></div>";
 				sHeader += "</div>";
 			
@@ -795,10 +830,18 @@
 			
 				//--------------------------------------------------------------------
 			
+				var sButtonContClass = "";
+				if(bDisplaySetButton && bDisplayClearButton)
+					sButtonContClass = " dtpicker-twoButtons";
+				else
+					sButtonContClass = " dtpicker-singleButton";
+			
 				var sDTPickerButtons = "";
-				sDTPickerButtons += "<div class='dtpicker-buttonCont'>";
-				sDTPickerButtons += "<a class='dtpicker-button dtpicker-buttonSet'>" + dtPickerObj.settings.setButtonContent + "</a>";
-				sDTPickerButtons += "<a class='dtpicker-button dtpicker-buttonClear'>" + dtPickerObj.settings.clearButtonContent + "</a>";
+				sDTPickerButtons += "<div class='dtpicker-buttonCont" + sButtonContClass + "'>";
+				if(bDisplaySetButton)
+					sDTPickerButtons += "<a class='dtpicker-button dtpicker-buttonSet'>" + dtPickerObj.settings.setButtonContent + "</a>";
+				if(bDisplayClearButton)
+					sDTPickerButtons += "<a class='dtpicker-button dtpicker-buttonClear'>" + dtPickerObj.settings.clearButtonContent + "</a>";
 				sDTPickerButtons += "</div>";
 			
 				//--------------------------------------------------------------------
@@ -814,6 +857,11 @@
 			_addEventHandlersForPicker: function()
 			{
 				var dtPickerObj = this;
+			
+				$(".dtpicker-cont *").click(function(e)
+				{
+					e.stopPropagation();
+				});
 			
 				$('.dtpicker-compValue').not('.month .dtpicker-compValue, .meridiem .dtpicker-compValue').keyup(function() 
 				{ 
@@ -861,84 +909,94 @@
 			
 				//-----------------------------------------------------------------------
 			
-				$(dtPickerObj.element).find('.dtpicker-close').click(function()
+				$(dtPickerObj.element).find('.dtpicker-close').click(function(e)
 				{
 					dtPickerObj._hidePicker();
 				});
 			
-				$(dtPickerObj.element).find('.dtpicker-buttonSet').click(function()
+				$(dtPickerObj.element).find('.dtpicker-buttonSet').click(function(e)
 				{
 					dtPickerObj._setButtonAction();
 				});
 			
-				$(dtPickerObj.element).find('.dtpicker-buttonClear').click(function()
+				$(dtPickerObj.element).find('.dtpicker-buttonClear').click(function(e)
 				{
 					dtPickerObj._clearButtonAction();
 				});
 			
 				// ----------------------------------------------------------------------------
 			
-				$(dtPickerObj.element).find(".day .increment").click(function()
+				$(dtPickerObj.element).find(".day .increment").click(function(e)
 				{
-					 dtPickerObj.dataObject.iCurrentDay++;
-					 dtPickerObj._setCurrentDate();
+					dtPickerObj.dataObject.iCurrentDay++;
+					dtPickerObj._setCurrentDate();
+					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
 			
-				$(dtPickerObj.element).find(".day .decrement").click(function()
+				$(dtPickerObj.element).find(".day .decrement").click(function(e)
 				{
 					dtPickerObj.dataObject.iCurrentDay--;
 					dtPickerObj._setCurrentDate();
+					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
 			
-				$(dtPickerObj.element).find(".month .increment").click(function()
+				$(dtPickerObj.element).find(".month .increment").click(function(e)
 				{
 					dtPickerObj.dataObject.iCurrentMonth++;
 					dtPickerObj._setCurrentDate();
+					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
 			
-				$(dtPickerObj.element).find(".month .decrement").click(function()
+				$(dtPickerObj.element).find(".month .decrement").click(function(e)
 				{
 					dtPickerObj.dataObject.iCurrentMonth--;
 					dtPickerObj._setCurrentDate();
+					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
 			
-				$(dtPickerObj.element).find(".year .increment").click(function()
+				$(dtPickerObj.element).find(".year .increment").click(function(e)
 				{
 					dtPickerObj.dataObject.iCurrentYear++;
 					dtPickerObj._setCurrentDate();
+					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
 			
-				$(dtPickerObj.element).find(".year .decrement").click(function()
+				$(dtPickerObj.element).find(".year .decrement").click(function(e)
 				{
 					dtPickerObj.dataObject.iCurrentYear--;
 					dtPickerObj._setCurrentDate();
+					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
 			
-				$(dtPickerObj.element).find(".hour .increment").click(function()
+				$(dtPickerObj.element).find(".hour .increment").click(function(e)
 				{
 					dtPickerObj.dataObject.iCurrentHour++;
 					dtPickerObj._setCurrentDate();
+					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
 			
-				$(dtPickerObj.element).find(".hour .decrement").click(function()
+				$(dtPickerObj.element).find(".hour .decrement").click(function(e)
 				{
 					dtPickerObj.dataObject.iCurrentHour--;
 					dtPickerObj._setCurrentDate();
+					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
 			
-				$(dtPickerObj.element).find(".minutes .increment").click(function()
+				$(dtPickerObj.element).find(".minutes .increment").click(function(e)
 				{
 					dtPickerObj.dataObject.iCurrentMinutes++;
 					dtPickerObj._setCurrentDate();
+					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
 			
-				$(dtPickerObj.element).find(".minutes .decrement").click(function()
+				$(dtPickerObj.element).find(".minutes .decrement").click(function(e)
 				{
 					dtPickerObj.dataObject.iCurrentMinutes--;
 					dtPickerObj._setCurrentDate();
+					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
 			
-				$(dtPickerObj.element).find(".meridiem .dtpicker-compButton").click(function()
+				$(dtPickerObj.element).find(".meridiem .dtpicker-compButton").click(function(e)
 				{
 					if(dtPickerObj._compare(dtPickerObj.dataObject.sCurrentMeridiem, "AM"))
 					{
@@ -951,6 +1009,7 @@
 						dtPickerObj.dataObject.iCurrentHour -= 12;
 					}				
 					dtPickerObj._setCurrentDate();
+					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
 			},
 		
