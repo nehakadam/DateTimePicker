@@ -45,7 +45,7 @@
 			titleContentTime: "Set Time",
 			titleContentDateTime: "Set Date & Time",
 		
-			buttonsToDisplay: [],
+			buttonsToDisplay: ["HeaderCloseButton", "SetButton", "ClearButton"],
 			setButtonContent: "Set",
 			clearButtonContent: "Clear",
 			setValueInTextboxOnEveryClick: false,
