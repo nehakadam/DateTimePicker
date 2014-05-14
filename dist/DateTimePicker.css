@@ -1,13 +1,16 @@
 /*  
 	-------------------------	jQuery DateTimePicker v0.1.1	----------------------------
 	
+	Version 0.1.1
+	Copyright 2014 Curious Solutions Pvt Ltd and Neha Kadam
+	
 	https://github.com/CuriousSolutions/DateTimePicker
 	
 */
 
 .dtpicker-overlay
 {
-	z-index: 100;
+	z-index: 2000;
 	display:none;
 	min-width: 300px;
 
@@ -114,12 +117,17 @@
 	cursor: pointer;
 }
 
+.dtpicker-header .dtpicker-close:hover
+{
+	color: #FF3B30;
+}
+
 .dtpicker-header .dtpicker-value
 {
 	padding:  0.8em 0.2em 0.2em 0.2em;
 	color: #FF3B30;
 	text-align: center;
-	
+
 	font-size: 1.4em;
 }
 
@@ -180,6 +188,11 @@
 	line-height: 30px;
 }
 
+.dtpicker-components .dtpicker-comp > *:hover
+{
+	color: #2980B9;
+}
+
 .dtpicker-components .dtpicker-compButtonEnable
 {
 	opacity: 1;
@@ -194,7 +207,7 @@
 {
 	background: #FFFFFF;
 	font-size: 140%;
-	
+
 	cursor: pointer;
 }
 
@@ -204,9 +217,9 @@
 	width: 100%;
 	border: none;
 	background: #FFFFFF;
-	
+
 	font-size: 100%;
-	
+
 	-webkit-appearance: none;
 }
 
@@ -224,23 +237,33 @@
 
 .dtpicker-buttonCont .dtpicker-button
 {
-	
+	display: block;
 	padding: 0.6em 0em;
 	width: 47%;
 	background: #FF3B30;
 	color: #FFFFFF;
 	text-align: center;
 	font-size: 1.5em;
-	
+
 	cursor: pointer;
 }
 
-.dtpicker-buttonCont .dtpicker-buttonSet
+.dtpicker-buttonCont .dtpicker-button:hover
+{
+	color: #FFFFFF;
+}
+
+.dtpicker-singleButton .dtpicker-button
+{
+	margin: 0.2em auto;
+}
+
+.dtpicker-twoButtons .dtpicker-buttonSet
 {
 	float: left;
 }
 
-.dtpicker-buttonCont .dtpicker-buttonClear
+.dtpicker-twoButtons .dtpicker-buttonClear
 {
 	float: right;
 }
