@@ -858,11 +858,16 @@
 			{
 				var dtPickerObj = this;
 			
+				$(document).click(function(e)
+				{
+					dtPickerObj._hidePicker();
+				});
+			
 				$(".dtpicker-cont *").click(function(e)
 				{
 					e.stopPropagation();
 				});
-			
+				
 				$('.dtpicker-compValue').not('.month .dtpicker-compValue, .meridiem .dtpicker-compValue').keyup(function() 
 				{ 
 					this.value = this.value.replace(/[^0-9\.]/g,'');
@@ -872,9 +877,14 @@
 				{
 					dtPickerObj._getValuesFromInputBoxes();
 					dtPickerObj._setCurrentDate();
+				
+					if($(this).parent().parent().is(':last-child'))
+					{
+						dtPickerObj._setButtonAction();
+					}
 				});
 			
-				$(".dtpicker-comp .dtpicker-compValue").keyup(function()
+				$(".dtpicker-compValue").keyup(function()
 				{
 					var $oTextField = $(this);
 				
@@ -905,6 +915,14 @@
 							$oTextField.val(sNewTextBoxVal);
 						}
 					}					
+				});
+				
+				$(document).keyup(function()
+				{
+					if(! $('.dtpicker-compValue').is(':focus'))
+					{
+						dtPickerObj._hidePicker();
+					}
 				});
 			
 				//-----------------------------------------------------------------------
