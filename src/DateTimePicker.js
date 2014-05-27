@@ -351,7 +351,7 @@
 						iMonth++;
 						var sDate = (iDate < 10) ? ("0" + iDate) : iDate;
 						var sMonth = (iMonth < 10) ? ("0" + iMonth) : iMonth;
-						
+					
 						sOutput = sDate + dtPickerObj.settings.dateSeparator + sMonth + dtPickerObj.settings.dateSeparator + iYear;
 					}
 					else if(dtPickerObj._compare(dtPickerObj.dataObject.sDateFormat, dtPickerObj.dataObject.sArrInputDateFormats[1]))
@@ -359,7 +359,7 @@
 						iMonth++;
 						var sDate = (iDate < 10) ? ("0" + iDate) : iDate;
 						var sMonth = (iMonth < 10) ? ("0" + iMonth) : iMonth;
-						
+					
 						sOutput = sMonth + dtPickerObj.settings.dateSeparator + sDate + dtPickerObj.settings.dateSeparator + iYear;
 					}
 					else if(dtPickerObj._compare(dtPickerObj.dataObject.sDateFormat, dtPickerObj.dataObject.sArrInputDateFormats[2]))
@@ -367,7 +367,7 @@
 						iMonth++;
 						var sDate = (iDate < 10) ? ("0" + iDate) : iDate;
 						var sMonth = (iMonth < 10) ? ("0" + iMonth) : iMonth;
-						
+					
 						sOutput = iYear + dtPickerObj.settings.dateSeparator + sMonth + dtPickerObj.settings.dateSeparator + sDate;
 					}
 					else if(dtPickerObj._compare(dtPickerObj.dataObject.sDateFormat, dtPickerObj.dataObject.sArrInputDateFormats[3]))
