@@ -87,6 +87,7 @@
 		function DateTimePicker(element, options)
 		{
 			this.element = element;
+			this.parentId = (options != undefined ? options.parentId : undefined);
 			this.settings = $.extend({}, defaults, options);
 			this.dataObject = dataObject;
 			this._defaults = defaults;
@@ -248,24 +249,50 @@
 			
 				dtPickerObj.dataObject.oInputElement = null;
 			
-				$("input[type='date'], input[type='time'], input[type='datetime']").each(function()
+				var elements = undefined;
+
+				if (this.parentId != undefined)
 				{
-					var sType = $(this).attr("type");
-					$(this).attr("type", "text");
-					$(this).attr("data-field", sType);
-				});
-			
-				$("[data-field='date'], [data-field='time'], [data-field='datetime']").unbind("focus", dtPickerObj._inputFieldFocus);
-				$("[data-field='date'], [data-field='time'], [data-field='datetime']").on("focus", {"obj": dtPickerObj}, dtPickerObj._inputFieldFocus);
-			
-				$("[data-field='date'], [data-field='time'], [data-field='datetime']").not('input').click(function(e)
+					$(this.parentId).find("input[type='date'], input[type='time'], input[type='datetime']").each(function()
+					{
+						var sType = $(this).attr("type");
+						$(this).attr("type", "text");
+						$(this).attr("data-field", sType);
+					});
+
+					elements = $(this.parentId).find("[data-field='date'], [data-field='time'], [data-field='datetime']");
+				}
+				else
+				{
+					$("input[type='date'], input[type='time'], input[type='datetime']").each(function()
+					{
+						var sType = $(this).attr("type");
+						$(this).attr("type", "text");
+						$(this).attr("data-field", sType);
+					});
+
+					elements = $("[data-field='date'], [data-field='time'], [data-field='datetime']");
+				}
+
+				elements.unbind("focus", dtPickerObj._inputFieldFocus);
+				elements.on("focus", {"obj": dtPickerObj}, dtPickerObj._inputFieldFocus);
+
+				elements.not('input').click(function(e)
 				{
 					if(dtPickerObj.dataObject.oInputElement == null)
 					{
 						dtPickerObj.showDateTimePicker(this);
 					}
 				});
-			
+
+				elements.not('input').click(function(e)
+				{
+					if(dtPickerObj.dataObject.oInputElement == null)
+					{
+						dtPickerObj.showDateTimePicker(this);
+					}
+				});
+
 				if(dtPickerObj.settings.addEventHandlers)
 					dtPickerObj.settings.addEventHandlers.call(dtPickerObj);
 			},
