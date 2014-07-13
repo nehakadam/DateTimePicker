@@ -53,6 +53,8 @@
 			animationDuration: 400,
 		
 			isPopup: true,
+			
+			parentElement: null,
 		
 			addEventHandlers: null
 		};
@@ -247,18 +249,36 @@
 				var dtPickerObj = this;
 			
 				dtPickerObj.dataObject.oInputElement = null;
-			
-				$("input[type='date'], input[type='time'], input[type='datetime']").each(function()
+								
+				var oArrElements = undefined;
+ 
+ 				if (dtPickerObj.settings.parentElement != undefined)
+ 				{
+ 					$(dtPickerObj.settings.parentElement).find("input[type='date'], input[type='time'], input[type='datetime']").each(function()
+					{
+ 						var sType = $(this).attr("type");
+ 						$(this).attr("type", "text");
+ 						$(this).attr("data-field", sType);
+ 					});
+ 
+					oArrElements = $(dtPickerObj.settings.parentElement).find("[data-field='date'], [data-field='time'], [data-field='datetime']");
+				}
+ 				else
 				{
-					var sType = $(this).attr("type");
-					$(this).attr("type", "text");
-					$(this).attr("data-field", sType);
-				});
+					$("input[type='date'], input[type='time'], input[type='datetime']").each(function()
+ 					{
+ 						var sType = $(this).attr("type");
+ 						$(this).attr("type", "text");
+ 						$(this).attr("data-field", sType);
+ 					});
+					
+					oArrElements = $("[data-field='date'], [data-field='time'], [data-field='datetime']");
+				}
+				
+				$(oArrElements).unbind("focus", dtPickerObj._inputFieldFocus);
+				$(oArrElements).on("focus", {"obj": dtPickerObj}, dtPickerObj._inputFieldFocus);
 			
-				$("[data-field='date'], [data-field='time'], [data-field='datetime']").unbind("focus", dtPickerObj._inputFieldFocus);
-				$("[data-field='date'], [data-field='time'], [data-field='datetime']").on("focus", {"obj": dtPickerObj}, dtPickerObj._inputFieldFocus);
-			
-				$("[data-field='date'], [data-field='time'], [data-field='datetime']").not('input').click(function(e)
+				$(oArrElements).not('input').click(function(e)
 				{
 					if(dtPickerObj.dataObject.oInputElement == null)
 					{
@@ -266,11 +286,11 @@
 					}
 				});
 				
-				$("[data-field='date'], [data-field='time'], [data-field='datetime']").click(function(e)
+				$(oArrElements).click(function(e)
 				{
 					e.stopPropagation();
 				});
-			
+						
 				if(dtPickerObj.settings.addEventHandlers)
 					dtPickerObj.settings.addEventHandlers.call(dtPickerObj);
 			},
