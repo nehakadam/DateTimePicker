@@ -88,18 +88,21 @@
 					
 						$("input").attr("disabled", "disabled");
 					
-						$("#datePicker .pickerButton").click(function()
+						$("#datePicker .pickerButton").click(function(e)
 						{
+							e.stopPropagation();
 							dtPickerObj.showDateTimePicker($("#datePicker input"));
 						});
 					
-						$("#timePicker .pickerButton").click(function()
+						$("#timePicker .pickerButton").click(function(e)
 						{
+							e.stopPropagation();
 							dtPickerObj.showDateTimePicker($("#timePicker input"));
 						});
 					
-						$("#dateTimePicker .pickerButton").click(function()
+						$("#dateTimePicker .pickerButton").click(function(e)
 						{
+							e.stopPropagation();
 							dtPickerObj.showDateTimePicker($("#dateTimePicker input"));
 						});
 					}
