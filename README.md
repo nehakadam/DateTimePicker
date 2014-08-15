@@ -1,5 +1,6 @@
-**##DateTimePicker**
-Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
+##DateTimePicker 
+**Responsive flat design jQuery DateTime Picker plugin for Web & Mobile**
+<br /><br />
 ![](https://raw.github.com/CuriousSolutions/DateTimePicker/gh-pages/images/dp-screenshot.png)
 ![](https://raw.github.com/CuriousSolutions/DateTimePicker/gh-pages/images/tp-screenshot.png)
 ![](https://raw.github.com/CuriousSolutions/DateTimePicker/gh-pages/images/dtp-screenshot.png)
