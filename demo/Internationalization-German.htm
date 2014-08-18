@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Internationalization - German Locale</title>
+	
+		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../src/DateTimePicker.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+		
+		<style type="text/css">
+		
+			p
+			{
+				margin-left: 20px;
+			}
+		
+			input
+			{
+				width: 200px;
+				padding: 10px;
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+		
+		</style>
+	
+	</head>
+
+	<body>
+	
+		<p>Date : </p>
+		<input type="text" data-field="date" readonly>
+	
+		<p>Time : </p>
+		<input type="text" data-field="time" readonly>
+	
+		<p>DateTime : </p>
+		<input type="text" data-field="datetime" readonly>
+	
+		<div id="dtBox"></div>
+	
+		<script type="text/javascript">
+		
+			// German Locale Strings Source - https://github.com/solala888/DateTimePicker
+		
+			$(document).ready(function()
+			{
+				$("#dtBox").DateTimePicker({
+				
+					dateTimeFormat: "dd-MMM-yyyy HH:mm:ss",
+					dateFormat: "dd-MMM-yyyy",
+					shortDayNames: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+					fullDayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+					shortMonthNames: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+					fullMonthNames: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+		
+					titleContentDate: "Datum auswählen",
+					titleContentTime: "Zeit auswählen",
+					titleContentDateTime: "Datum & Zeit auswählen",
+				
+					setButtonContent: "Auswählen",
+					clearButtonContent: "Zurücksetzen",
+				
+				});
+			});
+		
+		</script>
+	
+	</body>
+
+</html>
