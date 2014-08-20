@@ -12,7 +12,11 @@
 ;(function ( $, window, document, undefined ) {
 	
 		var pluginName = "DateTimePicker";
-	
+
+		var formatHumanDate = function(date) {
+			return date.dayShort + ", " + date.month + " " + date.dd + ", " + date.yyyy;
+		};
+
 		var defaults = {
 		
 			mode: "date",
@@ -40,6 +44,7 @@
 			fullDayNames: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 			shortMonthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 			fullMonthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+			formatHumanDate: formatHumanDate,
 		
 			titleContentDate: "Set Date",
 			titleContentTime: "Set Time",
@@ -1415,17 +1420,29 @@
 					var sDay = dtPickerObj.dataObject.iCurrentDay;
 					sDay = (sDay < 10) ? ("0" + sDay) : sDay;
 					var iMonth = dtPickerObj.dataObject.iCurrentMonth;
+					var sMonth = dtPickerObj.dataObject.iCurrentMonth;
+					sMonth = (sMonth < 10) ? ("0" + sMonth) : sMonth;
 					var sMonthShort = dtPickerObj.settings.shortMonthNames[iMonth];
 					var sMonthFull = dtPickerObj.settings.fullMonthNames[iMonth];
 					var sYear = dtPickerObj.dataObject.iCurrentYear;
 					var iDayOfTheWeek = dtPickerObj.dataObject.dCurrentDate.getDay();
 					var sDayOfTheWeek = dtPickerObj.settings.shortDayNames[iDayOfTheWeek];
+					var sDayOfTheWeekFull = dtPickerObj.settings.fullDayNames[iDayOfTheWeek];
 				
 					$(dtPickerObj.element).find('.day .dtpicker-compValue').val(sDay);
 					$(dtPickerObj.element).find('.month .dtpicker-compValue').val(sMonthShort);
 					$(dtPickerObj.element).find('.year .dtpicker-compValue').val(sYear);
 				
-					var sDate = sDayOfTheWeek + ", " + sMonthFull + " " + sDay + ", " + sYear;
+					var sDate = dtPickerObj.settings.formatHumanDate({
+						dd: sDay,
+						MM: sMonth,
+						yyyy: sYear,
+						day: sDayOfTheWeekFull,
+						dayShort: sDayOfTheWeek,
+						month: sMonthFull,
+						monthShort: sMonthShort
+					});
+					// var sDate = sDayOfTheWeek + ", " + sMonthFull + " " + sDay + ", " + sYear;
 					$(dtPickerObj.element).find('.dtpicker-value').html(sDate);
 				}
 				else if(dtPickerObj._compare(dtPickerObj.settings.mode, "time"))
@@ -1457,18 +1474,29 @@
 					var sDay = dtPickerObj.dataObject.iCurrentDay;
 					sDay = (sDay < 10) ? ("0" + sDay) : sDay;
 					var iMonth = dtPickerObj.dataObject.iCurrentMonth;
+					var sMonth = (iMonth < 10) ? ("0" + iMonth) : iMonth;
 					var sMonthShort = dtPickerObj.settings.shortMonthNames[iMonth];
 					var sMonthFull = dtPickerObj.settings.fullMonthNames[iMonth];
 					var sYear = dtPickerObj.dataObject.iCurrentYear;
 					var iDayOfTheWeek = dtPickerObj.dataObject.dCurrentDate.getDay();
 					var sDayOfTheWeek = dtPickerObj.settings.shortDayNames[iDayOfTheWeek];
+					var sDayOfTheWeekFull = dtPickerObj.settings.fullDayNames[iDayOfTheWeek];
 				
 					$(dtPickerObj.element).find('.day .dtpicker-compValue').val(sDay);
 					$(dtPickerObj.element).find('.month .dtpicker-compValue').val(sMonthShort);
 					$(dtPickerObj.element).find('.year .dtpicker-compValue').val(sYear);
-				
-					var sDate = sDayOfTheWeek + ", " + sMonthFull + " " + sDay + ", " + sYear;
-				
+
+					// var sDate = sDayOfTheWeek + ", " + sMonthFull + " " + sDay + ", " + sYear;
+					var sDate = dtPickerObj.settings.formatHumanDate({
+						dd: sDay,
+						MM: sMonth,
+						yyyy: sYear,
+						day: sDayOfTheWeekFull,
+						dayShort: sDayOfTheWeek,
+						month: sMonthFull,
+						monthShort: sMonthShort
+					});
+
 					//------------------------------------------------------------------
 				
 					var sHour = dtPickerObj.dataObject.iCurrentHour;
