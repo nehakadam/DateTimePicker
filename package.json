@@ -1,18 +1,31 @@
 {
-    "name": "datetimepicker",
-    "description": "Responsive flat design jQuery DateTime Picker plugin for Web & Mobile",
-    "keywords": [ "date", "time", "picker", "flat", "jquery" ],
-    "version": "0.1.1",
-    "homepage": "http://curioussolutions.github.io/DateTimePicker/",
-    "author": {
-        "name": "nehakadam"
-    },
-    "main": "dist/datetimepicker.js",
-    "repository": {
-        "type": "git",
-        "url":  "git://github.com:CuriousSolutions/DateTimePicker.git"
-    },
-    "devDependencies"  : {
-        "jquery"     : ">=1.0.0"
-    }
+  "name": "datetimepicker",
+  "description": "Responsive flat design jQuery DateTime Picker plugin for Web & Mobile",
+  "keywords": [
+    "date",
+    "time",
+    "picker",
+    "flat",
+    "jquery"
+  ],
+  "version": "0.1.2",
+  "homepage": "http://curioussolutions.github.io/DateTimePicker/",
+  "author": {
+    "name": "nehakadam"
+  },
+  "main": "dist/datetimepicker.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:CuriousSolutions/DateTimePicker.git"
+  },
+  "devDependencies": {
+    "clean-css": "^2.2.13",
+    "jquery": ">=1.0.0",
+    "uglify-js": "^2.4.15"
+  },
+  "scripts": {
+    "dist-js": "cat src/DateTimePicker.js | tee dist/DateTimePicker.js | node_modules/.bin/uglifyjs -mc > dist/DateTimePicker.min.js",
+    "dist-css": "cat src/DateTimePicker.css | tee dist/DateTimePicker.css | node_modules/.bin/cleancss -o dist/DateTimePicker.min.css",
+    "dist": "npm run dist-js && npm run dist-css"
+  }
 }

@@ -19,10 +19,15 @@ For web, picker can be binded relative to reference element, were it will appear
 For demo & api documentation visit [Plugin Page](http://curioussolutions.github.io/DateTimePicker/ "DateTime Picker Plugin
 Details")
 
+##Improve the plugin
+To build the plugin, you need npm installed on your system. Type `npm install` to install dev dependencies. Type `npm dist` to update the dist folder (will create minified css and js).
+
 ##Authors
 [@nehakadam](https://github.com/nehakadam)
 
 Special thanks to Shweta Matkar & Arti Berde for their contributions
+
+Jean-Christophe Hoelt - NPM packaging. Few customization options.
 
 ##License
 Copyright 2014 [Curious Solutions](https://github.com/CuriousSolutions) Pvt Ltd and [@nehakadam](https://github.com/nehakadam)
