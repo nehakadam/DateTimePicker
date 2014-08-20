@@ -4,7 +4,7 @@
 
 	<head>
 	
-		<title>Internationalization - German Locale</title>
+		<title>Human Date Formatting</title>
 	
 		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
 	
@@ -15,7 +15,7 @@
 			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
 			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
 		<![endif]-->
-		
+	
 		<style type="text/css">
 		
 			p
@@ -40,9 +40,6 @@
 		<p>Date : </p>
 		<input type="text" data-field="date" readonly>
 	
-		<p>Time : </p>
-		<input type="text" data-field="time" readonly>
-	
 		<p>DateTime : </p>
 		<input type="text" data-field="datetime" readonly>
 	
@@ -50,35 +47,34 @@
 	
 		<script type="text/javascript">
 		
-			// German Locale Strings Source - https://github.com/solala888/DateTimePicker
-		
 			$(document).ready(function()
 			{
 				$("#dtBox").DateTimePicker({
 				
-					dateTimeFormat: "dd-MMM-yyyy HH:mm:ss",
-					dateFormat: "dd-MMM-yyyy",
-					shortDayNames: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
-					fullDayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
-					shortMonthNames: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
-					fullMonthNames: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
-		
-					titleContentDate: "Datum auswählen",
-					titleContentTime: "Zeit auswählen",
-					titleContentDateTime: "Datum & Zeit auswählen",
-				
-					setButtonContent: "Auswählen",
-					clearButtonContent: "Zurücksetzen",
-					
 					formatHumanDate: function(date)
 					{
-						return date.dayShort + ", " + date.dd + " " + date.month+ ", " + date.yyyy;
+						return date.day + ", " + date.month + " " + date.dd + ", " + date.yyyy;
 					}
 				
 				});
 			});
 		
 		</script>
+		
+		<!-- formatHumanDate - format Date displayed in the Header of the DateTimerPicker
+			
+				parameter : date
+			
+				attributes of parameter date 
+					dd   :   day of the month(two-digit)
+					MM   :   month(two-digit)
+					yyyy   :   sYear(four-digit),
+				  	day   :   day of the week (as specified in dayNames settings),
+					dayShort   :   day of the week (as specified in shortDayNames settings),
+					month   :   month name(as specified in fullMonthNames settings),
+					monthShort   :    short month name(as specified in shortMonthNames settings)
+				
+		-->
 	
 	</body>
 
