@@ -106,10 +106,9 @@
 		{
 			return this.each(function() 
 			{
-				if (!$.data(this, "plugin_" + pluginName)) 
-				{
+				$.removeData(this, "plugin_" + pluginName);
+				if(!$.data(this, "plugin_" + pluginName)) 
 					$.data(this, "plugin_" + pluginName, new DateTimePicker(this, options));
-				}
 			});
 		};
 	
