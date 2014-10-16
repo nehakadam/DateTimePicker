@@ -645,8 +645,8 @@
 						}
 					}
 				
-					dtPickerObj.dataObject.dCurrentDate = dtPickerObj._parseTime(sCurrent);
 					dtPickerObj.dataObject.bIs12Hour = dtPickerObj._compare(dtPickerObj.dataObject.sTimeFormat, dtPickerObj.dataObject.sArrInputTimeFormats[0]);
+					dtPickerObj.dataObject.dCurrentDate = dtPickerObj._parseTime(sCurrent);
 				}
 				else if(dtPickerObj._compare(dtPickerObj.settings.mode, "datetime"))
 				{
@@ -694,12 +694,11 @@
 						}
 					}
 				
-					dtPickerObj.dataObject.dCurrentDate = dtPickerObj._parseDateTime(sCurrent);
-				
 					dtPickerObj.dataObject.bIs12Hour = dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[1]) ||
 					dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[3]) ||
 					dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[5]) ||
 					dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[7]);
+					dtPickerObj.dataObject.dCurrentDate = dtPickerObj._parseDateTime(sCurrent);
 				}
 			
 				dtPickerObj._setVariablesForDate();
@@ -1099,7 +1098,7 @@
 				var iMonth = dTempDate.getMonth();
 				var iYear = dTempDate.getFullYear();
 			
-				if(sDate != "" &&  sDate != undefined && sDate != null)
+				if(sDate != "" && sDate != undefined && sDate != null)
 				{
 					var sArrDate = sDate.split(dtPickerObj.settings.dateSeparator);
 				
@@ -1144,7 +1143,7 @@
 				var iHour = dTempDate.getHours();
 				var iMinutes = dTempDate.getMinutes();
 			
-				if(sTime != "" &&  sTime != undefined && sTime != null)
+				if(sTime != "" && sTime != undefined && sTime != null)
 				{
 					if(dtPickerObj._compare(dtPickerObj.dataObject.sTimeFormat, dtPickerObj.dataObject.sArrInputTimeFormats[0]))  //  "hh:mm AA"
 					{
@@ -1183,7 +1182,7 @@
 				var iMinutes = dTempDate.getMinutes();
 				var sMeridiem = "";
 			
-				if(sDateTime != "" &&  sDateTime != undefined && sDateTime != null)
+				if(sDateTime != "" && sDateTime != undefined && sDateTime != null)
 				{
 					var sArrDateTime = sDateTime.split(dtPickerObj.settings.dateTimeSeparator);
 					var sArrDate = sArrDateTime[0].split(dtPickerObj.settings.dateSeparator);
@@ -1213,26 +1212,20 @@
 						iYear = parseInt(sArrDate[2]);
 					}
 				
-					var sTime;
+					var sTime = sArrDateTime[1];
 					if(dtPickerObj.dataObject.bIs12Hour)
 					{
 						if(dtPickerObj._compare(dtPickerObj.settings.dateTimeSeparator, dtPickerObj.settings.timeMeridiemSeparator) && (sArrDateTime.length == 3))
-						{
 							sMeridiem = sArrDateTime[2];
-						}
 						else
 						{
-							var sArrTimeComp = sArrDateTime[1].split(dtPickerObj.settings.timeMeridiemSeparator);
+							var sArrTimeComp = sTime.split(dtPickerObj.settings.timeMeridiemSeparator);
 							sTime = sArrTimeComp[0];
 							sMeridiem = sArrTimeComp[1];
 						}
 					
 						if(!(!dtPickerObj._compare(sMeridiem, "AM") || dtPickerObj._compare(sMeridiem, "PM")))
 							sMeridiem = "";
-					}
-					else
-					{
-						sTime = sArrDateTime[1];
 					}
 				
 					var sArrTime = sTime.split(dtPickerObj.settings.timeSeparator);
