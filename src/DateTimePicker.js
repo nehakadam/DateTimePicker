@@ -1154,7 +1154,7 @@
 						iHour = parseInt(sArrTimeComp[0]);
 						iMinutes = parseInt(sArrTimeComp[1]);
 					
-						if(dtPickerObj._compare(sMeridiem, "PM"))
+						if(iHour < 12 && dtPickerObj._compare(sMeridiem, "PM"))
 							iHour += 12;
 					}
 					else if(dtPickerObj._compare(dtPickerObj.dataObject.sTimeFormat, dtPickerObj.dataObject.sArrInputTimeFormats[1]))  //  "HH:mm"
@@ -1231,7 +1231,7 @@
 					var sArrTime = sTime.split(dtPickerObj.settings.timeSeparator);
 					iHour = parseInt(sArrTime[0]);
 					iMinutes = parseInt(sArrTime[1]);
-					if(dtPickerObj._compare(sMeridiem, "PM"))
+					if(iHour < 12 && dtPickerObj._compare(sMeridiem, "PM"))
 						iHour += 12;
 				}
 			
