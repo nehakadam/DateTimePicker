@@ -22,6 +22,17 @@ Details")
 ##Improve the plugin
 To build the plugin, you need npm installed on your system. Type `npm install` to install dev dependencies. Type `npm dist` to update the dist folder (will create minified css and js).
 
+##Installations
+
+- npm
+
+    `npm install datetimepicker`
+
+- bower
+
+    `bower install curioussolutions-datetimepicker`
+
+
 ##Authors
 [@nehakadam](https://github.com/nehakadam)
 
