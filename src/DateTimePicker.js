@@ -721,6 +721,8 @@
 				{
 					$(dtPickerObj.element).find('.dtpicker-subcontent').html("");
 				}, (iDuration || dtPickerObj.settings.animationDuration));
+
+				$(document).unbind("click");
 			},
 		
 			_modifyPicker: function()
