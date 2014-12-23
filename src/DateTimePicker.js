@@ -411,19 +411,9 @@
 				{
 					if(dtPickerObj._compare(dtPickerObj.dataObject.sTimeFormat, dtPickerObj.dataObject.sArrInputTimeFormats[0]))
 					{
-						var sMeridiem = "";
-						if(iHour > 12)
-						{
+						var sMeridiem = dtPickerObj._determineMeridianFromHourAndMinutes(iHour, iMinutes);
+						if (sMeridiem == "PM") {
 							iHour -= 12;
-							sMeridiem = "PM";
-						}
-						else if(iHour == 12 && iMinutes > 0)
-						{
-							sMeridiem = "PM";
-						}
-						else
-						{
-							sMeridiem = "AM";
 						}
 					
 						var sHour = (iHour < 10) ? ("0" + iHour) : iHour;
@@ -478,19 +468,9 @@
 				
 					if(dtPickerObj.dataObject.bIs12Hour)
 					{
-						var sMeridiem = "";
-						if(iHour > 12)
-						{
+						var sMeridiem = dtPickerObj._determineMeridianFromHourAndMinutes(iHour, iMinutes);
+						if (sMeridiem == "PM") {
 							iHour -= 12;
-							sMeridiem = "PM";
-						}
-						else if(iHour == 12 && iMinutes > 0)
-						{
-							sMeridiem = "PM";
-						}
-						else
-						{
-							sMeridiem = "AM";
 						}
 					
 						var sHour = (iHour < 10) ? ("0" + iHour) : iHour;
@@ -1270,12 +1250,9 @@
 				
 					if(dtPickerObj._compare(dtPickerObj.dataObject.sTimeFormat, dtPickerObj.dataObject.sArrInputTimeFormats[0]))
 					{
-						if(dtPickerObj.dataObject.iCurrentHour > 12)
-							dtPickerObj.dataObject.sCurrentMeridiem = "PM";
-						else if(dtPickerObj.dataObject.iCurrentHour == 12 && dtPickerObj.dataObject.iCurrentMinutes > 0)
-							dtPickerObj.dataObject.sCurrentMeridiem = "PM";
-						else
-							dtPickerObj.dataObject.sCurrentMeridiem = "AM";
+
+						dtPickerObj.dataObject.sCurrentMeridiem = dtPickerObj._determineMeridianFromHourAndMinutes(dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes);
+
 					}
 				}
 				else if(dtPickerObj._compare(dtPickerObj.settings.mode, "datetime"))
@@ -1285,12 +1262,7 @@
 				
 					if(dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[1]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[3]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[5]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[7]))
 					{
-						if(dtPickerObj.dataObject.iCurrentHour > 12)
-							dtPickerObj.dataObject.sCurrentMeridiem = "PM";
-						else if(dtPickerObj.dataObject.iCurrentHour == 12 && dtPickerObj.dataObject.iCurrentMinutes > 0)
-							dtPickerObj.dataObject.sCurrentMeridiem = "PM";
-						else
-							dtPickerObj.dataObject.sCurrentMeridiem = "AM";
+						dtPickerObj.dataObject.sCurrentMeridiem = dtPickerObj._determineMeridianFromHourAndMinutes(dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes);
 					}
 				}
 			},
@@ -1785,10 +1757,19 @@
 					}
 				}
 				return iDateTimeMatch;
+			},
+
+			_determineMeridianFromHourAndMinutes: function(hour, minutes)
+			{
+				if (hour > 12) {
+					return "PM";
+				} else if(hour == 12 && minutes >= 0) {
+					return "PM";
+				} else {
+					return "AM";
+				}
 			}
-		
 		};
 	
 })( jQuery, window, document );
-
 
