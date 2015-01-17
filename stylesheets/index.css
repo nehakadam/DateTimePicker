@@ -118,3 +118,8 @@ a:hover
 	font-weight: bold;
 }
 
+.form-control[readonly]
+{
+	cursor: pointer;
+	background-color: #FFF;
+}
