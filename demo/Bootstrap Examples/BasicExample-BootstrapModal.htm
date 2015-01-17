@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Basic Example with Twitter Bootstrap</title>
+
+        <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../src/DateTimePicker.css" />
+		
+	
+		<script type="text/javascript" src="../jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="bootstrap.min.js"></script>	
+		<script type="text/javascript" src="../../src/DateTimePicker.js"></script>
+    
+		<style type="text/css">
+		
+			#btnShow
+			{
+				background: #FFFFFF;
+				color: #A3A3CC;
+				border: 2px solid #A3A3CC;
+				border-radius: 5px;
+				padding: 10px 20px;
+				margin: 20px;
+			
+				cursor: pointer;
+			}
+		
+			#btnShow:hover
+			{
+				color: #CCA3A3;
+				border-color: #CCA3A3;
+			}
+		
+		</style>
+	
+	</head>
+
+	<body>
+
+		<div class="container">
+
+			<div class="row">
+
+				<button id="btnShow">Show Modal</button>
+
+			</div>
+
+		</div>
+
+		<div id="modal-form" class="modal fade">
+		
+			<div class="modal-dtpicker"></div>
+			
+			<div class="modal-dialog">
+				<div class="modal-content">
+					
+					<form>
+					
+						<div class="modal-header">
+							jQuery DateTimePicker
+						</div>
+					
+						<div class="modal-body">
+						
+							<!---------------- Date Picker ----------------->
+							<div class="form-group">
+								<p>Date : </p>
+								<input type="text" class="form-control" data-field="date" data-format="dd-MMM-yyyy" readonly>
+							</div>
+
+							<!----------------- Time Picker ----------------->
+							<div class="form-group">
+								<p>Time : </p>
+								<input type="text" class="form-control" data-field="time" data-format="hh:mm AA" readonly>
+							</div>
+
+							<!--------------- DateTime Picker -------------->
+							<div class="form-group">
+								<p>DateTime : </p>
+								<input type="text" class="form-control" data-field="datetime" data-format="dd-MMM-yyyy hh:mm:ss AA" readonly>
+							</div>
+
+						</div>
+					
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default form-btn" data-dismiss="modal">Close</button>
+						</div>
+					
+					</form>
+					
+				</div>
+			</div>
+		</div>
+
+		
+    
+		<script type="text/javascript">
+		
+			$(document).ready(function()
+			{
+				$("#btnShow").click(function()
+				{
+					$("#modal-form").modal('show');
+				});
+
+
+				$(".modal-dtpicker").DateTimePicker();
+			});
+		
+		</script>
+	
+		<!-- Default dateFormat: "dd-MM-yyyy" 
+			
+				dateFormat Options : 
+					1. "dd-MM-yyyy"
+					2. "MM-dd-yyyy"
+					3. "yyyy-MM-dd"
+				
+				Specify (data-min & data-max) / (minDate & maxDate) values in the same dateFormat specified in settings parameters	
+		-->
+	
+		<!-- Default timeFormat: "HH:mm"  
+			
+				timeFormat Options : 
+					1. "HH:mm"
+					2. "hh:mm AA"
+				
+				Specify (data-min & data-max) / (minTime & maxTime) values in the same timeFormat specified in settings parameters			
+		-->
+	
+		<!-- Default dateTimeFormat: "dd-MM-yyyy HH:mm:ss"  
+		
+				dateTimeFormat Options : 
+					1. "dd-MM-yyyy HH:mm:ss"
+					2. "dd-MM-yyyy hh:mm:ss AA"
+					3. "MM-dd-yyyy HH:mm:ss"
+					4. "MM-dd-yyyy hh:mm:ss AA"
+					5. "yyyy-MM-dd HH:mm:ss"
+					6. "yyyy-MM-dd hh:mm:ss AA"
+			
+				Specify (data-min & data-max) / (minDateTime & maxDateTime) values in the same dateTimeFormat specified in settings parameters		
+		-->
+	
+	</body>
+
+</html>

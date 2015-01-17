@@ -1,22 +1,21 @@
-/*  
-	-------------------------	jQuery DateTimePicker v0.1.1	----------------------------
-	
-	Version 0.1.1
-	Copyright 2014 Curious Solutions Pvt Ltd and Neha Kadam
-	
-	https://github.com/CuriousSolutions/DateTimePicker
-	
-*/
+/* ----------------------------------------------------------------------------- 
 
+  jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
+  Version 0.1.2
+  Copyright (c)2015 Curious Solutions Pvt Ltd and Neha Kadam
+  http://curioussolutions.github.io/DateTimePicker
+  https://github.com/CuriousSolutions/DateTimePicker
 
+ ----------------------------------------------------------------------------- */
+ 
 ;(function ( $, window, document, undefined ) {
 	
 		var pluginName = "DateTimePicker";
-
+		
 		var formatHumanDate = function(date) {
 			return date.dayShort + ", " + date.month + " " + date.dd + ", " + date.yyyy;
 		};
-
+		
 		var defaults = {
 		
 			mode: "date",
@@ -411,10 +410,11 @@
 				{
 					if(dtPickerObj._compare(dtPickerObj.dataObject.sTimeFormat, dtPickerObj.dataObject.sArrInputTimeFormats[0]))
 					{
-						var sMeridiem = dtPickerObj._determineMeridianFromHourAndMinutes(iHour, iMinutes);
-						if (sMeridiem == "PM") {
+						var sMeridiem = dtPickerObj._determineMeridiemFromHourAndMinutes(iHour, iMinutes);
+						if(iHour == 0 && sMeridiem == "AM")
+							iHour = 12;
+						else if(iHour > 12 && sMeridiem == "PM")
 							iHour -= 12;
-						}
 					
 						var sHour = (iHour < 10) ? ("0" + iHour) : iHour;
 						var sMinutes = (iMinutes < 10) ? ("0" + iMinutes) : iMinutes;
@@ -468,10 +468,11 @@
 				
 					if(dtPickerObj.dataObject.bIs12Hour)
 					{
-						var sMeridiem = dtPickerObj._determineMeridianFromHourAndMinutes(iHour, iMinutes);
-						if (sMeridiem == "PM") {
+						var sMeridiem = dtPickerObj._determineMeridiemFromHourAndMinutes(iHour, iMinutes);
+						if(iHour == 0 && sMeridiem == "AM")
+							iHour = 12;
+						else if(iHour > 12 && sMeridiem == "PM")
 							iHour -= 12;
-						}
 					
 						var sHour = (iHour < 10) ? ("0" + iHour) : iHour;
 						var sMinutes = (iMinutes < 10) ? ("0" + iMinutes) : iMinutes;
@@ -551,7 +552,7 @@
 								{
 									if(sMax != "" && sMax != null)
 									{
-										if(dtPickerObj._compareDates(dTempDate, dtPickerObj.dataObject.dMaxValue) == 2)
+										if(dtPickerObj._compareDates(dTempDate, dtPickerObj.dataObject.dMaxValue) < 0)
 											dtPickerObj.dataObject.dMaxValue = new Date(dTempDate);
 									}
 									else
@@ -561,7 +562,7 @@
 								{
 									if(sMin != "" && sMin != null)
 									{
-										if(dtPickerObj._compareDates(dTempDate, dtPickerObj.dataObject.dMinValue) == 3)
+										if(dtPickerObj._compareDates(dTempDate, dtPickerObj.dataObject.dMinValue) > 0)
 											dtPickerObj.dataObject.dMinValue = new Date(dTempDate);
 									}
 									else
@@ -654,7 +655,7 @@
 								{
 									if(sMax != "" && sMax != null)
 									{
-										if(dtPickerObj._compareDateTime(dTempDateTime, dtPickerObj.dataObject.dMaxValue) == 2)
+										if(dtPickerObj._compareDateTime(dTempDateTime, dtPickerObj.dataObject.dMaxValue) < 0)
 											dtPickerObj.dataObject.dMaxValue = new Date(dTempDateTime);
 									}
 									else
@@ -664,7 +665,7 @@
 								{
 									if(sMin != "" && sMin != null)
 									{
-										if(dtPickerObj._compareDateTime(dTempDateTime, dtPickerObj.dataObject.dMinValue) == 3)
+										if(dtPickerObj._compareDateTime(dTempDateTime, dtPickerObj.dataObject.dMinValue) > 0)
 											dtPickerObj.dataObject.dMinValue = new Date(dTempDateTime);
 									}
 									else
@@ -1136,7 +1137,9 @@
 						iHour = parseInt(sArrTimeComp[0]);
 						iMinutes = parseInt(sArrTimeComp[1]);
 					
-						if(iHour < 12 && dtPickerObj._compare(sMeridiem, "PM"))
+						if(iHour == 12 && dtPickerObj._compare(sMeridiem, "AM"))
+							iHour = 0;
+						else if(iHour < 12 && dtPickerObj._compare(sMeridiem, "PM"))
 							iHour += 12;
 					}
 					else if(dtPickerObj._compare(dtPickerObj.dataObject.sTimeFormat, dtPickerObj.dataObject.sArrInputTimeFormats[1]))  //  "HH:mm"
@@ -1206,14 +1209,16 @@
 							sMeridiem = sArrTimeComp[1];
 						}
 					
-						if(!(!dtPickerObj._compare(sMeridiem, "AM") || dtPickerObj._compare(sMeridiem, "PM")))
+						if(!(dtPickerObj._compare(sMeridiem, "AM") || dtPickerObj._compare(sMeridiem, "PM")))
 							sMeridiem = "";
 					}
 				
 					var sArrTime = sTime.split(dtPickerObj.settings.timeSeparator);
 					iHour = parseInt(sArrTime[0]);
 					iMinutes = parseInt(sArrTime[1]);
-					if(iHour < 12 && dtPickerObj._compare(sMeridiem, "PM"))
+					if(iHour == 12 && dtPickerObj._compare(sMeridiem, "AM"))
+						iHour = 0;
+					else if(iHour < 12 && dtPickerObj._compare(sMeridiem, "PM"))
 						iHour += 12;
 				}
 			
@@ -1251,7 +1256,7 @@
 					if(dtPickerObj._compare(dtPickerObj.dataObject.sTimeFormat, dtPickerObj.dataObject.sArrInputTimeFormats[0]))
 					{
 
-						dtPickerObj.dataObject.sCurrentMeridiem = dtPickerObj._determineMeridianFromHourAndMinutes(dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes);
+						dtPickerObj.dataObject.sCurrentMeridiem = dtPickerObj._determineMeridiemFromHourAndMinutes(dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes);
 
 					}
 				}
@@ -1262,7 +1267,7 @@
 				
 					if(dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[1]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[3]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[5]) || dtPickerObj._compare(dtPickerObj.dataObject.sDateTimeFormat, dtPickerObj.dataObject.sArrInputDateTimeFormats[7]))
 					{
-						dtPickerObj.dataObject.sCurrentMeridiem = dtPickerObj._determineMeridianFromHourAndMinutes(dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes);
+						dtPickerObj.dataObject.sCurrentMeridiem = dtPickerObj._determineMeridiemFromHourAndMinutes(dtPickerObj.dataObject.iCurrentHour, dtPickerObj.dataObject.iCurrentMinutes);
 					}
 				}
 			},
@@ -1667,31 +1672,10 @@
 		
 			_compareDates: function(dDate1, dDate2)
 			{
-				var iDateMatch = 0;
-				if(dDate1.getDate() == dDate2.getDate() && dDate1.getMonth() == dDate2.getMonth() && dDate1.getFullYear() == dDate2.getFullYear())
-					iDateMatch = 1;  	// 1 = Exact Match
-				else
-				{
-					if(dDate1.getFullYear() < dDate2.getFullYear())
-						iDateMatch = 2;	 // date1 < date2
-					else if(dDate1.getFullYear() > dDate2.getFullYear())
-						iDateMatch = 3; 	// date1 > date2
-					else if(dDate1.getFullYear() == dDate2.getFullYear())
-					{
-						if(dDate1.getMonth() < dDate2.getMonth())
-							iDateMatch = 2;	 // date1 < date2
-						else if(dDate1.getMonth() > dDate2.getMonth())
-							iDateMatch = 3; 	// date1 > date2
-						else if(dDate1.getMonth() == dDate2.getMonth())
-						{
-							if(dDate1.getDate() < dDate2.getDate())
-								iDateMatch = 2;	 // date1 < date2
-							else if(dDate1.getDate() > dDate2.getDate())
-								iDateMatch = 3; 	// date1 > date2
-						}
-					}
-				}
-				return iDateMatch;
+				dDate1 = new Date(dDate1.getDate(), dDate1.getMonth(), dDate1.getFullYear(), 0, 0, 0, 0);
+				dDate1 = new Date(dDate1.getDate(), dDate1.getMonth(), dDate1.getFullYear(), 0, 0, 0, 0);
+				var iDateDiff = (dDate1.getTime() - dDate2.getTime()) / 864E5;
+				return (iDateDiff == 0) ? iDateDiff: (iDateDiff/Math.abs(iDateDiff));
 			},
 		
 			_compareTime: function(dTime1, dTime2)
@@ -1718,48 +1702,11 @@
 		
 			_compareDateTime: function(dDate1, dDate2)
 			{
-				var iDateTimeMatch = 0;
-				if((dDate1.getDate() == dDate2.getDate() && dDate1.getMonth() == dDate2.getMonth() && dDate1.getFullYear() == dDate2.getFullYear()) && (dDate1.getHours() == dDate2.getHours()) && (dDate1.getMinutes() == dDate2.getMinutes()))
-					iDateTimeMatch = 1;  	// 1 = Exact Match
-				else
-				{
-					if(dDate1.getFullYear() < dDate2.getFullYear())
-						iDateTimeMatch = 2;	 // date1 < date2
-					else if(dDate1.getFullYear() > dDate2.getFullYear())
-						iDateTimeMatch = 3; 	// date1 > date2
-					else if(dDate1.getFullYear() == dDate2.getFullYear())
-					{
-						if(dDate1.getMonth() < dDate2.getMonth())
-							iDateTimeMatch = 2;	 // date1 < date2
-						else if(dDate1.getMonth() > dDate2.getMonth())
-							iDateTimeMatch = 3; 	// date1 > date2
-						else if(dDate1.getMonth() == dDate2.getMonth())
-						{
-							if(dDate1.getDate() < dDate2.getDate())
-								iDateTimeMatch = 2;	 // date1 < date2
-							else if(dDate1.getDate() > dDate2.getDate())
-								iDateTimeMatch = 3; 	// date1 > date2
-							else if(dDate1.getDate() == dDate2.getDate())
-							{
-								if(dDate1.getHours() < dDate2.getHours())
-									iDateTimeMatch = 2;	 // date1 < date2
-								else if(dDate1.getHours() > dDate2.getHours())
-									iDateTimeMatch = 3; 	// date1 > date2
-								else if(dDate1.getHours() == dDate2.getHours())
-								{
-									if(dDate1.getMinutes() < dDate2.getMinutes())
-										iDateTimeMatch = 2;	 // date1 < date2
-									else if(dDate1.getMinutes() > dDate2.getMinutes())
-										iDateTimeMatch = 3; 	// date1 > date2
-								}
-							}
-						}
-					}
-				}
-				return iDateTimeMatch;
+				var iDateTimeDiff = (dDate1.getTime() - dDate2.getTime()) / 6E4;
+				return (iDateTimeDiff == 0) ? iDateTimeDiff: (iDateTimeDiff/Math.abs(iDateTimeDiff));
 			},
 
-			_determineMeridianFromHourAndMinutes: function(hour, minutes)
+			_determineMeridiemFromHourAndMinutes: function(hour, minutes)
 			{
 				if (hour > 12) {
 					return "PM";
