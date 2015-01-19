@@ -4,7 +4,7 @@
 
 	<head>
 	
-		<title>Period Range - Data Attributes and Parameters</title>
+		<title>Keyboard Navigation</title>
 	
 		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
 	
@@ -41,27 +41,27 @@
 
 		<!------------------------ Date Picker ------------------------>
 		<p>Date : </p>
-		<input type="text" data-field="date" readonly>
+		<input type="text" data-field="date" tabindex="1" readonly>
 	
 		<!------------------------ Time Picker ------------------------>
 		<p>Time : </p>
-		<input type="text" data-field="time" readonly>
+		<input type="text" data-field="time" tabindex="2" readonly>
 	
 		<!---------------------- DateTime Picker ---------------------->
 		<p>DateTime : </p>
-		<input type="text" data-field="datetime" readonly>
+		<input type="text" data-field="datetime" tabindex="3" readonly>
 	
 		<!------------------------ Date Picker ------------------------>
 		<p>Date : </p>
-		<input type="text" data-field="date" data-min="01-10-2012" data-max="01-05-2015" readonly>
+		<input type="text" data-field="date" data-min="01-10-2012" data-max="01-05-2015" tabindex="4" readonly>
 	
 		<!------------------------ Time Picker ------------------------>
 		<p>Time : </p>
-		<input type="text" data-field="time" data-min="10:00" data-max="16:30" readonly>
+		<input type="text" data-field="time" data-min="10:00" data-max="16:30" tabindex="5" readonly>
 	
 		<!---------------------- DateTime Picker ---------------------->
 		<p>DateTime : </p>
-		<input type="text" data-field="datetime" data-min="01-10-2012 09:30" data-max="01-05-2015 17:30" readonly>
+		<input type="text" data-field="datetime" data-min="01-10-2012 09:30" data-max="01-05-2015 17:30" tabindex="6" readonly>
 		
 		</form>
 
@@ -72,18 +72,7 @@
 		
 			$(document).ready(function()
 			{
-				$("#dtBox").DateTimePicker({
-				
-					minDate: "01-03-2012",
-					maxDate: "01-03-2016",
-				
-					minTime: "09:00",
-					maxTime: "19:30",
-				
-					minDateTime: "01-03-2012 08:30",
-					maxDateTime: "01-03-2016 18:30"
-				
-				});
+				$("#dtBox").DateTimePicker();
 			});
 		
 		</script>

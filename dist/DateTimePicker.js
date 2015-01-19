@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.2
+  Version 0.1.3
   Copyright (c)2015 Curious Solutions Pvt Ltd and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -11,11 +11,11 @@
 ;(function ( $, window, document, undefined ) {
 	
 		var pluginName = "DateTimePicker";
-		
+
 		var formatHumanDate = function(date) {
 			return date.dayShort + ", " + date.month + " " + date.dd + ", " + date.yyyy;
 		};
-		
+
 		var defaults = {
 		
 			mode: "date",
@@ -86,6 +86,9 @@
 			sArrInputDateTimeFormats: [],
 		
 			oInputElement: null,
+
+			iTabIndex: 0,
+			bElemFocused: false,
 		
 			bIs12Hour: false	
 		};
@@ -232,7 +235,7 @@
 				$(dtPickerObj.element).addClass("dtpicker-overlay");
 				$(".dtpicker-overlay").click(function(e)
 				{
-					dtPickerObj._hidePicker();
+					dtPickerObj._hidePicker("");
 				});
 			
 				var sTempStr = "";	
@@ -301,11 +304,11 @@
 			_inputFieldFocus: function(e)
 			{
 				var dtPickerObj = e.data.obj;
-			
 				if(dtPickerObj.dataObject.oInputElement == null)
 				{
 					dtPickerObj.showDateTimePicker(e.target);
 				}
+				dtPickerObj.dataObject.bMouseDown = false;
 			},
 		
 			showDateTimePicker: function(element)
@@ -315,6 +318,7 @@
 				if(dtPickerObj.dataObject.oInputElement == null)
 				{
 					dtPickerObj.dataObject.oInputElement = element;
+					dtPickerObj.dataObject.iTabIndex = parseInt($(element).attr("tabIndex"));
 				
 					var sMode = $(element).data("field") || "";
 					var sMinValue = $(element).data("min") || "";
@@ -348,7 +352,7 @@
 				}
 			},
 		
-			_setButtonAction: function()
+			_setButtonAction: function(bFromTab)
 			{
 				var dtPickerObj = this;
 			
@@ -356,7 +360,10 @@
 				{
 					var sOutput = dtPickerObj._setOutput();
 					dtPickerObj._setValueOfElement(sOutput);
-					dtPickerObj._hidePicker();
+					if(bFromTab)
+						dtPickerObj._hidePicker(0);
+					else
+						dtPickerObj._hidePicker("");					
 				}
 			},
 		
@@ -501,7 +508,7 @@
 				{
 					dtPickerObj._setValueOfElement("");
 				}
-				dtPickerObj._hidePicker();
+				dtPickerObj._hidePicker("");
 			},
 		
 			_setOutputOnIncrementOrDecrement: function()
@@ -690,6 +697,9 @@
 			_hidePicker: function(iDuration)
 			{
 				var dtPickerObj = this;
+
+				if(iDuration === "" || iDuration === undefined || iDuration === null)
+					iDuration = dtPickerObj.settings.animationDuration;
 			
 				if(dtPickerObj.dataObject.oInputElement != null)
 				{
@@ -697,19 +707,28 @@
 					dtPickerObj.dataObject.oInputElement = null;
 				}
 			
-				$(dtPickerObj.element).fadeOut(iDuration || dtPickerObj.settings.animationDuration);
-				setTimeout(function()
+				$(dtPickerObj.element).fadeOut(iDuration);
+				if(iDuration == 0)
 				{
 					$(dtPickerObj.element).find('.dtpicker-subcontent').html("");
-				}, (iDuration || dtPickerObj.settings.animationDuration));
+				}
+				else
+				{
+					setTimeout(function()
+					{
+						$(dtPickerObj.element).find('.dtpicker-subcontent').html("");
+					}, iDuration);					
+				}
 
 				$(document).unbind("click");
+				$(document).unbind("keydown");
+				$(document).unbind("keyup");
 			},
 		
 			_modifyPicker: function()
 			{
 				var dtPickerObj = this;
-			
+
 				var sTitleContent, iNumberOfColumns;
 				var sArrFields = new Array();
 				if(dtPickerObj._compare(dtPickerObj.settings.mode, "date"))
@@ -871,8 +890,27 @@
 			
 				$(document).click(function(e)
 				{
-					dtPickerObj._hidePicker();
+					dtPickerObj._hidePicker("");
 				});
+
+				$(document).keydown(function(e)
+				{
+					if(! $('.dtpicker-compValue').is(':focus') && (e.keyCode ? e.keyCode : e.which) == "9")
+					{
+						dtPickerObj._setButtonAction(true);
+						$("[tabIndex=" + (dtPickerObj.dataObject.iTabIndex + 1) + "]").focus();
+						return false;
+					}
+				});
+
+				$(document).keyup(function(e)
+				{
+					if(! $('.dtpicker-compValue').is(':focus') && (e.keyCode ? e.keyCode : e.which) != "9")
+					{
+						dtPickerObj._hidePicker("");
+					}
+				});
+
 			
 				$(".dtpicker-cont *").click(function(e)
 				{
@@ -883,16 +921,27 @@
 				{ 
 					this.value = this.value.replace(/[^0-9\.]/g,'');
 				});
+
+				$('.dtpicker-compValue').focus(function()
+				{
+					dtPickerObj.dataObject.bElemFocused = true;
+				});
 			
 				$('.dtpicker-compValue').blur(function()
 				{
 					dtPickerObj._getValuesFromInputBoxes();
 					dtPickerObj._setCurrentDate();
 				
-					if($(this).parent().parent().is(':last-child'))
+					dtPickerObj.dataObject.bElemFocused = false;
+					var $oParentElem = $(this).parent().parent();
+					setTimeout(function()
 					{
-						dtPickerObj._setButtonAction();
-					}
+						if($oParentElem.is(':last-child') && !dtPickerObj.dataObject.bElemFocused)
+						{
+							dtPickerObj._setButtonAction(false);
+						}
+					}, 50);
+					
 				});
 			
 				$(".dtpicker-compValue").keyup(function()
@@ -927,25 +976,17 @@
 						}
 					}					
 				});
-				
-				$(document).keyup(function()
-				{
-					if(! $('.dtpicker-compValue').is(':focus'))
-					{
-						dtPickerObj._hidePicker();
-					}
-				});
-			
+
 				//-----------------------------------------------------------------------
 			
 				$(dtPickerObj.element).find('.dtpicker-close').click(function(e)
 				{
-					dtPickerObj._hidePicker();
+					dtPickerObj._hidePicker("");
 				});
 			
 				$(dtPickerObj.element).find('.dtpicker-buttonSet').click(function(e)
 				{
-					dtPickerObj._setButtonAction();
+					dtPickerObj._setButtonAction(false);
 				});
 			
 				$(dtPickerObj.element).find('.dtpicker-buttonClear').click(function(e)
@@ -1648,7 +1689,7 @@
 				dtPickerObj.settings.isPopup = isPopup;
 			
 				if($(dtPickerObj.element).css("display") != "none")
-					dtPickerObj._hidePicker(1);
+					dtPickerObj._hidePicker(0);
 				if(dtPickerObj.settings.isPopup)
 				{
 					$(dtPickerObj.element).addClass("dtpicker-mobile");
