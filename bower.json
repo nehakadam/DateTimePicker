@@ -29,7 +29,7 @@
   },
   
   "devDependencies": {
-    "jquery": ">=1.0.0",
+    "jquery": ">=1.0.0"
   },
   
   "ignore": [
