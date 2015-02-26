@@ -720,9 +720,9 @@
 					}, iDuration);					
 				}
 
-				$(document).unbind("click");
-				$(document).unbind("keydown");
-				$(document).unbind("keyup");
+				$(document).unbind("click.DateTimePicker");
+				$(document).unbind("keydown.DateTimePicker");
+				$(document).unbind("keyup.DateTimePicker");
 			},
 		
 			_modifyPicker: function()
@@ -888,12 +888,12 @@
 			{
 				var dtPickerObj = this;
 			
-				$(document).click(function(e)
+				$(document).on("click.DateTimePicker", function(e)
 				{
 					dtPickerObj._hidePicker("");
 				});
 
-				$(document).keydown(function(e)
+				$(document).on("keydown.DateTimePicker", function(e)
 				{
 					if(! $('.dtpicker-compValue').is(':focus') && (e.keyCode ? e.keyCode : e.which) == "9")
 					{
@@ -903,7 +903,7 @@
 					}
 				});
 
-				$(document).keyup(function(e)
+				$(document).on("keydown.DateTimePicker", function(e)
 				{
 					if(! $('.dtpicker-compValue').is(':focus') && (e.keyCode ? e.keyCode : e.which) != "9")
 					{
