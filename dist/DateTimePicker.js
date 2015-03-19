@@ -7,8 +7,21 @@
   https://github.com/CuriousSolutions/DateTimePicker
 
  ----------------------------------------------------------------------------- */
- 
-;(function ( $, window, document, undefined ) {
+
+
+
+ (function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory);
+    } else if (typeof exports === 'object') {
+        // Node/CommonJS
+        module.exports = factory(require('jquery'));
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function ($) {
 	
 		var pluginName = "DateTimePicker";
 
@@ -834,7 +847,7 @@
 				sHeader += "<div class='dtpicker-header'>";
 				sHeader += "<div class='dtpicker-title'>" + sTitleContent + "</div>";
 				if(bDisplayHeaderCloseButton)
-					sHeader += "<a class='dtpicker-close'>X</a>";
+					sHeader += "<a class='dtpicker-close'>&times;</a>";
 				sHeader += "<div class='dtpicker-value'></div>";
 				sHeader += "</div>";
 			
@@ -1759,5 +1772,5 @@
 			}
 		};
 	
-})( jQuery, window, document );
+}));
 
