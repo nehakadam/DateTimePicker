@@ -48,6 +48,7 @@
 		
 			maxTime: null,
 			minTime: null,
+			minuteIncrement: 1,
 		
 			maxDateTime: null,
 			minDateTime: null,
@@ -73,7 +74,14 @@
 			
 			parentElement: null,
 		
-			addEventHandlers: null
+			addEventHandlers: null,
+			adjustMinutes: function(minutes) {
+				if (this.minuteIncrement != 1)
+				{
+					minutes = (minutes%this.minuteIncrement)?minutes-minutes%this.minuteIncrement+this.minuteIncrement:minutes;
+				}
+				return minutes;
+			}
 		};
 	
 		var dataObject = {
@@ -1067,14 +1075,14 @@
 			
 				$(dtPickerObj.element).find(".minutes .increment").click(function(e)
 				{
-					dtPickerObj.dataObject.iCurrentMinutes++;
+					dtPickerObj.dataObject.iCurrentMinutes += dtPickerObj.settings.minuteIncrement;
 					dtPickerObj._setCurrentDate();
 					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
 			
 				$(dtPickerObj.element).find(".minutes .decrement").click(function(e)
 				{
-					dtPickerObj.dataObject.iCurrentMinutes--;
+					dtPickerObj.dataObject.iCurrentMinutes -= dtPickerObj.settings.minuteIncrement;
 					dtPickerObj._setCurrentDate();
 					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
@@ -1203,6 +1211,7 @@
 						iMinutes = parseInt(sArrTimeComp[1]);
 					}
 				}
+				iMinutes = dtPickerObj.settings.adjustMinutes(iMinutes);
 			
 				dTempDate = new Date(iYear, iMonth, iDate, iHour, iMinutes, 0, 0);
 			
@@ -1275,7 +1284,8 @@
 					else if(iHour < 12 && dtPickerObj._compare(sMeridiem, "PM"))
 						iHour += 12;
 				}
-			
+				iMinutes = dtPickerObj.settings.adjustMinutes(iMinutes);
+        			
 				dTempDate = new Date(iYear, iMonth, iDate, iHour, iMinutes, 0, 0);
 			
 				return dTempDate;
@@ -1355,7 +1365,7 @@
 				if(dtPickerObj._compare(dtPickerObj.settings.mode, "time") || dtPickerObj._compare(dtPickerObj.settings.mode, "datetime"))
 				{
 					dtPickerObj.dataObject.iCurrentHour = parseInt($(dtPickerObj.element).find(".hour .dtpicker-compValue").val());
-					dtPickerObj.dataObject.iCurrentMinutes = parseInt($(dtPickerObj.element).find(".minutes .dtpicker-compValue").val());
+					dtPickerObj.dataObject.iCurrentMinutes = dtPickerObj.settings.adjustMinutes(parseInt($(dtPickerObj.element).find(".minutes .dtpicker-compValue").val()));
 				
 					if(dtPickerObj._compare(dtPickerObj.settings.mode, "time"))
 					{
