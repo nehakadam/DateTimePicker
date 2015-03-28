@@ -422,7 +422,33 @@
 						<td></td>
 					</tr>
 								
-				</table>
+					<tr>
+						<td>32</td>
+						<td>minuteIncrement</td>
+						<td>1</td>
+						<td>1-60, sets the minute increment / decrement value</td>
+					</tr>
+
+					<tr>
+						<td>33</td>
+						<td>adjustMinutes</td>
+						<td><pre>function(minutes){if(this.minuteIncrement!=1){
+  minutes=(minutes%this.minuteIncrement)?minutes-minutes%this.minuteIncrement+this.minuteIncrement:minutes;
+  }
+};</pre>
+            </td>
+						<td></td>
+					</tr>
+
+	adjustMinutes: function(minutes) {
+if (this.minuteIncrement != 1)
+{
+minutes = (minutes%this.minuteIncrement)?minutes-minutes%this.minuteIncrement+this.minuteIncrement:minutes;
+}
+return minutes;
+}
+
+ 				</table>
 				
 			</div>
 			
