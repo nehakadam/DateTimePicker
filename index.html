@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
+    	<title>DateTime Picker</title>
+
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
         <meta charset="utf-8">
-        <title>DateTime Picker</title>
+
         <meta name="generator" content="Bootply" />
+        <meta name="author" content="Neha Kadam">
+    	<meta name="description" content="Curious Solutions DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="Keywords" content="DateTimePicker, DatePicker, TimePicker, jQuery Plugin, Responsive jQuery Plugin, Flat Design jQuery Plugin" />
+
+        <link rel="shortcut icon" href="http://curioussolutions.in/wp-content/uploads/2014/01/favicon.ico">
+
         <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+
         
         <!--[if lt IE 9]>
           <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -25,7 +35,6 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/index.css" />
 		<script type="text/javascript" src="javascripts/index.js"></script>
 	
-        <link rel="shortcut icon" href="http://curioussolutions.in/wp-content/uploads/2014/01/favicon.ico">
     
     </head>
     
@@ -344,110 +353,117 @@
 							
 						</td>
 					</tr>
-				
+
 					<tr>
 						<td>21</td>
+						<td>minuteInterval</td>
+						<td>1</td>
+						<td>1-60</td>
+					</tr>
+
+					<tr>
+						<td></td>
+						<td colspan="3">
+							Set the interval of minute increments or decrements.
+						</td>
+					</tr>
+
+					<tr>
+						<td>22</td>
+						<td>roundOffMinutes</td>
+						<td>true</td>
+						<td>
+							<ul>
+								<li>true</li>
+								<li>false</li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<td></td>
+						<td colspan="3">
+							When the value of <code>roundOffMinutes</code> is set to true, minutes value will be rounded off to the nearest value divisible by <code>minuteInterval</code>. 
+						</td>
+					</tr>
+				
+					<tr>
+						<td>23</td>
 						<td>titleContentDate</td>
 						<td>"Set Date"</td>
 						<td></td>
 					</tr>
 				
 					<tr>
-						<td>22</td>
+						<td>24</td>
 						<td>titleContentTime</td>
 						<td>"Set Time"</td>
 						<td></td>
 					</tr>
 				
 					<tr>
-						<td>23</td>
+						<td>25</td>
 						<td>titleContentDateTime</td>
 						<td>"Set Date & Time"</td>
 						<td></td>
 					</tr>
 					
 					<tr>
-						<td>24</td>
+						<td>26</td>
 						<td>buttonsToDisplay</td>
 						<td>["HeaderCloseButton", "SetButton", "ClearButton"]</td>
 						<td></td>
 					</tr>
 				
 					<tr>
-						<td>25</td>
+						<td>27</td>
 						<td>setButtonContent</td>
 						<td>"Set"</td>
 						<td></td>
 					</tr>
 				
 					<tr>
-						<td>26</td>
+						<td>28</td>
 						<td>clearButtonContent</td>
 						<td>"Clear"</td>
 						<td></td>
 					</tr>
 					
 					<tr>
-						<td>27</td>
+						<td>29</td>
 						<td>setValueInTextboxOnEveryClick</td>
 						<td>false</td>
 						<td></td>
 					</tr>
 								
 					<tr>
-						<td>28</td>
+						<td>30</td>
 						<td>animationDuration</td>
 						<td>400</td>
 						<td></td>
 					</tr>
 				
 					<tr>
-						<td>29</td>
+						<td>31</td>
 						<td>isPopup</td>
 						<td>true</td>
 						<td></td>
 					</tr>
 					
 					<tr>
-						<td>30</td>
+						<td>32</td>
 						<td>parentElement</td>
 						<td>null</td>
 						<td></td>
 					</tr>
 								
 					<tr>
-						<td>31</td>
+						<td>33</td>
 						<td>addEventHandlers</td>
 						<td>function(){}</td>
 						<td></td>
 					</tr>
-								
-					<tr>
-						<td>32</td>
-						<td>minuteIncrement</td>
-						<td>1</td>
-						<td>1-60, sets the minute increment / decrement value</td>
-					</tr>
-
-					<tr>
-						<td>33</td>
-						<td>adjustMinutes</td>
-						<td><pre>function(minutes){if(this.minuteIncrement!=1){
-  minutes=(minutes%this.minuteIncrement)?minutes-minutes%this.minuteIncrement+this.minuteIncrement:minutes;
-  }
-};</pre>
-            </td>
-						<td></td>
-					</tr>
-
-	adjustMinutes: function(minutes) {
-if (this.minuteIncrement != 1)
-{
-minutes = (minutes%this.minuteIncrement)?minutes-minutes%this.minuteIncrement+this.minuteIncrement:minutes;
-}
-return minutes;
-}
-
+				
  				</table>
 				
 			</div>
@@ -559,6 +575,92 @@ return minutes;
 						<td>Set value of isPopup parameter</td>
 						<td>isPopupVal - Boolean</td>
 						<td></td>
+					</tr>
+				
+				</table>
+				
+			</div>
+
+			<div class="row doc-callbackfunctionlist">
+			
+				<h3 class="">Callback Function List</h3>
+				
+				<table class="table table-responsive table-bordered">
+				
+					<tr>
+						<td>No</td>
+						<td>Function Name</td>
+						<td>Description</td>
+						<td>Parameters</td>
+					</tr>
+					
+					<tr>
+						<td>1</td>
+						<td>addEventHandlers</td>
+						<td>This function can be used to add External Event Handlers for the DateTimePicker. This function is called on DateTimePicker plugin initialization.</td>
+						<td>
+							<ul>
+								<li>DateTimePicker Plugin Object</li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<td>2</td>
+						<td>beforeShow</td>
+						<td>This function is called before showing DateTimePicker when an event to show DateTimePicker is triggered.</td>
+						<td>
+							<ul>
+								<li>InputElement</li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<td>3</td>
+						<td>afterShow</td>
+						<td>This function is called after showing DateTimePicker when an event to show DateTimePicker is triggered.</td>
+						<td>
+							<ul>
+								<li>InputElement</li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<td>4</td>
+						<td>beforeHide</td>
+						<td>This function is called before hiding DateTimePicker when an event to hide DateTimePicker is triggered.</td>
+						<td>
+							<ul>
+								<li>InputElement</li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<td>5</td>
+						<td>afterHide</td>
+						<td>This function is called after hiding DateTimePicker when an event to hide DateTimePicker is triggered.</td>
+						<td>
+							<ul>
+								<li>InputElement</li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<td>6</td>
+						<td>buttonClicked</td>
+						<td>
+							This function is called when button on DateTimePicker UI is clicked. ButtonType value can be "SET", "CLEAR" or "CLOSE". 
+						</td>
+						<td>
+							<ul>
+								<li>ButtonType</li>
+								<li>InputElement</li>
+							</ul>
+						</td>
 					</tr>
 				
 				</table>
