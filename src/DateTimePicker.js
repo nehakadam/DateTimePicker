@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.4
+  Version 0.1.5
   Copyright (c)2015 Curious Solutions Pvt Ltd and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -10,24 +10,27 @@
 
 
 
- (function (factory) {
-    if (typeof define === 'function' && define.amd) {
+ (function (factory) 
+ {
+    if (typeof define === 'function' && define.amd) 
+    {
         // AMD. Register as an anonymous module.
         define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
+    } 
+    else if (typeof exports === 'object') 
+    {
         // Node/CommonJS
         module.exports = factory(require('jquery'));
-    } else {
+    } 
+    else 
+    {
         // Browser globals
         factory(jQuery);
     }
-}(function ($) {
+}(function ($) 
+{
 	
 		var pluginName = "DateTimePicker";
-
-		var formatHumanDate = function(date) {
-			return date.dayShort + ", " + date.month + " " + date.dd + ", " + date.yyyy;
-		};
 
 		var defaults = {
 		
@@ -56,7 +59,13 @@
 			fullDayNames: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 			shortMonthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 			fullMonthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-			formatHumanDate: formatHumanDate,
+			formatHumanDate: function(sDate) 
+			{
+				return sDate.dayShort + ", " + sDate.month + " " + sDate.dd + ", " + sDate.yyyy;
+			},
+		
+			minuteInterval: 1,
+			roundOffMinutes: true,
 		
 			titleContentDate: "Set Date",
 			titleContentTime: "Set Time",
@@ -70,10 +79,15 @@
 			animationDuration: 400,
 		
 			isPopup: true,
-			
+		
 			parentElement: null,
 		
-			addEventHandlers: null
+			addEventHandlers: null,  // addEventHandlers(oDateTimePicker)
+			beforeShow: null,  // beforeShow(oInputElement)
+			afterShow: null,  // afterShow(oInputElement)
+			beforeHide: null,  // beforeHide(oInputElement)
+			afterHide: null,  // afterHide(oInputElement)
+			buttonClicked: null	 // buttonClicked(sButtonType, oInputElement) where sButtonType = "SET"|"CLEAR"|"CANCEL"
 		};
 	
 		var dataObject = {
@@ -105,7 +119,7 @@
 		
 			bIs12Hour: false	
 		};
-	
+
 		function DateTimePicker(element, options)
 		{
 			this.element = element;
@@ -324,23 +338,23 @@
 				dtPickerObj.dataObject.bMouseDown = false;
 			},
 		
-			showDateTimePicker: function(element)
+			showDateTimePicker: function(oElement)
 			{
 				var dtPickerObj = this;
 			
 				if(dtPickerObj.dataObject.oInputElement == null)
 				{
-					dtPickerObj.dataObject.oInputElement = element;
-					dtPickerObj.dataObject.iTabIndex = parseInt($(element).attr("tabIndex"));
+					dtPickerObj.dataObject.oInputElement = oElement;
+					dtPickerObj.dataObject.iTabIndex = parseInt($(oElement).attr("tabIndex"));
 				
-					var sMode = $(element).data("field") || "";
-					var sMinValue = $(element).data("min") || "";
-					var sMaxValue = $(element).data("max") || "";
-					var sFormat = $(element).data("format") || "";
-					var sView = $(element).data("view") || "";
-					var sStartEnd = $(element).data("startend") || "";
-					var sStartEndElem = $(element).data("startendelem") || "";
-					var sCurrent = dtPickerObj._getValueOfElement(element) || "";
+					var sMode = $(oElement).data("field") || "";
+					var sMinValue = $(oElement).data("min") || "";
+					var sMaxValue = $(oElement).data("max") || "";
+					var sFormat = $(oElement).data("format") || "";
+					var sView = $(oElement).data("view") || "";
+					var sStartEnd = $(oElement).data("startend") || "";
+					var sStartEndElem = $(oElement).data("startendelem") || "";
+					var sCurrent = dtPickerObj._getValueOfElement(oElement) || "";
 				
 					if(sView != "")
 					{
@@ -360,8 +374,8 @@
 					
 						$(dtPickerObj.element).css({position: "absolute", top: iElemTop, left: iElemLeft, width: iElemWidth, height: "auto"});
 					}
-				
-					dtPickerObj._showPicker(sMode, sMinValue, sMaxValue, sFormat, sCurrent, element, sStartEnd, sStartEndElem);
+					
+					dtPickerObj._showPicker(sMode, sMinValue, sMaxValue, sFormat, sCurrent, oElement, sStartEnd, sStartEndElem);
 				}
 			},
 		
@@ -538,6 +552,9 @@
 			_showPicker: function(sMode, sMinValue, sMaxValue, sFormat, sCurrent, oElement, sStartEnd, sStartEndElem)
 			{
 				var dtPickerObj = this;
+
+				if(dtPickerObj.settings.beforeShow)
+					dtPickerObj.settings.beforeShow.call(oElement);
 			
 				if(sMode != "")
 					dtPickerObj.settings.mode = sMode;
@@ -705,11 +722,22 @@
 				dtPickerObj._setVariablesForDate();
 				dtPickerObj._modifyPicker();
 				$(dtPickerObj.element).fadeIn(dtPickerObj.settings.animationDuration);
+
+				if(dtPickerObj.settings.afterShow)
+				{
+					setTimeout(function()
+					{
+						dtPickerObj.settings.afterShow.call(oElement);
+					}, dtPickerObj.settings.animationDuration);	
+				}							
 			},
 		
 			_hidePicker: function(iDuration)
 			{
 				var dtPickerObj = this;
+
+				if(dtPickerObj.settings.beforeHide)
+					dtPickerObj.settings.beforeHide.call(oElement);
 
 				if(iDuration === "" || iDuration === undefined || iDuration === null)
 					iDuration = dtPickerObj.settings.animationDuration;
@@ -736,6 +764,14 @@
 				$(document).unbind("click.DateTimePicker");
 				$(document).unbind("keydown.DateTimePicker");
 				$(document).unbind("keyup.DateTimePicker");
+
+				if(dtPickerObj.settings.afterHide)
+				{
+					setTimeout(function()
+					{
+						dtPickerObj.settings.afterHide.call(oElement);
+					}, iDuration);
+				}
 			},
 		
 			_modifyPicker: function()
@@ -994,16 +1030,22 @@
 			
 				$(dtPickerObj.element).find('.dtpicker-close').click(function(e)
 				{
+					if(dtPickerObj.settings.buttonClicked)
+						dtPickerObj.settings.buttonClicked.call("CLOSE", dtPickerObj.dataObject.oInputElement);
 					dtPickerObj._hidePicker("");
 				});
 			
 				$(dtPickerObj.element).find('.dtpicker-buttonSet').click(function(e)
 				{
+					if(dtPickerObj.settings.buttonClicked)
+						dtPickerObj.settings.buttonClicked.call("SET", dtPickerObj.dataObject.oInputElement);
 					dtPickerObj._setButtonAction(false);
 				});
 			
 				$(dtPickerObj.element).find('.dtpicker-buttonClear').click(function(e)
 				{
+					if(dtPickerObj.settings.buttonClicked)
+						dtPickerObj.settings.buttonClicked.call("CLEAR", dtPickerObj.dataObject.oInputElement);
 					dtPickerObj._clearButtonAction();
 				});
 			
@@ -1067,14 +1109,14 @@
 			
 				$(dtPickerObj.element).find(".minutes .increment").click(function(e)
 				{
-					dtPickerObj.dataObject.iCurrentMinutes++;
+					dtPickerObj.dataObject.iCurrentMinutes += dtPickerObj.settings.minuteInterval;
 					dtPickerObj._setCurrentDate();
 					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
 			
 				$(dtPickerObj.element).find(".minutes .decrement").click(function(e)
 				{
-					dtPickerObj.dataObject.iCurrentMinutes--;
+					dtPickerObj.dataObject.iCurrentMinutes -= dtPickerObj.settings.minuteInterval;
 					dtPickerObj._setCurrentDate();
 					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
@@ -1094,6 +1136,16 @@
 					dtPickerObj._setCurrentDate();
 					dtPickerObj._setOutputOnIncrementOrDecrement();
 				});
+			},
+
+			adjustMinutes: function(iMinutes) 
+			{
+				var dtPickerObj = this;
+				if (dtPickerObj.settings.roundOffMinutes && dtPickerObj.settings.minuteInterval != 1)
+				{
+					iMinutes = (iMinutes % dtPickerObj.settings.minuteInterval) ? (iMinutes - iMinutes % dtPickerObj.settings.minuteInterval + dtPickerObj.settings.minuteInterval) : iMinutes;
+				}
+				return iMinutes;
 			},
 		
 			_getValueOfElement: function(oElem)
@@ -1203,6 +1255,7 @@
 						iMinutes = parseInt(sArrTimeComp[1]);
 					}
 				}
+				iMinutes = dtPickerObj.adjustMinutes(iMinutes);
 			
 				dTempDate = new Date(iYear, iMonth, iDate, iHour, iMinutes, 0, 0);
 			
@@ -1275,7 +1328,8 @@
 					else if(iHour < 12 && dtPickerObj._compare(sMeridiem, "PM"))
 						iHour += 12;
 				}
-			
+				iMinutes = dtPickerObj.adjustMinutes(iMinutes);
+        			
 				dTempDate = new Date(iYear, iMonth, iDate, iHour, iMinutes, 0, 0);
 			
 				return dTempDate;
@@ -1355,7 +1409,7 @@
 				if(dtPickerObj._compare(dtPickerObj.settings.mode, "time") || dtPickerObj._compare(dtPickerObj.settings.mode, "datetime"))
 				{
 					dtPickerObj.dataObject.iCurrentHour = parseInt($(dtPickerObj.element).find(".hour .dtpicker-compValue").val());
-					dtPickerObj.dataObject.iCurrentMinutes = parseInt($(dtPickerObj.element).find(".minutes .dtpicker-compValue").val());
+					dtPickerObj.dataObject.iCurrentMinutes = dtPickerObj.adjustMinutes(parseInt($(dtPickerObj.element).find(".minutes .dtpicker-compValue").val()));
 				
 					if(dtPickerObj._compare(dtPickerObj.settings.mode, "time"))
 					{
@@ -1696,10 +1750,10 @@
 					return false;				
 			},
 		
-			setIsPopup: function(isPopup)
+			setIsPopup: function(bIsPopup)
 			{
 				var dtPickerObj = this;
-				dtPickerObj.settings.isPopup = isPopup;
+				dtPickerObj.settings.isPopup = bIsPopup;
 			
 				if($(dtPickerObj.element).css("display") != "none")
 					dtPickerObj._hidePicker(0);
@@ -1760,13 +1814,18 @@
 				return (iDateTimeDiff == 0) ? iDateTimeDiff: (iDateTimeDiff/Math.abs(iDateTimeDiff));
 			},
 
-			_determineMeridiemFromHourAndMinutes: function(hour, minutes)
+			_determineMeridiemFromHourAndMinutes: function(iHour, iMinutes)
 			{
-				if (hour > 12) {
+				if (iHour > 12) 
+				{
 					return "PM";
-				} else if(hour == 12 && minutes >= 0) {
+				} 
+				else if(iHour == 12 && iMinutes >= 0) 
+				{
 					return "PM";
-				} else {
+				} 
+				else 
+				{
 					return "AM";
 				}
 			}
