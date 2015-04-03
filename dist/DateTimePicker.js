@@ -736,6 +736,8 @@
 			{
 				var dtPickerObj = this;
 
+				var oElement = dtPickerObj.dataObject.oInputElement;
+
 				if(dtPickerObj.settings.beforeHide)
 					dtPickerObj.settings.beforeHide.call(oElement);
 
