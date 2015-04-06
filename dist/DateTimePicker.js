@@ -1,14 +1,12 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.5
+  Version 0.1.6
   Copyright (c)2015 Curious Solutions Pvt Ltd and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
 
  ----------------------------------------------------------------------------- */
-
-
 
  (function (factory) 
  {
@@ -554,7 +552,7 @@
 				var dtPickerObj = this;
 
 				if(dtPickerObj.settings.beforeShow)
-					dtPickerObj.settings.beforeShow.call(oElement);
+					dtPickerObj.settings.beforeShow.call(dtPickerObj, oElement);
 			
 				if(sMode != "")
 					dtPickerObj.settings.mode = sMode;
@@ -727,7 +725,7 @@
 				{
 					setTimeout(function()
 					{
-						dtPickerObj.settings.afterShow.call(oElement);
+						dtPickerObj.settings.afterShow.call(dtPickerObj, oElement);
 					}, dtPickerObj.settings.animationDuration);	
 				}							
 			},
@@ -739,7 +737,7 @@
 				var oElement = dtPickerObj.dataObject.oInputElement;
 
 				if(dtPickerObj.settings.beforeHide)
-					dtPickerObj.settings.beforeHide.call(oElement);
+					dtPickerObj.settings.beforeHide.call(dtPickerObj, oElement);
 
 				if(iDuration === "" || iDuration === undefined || iDuration === null)
 					iDuration = dtPickerObj.settings.animationDuration;
@@ -771,7 +769,7 @@
 				{
 					setTimeout(function()
 					{
-						dtPickerObj.settings.afterHide.call(oElement);
+						dtPickerObj.settings.afterHide.call(dtPickerObj, oElement);
 					}, iDuration);
 				}
 			},
@@ -1033,21 +1031,21 @@
 				$(dtPickerObj.element).find('.dtpicker-close').click(function(e)
 				{
 					if(dtPickerObj.settings.buttonClicked)
-						dtPickerObj.settings.buttonClicked.call("CLOSE", dtPickerObj.dataObject.oInputElement);
+						dtPickerObj.settings.buttonClicked.call(dtPickerObj, "CLOSE", dtPickerObj.dataObject.oInputElement);
 					dtPickerObj._hidePicker("");
 				});
 			
 				$(dtPickerObj.element).find('.dtpicker-buttonSet').click(function(e)
 				{
 					if(dtPickerObj.settings.buttonClicked)
-						dtPickerObj.settings.buttonClicked.call("SET", dtPickerObj.dataObject.oInputElement);
+						dtPickerObj.settings.buttonClicked.call(dtPickerObj, "SET", dtPickerObj.dataObject.oInputElement);
 					dtPickerObj._setButtonAction(false);
 				});
 			
 				$(dtPickerObj.element).find('.dtpicker-buttonClear').click(function(e)
 				{
 					if(dtPickerObj.settings.buttonClicked)
-						dtPickerObj.settings.buttonClicked.call("CLEAR", dtPickerObj.dataObject.oInputElement);
+						dtPickerObj.settings.buttonClicked.call(dtPickerObj, "CLEAR", dtPickerObj.dataObject.oInputElement);
 					dtPickerObj._clearButtonAction();
 				});
 			

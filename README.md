@@ -58,6 +58,6 @@ Jean-Christophe Hoelt - NPM packaging. Few customization options.
 
 
 ##License
-Copyright 2014 [Curious Solutions](https://github.com/CuriousSolutions) Pvt Ltd and [@nehakadam](https://github.com/nehakadam)
+Copyright 2015 [Curious Solutions](https://github.com/CuriousSolutions) Pvt Ltd and [@nehakadam](https://github.com/nehakadam)
 
 Licensed under the MIT License
