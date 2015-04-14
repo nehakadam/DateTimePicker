@@ -118,6 +118,11 @@ a:hover
 	font-weight: bold;
 }
 
+.doc-callbackfunctionlist table tr:first-child
+{
+	font-weight: bold;
+}
+
 .form-control[readonly]
 {
 	cursor: pointer;
