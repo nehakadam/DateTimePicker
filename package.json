@@ -1,50 +1,59 @@
 {
-  "name": "datetimepicker",
 
-  "description": "Responsive flat design jQuery DateTime Picker plugin for Web & Mobile",
-  
-  "keywords": [
-    "date",
-    "time",
-    "picker",
-    "flat",
-    "jquery"
-  ],
+    "name": "datetimepicker",
 
-  "version": "0.1.6",
+    "description": "Responsive flat design jQuery DateTime Picker plugin for Web & Mobile",
 
-  "homepage": "http://curioussolutions.github.io/DateTimePicker/",
+    "keywords": 
+    [
+        "date",
+        "time",
+        "picker",
+        "flat",
+        "jquery"
+    ],
 
-  "author": "nehakadam",
+    "version": "0.1.7",
 
-  "main": [
-    "dist/datetimepicker.js",
-    "dist/datetimepicker.css"
-  ],
+    "homepage": "http://curioussolutions.github.io/DateTimePicker/",
 
-  "repository": {
-    "type": "git",
-    "url": "git://github.com:CuriousSolutions/DateTimePicker.git"
-  },
+    "author": "nehakadam",
 
-  "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-contrib-cssmin": "~0.5.0",
-    "grunt-contrib-uglify": "~0.4.0",
-    "grunt-contrib-copy": "~0.4.0"
-  },
+    "main": 
+    [
+        "dist/datetimepicker.js",
+        "dist/datetimepicker.css"
+    ],
 
-  "bugs": {
-    "url": "https://github.com/CuriousSolutions/DateTimePicker/issues"
-  },
+    "repository": 
+    {
+        "type": "git",
+        "url": "git://github.com:CuriousSolutions/DateTimePicker.git"
+    },
 
-  "dependencies": {
-    "jquery": ">=1.0.0"
-  },
+    "devDependencies": 
+    {
+        "grunt": "~0.4.5",
+        "grunt-contrib-cssmin": "~0.5.0",
+        "grunt-contrib-uglify": "~0.4.0",
+        "grunt-contrib-copy": "~0.4.0"
+    },
 
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  
-  "license": "MIT"
+    "bugs": 
+    {
+        "url": "https://github.com/CuriousSolutions/DateTimePicker/issues"
+    },
+
+    "dependencies": 
+    {
+        "jquery": ">=1.0.0"
+    },
+
+    "scripts": 
+    {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+
+    "license": "MIT"
+
 }

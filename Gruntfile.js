@@ -31,8 +31,11 @@ module.exports = function(grunt)
 			},
 			build: 
 			{
-				src: 'src/<%= pkg.name %>.js',
-				dest: 'dist/<%= pkg.name %>.min.js'
+				files:
+				{
+					'dist/<%= pkg.name %>.min.js': ['src/<%= pkg.name %>.js'],
+					'dist/<%= pkg.name %>-ltie9.min.js': ['src/<%= pkg.name %>-ltie9.js']
+				}
 			}
 		},
 
@@ -44,8 +47,11 @@ module.exports = function(grunt)
 			},
 			build: 
 			{
-				src: 'src/<%= pkg.name %>.css',
-				dest: 'dist/<%= pkg.name %>.min.css'
+				files:
+				{
+					'dist/<%= pkg.name %>.min.css': ['src/<%= pkg.name %>.css'],
+					'dist/<%= pkg.name %>-ltie9.min.css': ['src/<%= pkg.name %>-ltie9.css']
+				}
 			}
 		}
 

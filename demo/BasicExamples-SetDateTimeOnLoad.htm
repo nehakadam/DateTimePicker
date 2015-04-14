@@ -4,7 +4,7 @@
 
 	<head>
 	
-		<title>Format - Data Attributes and Parameters</title>
+		<title>Basic Examples - Set DateTime In Input Field</title>
 	
 		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
 	
@@ -39,41 +39,41 @@
 	
 		<!------------------------ Date Picker ------------------------>
 		<p>Date : </p>
-		<input type="text" data-field="date" data-format="dd-MMM-yyyy" readonly>
+		<input type="text" data-field="date" data-format="dd-MMM-yyyy" class= "fillDateTime" id="date1" readonly>
 	
 		<!------------------------ Time Picker ------------------------>
 		<p>Time : </p>
-		<input type="text" data-field="time" data-format="hh:mm AA" readonly>
+		<input type="text" data-field="time" data-format="hh:mm AA" class= "fillDateTime" id="time1" readonly>
 	
 		<!---------------------- DateTime Picker ---------------------->
 		<p>DateTime : </p>
-		<input type="text" data-field="datetime" data-format="dd-MMM-yyyy hh:mm:ss AA" readonly>
+		<input type="text" data-field="datetime" data-format="dd-MMM-yyyy hh:mm:ss AA" class= "fillDateTime" id="datetime1" readonly>
 	
 	
 		<!------------------------ Date Picker ------------------------>
 		<p>Date : </p>
-		<input type="text" data-field="date" readonly>
+		<input type="text" data-field="date" id="date2" readonly>
 	
 		<!------------------------ Time Picker ------------------------>
 		<p>Time : </p>
-		<input type="text" data-field="time" readonly>
+		<input type="text" data-field="time" id="time2" readonly>
 	
 		<!---------------------- DateTime Picker ---------------------->
 		<p>DateTime : </p>
-		<input type="text" data-field="datetime" readonly>
+		<input type="text" data-field="datetime" id="datetime2" readonly>
 	
 	
 		<!------------------------ Date Picker ------------------------>
 		<p>Date : </p>
-		<input type="text" data-field="date" data-format="yyyy-MM-dd" readonly>
+		<input type="text" data-field="date" data-format="yyyy-MM-dd" id="date3" readonly>
 	
 		<!------------------------ Time Picker ------------------------>
 		<p>Time : </p>
-		<input type="text" data-field="time" data-format="hh:mm AA" readonly>
+		<input type="text" data-field="time" data-format="hh:mm AA" id="time3" readonly>
 	
 		<!---------------------- DateTime Picker ---------------------->
 		<p>DateTime : </p>
-		<input type="text" data-field="datetime" data-format="yyyy-MM-dd hh:mm:ss AA" readonly>
+		<input type="text" data-field="datetime" data-format="yyyy-MM-dd hh:mm:ss AA" id="datetime3" readonly>
 	
 	
 		<div id="dtBox"></div>
@@ -83,11 +83,46 @@
 		
 			$(document).ready(function()
 			{
-				$("#dtBox").DateTimePicker({
+				$("#dtBox").DateTimePicker(
+				{
 				
 					dateFormat: "MM-dd-yyyy",
 					timeFormat: "HH:mm",
-					dateTimeFormat: "MM-dd-yyyy HH:mm:ss AA"
+					dateTimeFormat: "MM-dd-yyyy HH:mm:ss AA",
+
+					addEventHandlers: function()
+					{
+						var dtPickerObj = this;
+
+						/*
+
+						// Set DateTime Strings for all elements
+			
+						*/
+						dtPickerObj.setDateTimeStringInInputField();
+
+						
+
+						/*
+						
+						// Set DateTime Strings for a single element
+
+						
+						dtPickerObj.setDateTimeStringInInputField($("#date1"), new Date(2014, 4, 25, 0, 0, 0, 0));
+						dtPickerObj.setDateTimeStringInInputField($("#time1"), new Date(2014, 4, 25, 16, 40, 0, 0));
+
+						*/
+
+						/*
+						
+						// Set DateTime Strings for a group of elements
+
+						
+						dtPickerObj.setDateTimeStringInInputField($(".fillDateTime"));
+					
+						*/
+					}
+				
 				});
 			});
 		
