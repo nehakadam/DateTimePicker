@@ -12,7 +12,7 @@
     "version": "0.1.7",
     "homepage": "http://curioussolutions.github.io/DateTimePicker/",
     "author": "nehakadam",
-    "main":"dist/datetimepicker.js",
+    "main":"dist/DateTimePicker.js",
     "repository":
     {
         "type": "git",
