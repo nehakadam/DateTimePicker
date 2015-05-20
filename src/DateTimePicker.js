@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.7
+  Version 0.1.8
   Copyright (c)2015 Curious Solutions Pvt Ltd and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -370,7 +370,7 @@
 			{
 				var oElement = this,
 				sMode, sFormat, bIs12Hour;
-				
+			
 		        sMode = $(oElement).data("field");
 		    
 		    	if(dtPickerObj._compare(sMode, "date"))
@@ -1234,7 +1234,7 @@
 				$oElem.val(sElemValue);
 			else
 				$oElem.html(sElemValue);
-				
+		
 			$oElem.change();
 		
 			return sElemValue;
@@ -1842,6 +1842,7 @@
 				false;			
 		},
 	
+		// Public Method
 		setIsPopup: function(bIsPopup)
 		{
 			var dtPickerObj = this;
