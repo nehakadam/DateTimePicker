@@ -9,7 +9,7 @@
         "flat",
         "jquery"
     ],
-    "version": "0.1.8",
+    "version": "0.1.9",
     "homepage": "http://curioussolutions.github.io/DateTimePicker/",
     "author": "nehakadam",
     "main":"dist/DateTimePicker.js",

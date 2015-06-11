@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.8
+  Version 0.1.9
   Copyright (c)2015 Curious Solutions Pvt Ltd and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -370,7 +370,7 @@
 			{
 				var oElement = this,
 				sMode, sFormat, bIs12Hour;
-				
+			
 		        sMode = $(oElement).data("field");
 		    
 		    	if(dtPickerObj._compare(sMode, "date"))
@@ -1234,7 +1234,7 @@
 				$oElem.val(sElemValue);
 			else
 				$oElem.html(sElemValue);
-				
+		
 			$oElem.change();
 		
 			return sElemValue;
@@ -1493,8 +1493,11 @@
 		
 			if(dtPickerObj._compare(dtPickerObj.settings.mode, "time") || dtPickerObj._compare(dtPickerObj.settings.mode, "datetime"))
 			{
-				dtPickerObj.dataObject.iCurrentHour = parseInt($(dtPickerObj.element).find(".hour .dtpicker-compValue").val());
-				dtPickerObj.dataObject.iCurrentMinutes = dtPickerObj._adjustMinutes(parseInt($(dtPickerObj.element).find(".minutes .dtpicker-compValue").val()));
+				var iTempHour = parseInt($(dtPickerObj.element).find(".hour .dtpicker-compValue").val()),
+				iTempMinutes = dtPickerObj._adjustMinutes(parseInt($(dtPickerObj.element).find(".minutes .dtpicker-compValue").val()));
+
+				dtPickerObj.dataObject.iCurrentHour = isNaN(iTempHour) ? dtPickerObj.dataObject.iCurrentHour : iTempHour;
+				dtPickerObj.dataObject.iCurrentMinutes = isNaN(iTempMinutes) ? dtPickerObj.dataObject.iCurrentMinutes : iTempMinutes;
 			
 				if(dtPickerObj._compare(dtPickerObj.settings.mode, "time"))
 				{
@@ -1530,15 +1533,18 @@
 						}
 					}
 				}
-			
+
 				if(dtPickerObj.dataObject.bIs12Hour)
 				{
 					var sMeridiem = $(dtPickerObj.element).find(".meridiem .dtpicker-compValue").val();
 					if(dtPickerObj._compare(sMeridiem, "AM") || dtPickerObj._compare(sMeridiem, "PM"))
 						dtPickerObj.dataObject.sCurrentMeridiem = sMeridiem;
 				
-					if(dtPickerObj._compare(dtPickerObj.dataObject.sCurrentMeridiem, "PM") && dtPickerObj.dataObject.iCurrentHour < 13)
-						dtPickerObj.dataObject.iCurrentHour += 12;
+					if(dtPickerObj._compare(dtPickerObj.dataObject.sCurrentMeridiem, "PM"))
+					{
+						if(dtPickerObj.dataObject.iCurrentHour !== 12 && dtPickerObj.dataObject.iCurrentHour < 13)
+							dtPickerObj.dataObject.iCurrentHour += 12;
+					}
 					if(dtPickerObj._compare(dtPickerObj.dataObject.sCurrentMeridiem, "AM") && dtPickerObj.dataObject.iCurrentHour == 12)
 						dtPickerObj.dataObject.iCurrentHour = 0;
 				}
@@ -1842,6 +1848,7 @@
 				false;			
 		},
 	
+		// Public Method
 		setIsPopup: function(bIsPopup)
 		{
 			var dtPickerObj = this;
@@ -1921,6 +1928,7 @@
 				return "AM";
 			}
 		}
+
 	};
 	
 }));
