@@ -55,8 +55,8 @@ Tasks configured in "Gruntfile.js"
 [Neha Kadam](https://github.com/nehakadam)
 
 Special thanks:
-*Shweta Matkar for her contributions
-*Jean-Christophe Hoelt - NPM packaging. Few customization options.
+- Shweta Matkar for her contributions <br/>
+- Jean-Christophe Hoelt - NPM packaging. Few customization options.
 
 Copyright 2015 [Curious Solutions LLP](https://github.com/CuriousSolutions)
 
