@@ -58,7 +58,7 @@ Special thanks:
 - Shweta Matkar for her contributions <br/>
 - Jean-Christophe Hoelt - NPM packaging. Few customization options.
 
-> Copyright 2015 [Curious Solutions LLP](https://github.com/CuriousSolutions)
+Copyright 2015 [Curious Solutions LLP](https://github.com/CuriousSolutions)
 
 
 
