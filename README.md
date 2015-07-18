@@ -58,6 +58,8 @@ Special thanks:
 - Shweta Matkar for her contributions <br/>
 - Jean-Christophe Hoelt - NPM packaging. Few customization options.
 
+> We loved with a love that was more than love
+
 Copyright 2015 [Curious Solutions LLP](https://github.com/CuriousSolutions)
 
 
