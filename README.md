@@ -1,7 +1,7 @@
 ##DateTimePicker [![Join the chat at https://gitter.im/CuriousSolutions/DateTimePicker](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/CuriousSolutions/DateTimePicker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
-**Responsive flat design jQuery DateTime Picker plugin for Web & Mobile**
+**Responsive jQuery DateTime Picker library for Web & Mobile**
 <br /><br />
 ![](https://raw.github.com/CuriousSolutions/DateTimePicker/gh-pages/images/dp-screenshot.png)
 ![](https://raw.github.com/CuriousSolutions/DateTimePicker/gh-pages/images/tp-screenshot.png)
@@ -52,14 +52,15 @@ Tasks configured in "Gruntfile.js"
 
 
 ##Authors
-[@nehakadam](https://github.com/nehakadam)
+[Neha Kadam](https://github.com/nehakadam)
 
 Special thanks to Shweta Matkar for her contributions
 
 Jean-Christophe Hoelt - NPM packaging. Few customization options.
 
+Copyright 2015 [Curious Solutions LLP](https://github.com/CuriousSolutions)
+
 
 ##License
-Copyright 2015 [Curious Solutions LLP](https://github.com/CuriousSolutions) and [@nehakadam](https://github.com/nehakadam)
 
 Licensed under the MIT License
