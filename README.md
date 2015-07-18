@@ -54,12 +54,12 @@ Tasks configured in "Gruntfile.js"
 ##Authors
 [@nehakadam](https://github.com/nehakadam)
 
-Special thanks to Shweta Matkar & Arti Berde for their contributions
+Special thanks to Shweta Matkar for her contributions
 
 Jean-Christophe Hoelt - NPM packaging. Few customization options.
 
 
 ##License
-Copyright 2015 [Curious Solutions](https://github.com/CuriousSolutions) Pvt Ltd and [@nehakadam](https://github.com/nehakadam)
+Copyright 2015 [Curious Solutions LLP](https://github.com/CuriousSolutions) and [@nehakadam](https://github.com/nehakadam)
 
 Licensed under the MIT License
