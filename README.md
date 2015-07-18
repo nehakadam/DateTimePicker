@@ -52,7 +52,7 @@ Tasks configured in "Gruntfile.js"
 
 
 ##Authors
-[Neha Kadam](https://github.com/nehakadam)
+[Neha Kadam](https://github.com/nehakadam): Principle Developer
 
 Special thanks:
 - Shweta Matkar for her contributions <br/>
