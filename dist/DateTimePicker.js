@@ -1117,70 +1117,70 @@
 		
 			// ----------------------------------------------------------------------------
 		
-			$(dtPickerObj.element).find(".day .increment").click(function(e)
+			$(dtPickerObj.element).find(".day .increment, .day .increment *").click(function(e)
 			{
 				dtPickerObj.dataObject.iCurrentDay++;
 				dtPickerObj._setCurrentDate();
 				dtPickerObj._setOutputOnIncrementOrDecrement();
 			});
 		
-			$(dtPickerObj.element).find(".day .decrement").click(function(e)
+			$(dtPickerObj.element).find(".day .decrement, .day .decrement *").click(function(e)
 			{
 				dtPickerObj.dataObject.iCurrentDay--;
 				dtPickerObj._setCurrentDate();
 				dtPickerObj._setOutputOnIncrementOrDecrement();
 			});
 		
-			$(dtPickerObj.element).find(".month .increment").click(function(e)
+			$(dtPickerObj.element).find(".month .increment, .month .increment *").click(function(e)
 			{
 				dtPickerObj.dataObject.iCurrentMonth++;
 				dtPickerObj._setCurrentDate();
 				dtPickerObj._setOutputOnIncrementOrDecrement();
 			});
 		
-			$(dtPickerObj.element).find(".month .decrement").click(function(e)
+			$(dtPickerObj.element).find(".month .decrement, .month .decrement *").click(function(e)
 			{
 				dtPickerObj.dataObject.iCurrentMonth--;
 				dtPickerObj._setCurrentDate();
 				dtPickerObj._setOutputOnIncrementOrDecrement();
 			});
 		
-			$(dtPickerObj.element).find(".year .increment").click(function(e)
+			$(dtPickerObj.element).find(".year .increment, .year .increment *").click(function(e)
 			{
 				dtPickerObj.dataObject.iCurrentYear++;
 				dtPickerObj._setCurrentDate();
 				dtPickerObj._setOutputOnIncrementOrDecrement();
 			});
 		
-			$(dtPickerObj.element).find(".year .decrement").click(function(e)
+			$(dtPickerObj.element).find(".year .decrement, .year .decrement *").click(function(e)
 			{
 				dtPickerObj.dataObject.iCurrentYear--;
 				dtPickerObj._setCurrentDate();
 				dtPickerObj._setOutputOnIncrementOrDecrement();
 			});
 		
-			$(dtPickerObj.element).find(".hour .increment").click(function(e)
+			$(dtPickerObj.element).find(".hour .increment, .hour .increment *").click(function(e)
 			{
 				dtPickerObj.dataObject.iCurrentHour++;
 				dtPickerObj._setCurrentDate();
 				dtPickerObj._setOutputOnIncrementOrDecrement();
 			});
 		
-			$(dtPickerObj.element).find(".hour .decrement").click(function(e)
+			$(dtPickerObj.element).find(".hour .decrement, .hour .decrement *").click(function(e)
 			{
 				dtPickerObj.dataObject.iCurrentHour--;
 				dtPickerObj._setCurrentDate();
 				dtPickerObj._setOutputOnIncrementOrDecrement();
 			});
 		
-			$(dtPickerObj.element).find(".minutes .increment").click(function(e)
+			$(dtPickerObj.element).find(".minutes .increment, .minutes .increment *").click(function(e)
 			{
 				dtPickerObj.dataObject.iCurrentMinutes += dtPickerObj.settings.minuteInterval;
 				dtPickerObj._setCurrentDate();
 				dtPickerObj._setOutputOnIncrementOrDecrement();
 			});
 		
-			$(dtPickerObj.element).find(".minutes .decrement").click(function(e)
+			$(dtPickerObj.element).find(".minutes .decrement, .minutes .decrement *").click(function(e)
 			{
 				dtPickerObj.dataObject.iCurrentMinutes -= dtPickerObj.settings.minuteInterval;
 				dtPickerObj._setCurrentDate();
