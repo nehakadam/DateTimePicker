@@ -73,6 +73,8 @@
 		buttonsToDisplay: ["HeaderCloseButton", "SetButton", "ClearButton"],
 		setButtonContent: "Set",
 		clearButtonContent: "Clear",
+    incrementButtonContent: "+",
+    decrementButtonContent: "-",
 		setValueInTextboxOnEveryClick: false,
 	
 		animationDuration: 400,
@@ -964,9 +966,9 @@
 			
 				sDTPickerComp += "<div class='dtpicker-compOutline " + sColumnClass + "'>";
 				sDTPickerComp += "<div class='dtpicker-comp " + sFieldName + "'>";
-				sDTPickerComp += "<a class='dtpicker-compButton increment'>+</a>";
+				sDTPickerComp += "<a class='dtpicker-compButton increment'>" + dtPickerObj.settings.incrementButtonContent + "</a>";
 				sDTPickerComp += "<input type='text' class='dtpicker-compValue'></input>";
-				sDTPickerComp += "<a class='dtpicker-compButton decrement'>-</a>";
+				sDTPickerComp += "<a class='dtpicker-compButton decrement'>" + dtPickerObj.settings.decrementButtonContent + "</a>";
 				sDTPickerComp += "</div>";
 				sDTPickerComp += "</div>";
 			}
