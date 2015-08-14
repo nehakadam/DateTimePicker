@@ -81,7 +81,7 @@
 	
 		isPopup: true,
 	
-		parentElement: null,
+		parentElement: "body",
 	
 		addEventHandlers: null,  // addEventHandlers(oDateTimePicker)
 		beforeShow: null,  // beforeShow(oInputElement)
@@ -287,46 +287,21 @@
 			dtPickerObj.dataObject.oInputElement = null;		
 			var oArrElements = undefined;
 
-			if(dtPickerObj.settings.parentElement != undefined)
-			{
-				$(dtPickerObj.settings.parentElement).find("input[type='date'], input[type='time'], input[type='datetime']").each(function()
-				{
-					var sType = $(this).attr("type");
-					$(this).attr("type", "text");
-					$(this).attr("data-field", sType);
-				});
 
-				oArrElements = $(dtPickerObj.settings.parentElement).find("[data-field='date'], [data-field='time'], [data-field='datetime']");
-			}
-			else
+			$(dtPickerObj.settings.parentElement).find("input[type='date'], input[type='time'], input[type='datetime']").each(function()
 			{
-				$("input[type='date'], input[type='time'], input[type='datetime']").each(function()
-				{
-					var sType = $(this).attr("type");
-					$(this).attr("type", "text");
-					$(this).attr("data-field", sType);
-				});
+				var sType = $(this).attr("type");
+				$(this).attr("type", "text");
+				$(this).attr("data-field", sType);
+			});	
+			var sel = "[data-field='date'], [data-field='time'], [data-field='datetime']";
+			$(dtPickerObj.settings.parentElement).off("focus", sel, dtPickerObj._inputFieldFocus);
+			$(dtPickerObj.settings.parentElement).on ("focus", sel, {"obj": dtPickerObj}, dtPickerObj._inputFieldFocus);
 			
-				oArrElements = $("[data-field='date'], [data-field='time'], [data-field='datetime']");
-			}
-		
-			$(oArrElements).unbind("focus", dtPickerObj._inputFieldFocus);
-			$(oArrElements).on("focus", {"obj": dtPickerObj}, dtPickerObj._inputFieldFocus);
-		
-			$(oArrElements).not('input').click(function(e)
-			{
-				if(dtPickerObj.dataObject.oInputElement == null)
-				{
-					dtPickerObj.showDateTimePicker(this);
-				}
-			});
-		
-			$(oArrElements).click(function(e)
-			{
-				e.stopPropagation();
-			});
-		
-			if(dtPickerObj.settings.addEventHandlers)
+			$(dtPickerObj.settings.parentElement).off("click", sel, dtPickerObj._inputFieldClick);
+			$(dtPickerObj.settings.parentElement).on ("click", sel, {"obj": dtPickerObj}, dtPickerObj._inputFieldClick);
+
+			if(dtPickerObj.settings.addEventHandlers) //TODO is this maybe added with every call?
 				dtPickerObj.settings.addEventHandlers.call(dtPickerObj);
 		},
 	
@@ -338,6 +313,15 @@
 				dtPickerObj.showDateTimePicker(e.target);
 			}
 			dtPickerObj.dataObject.bMouseDown = false;
+		},
+		_inputFieldClick: function(e)
+		{
+          	var dtPickerObj = e.data.obj;
+			if ($(this).prop("tagName")!=='input' && dtPickerObj.dataObject.oInputElement == null)
+			{
+				dtPickerObj.showDateTimePicker(this);
+			}
+			e.stopPropagation();
 		},
 
 		// Public Method
