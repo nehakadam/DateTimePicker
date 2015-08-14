@@ -1,3 +1,7 @@
+##NEW Picker Library
+Check our newly released picker library for Mobile OS - [AnyPicker](https://curioussolutions.in/libraries/anypicker/ "AnyPicker
+Details")
+
 ##DateTimePicker [![Join the chat at https://gitter.im/CuriousSolutions/DateTimePicker](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/CuriousSolutions/DateTimePicker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
