@@ -284,16 +284,16 @@
 		{
 			var dtPickerObj = this;
 		
-			dtPickerObj.dataObject.oInputElement = null;		
-			var oArrElements = undefined;
+			dtPickerObj.dataObject.oInputElement = null;
 
-
+            // -----Comment zevero: I would cut this out
 			$(dtPickerObj.settings.parentElement).find("input[type='date'], input[type='time'], input[type='datetime']").each(function()
 			{
 				var sType = $(this).attr("type");
 				$(this).attr("type", "text");
 				$(this).attr("data-field", sType);
 			});	
+            // -----until here
 			var sel = "[data-field='date'], [data-field='time'], [data-field='datetime']";
 			$(dtPickerObj.settings.parentElement).off("focus", sel, dtPickerObj._inputFieldFocus);
 			$(dtPickerObj.settings.parentElement).on ("focus", sel, {"obj": dtPickerObj}, dtPickerObj._inputFieldFocus);
@@ -301,8 +301,8 @@
 			$(dtPickerObj.settings.parentElement).off("click", sel, dtPickerObj._inputFieldClick);
 			$(dtPickerObj.settings.parentElement).on ("click", sel, {"obj": dtPickerObj}, dtPickerObj._inputFieldClick);
 
-			if(dtPickerObj.settings.addEventHandlers) //TODO is this maybe added with every call?
-				dtPickerObj.settings.addEventHandlers.call(dtPickerObj);
+			if(dtPickerObj.settings.addEventHandlers) //this is not an event-handler really. Its just a function called
+				dtPickerObj.settings.addEventHandlers.call(dtPickerObj); // which could add EventHandlers
 		},
 	
 		_inputFieldFocus: function(e)
@@ -310,7 +310,7 @@
 			var dtPickerObj = e.data.obj;
 			if(dtPickerObj.dataObject.oInputElement == null)
 			{
-				dtPickerObj.showDateTimePicker(e.target);
+				dtPickerObj.showDateTimePicker(this);
 			}
 			dtPickerObj.dataObject.bMouseDown = false;
 		},
