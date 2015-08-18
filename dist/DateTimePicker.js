@@ -1,8 +1,8 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.9
-  Copyright (c)2015 Curious Solutions Pvt Ltd and Neha Kadam
+  Version 0.1.10
+  Copyright (c)2015 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
 
@@ -73,15 +73,15 @@
 		buttonsToDisplay: ["HeaderCloseButton", "SetButton", "ClearButton"],
 		setButtonContent: "Set",
 		clearButtonContent: "Clear",
-    incrementButtonContent: "+",
-    decrementButtonContent: "-",
+    	incrementButtonContent: "+",
+    	decrementButtonContent: "-",
 		setValueInTextboxOnEveryClick: false,
 	
 		animationDuration: 400,
 	
 		isPopup: true,
 	
-		parentElement: null,
+		parentElement: "body",
 	
 		addEventHandlers: null,  // addEventHandlers(oDateTimePicker)
 		beforeShow: null,  // beforeShow(oInputElement)
@@ -284,60 +284,41 @@
 		{
 			var dtPickerObj = this;
 		
-			dtPickerObj.dataObject.oInputElement = null;		
-			var oArrElements = undefined;
+			dtPickerObj.dataObject.oInputElement = null;
 
-			if(dtPickerObj.settings.parentElement != undefined)
+			$(dtPickerObj.settings.parentElement).find("input[type='date'], input[type='time'], input[type='datetime']").each(function()
 			{
-				$(dtPickerObj.settings.parentElement).find("input[type='date'], input[type='time'], input[type='datetime']").each(function()
-				{
-					var sType = $(this).attr("type");
-					$(this).attr("type", "text");
-					$(this).attr("data-field", sType);
-				});
-
-				oArrElements = $(dtPickerObj.settings.parentElement).find("[data-field='date'], [data-field='time'], [data-field='datetime']");
-			}
-			else
-			{
-				$("input[type='date'], input[type='time'], input[type='datetime']").each(function()
-				{
-					var sType = $(this).attr("type");
-					$(this).attr("type", "text");
-					$(this).attr("data-field", sType);
-				});
+				var sType = $(this).attr("type");
+				$(this).attr("type", "text");
+				$(this).attr("data-field", sType);
+			});	
+            
+			var sel = "[data-field='date'], [data-field='time'], [data-field='datetime']";
+			$(dtPickerObj.settings.parentElement).off("focus", sel, dtPickerObj._inputFieldFocus);
+			$(dtPickerObj.settings.parentElement).on ("focus", sel, {"obj": dtPickerObj}, dtPickerObj._inputFieldFocus);
 			
-				oArrElements = $("[data-field='date'], [data-field='time'], [data-field='datetime']");
-			}
-		
-			$(oArrElements).unbind("focus", dtPickerObj._inputFieldFocus);
-			$(oArrElements).on("focus", {"obj": dtPickerObj}, dtPickerObj._inputFieldFocus);
-		
-			$(oArrElements).not('input').click(function(e)
-			{
-				if(dtPickerObj.dataObject.oInputElement == null)
-				{
-					dtPickerObj.showDateTimePicker(this);
-				}
-			});
-		
-			$(oArrElements).click(function(e)
-			{
-				e.stopPropagation();
-			});
-		
-			if(dtPickerObj.settings.addEventHandlers)
-				dtPickerObj.settings.addEventHandlers.call(dtPickerObj);
+			$(dtPickerObj.settings.parentElement).off("click", sel, dtPickerObj._inputFieldClick);
+			$(dtPickerObj.settings.parentElement).on ("click", sel, {"obj": dtPickerObj}, dtPickerObj._inputFieldClick);
+
+			if(dtPickerObj.settings.addEventHandlers) //this is not an event-handler really. Its just a function called
+				dtPickerObj.settings.addEventHandlers.call(dtPickerObj); // which could add EventHandlers
 		},
 	
 		_inputFieldFocus: function(e)
 		{
 			var dtPickerObj = e.data.obj;
-			if(dtPickerObj.dataObject.oInputElement == null)
-			{
-				dtPickerObj.showDateTimePicker(e.target);
-			}
+			dtPickerObj.showDateTimePicker(this);
 			dtPickerObj.dataObject.bMouseDown = false;
+		},
+
+		_inputFieldClick: function(e)
+		{
+          	var dtPickerObj = e.data.obj;
+			if ($(this).prop("tagName")!=='input')
+			{
+				dtPickerObj.showDateTimePicker(this);
+			}
+			e.stopPropagation();
 		},
 
 		// Public Method
@@ -401,8 +382,11 @@
 		showDateTimePicker: function(oElement)
 		{
 			var dtPickerObj = this;
+
+			if(dtPickerObj.dataObject.oInputElement !== null)
+				dtPickerObj._hidePicker(0);
 		
-			if(dtPickerObj.dataObject.oInputElement == null)
+			if(dtPickerObj.dataObject.oInputElement === null)
 			{
 				dtPickerObj.dataObject.oInputElement = oElement;
 				dtPickerObj.dataObject.iTabIndex = parseInt($(oElement).attr("tabIndex"));
@@ -517,9 +501,9 @@
 				if(dtPickerObj._compare(sFormat, dtPickerObj.dataObject.sArrInputTimeFormats[0]))
 				{
 					sMeridiem = dtPickerObj._determineMeridiemFromHourAndMinutes(iHour, iMinutes);
-					if(iHour == 0 && sMeridiem == "AM")
+					if(iHour === 0 && sMeridiem === "AM")
 						iHour = 12;
-					else if(iHour > 12 && sMeridiem == "PM")
+					else if(iHour > 12 && sMeridiem === "PM")
 						iHour -= 12;
 				
 					sHour = (iHour < 10) ? ("0" + iHour) : iHour;
@@ -572,9 +556,9 @@
 				if(bIs12Hour)
 				{
 					sMeridiem = dtPickerObj._determineMeridiemFromHourAndMinutes(iHour, iMinutes);
-					if(iHour == 0 && sMeridiem == "AM")
+					if(iHour === 0 && sMeridiem === "AM")
 						iHour = 12;
-					else if(iHour > 12 && sMeridiem == "PM")
+					else if(iHour > 12 && sMeridiem === "PM")
 						iHour -= 12;
 				
 					sHour = (iHour < 10) ? ("0" + iHour) : iHour;
@@ -711,7 +695,7 @@
 								dTempTime.setMinutes(dTempTime.getMinutes() - 1);
 								if(sMax != "" && sMax != null)
 								{
-									if(dtPickerObj._compareTime(dTempTime, dtPickerObj.dataObject.dMaxValue) == 2)
+									if(dtPickerObj._compareTime(dTempTime, dtPickerObj.dataObject.dMaxValue) === 2)
 										dtPickerObj.dataObject.dMaxValue = new Date(dTempTime);
 								}
 								else
@@ -722,7 +706,7 @@
 								dTempTime.setMinutes(dTempTime.getMinutes() + 1);
 								if(sMin != "" && sMin != null)
 								{
-									if(dtPickerObj._compareTime(dTempTime, dtPickerObj.dataObject.dMinValue) == 3)
+									if(dtPickerObj._compareTime(dTempTime, dtPickerObj.dataObject.dMinValue) === 3)
 										dtPickerObj.dataObject.dMinValue = new Date(dTempTime);
 								}
 								else
@@ -817,7 +801,7 @@
 			}
 		
 			$(dtPickerObj.element).fadeOut(iDuration);
-			if(iDuration == 0)
+			if(iDuration === 0)
 			{
 				$(dtPickerObj.element).find('.dtpicker-subcontent').html("");
 			}
@@ -1009,10 +993,10 @@
 			{
 				dtPickerObj._hidePicker("");
 			});
-
+		
 			$(document).on("keydown.DateTimePicker", function(e)
 			{
-				if(! $('.dtpicker-compValue').is(':focus') && (e.keyCode ? e.keyCode : e.which) == "9")
+				if(! $('.dtpicker-compValue').is(':focus') && (e.keyCode ? e.keyCode : e.which) === "9")
 				{
 					dtPickerObj._setButtonAction(true);
 					$("[tabIndex=" + (dtPickerObj.dataObject.iTabIndex + 1) + "]").focus();
@@ -1309,7 +1293,7 @@
 					iHour = parseInt(sArrTimeComp[0]);
 					iMinutes = parseInt(sArrTimeComp[1]);
 				
-					if(iHour == 12 && dtPickerObj._compare(sMeridiem, "AM"))
+					if(iHour === 12 && dtPickerObj._compare(sMeridiem, "AM"))
 						iHour = 0;
 					else if(iHour < 12 && dtPickerObj._compare(sMeridiem, "PM"))
 						iHour += 12;
@@ -1373,7 +1357,7 @@
 				var sTime = sArrDateTime[1];
 				if(dtPickerObj.dataObject.bIs12Hour)
 				{
-					if(dtPickerObj._compare(dtPickerObj.settings.dateTimeSeparator, dtPickerObj.settings.timeMeridiemSeparator) && (sArrDateTime.length == 3))
+					if(dtPickerObj._compare(dtPickerObj.settings.dateTimeSeparator, dtPickerObj.settings.timeMeridiemSeparator) && (sArrDateTime.length === 3))
 						sMeridiem = sArrDateTime[2];
 					else
 					{
@@ -1389,7 +1373,7 @@
 				var sArrTime = sTime.split(dtPickerObj.settings.timeSeparator);
 				iHour = parseInt(sArrTime[0]);
 				iMinutes = parseInt(sArrTime[1]);
-				if(iHour == 12 && dtPickerObj._compare(sMeridiem, "AM"))
+				if(iHour === 12 && dtPickerObj._compare(sMeridiem, "AM"))
 					iHour = 0;
 				else if(iHour < 12 && dtPickerObj._compare(sMeridiem, "PM"))
 					iHour += 12;
@@ -1547,7 +1531,7 @@
 						if(dtPickerObj.dataObject.iCurrentHour !== 12 && dtPickerObj.dataObject.iCurrentHour < 13)
 							dtPickerObj.dataObject.iCurrentHour += 12;
 					}
-					if(dtPickerObj._compare(dtPickerObj.dataObject.sCurrentMeridiem, "AM") && dtPickerObj.dataObject.iCurrentHour == 12)
+					if(dtPickerObj._compare(dtPickerObj.dataObject.sCurrentMeridiem, "AM") && dtPickerObj.dataObject.iCurrentHour === 12)
 						dtPickerObj.dataObject.iCurrentHour = 0;
 				}
 			}
@@ -1628,7 +1612,7 @@
 					$(dtPickerObj.element).find('.meridiem .dtpicker-compValue').val(dtPickerObj.dataObject.sCurrentMeridiem);
 				}
 				sHour = (sHour < 10) ? ("0" + sHour) : sHour;
-				if(dtPickerObj.dataObject.bIs12Hour && sHour == "00")
+				if(dtPickerObj.dataObject.bIs12Hour && sHour === "00")
 					sHour = 12;
 				var sMinutes = dtPickerObj.dataObject.iCurrentMinutes;
 				sMinutes = (sMinutes < 10) ? ("0" + sMinutes) : sMinutes;
@@ -1680,7 +1664,7 @@
 					$(dtPickerObj.element).find('.meridiem .dtpicker-compValue').val(dtPickerObj.dataObject.sCurrentMeridiem);
 				}
 				sHour = (sHour < 10) ? ("0" + sHour) : sHour;
-				if(dtPickerObj.dataObject.bIs12Hour && sHour == "00")
+				if(dtPickerObj.dataObject.bIs12Hour && sHour === "00")
 					sHour = 12;
 				var sMinutes = dtPickerObj.dataObject.iCurrentMinutes;
 				sMinutes = (sMinutes < 10) ? ("0" + sMinutes) : sMinutes;
@@ -1713,7 +1697,7 @@
 				if(dtPickerObj._compare(dtPickerObj.settings.mode, "time"))
 				{
 					// Decrement Hour
-					if((dtPickerObj.dataObject.iCurrentHour + 1) > dtPickerObj.dataObject.dMaxValue.getHours() || ((dtPickerObj.dataObject.iCurrentHour + 1) == dtPickerObj.dataObject.dMaxValue.getHours() && dtPickerObj.dataObject.iCurrentMinutes > dtPickerObj.dataObject.dMaxValue.getMinutes()))
+					if((dtPickerObj.dataObject.iCurrentHour + 1) > dtPickerObj.dataObject.dMaxValue.getHours() || ((dtPickerObj.dataObject.iCurrentHour + 1) === dtPickerObj.dataObject.dMaxValue.getHours() && dtPickerObj.dataObject.iCurrentMinutes > dtPickerObj.dataObject.dMaxValue.getMinutes()))
 						$(dtPickerObj.element).find(".hour .increment").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
 				
 					// Decrement Minutes
@@ -1754,7 +1738,7 @@
 				if(dtPickerObj._compare(dtPickerObj.settings.mode, "time"))
 				{
 					// Decrement Hour
-					if((dtPickerObj.dataObject.iCurrentHour - 1) < dtPickerObj.dataObject.dMinValue.getHours() || ((dtPickerObj.dataObject.iCurrentHour - 1) == dtPickerObj.dataObject.dMinValue.getHours() && dtPickerObj.dataObject.iCurrentMinutes < dtPickerObj.dataObject.dMinValue.getMinutes()))
+					if((dtPickerObj.dataObject.iCurrentHour - 1) < dtPickerObj.dataObject.dMinValue.getHours() || ((dtPickerObj.dataObject.iCurrentHour - 1) === dtPickerObj.dataObject.dMinValue.getHours() && dtPickerObj.dataObject.iCurrentMinutes < dtPickerObj.dataObject.dMinValue.getMinutes()))
 						$(dtPickerObj.element).find(".hour .decrement").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
 				
 					// Decrement Minutes
@@ -1807,7 +1791,7 @@
 						if(dtPickerObj._compare(dtPickerObj.settings.mode, "time"))
 						{
 							var iTempMinutes = dtPickerObj.dataObject.iCurrentMinutes;
-							if(iTempHour > dtPickerObj.dataObject.dMaxValue.getHours() || (iTempHour == dtPickerObj.dataObject.dMaxValue.getHours() && iTempMinutes > dtPickerObj.dataObject.dMaxValue.getMinutes()))
+							if(iTempHour > dtPickerObj.dataObject.dMaxValue.getHours() || (iTempHour === dtPickerObj.dataObject.dMaxValue.getHours() && iTempMinutes > dtPickerObj.dataObject.dMaxValue.getMinutes()))
 								$(dtPickerObj.element).find(".meridiem .dtpicker-compButton").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
 						}
 						else
@@ -1822,7 +1806,7 @@
 						if(dtPickerObj._compare(dtPickerObj.settings.mode, "time"))
 						{
 							var iTempMinutes = dtPickerObj.dataObject.iCurrentMinutes;
-							if(iTempHour < dtPickerObj.dataObject.dMinValue.getHours() || (iTempHour == dtPickerObj.dataObject.dMinValue.getHours() && iTempMinutes < dtPickerObj.dataObject.dMinValue.getMinutes()))
+							if(iTempHour < dtPickerObj.dataObject.dMinValue.getHours() || (iTempHour === dtPickerObj.dataObject.dMinValue.getHours() && iTempMinutes < dtPickerObj.dataObject.dMinValue.getMinutes()))
 								$(dtPickerObj.element).find(".meridiem .dtpicker-compButton").removeClass("dtpicker-compButtonEnable").addClass("dtpicker-compButtonDisable");
 						}
 						else
@@ -1841,7 +1825,7 @@
 			bString2 = (sString2 !== undefined && sString2 !== null);
 			if(bString1 && bString2)
 			{
-				if(sString1.toLowerCase() == sString2.toLowerCase())
+				if(sString1.toLowerCase() === sString2.toLowerCase())
 					return true;
 				else
 					return false;
@@ -1884,13 +1868,13 @@
 			dDate1 = new Date(dDate1.getDate(), dDate1.getMonth(), dDate1.getFullYear(), 0, 0, 0, 0);
 			dDate1 = new Date(dDate1.getDate(), dDate1.getMonth(), dDate1.getFullYear(), 0, 0, 0, 0);
 			var iDateDiff = (dDate1.getTime() - dDate2.getTime()) / 864E5;
-			return (iDateDiff == 0) ? iDateDiff: (iDateDiff/Math.abs(iDateDiff));
+			return (iDateDiff === 0) ? iDateDiff: (iDateDiff/Math.abs(iDateDiff));
 		},
 	
 		_compareTime: function(dTime1, dTime2)
 		{
 			var iTimeMatch = 0;
-			if((dTime1.getHours() == dTime2.getHours()) && (dTime1.getMinutes() == dTime2.getMinutes()))
+			if((dTime1.getHours() === dTime2.getHours()) && (dTime1.getMinutes() === dTime2.getMinutes()))
 				iTimeMatch = 1;  	// 1 = Exact Match
 			else
 			{
@@ -1898,7 +1882,7 @@
 					iTimeMatch = 2;	 // time1 < time2
 				else if(dTime1.getHours() > dTime2.getHours())
 					iTimeMatch = 3; 	// time1 > time2
-				else if(dTime1.getHours() == dTime2.getHours())
+				else if(dTime1.getHours() === dTime2.getHours())
 				{
 					if(dTime1.getMinutes() < dTime2.getMinutes())
 						iTimeMatch = 2;	 // time1 < time2
@@ -1912,7 +1896,7 @@
 		_compareDateTime: function(dDate1, dDate2)
 		{
 			var iDateTimeDiff = (dDate1.getTime() - dDate2.getTime()) / 6E4;
-			return (iDateTimeDiff == 0) ? iDateTimeDiff: (iDateTimeDiff/Math.abs(iDateTimeDiff));
+			return (iDateTimeDiff === 0) ? iDateTimeDiff: (iDateTimeDiff/Math.abs(iDateTimeDiff));
 		},
 
 		_determineMeridiemFromHourAndMinutes: function(iHour, iMinutes)
@@ -1921,7 +1905,7 @@
 			{
 				return "PM";
 			} 
-			else if(iHour == 12 && iMinutes >= 0) 
+			else if(iHour === 12 && iMinutes >= 0) 
 			{
 				return "PM";
 			} 

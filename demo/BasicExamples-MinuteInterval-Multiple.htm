@@ -4,7 +4,7 @@
 
 	<head>
 	
-		<title>Minute Interval</title>
+		<title>Minute Intervals - Multiple</title>
 	
 		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
 	
@@ -37,20 +37,35 @@
 
 	<body>
 	
-		<p>DateTime : </p>
-		<input type="text" data-field="datetime" readonly>
-	
-		<div id="dtBox"></div>
+		<div class="minutes-1">
+		    <p>Time : (1 minute)</p>
+		    <input id="input-1" type="text" data-field="time" readonly>
+		</div>
+
+		<div class="minutes-5">
+		    <p>Time : (5 minutes)</p>
+		    <input  id="input-2" type="text" data-field="time" readonly>
+		</div>
+
+		<div id="dtBox-1"></div>
+
+		<div id="dtBox-2"></div>
 	
 		<script type="text/javascript">
 		
 			$(document).ready(function()
 			{
-				$("#dtBox").DateTimePicker({
+			    $("#dtBox-1").DateTimePicker(
+			    {
+			        parentElement: ".minutes-1",
+			        minuteInterval: 1
+			    });
 
-					minuteInterval: 5
-
-				});
+			    $("#dtBox-2").DateTimePicker(
+			    {
+			        parentElement: ".minutes-5",
+			        minuteInterval: 5
+			    });
 			});
 		
 		</script>
