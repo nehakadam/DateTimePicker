@@ -55,6 +55,22 @@ Tasks configured in "Gruntfile.js"
 
     `bower install curioussolutions-datetimepicker`
 
+##CDN
+DateTimePicker is hosted on [jsDelivr](http://www.jsdelivr.com).
+
+Files - Latest
+
+```
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.css" />
+<script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.js"></script>
+```
+
+Files - Particular Version
+
+```
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/<version>/DateTimePicker.min.css" />
+<script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/<version>/DateTimePicker.min.js"></script>
+```
 
 ##Authors
 [Neha Kadam](https://github.com/nehakadam): Principle Developer
