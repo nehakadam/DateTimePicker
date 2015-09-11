@@ -21,8 +21,6 @@
     {"name": "nehakadam"}
   ],
   
-  "main": "dist/datetimepicker.js",
-  
   "repository": {
     "type": "git",
     "url": "git://github.com:CuriousSolutions/DateTimePicker.git"
