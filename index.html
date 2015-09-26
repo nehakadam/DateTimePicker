@@ -25,21 +25,23 @@
         <script type='text/javascript' src="javascripts/jquery-1.11.0.min.js"></script>
         <script type='text/javascript' src="javascripts/bootstrap.min.js"></script>
         
-        <!--
+        
         <link rel="stylesheet" type="text/css" href="stylesheets/DateTimePicker.min.css" />
-	<script type="text/javascript" src="javascripts/DateTimePicker.min.js"></script>
+		<script type="text/javascript" src="javascripts/DateTimePicker.min.js"></script>
 	
-	<link rel="stylesheet" type="text/css" href="stylesheets/DateTimePicker-ltie9.min.css" />
-	<script type="text/javascript" src="javascripts/DateTimePicker-ltie9.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="stylesheets/DateTimePicker-ltie9.min.css" />
+		<script type="text/javascript" src="javascripts/DateTimePicker-ltie9.min.js"></script>
 		
-	-->
-	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.css" />
-	<script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.js"></script>
-	
-	<!--[if lt IE 9]>
-		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker-ltie9.min.css" />
-		<script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker-ltie9.min.js"></script>
-	<![endif]-->
+		
+		<!--
+		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.css" />
+		<script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.js"></script>
+		-->
+
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker-ltie9.min.css" />
+			<script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker-ltie9.min.js"></script>
+		<![endif]-->
 	
 	<link rel="stylesheet" type="text/css" href="stylesheets/index.css" />
 	<script type="text/javascript" src="javascripts/index.js"></script>
@@ -207,6 +209,13 @@
 								<li>"MM-dd-yyyy hh:mm:ss AA"</li>
 								<li>"yyyy-MM-dd HH:mm:ss"</li>
 								<li>"yyyy-MM-dd hh:mm:ss AA"</li>
+
+								<li>"dd-MM-yyyy HH:mm"</li>
+								<li>"dd-MM-yyyy hh:mm AA"</li>
+								<li>"MM-dd-yyyy HH:mm"</li>
+								<li>"MM-dd-yyyy hh:mm AA"</li>
+								<li>"yyyy-MM-dd HH:mm"</li>
+								<li>"yyyy-MM-dd hh:mm AA"</li>
 							</ul>						
 						</td>
 					</tr>
@@ -230,6 +239,8 @@
 						<td>"HH:mm"</td>
 						<td>
 							<ul>
+								<li>"hh:mm:ss AA"</li>
+								<li>"HH:mm:ss"</li>
 								<li>"hh:mm AA"</li>
 								<li>"HH:mm"</li>
 							</ul>
@@ -395,79 +406,112 @@
 							When the value of <code>roundOffMinutes</code> is set to true, minutes value will be rounded off to the nearest value divisible by <code>minuteInterval</code>. 
 						</td>
 					</tr>
-				
+
 					<tr>
 						<td>23</td>
+						<td>secondsInterval</td>
+						<td>1</td>
+						<td>1-30</td>
+					</tr>
+
+					<tr>
+						<td></td>
+						<td colspan="3">
+							Set the interval of seconds increments or decrements. The interval must be evenly divided into 60.
+						</td>
+					</tr>
+
+					<tr>
+						<td>24</td>
+						<td>roundOffSeconds</td>
+						<td>true</td>
+						<td>
+							<ul>
+								<li>true</li>
+								<li>false</li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<td></td>
+						<td colspan="3">
+							When the value of <code>roundOffSeconds</code> is set to true, seconds value will be rounded off to the nearest value divisible by <code>secondsInterval</code>. 
+						</td>
+					</tr>
+				
+					<tr>
+						<td>25</td>
 						<td>titleContentDate</td>
 						<td>"Set Date"</td>
 						<td></td>
 					</tr>
 				
 					<tr>
-						<td>24</td>
+						<td>26</td>
 						<td>titleContentTime</td>
 						<td>"Set Time"</td>
 						<td></td>
 					</tr>
 				
 					<tr>
-						<td>25</td>
+						<td>27</td>
 						<td>titleContentDateTime</td>
 						<td>"Set Date & Time"</td>
 						<td></td>
 					</tr>
 					
 					<tr>
-						<td>26</td>
+						<td>28</td>
 						<td>buttonsToDisplay</td>
 						<td>["HeaderCloseButton", "SetButton", "ClearButton"]</td>
 						<td></td>
 					</tr>
 				
 					<tr>
-						<td>27</td>
+						<td>29</td>
 						<td>setButtonContent</td>
 						<td>"Set"</td>
 						<td></td>
 					</tr>
 				
 					<tr>
-						<td>28</td>
+						<td>30</td>
 						<td>clearButtonContent</td>
 						<td>"Clear"</td>
 						<td></td>
 					</tr>
 					
 					<tr>
-						<td>29</td>
+						<td>31</td>
 						<td>setValueInTextboxOnEveryClick</td>
 						<td>false</td>
 						<td></td>
 					</tr>
 								
 					<tr>
-						<td>30</td>
+						<td>32</td>
 						<td>animationDuration</td>
 						<td>400</td>
 						<td></td>
 					</tr>
 				
 					<tr>
-						<td>31</td>
+						<td>33</td>
 						<td>isPopup</td>
 						<td>true</td>
 						<td></td>
 					</tr>
 					
 					<tr>
-						<td>32</td>
+						<td>34</td>
 						<td>parentElement</td>
 						<td>null</td>
 						<td></td>
 					</tr>
 								
 					<tr>
-						<td>33</td>
+						<td>35</td>
 						<td>addEventHandlers</td>
 						<td>function(){}</td>
 						<td></td>
