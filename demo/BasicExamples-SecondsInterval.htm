@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Seconds Interval</title>
+	
+		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../src/DateTimePicker.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+		
+		<style type="text/css">
+		
+			p
+			{
+				margin-left: 20px;
+			}
+		
+			input
+			{
+				width: 200px;
+				padding: 10px;
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+		
+		</style>
+	
+	</head>
+
+	<body>
+	
+		<p>Time : (Format - "hh:mm:ss AA")</p>
+		<input type="text" data-field="time" data-format="hh:mm:ss AA" readonly>
+
+		<p>Time : (Format - "HH:mm:ss")</p>
+		<input type="text" data-field="time" data-format="HH:mm:ss" readonly>
+
+		<p>DateTime : (Format - "dd-MM-yyyy hh:mm:ss AA")</p>
+		<input type="text" data-field="datetime" data-format="dd-MM-yyyy hh:mm:ss AA" readonly>
+
+		<p>DateTime : (Format - "dd-MM-yyyy HH:mm:ss")</p>
+		<input type="text" data-field="datetime" data-format="dd-MM-yyyy HH:mm:ss" readonly>
+	
+		<div id="dtBox"></div>
+	
+		<script type="text/javascript">
+		
+			$(document).ready(function()
+			{
+				$("#dtBox").DateTimePicker({
+				
+					secondsInterval: 5
+
+				});
+			});
+		
+		</script>
+	
+	</body>
+
+</html>

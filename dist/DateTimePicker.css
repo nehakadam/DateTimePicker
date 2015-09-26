@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.11
+  Version 0.1.12
   Copyright (c)2015 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -15,7 +15,7 @@
 	min-width: 300px;
 
 	background: rgba(0, 0, 0, 0.2);
-	font-size: 70%;
+	font-size: 12px;
 
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -28,8 +28,8 @@
 .dtpicker-mobile
 {
 	position: fixed;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 
 	width: 100%;
 	height: 100%;
@@ -65,6 +65,7 @@
 
 	-webkit-transform: translateY(-50%);
 	-moz-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 
@@ -73,8 +74,8 @@
 
 .dtpicker-content
 {
-	margin: 0px auto;
-	padding: 1em 0em;
+	margin: 0 auto;
+	padding: 1em 0;
 
 	max-width: 500px;
 
@@ -100,7 +101,7 @@
 {
 	color: #2980B9;
 	text-align: center;
-	font-size: 1.3em;
+	font-size: 1.1em;
 }
 
 .dtpicker-header .dtpicker-close
@@ -136,13 +137,13 @@
 	overflow: hidden;
 	margin: 1em 1em;
 	
-	font-size: 1.4em;
+	font-size: 1.3em;
 }
 
 .dtpicker-components *
 {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 .dtpicker-components .dtpicker-compOutline
@@ -161,6 +162,11 @@
 	width: 33.3%;
 }
 
+.dtpicker-comp4
+{
+	width: 25%;
+}
+
 .dtpicker-comp5
 {
 	width: 20%;
@@ -169,6 +175,11 @@
 .dtpicker-comp6
 {
 	width: 16.66%;
+}
+
+.dtpicker-comp7
+{
+	width: 14.285%;
 }
 
 .dtpicker-components .dtpicker-comp
@@ -213,7 +224,7 @@
 
 .dtpicker-components .dtpicker-compValue
 {
-	margin: 0.4em 0em;
+	margin: 0.4em 0;
 	width: 100%;
 	border: none;
 	background: #FFFFFF;
@@ -221,6 +232,7 @@
 	font-size: 100%;
 
 	-webkit-appearance: none;
+	-moz-appearance: none;
 }
 
 .dtpicker-overlay .dtpicker-compValue:focus
@@ -238,12 +250,12 @@
 .dtpicker-buttonCont .dtpicker-button
 {
 	display: block;
-	padding: 0.6em 0em;
+	padding: 0.6em 0;
 	width: 47%;
 	background: #FF3B30;
 	color: #FFFFFF;
 	text-align: center;
-	font-size: 1.5em;
+	font-size: 1.3em;
 
 	cursor: pointer;
 }

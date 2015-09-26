@@ -8,6 +8,7 @@ module.exports = function(grunt)
 	'\n  https://github.com/CuriousSolutions/DateTimePicker' +
 	'\n\n ----------------------------------------------------------------------------- */\n\n'
 
+
 	// Project configuration.
 	grunt.initConfig(
 	{
@@ -53,6 +54,57 @@ module.exports = function(grunt)
 					'dist/<%= pkg.name %>-ltie9.min.css': ['src/<%= pkg.name %>-ltie9.css']
 				}
 			}
+		},
+
+		jshint: 
+		{
+			dist:
+			{
+				src: ['src/DateTimePicker.js']
+			},
+
+			options:
+			{
+				strict: false,
+
+				curly: false,
+			
+      			eqeqeq: true,
+      			eqnull: true,
+      			browser: true,
+				devel: true,
+				//unused: true,
+				//undef: true,
+			
+				globals: 
+				{
+					$: false,
+        			jQuery: false,
+        			define: false,
+        			require: false,
+        			module: false,
+        			DateTimePicker: true
+      			},
+
+      			force: true
+			}
+		},
+
+		csslint:
+		{
+			dist:
+			{
+				src: ['src/DateTimePicker.css']
+			},
+			
+			options:
+			{
+				"fallback-colors": false,
+				"universal-selector": false,
+				"box-sizing": false,
+				"display-property-grouping": false
+			}
+			
 		}
 
 	});
@@ -61,8 +113,10 @@ module.exports = function(grunt)
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-csslint');
 
 	// Default task(s).
   	grunt.registerTask('default', ['uglify', 'cssmin', 'copy']);
-
+  	grunt.registerTask('lint', ['jshint', 'csslint']);
 };

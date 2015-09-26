@@ -8,10 +8,14 @@
     "time",
     "picker",
     "flat",
-    "jquery"
+    "jquery",
+    "datetimepicker",
+    "datepicker",
+    "timepicker",
+    "input"
   ],
   
-  "version": "0.1.11",
+  "version": "0.1.12",
   
   "homepage": "http://curioussolutions.github.io/DateTimePicker/",
   

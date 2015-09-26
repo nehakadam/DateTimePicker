@@ -9,10 +9,14 @@
         "time",
         "picker",
         "flat",
-        "jquery"
+        "jquery",
+        "datetimepicker",
+        "datepicker",
+        "timepicker",
+        "input"
     ],
 
-    "version": "0.1.11",
+    "version": "0.1.12",
 
     "homepage": "http://curioussolutions.github.io/DateTimePicker/",
 
@@ -31,7 +35,10 @@
         "grunt": "~0.4.5",
         "grunt-contrib-cssmin": "~0.5.0",
         "grunt-contrib-uglify": "~0.4.0",
-        "grunt-contrib-copy": "~0.4.0"
+        "grunt-contrib-copy": "~0.4.0",
+
+        "grunt-contrib-jshint": "^0.11.0",
+        "grunt-contrib-csslint": "^0.4.0"
     },
 
     "bugs":

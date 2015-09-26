@@ -4,7 +4,7 @@
 
 	<head>
 	
-		<title>Period Range - Parameters</title>
+		<title>Period Range - Minimum Date Today</title>
 	
 		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
 	
@@ -15,7 +15,7 @@
 			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
 			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
 		<![endif]-->
-		
+	
 		<style type="text/css">
 		
 			p
@@ -37,43 +37,34 @@
 
 	<body>
 	
-	
+		<form>
+
 		<!------------------------ Date Picker ------------------------>
 		<p>Date : </p>
 		<input type="text" data-field="date" readonly>
 	
-		<!------------------------ Time Picker ------------------------>
-		<p>Time : </p>
-		<input type="text" data-field="time" readonly>
-	
-		<!---------------------- DateTime Picker ---------------------->
-		<p>DateTime : </p>
-		<input type="text" data-field="datetime" readonly>
-	
-	
+		</form>
+
 		<div id="dtBox"></div>
 	
-	
 		<script type="text/javascript">
-
+		
 			$(document).ready(function()
 			{
 				$("#dtBox").DateTimePicker({
-				
-					defaultDate: new Date(2014, 5, 20, 0, 0, 0),
+
+					dateFormat: "dd-MMM-yyyy",
+
+					addEventHandlers: function()
+					{
+						var oDTP = this;
 					
-					minDate: "01-03-2012",
-					maxDate: "01-03-2016",
-				
-					minTime: "09:00",
-					maxTime: "19:30",
-				
-					minDateTime: "01-03-2012 08:30",
-					maxDateTime: "01-03-2016 18:30"
+						oDTP.settings.minDate = oDTP.getDateTimeStringInFormat("Date", "dd-MMM-yyyy", new Date());
+					}
 				
 				});
 			});
-		
+
 		</script>
 	
 		<!-- Default dateFormat: "dd-MM-yyyy" 
@@ -82,8 +73,8 @@
 					1. "dd-MM-yyyy"
 					2. "MM-dd-yyyy"
 					3. "yyyy-MM-dd"
-			
-				Specify minDate & maxDate values in the same dateFormat specified in settings parameters	
+				
+				Specify (data-min & data-max) / (minDate & maxDate) values in the same dateFormat specified in settings parameters	
 		-->
 	
 		<!-- Default timeFormat: "HH:mm"  
@@ -91,8 +82,8 @@
 				timeFormat Options : 
 					1. "HH:mm"
 					2. "hh:mm AA"
-			
-				Specify minTime & maxTime values in the same timeFormat specified in settings parameters			
+				
+				Specify (data-min & data-max) / (minTime & maxTime) values in the same timeFormat specified in settings parameters			
 		-->
 	
 		<!-- Default dateTimeFormat: "dd-MM-yyyy HH:mm:ss"  
@@ -104,8 +95,8 @@
 					4. "MM-dd-yyyy hh:mm:ss AA"
 					5. "yyyy-MM-dd HH:mm:ss"
 					6. "yyyy-MM-dd hh:mm:ss AA"
-			
-				Specify minDateTime & maxDateTime values in the same dateTimeFormat specified in settings parameters		
+				
+				Specify (data-min & data-max) / (minDateTime & maxDateTime) values in the same dateTimeFormat specified in settings parameters		
 		-->
 	
 	</body>
