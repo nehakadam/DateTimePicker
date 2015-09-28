@@ -6,18 +6,15 @@
 
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
         <meta charset="utf-8">
-
+    
         <meta name="generator" content="Bootply" />
         <meta name="author" content="Neha Kadam">
     	<meta name="description" content="Curious Solutions DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <meta name="Keywords" content="DateTimePicker, DatePicker, TimePicker, jQuery Plugin, Responsive jQuery Plugin, Flat Design jQuery Plugin" />
-
-        <link rel="shortcut icon" href="https://curioussolutions.in/favicon.ico">
+        <meta name="Keywords" content="DateTimePicker, DatePicker, TimePicker, jQuery Plugin, Responsive jQuery Plugin, Flat Design jQuery Plugin, jQuery Plugin for Mobile" />
 
         <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
-
-        
+	 
         <!--[if lt IE 9]>
           <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -25,26 +22,25 @@
         <script type='text/javascript' src="javascripts/jquery-1.11.0.min.js"></script>
         <script type='text/javascript' src="javascripts/bootstrap.min.js"></script>
         
-        
+        <!--
         <link rel="stylesheet" type="text/css" href="stylesheets/DateTimePicker.min.css" />
 		<script type="text/javascript" src="javascripts/DateTimePicker.min.js"></script>
 	
+		
 		<link rel="stylesheet" type="text/css" href="stylesheets/DateTimePicker-ltie9.min.css" />
 		<script type="text/javascript" src="javascripts/DateTimePicker-ltie9.min.js"></script>
-		
-		
-		<!--
+		-->
+	
 		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.css" />
 		<script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.js"></script>
-		-->
-
+	
 		<!--[if lt IE 9]>
 			<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker-ltie9.min.css" />
 			<script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker-ltie9.min.js"></script>
 		<![endif]-->
 	
-	<link rel="stylesheet" type="text/css" href="stylesheets/index.css" />
-	<script type="text/javascript" src="javascripts/index.js"></script>
+		<link rel="stylesheet" type="text/css" href="stylesheets/index.css" />
+		<script type="text/javascript" src="javascripts/index.js"></script>
 	
     
     </head>
@@ -141,383 +137,347 @@
 				<h3 class="">Parameter Options List</h3>
 
 				<table class="table table-responsive table-bordered">
-				
-					<tr>
-						<td>No</td>
-						<td>Parameter Name</td>
-						<td>Default Value</td>
-						<td>Values/Options</td>
-					</tr>
-				
-					<tr>
-						<td>1</td>
-						<td>mode</td>
-						<td>"date"</td>
-						<td>
-							<ul>
-								<li>"date"</li>
-								<li>"time"</li>
-								<li>"datetime"</li>
-							</ul>
-						</td>
-					</tr>
-				
-					<tr>
-						<td>2</td>
-						<td>defaultDate</td>
-						<td>new Date()</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>3</td>
-						<td>dateSeparator</td>
-						<td>dash("-")</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>4</td>
-						<td>timeSeparator</td>
-						<td>colon(":")</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>5</td>
-						<td>timeMeridiemSeparator</td>
-						<td>Space(" ")</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>6</td>
-						<td>dateTimeSeparator</td>
-						<td>Space(" ")</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>7</td>
-						<td>dateTimeFormat</td>
-						<td>"dd-MM-yyyy hh:mm:ss"</td>
-						<td>
-							<ul>
-								<li>"dd-MM-yyyy HH:mm:ss"</li>
-								<li>"dd-MM-yyyy hh:mm:ss AA"</li>
-								<li>"MM-dd-yyyy HH:mm:ss"</li>
-								<li>"MM-dd-yyyy hh:mm:ss AA"</li>
-								<li>"yyyy-MM-dd HH:mm:ss"</li>
-								<li>"yyyy-MM-dd hh:mm:ss AA"</li>
 
-								<li>"dd-MM-yyyy HH:mm"</li>
-								<li>"dd-MM-yyyy hh:mm AA"</li>
-								<li>"MM-dd-yyyy HH:mm"</li>
-								<li>"MM-dd-yyyy hh:mm AA"</li>
-								<li>"yyyy-MM-dd HH:mm"</li>
-								<li>"yyyy-MM-dd hh:mm AA"</li>
-							</ul>						
-						</td>
-					</tr>
-				
-					<tr>
-						<td>8</td>
-						<td>dateFormat</td>
-						<td>"dd-MM-yyyy"</td>
-						<td>
-							<ul>
-								<li>"dd-MM-yyyy"</li>
-								<li>"MM-dd-yyyy"</li>
-								<li>"yyyy-MM-dd"</li>
-							</ul>
-						</td>
-					</tr>
-				
-					<tr>
-						<td>9</td>
-						<td>timeFormat</td>
-						<td>"HH:mm"</td>
-						<td>
-							<ul>
-								<li>"hh:mm:ss AA"</li>
-								<li>"HH:mm:ss"</li>
-								<li>"hh:mm AA"</li>
-								<li>"HH:mm"</li>
-							</ul>
-						</td>
-					</tr>
-				
-					<tr>
-						<td>10</td>
-						<td>maxDate</td>
-						<td>null</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>11</td>
-						<td>minDate</td>
-						<td>null</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>12</td>
-						<td>maxTime</td>
-						<td>null</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>13</td>
-						<td>minTime</td>
-						<td>null</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>14</td>
-						<td>maxDateTime</td>
-						<td>null</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>15</td>
-						<td>minDateTime</td>
-						<td>null</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>16</td>
-						<td>shortDayNames</td>
-						<td>["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>17</td>
-						<td>fullDayNames</td>
-						<td>["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>18</td>
-						<td>shortMonthNames</td>
-						<td>["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>19</td>
-						<td>fullMonthNames</td>
-						<td>["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>20</td>
-						<td>formatHumanDate</td>
-						<td>
-							<pre> function(date) 
-{
-  return date.dayShort + ", " + date.month + " " + date.dd + ", " + date.yyyy;
-};
-							</pre>
-						</td>
-						<td></td>
-					</tr>
-					
-					<tr>
-						<td></td>
-						<td colspan="3">
-							Attributes of "date" parameter passed to formatHumanDate() - 
-							
-							<table cellpadding="5">
-								<tr>
-									<td>Attribute</td>
-									<td>Value</td>
-								</tr>
-								<tr>
-									<td>dd</td>
-									<td>day of the month(two-digit)</td>
-								</tr>
-								<tr>
-									<td>MM</td>
-									<td>month(two-digit)</td>
-								</tr>
-								<tr>
-									<td>yyyy</td>
-									<td>year(four-digit)</td>
-								</tr>
-								<tr>
-									<td>day</td>
-									<td>day of the week (as specified in fullDayNames settings)</td>
-								</tr>
-								<tr>
-									<td>dayShort</td>
-									<td>day of the week (as specified in shortDayNames settings)</td>
-								</tr>
-								<tr>
-									<td>month</td>
-									<td>month name(as specified in fullMonthNames settings)</td>
-								</tr>
-								<tr>
-									<td>monthShort</td>
-									<td>short month name(as specified in shortMonthNames settings)</td>
-								</tr>
-								
-							</table>
-							
-						</td>
-					</tr>
+					<thead>
 
-					<tr>
-						<td>21</td>
-						<td>minuteInterval</td>
-						<td>1</td>
-						<td>1-30</td>
-					</tr>
+						<tr>
+				            <td>No</td>
+				            <td>Parameter Name</td>
+				            <td>Default Value</td>
+				            <td>Values/Options</td>
+				        </tr>
 
-					<tr>
-						<td></td>
-						<td colspan="3">
-							Set the interval of minute increments or decrements. The interval must be evenly divided into 60.
-						</td>
-					</tr>
+					</thead>
 
-					<tr>
-						<td>22</td>
-						<td>roundOffMinutes</td>
-						<td>true</td>
-						<td>
-							<ul>
-								<li>true</li>
-								<li>false</li>
-							</ul>
-						</td>
-					</tr>
+				    <tbody>
 
-					<tr>
-						<td></td>
-						<td colspan="3">
-							When the value of <code>roundOffMinutes</code> is set to true, minutes value will be rounded off to the nearest value divisible by <code>minuteInterval</code>. 
-						</td>
-					</tr>
+				        <tr>
+				            <td>1</td>
+				            <td>mode</td>
+				            <td>"date"</td>
+				            <td>
+				                <ul>
+				                    <li>"date"</li>
+				                    <li>"time"</li>
+				                    <li>"datetime"</li>
+				                </ul>
+				            </td>
+				        </tr>
 
-					<tr>
-						<td>23</td>
-						<td>secondsInterval</td>
-						<td>1</td>
-						<td>1-30</td>
-					</tr>
+				        <tr>
+				            <td>2</td>
+				            <td>defaultDate</td>
+				            <td>new Date()</td>
+				            <td></td>
+				        </tr>
 
-					<tr>
-						<td></td>
-						<td colspan="3">
-							Set the interval of seconds increments or decrements. The interval must be evenly divided into 60.
-						</td>
-					</tr>
+				        <tr>
+				            <td>3</td>
+				            <td>dateSeparator</td>
+				            <td>dash("-")</td>
+				            <td></td>
+				        </tr>
 
-					<tr>
-						<td>24</td>
-						<td>roundOffSeconds</td>
-						<td>true</td>
-						<td>
-							<ul>
-								<li>true</li>
-								<li>false</li>
-							</ul>
-						</td>
-					</tr>
+				        <tr>
+				            <td>4</td>
+				            <td>timeSeparator</td>
+				            <td>colon(":")</td>
+				            <td></td>
+				        </tr>
 
-					<tr>
-						<td></td>
-						<td colspan="3">
-							When the value of <code>roundOffSeconds</code> is set to true, seconds value will be rounded off to the nearest value divisible by <code>secondsInterval</code>. 
-						</td>
-					</tr>
-				
-					<tr>
-						<td>25</td>
-						<td>titleContentDate</td>
-						<td>"Set Date"</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>26</td>
-						<td>titleContentTime</td>
-						<td>"Set Time"</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>27</td>
-						<td>titleContentDateTime</td>
-						<td>"Set Date & Time"</td>
-						<td></td>
-					</tr>
-					
-					<tr>
-						<td>28</td>
-						<td>buttonsToDisplay</td>
-						<td>["HeaderCloseButton", "SetButton", "ClearButton"]</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>29</td>
-						<td>setButtonContent</td>
-						<td>"Set"</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>30</td>
-						<td>clearButtonContent</td>
-						<td>"Clear"</td>
-						<td></td>
-					</tr>
-					
-					<tr>
-						<td>31</td>
-						<td>setValueInTextboxOnEveryClick</td>
-						<td>false</td>
-						<td></td>
-					</tr>
-								
-					<tr>
-						<td>32</td>
-						<td>animationDuration</td>
-						<td>400</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>33</td>
-						<td>isPopup</td>
-						<td>true</td>
-						<td></td>
-					</tr>
-					
-					<tr>
-						<td>34</td>
-						<td>parentElement</td>
-						<td>null</td>
-						<td></td>
-					</tr>
-								
-					<tr>
-						<td>35</td>
-						<td>addEventHandlers</td>
-						<td>function(){}</td>
-						<td></td>
-					</tr>
-				
- 				</table>
+				        <tr style="opacity: 0; display: none;">
+				            <td>5</td>
+				            <td>timeMeridiemSeparator</td>
+				            <td>Space(" ")</td>
+				            <td></td>
+				        </tr>
+				        <tr style="opacity: 0; display: none;">
+				            <td>5</td>
+				            <td>timeMeridiemSeparator</td>
+				            <td>Space(" ")</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>6</td>
+				            <td>dateTimeSeparator</td>
+				            <td>Space(" ")</td>
+				            <td></td>
+				        </tr>
+				        <tr>
+				            <td>7</td>
+				            <td>monthYearSeparator</td>
+				            <td>Space(" ")</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>8</td>
+				            <td>dateTimeFormat</td>
+				            <td>"dd-MM-yyyy hh:mm:ss"</td>
+				            <td>
+				                <ul>
+				                    <li>"dd-MM-yyyy HH:mm:ss"</li>
+				                    <li>"dd-MM-yyyy hh:mm:ss AA"</li>
+				                    <li>"MM-dd-yyyy HH:mm:ss"</li>
+				                    <li>"MM-dd-yyyy hh:mm:ss AA"</li>
+				                    <li>"yyyy-MM-dd HH:mm:ss"</li>
+				                    <li>"yyyy-MM-dd hh:mm:ss AA"</li>
+				                    <li>"dd-MM-yyyy HH:mm"</li>
+				                    <li>"dd-MM-yyyy hh:mm AA"</li>
+				                    <li>"MM-dd-yyyy HH:mm"</li>
+				                    <li>"MM-dd-yyyy hh:mm AA"</li>
+				                    <li>"yyyy-MM-dd HH:mm"</li>
+				                    <li>"yyyy-MM-dd hh:mm AA"</li>
+				                </ul>
+				            </td>
+				        </tr>
+
+				        <tr>
+				            <td>9</td>
+				            <td>dateFormat</td>
+				            <td>"dd-MM-yyyy"</td>
+				            <td>
+				                <ul>
+				                    <li>"dd-MM-yyyy"</li>
+				                    <li>"MM-dd-yyyy"</li>
+				                    <li>"yyyy-MM-dd"</li>
+				                    <li>"MM yyyy"</li>
+				                    <li>"MMM yyyy"</li>
+				                    <li>"MMMM yyyy"</li>
+				                </ul>
+				            </td>
+				        </tr>
+
+				        <tr>
+				            <td>10</td>
+				            <td>timeFormat</td>
+				            <td>"HH:mm"</td>
+				            <td>
+				                <ul>
+				                    <li>"hh:mm:ss AA"</li>
+				                    <li>"HH:mm:ss"</li>
+				                    <li>"hh:mm AA"</li>
+				                    <li>"HH:mm"</li>
+				                </ul>
+				            </td>
+				        </tr>
+
+				        <tr>
+				            <td>11</td>
+				            <td>maxDate</td>
+				            <td>null</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>12</td>
+				            <td>minDate</td>
+				            <td>null</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>13</td>
+				            <td>maxTime</td>
+				            <td>null</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>14</td>
+				            <td>minTime</td>
+				            <td>null</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>15</td>
+				            <td>maxDateTime</td>
+				            <td>null</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>16</td>
+				            <td>minDateTime</td>
+				            <td>null</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>17</td>
+				            <td>shortDayNames</td>
+				            <td>["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>18</td>
+				            <td>fullDayNames</td>
+				            <td>["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>19</td>
+				            <td>shortMonthNames</td>
+				            <td>["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>20</td>
+				            <td>fullMonthNames</td>
+				            <td>["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>21</td>
+				            <td>minuteInterval</td>
+				            <td>1</td>
+				            <td>1-30</td>
+				        </tr>
+
+				        <tr>
+				            <td></td>
+				            <td colspan="3">Set the interval of minute increments or decrements. The interval must be evenly divided into 60.</td>
+				        </tr>
+
+				        <tr>
+				            <td>22</td>
+				            <td>roundOffMinutes</td>
+				            <td>true</td>
+				            <td>
+				                <ul>
+				                    <li>true</li>
+				                    <li>false</li>
+				                </ul>
+				            </td>
+				        </tr>
+
+				        <tr>
+				            <td></td>
+				            <td colspan="3">When the value of <code>roundOffMinutes</code> is set to true, minutes value will be rounded off to the nearest value divisible by <code>minuteInterval</code>.</td>
+				        </tr>
+
+				        <tr>
+				            <td>23</td>
+				            <td>secondsInterval</td>
+				            <td>1</td>
+				            <td>1-30</td>
+				        </tr>
+
+				        <tr>
+				            <td></td>
+				            <td colspan="3">Set the interval of seconds increments or decrements. The interval must be evenly divided into 60.</td>
+				        </tr>
+
+				        <tr>
+				            <td>24</td>
+				            <td>roundOffSeconds</td>
+				            <td>true</td>
+				            <td>
+				                <ul>
+				                    <li>true</li>
+				                    <li>false</li>
+				                </ul>
+				            </td>
+				        </tr>
+
+				        <tr>
+				            <td></td>
+				            <td colspan="3">When the value of <code>roundOffSeconds</code> is set to true, seconds value will be rounded off to the nearest value divisible by <code>secondsInterval</code>.</td>
+				        </tr>
+
+				        <tr>
+				            <td>25</td>
+				            <td>titleContentDate</td>
+				            <td>"Set Date"</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>26</td>
+				            <td>titleContentTime</td>
+				            <td>"Set Time"</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>27</td>
+				            <td>titleContentDateTime</td>
+				            <td>"Set Date &amp; Time"</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>28</td>
+				            <td>buttonsToDisplay</td>
+				            <td>["HeaderCloseButton", "SetButton", "ClearButton"]</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>29</td>
+				            <td>setButtonContent</td>
+				            <td>"Set"</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>30</td>
+				            <td>clearButtonContent</td>
+				            <td>"Clear"</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>31</td>
+				            <td>setValueInTextboxOnEveryClick</td>
+				            <td>false</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>32</td>
+				            <td>animationDuration</td>
+				            <td>400</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>33</td>
+				            <td>isPopup</td>
+				            <td>true</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>34</td>
+				            <td>parentElement</td>
+				            <td>null</td>
+				            <td></td>
+				        </tr>
+
+				        <tr>
+				            <td>35</td>
+				            <td>language</td>
+				            <td>""</td>
+				            <td>Language Code</td>
+				        </tr>
+
+				        <tr>
+				            <td></td>
+				            <td colspan="3">
+				            	i18n folder in plugin distribution file has DateTimePicker-i18n.js file, which contains localized strings and date format. You can add strings for other languages as per requirement.	
+				            </td>
+				        </tr>
+
+				    </tbody>
+
+				</table>
 				
 			</div>
 			
@@ -527,84 +487,92 @@
 				
 				<table class="table table-responsive table-bordered">
 				
-					<tr>
-						<td>No</td>
-						<td>Attribute</td>
-						<td>Default Value</td>
-						<td>Values/Options</td>
-					</tr>
+					<thead>
+
+						<tr>
+							<td>No</td>
+							<td>Attribute</td>
+							<td>Default Value</td>
+							<td>Values/Options</td>
+						</tr>
+
+					</thead>
+
+					<tbody>
+						
+						<tr>
+							<td>1</td>
+							<td>data-field</td>
+							<td>Default value of mode parameter (required, except in case of HTML5 input types)</td>
+							<td>
+								<ul>
+									<li>"date"</li>
+									<li>"time"</li>
+									<li>"datetime"</li>
+								</ul>
+							</td>
+						</tr>
 					
-					<tr>
-						<td>1</td>
-						<td>data-field</td>
-						<td>Default value of mode parameter (required, except in case of HTML5 input types)</td>
-						<td>
-							<ul>
-								<li>"date"</li>
-								<li>"time"</li>
-								<li>"datetime"</li>
-							</ul>
-						</td>
-					</tr>
-				
-					<tr>
-						<td>2</td>
-						<td>data-min</td>
-						<td>null</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>3</td>
-						<td>data-max</td>
-						<td>null</td>
-						<td></td>
-					</tr>
-				
-					<tr>
-						<td>4</td>
-						<td>data-format</td>
-						<td>Default value of dateFormat, timeFormat or dateTimeFormat parameters</td>
-						<td>dateFormat, timeFormat or dateTimeFormat Options</td>
-					</tr>
-				
-					<tr>
-						<td>5</td>
-						<td>data-view</td>
-						<td>Default value of isPopup parameter</td>
-						<td>
-							<ul>
-								<li>"Popup"</li>
-								<li>"Dropdown"</li>
-							</ul>
-						</td>
-					</tr>
-				
-					<tr>
-						<td>6</td>
-						<td>data-startend</td>
-						<td>No Default Value</td>
-						<td>
-							<ul>
-								<li>"start"</li>
-								<li>"end"</li>
-							</ul>
-						</td>
-					</tr>
-				
-					<tr>
-						<td>7</td>
-						<td>data-startendelem</td>
-						<td>No Default Value</td>
-						<td>
-							<p>selector of an datepicker, timepicker or datetimepicker input field to compare date, time or datetime value with</p>
-							<p>For Example,</p>
-							<p>Start DateTime : </p>
-							<p> &lt;input class="startDateTime1" type="text" data-field="datetime" data-startend="start" data-startendelem=".endDateTime1" readonly &gt; </p>
-							<p>End DateTime : </p>
-							<p> &lt;input class="endDateTime1" type="text" data-field="datetime" data-startend="end" data-startendelem=".startDateTime1" readonly &gt; </p>
-						</td>
-					</tr>
+						<tr>
+							<td>2</td>
+							<td>data-min</td>
+							<td>null</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>3</td>
+							<td>data-max</td>
+							<td>null</td>
+							<td></td>
+						</tr>
+					
+						<tr>
+							<td>4</td>
+							<td>data-format</td>
+							<td>Default value of dateFormat, timeFormat or dateTimeFormat parameters</td>
+							<td>dateFormat, timeFormat or dateTimeFormat Options</td>
+						</tr>
+					
+						<tr>
+							<td>5</td>
+							<td>data-view</td>
+							<td>Default value of isPopup parameter</td>
+							<td>
+								<ul>
+									<li>"Popup"</li>
+									<li>"Dropdown"</li>
+								</ul>
+							</td>
+						</tr>
+					
+						<tr>
+							<td>6</td>
+							<td>data-startend</td>
+							<td>No Default Value</td>
+							<td>
+								<ul>
+									<li>"start"</li>
+									<li>"end"</li>
+								</ul>
+							</td>
+						</tr>
+					
+						<tr>
+							<td>7</td>
+							<td>data-startendelem</td>
+							<td>No Default Value</td>
+							<td>
+								<p>selector of an datepicker, timepicker or datetimepicker input field to compare date, time or datetime value with</p>
+								<p>For Example,</p>
+								<p>Start DateTime : </p>
+								<p> &lt;input class="startDateTime1" type="text" data-field="datetime" data-startend="start" data-startendelem=".endDateTime1" readonly &gt; </p>
+								<p>End DateTime : </p>
+								<p> &lt;input class="endDateTime1" type="text" data-field="datetime" data-startend="end" data-startendelem=".startDateTime1" readonly &gt; </p>
+							</td>
+						</tr>
+
+					</tbody>>
 				
 				</table>
 				
@@ -616,44 +584,63 @@
 				
 				<table class="table table-responsive table-bordered">
 				
-					<tr>
-						<td>Function Name</td>
-						<td>Description</td>
-						<td>Parameters</td>
-						<td>Return Value</td>
-					</tr>
-					
-					<tr>
-						<td>setIsPopup</td>
-						<td>Set value of isPopup parameter</td>
-						<td>isPopupVal - Boolean</td>
-						<td></td>
-					</tr>
+					<thead>
 
-					<tr>
-						<td>setDateTimeStringInInputField</td>
-						<td>Set Formatted DateTime String in the Input Field</td>
-						<td>
-							<ul>
-								<li>Input Elements</li>
-								<li>Date</li>
-							</ul>
-						</td>
-						<td></td>
-					</tr>
+						<tr>
+							<td>Function Name</td>
+							<td>Description</td>
+							<td>Parameters</td>
+							<td>Return Value</td>
+						</tr>
 
-					<tr>
-						<td>getDateTimeStringInFormat</td>
-						<td>Get Formatted DateTime String</td>
-						<td>
-							<ul>
-								<li>DateTimePicker Mode</li>
-								<li>Date/Time/DateTime Format</li>
-								<li>Date</li>
-							</ul>
-						</td>
-						<td>DateTime String</td>
-					</tr>
+					</thead>
+
+					<tbody>
+						
+						<tr>
+							<td>setIsPopup</td>
+							<td>Set value of isPopup parameter</td>
+							<td>isPopupVal - Boolean</td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<td>setDateTimeStringInInputField</td>
+							<td>Set Formatted DateTime String in the Input Field</td>
+							<td>
+								<ul>
+									<li>Input Elements</li>
+									<li>Date</li>
+								</ul>
+							</td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<td>getDateTimeStringInFormat</td>
+							<td>Get Formatted DateTime String</td>
+							<td>
+								<ul>
+									<li>DateTimePicker Mode</li>
+									<li>Date/Time/DateTime Format</li>
+									<li>Date</li>
+								</ul>
+							</td>
+							<td>DateTime String</td>
+						</tr>
+
+						<tr>
+							<td>setLanguage</td>
+							<td>Change Language of DateTimePicker instance.</td>
+							<td>
+								<ul>
+									<li>Language Code</li>
+								</ul>
+							</td>
+							<td>DateTimePicker Object</td>
+						</tr>
+
+					</tbody>
 								
 				</table>
 				
@@ -665,87 +652,197 @@
 				
 				<table class="table table-responsive table-bordered">
 				
-					<tr>
-						<td>No</td>
-						<td>Function Name</td>
-						<td>Description</td>
-						<td>Parameters</td>
-					</tr>
-					
-					<tr>
-						<td>1</td>
-						<td>addEventHandlers</td>
-						<td>This function can be used to add External Event Handlers for the DateTimePicker. This function is called on DateTimePicker plugin initialization.</td>
-						<td>
-							<ul>
-								<li>DateTimePicker Plugin Object</li>
-							</ul>
-						</td>
-					</tr>
+					<thead>
 
-					<tr>
-						<td>2</td>
-						<td>beforeShow</td>
-						<td>This function is called before showing DateTimePicker when an event to show DateTimePicker is triggered.</td>
-						<td>
-							<ul>
-								<li>InputElement</li>
-							</ul>
-						</td>
-					</tr>
+						<tr>
+							<td>No</td>
+							<td>Function Name</td>
+							<td>Description</td>
+							<td>Parameters</td>
+						</tr>
 
-					<tr>
-						<td>3</td>
-						<td>afterShow</td>
-						<td>This function is called after showing DateTimePicker when an event to show DateTimePicker is triggered.</td>
-						<td>
-							<ul>
-								<li>InputElement</li>
-							</ul>
-						</td>
-					</tr>
+					</thead>
 
-					<tr>
-						<td>4</td>
-						<td>beforeHide</td>
-						<td>This function is called before hiding DateTimePicker when an event to hide DateTimePicker is triggered.</td>
-						<td>
-							<ul>
-								<li>InputElement</li>
-							</ul>
-						</td>
-					</tr>
+					</tbody>
 
-					<tr>
-						<td>5</td>
-						<td>afterHide</td>
-						<td>This function is called after hiding DateTimePicker when an event to hide DateTimePicker is triggered.</td>
-						<td>
-							<ul>
-								<li>InputElement</li>
-							</ul>
-						</td>
-					</tr>
+						<tr>
+							<td>1</td>
+							<td>init</td>
+							<td>This function is called on DateTimePicker plugin initialization.</td>
+							<td>
+								<ul>
+									<li>DateTimePicker Plugin Object</li>
+								</ul>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>2</td>
+							<td>addEventHandlers</td>
+							<td>This function can be used to add External Event Handlers for the DateTimePicker. This function is called on DateTimePicker plugin initialization after default event handlers are added.</td>
+							<td>
+								<ul>
+									<li>DateTimePicker Plugin Object</li>
+								</ul>
+							</td>
+						</tr>
 
-					<tr>
-						<td>6</td>
-						<td>buttonClicked</td>
-						<td>
-							This function is called when button on DateTimePicker UI is clicked. ButtonType value can be "SET", "CLEAR" or "CLOSE". 
-						</td>
-						<td>
-							<ul>
-								<li>ButtonType</li>
-								<li>InputElement</li>
-							</ul>
-						</td>
-					</tr>
+						<tr>
+							<td>3</td>
+							<td>beforeShow</td>
+							<td>This function is called before showing DateTimePicker when an event to show DateTimePicker is triggered.</td>
+							<td>
+								<ul>
+									<li>InputElement</li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+							<td>4</td>
+							<td>afterShow</td>
+							<td>This function is called after showing DateTimePicker when an event to show DateTimePicker is triggered.</td>
+							<td>
+								<ul>
+									<li>InputElement</li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+							<td>5</td>
+							<td>beforeHide</td>
+							<td>This function is called before hiding DateTimePicker when an event to hide DateTimePicker is triggered.</td>
+							<td>
+								<ul>
+									<li>InputElement</li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+							<td>6</td>
+							<td>afterHide</td>
+							<td>This function is called after hiding DateTimePicker when an event to hide DateTimePicker is triggered.</td>
+							<td>
+								<ul>
+									<li>InputElement</li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+							<td>7</td>
+							<td>buttonClicked</td>
+							<td>
+								This function is called when button on DateTimePicker UI is clicked. ButtonType value can be "SET", "CLEAR" or "CLOSE". 
+							</td>
+							<td>
+								<ul>
+									<li>ButtonType</li>
+									<li>InputElement</li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+							<td>8</td>
+							<td>formatHumanDate</td>
+							<td>
+								This function can be used to format DateTime string to be displayed in the DateTimePicker Header section.
+							</td>
+							<td>
+								<ul>
+									<li>Date Object</li>
+									<li>mode</li>
+									<li>DateFormat/TimeFormat/DateTimeFormat</li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+
+							<td></td>
+							<td colspan="3">Attributes of "date" parameter passed to formatHumanDate() -
+							    <table cellpadding="5">
+							        <tbody>
+							            <tr>
+							                <td>Attribute</td>
+							                <td>Value</td>
+							            </tr>
+							            <tr>
+							                <td>dd</td>
+							                <td>day of the month(two-digit)</td>
+							            </tr>
+							            <tr>
+							                <td>MM</td>
+							                <td>month(two-digit)</td>
+							            </tr>
+							            <tr>
+							                <td>yyyy</td>
+							                <td>year(four-digit)</td>
+							            </tr>
+							            <tr>
+							                <td>day</td>
+							                <td>day of the week (as specified in fullDayNames settings)</td>
+							            </tr>
+							            <tr>
+							                <td>dayShort</td>
+							                <td>day of the week (as specified in shortDayNames settings)</td>
+							            </tr>
+							            <tr>
+							                <td>month</td>
+							                <td>month name(as specified in fullMonthNames settings)</td>
+							            </tr>
+							            <tr>
+							                <td>monthShort</td>
+							                <td>short month name(as specified in shortMonthNames settings)</td>
+							            </tr>
+							            <tr>
+							                <td>H</td>
+							                <td>hour(24-Hour; number)</td>
+							            </tr>
+							            <tr>
+							                <td>h</td>
+							                <td>hour(12-Hour; number)</td>
+							            </tr>
+							            <tr>
+							                <td>HH</td>
+							                <td>hour(24-Hour; Two Digit String)</td>
+							            </tr>
+							            <tr>
+							                <td>hh</td>
+							                <td>hour(12-Hour; Two Digit String)</td>
+							            </tr>
+							            <tr>
+							                <td>m</td>
+							                <td>minutes(number)</td>
+							            </tr>
+							            <tr>
+							                <td>mm</td>
+							                <td>minutes(Two Digit String)</td>
+							            </tr>
+							            <tr>
+							                <td>s</td>
+							                <td>seconds(number)</td>
+							            </tr>
+							            <tr>
+							                <td>ss</td>
+							                <td>seconds(Two Digit String)</td>
+							            </tr>
+							        </tbody>
+							    </table>
+							</td>
+
+						</tr>
+
+					</tbody>
 				
 				</table>
 				
 			</div>
 
-			<div class="row text-center doc-footer">This project is maintained by <a class="btn-link" href="https://github.com/CuriousSolutions">CuriousSolutions</a></div>
+			<div class="row text-center doc-footer">This project is maintained by <a class="btn-link" href="https://github.com/CuriousSolutions">CuriousSolutions LLP</a></div>
 
 			<div id="dtBox"></div>
 

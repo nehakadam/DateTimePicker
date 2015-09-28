@@ -98,7 +98,7 @@ a:hover
 	text-decoration: none !important;
 }
 
-.doc-optionslist table tr:first-child
+.doc-optionslist thead tr
 {
 	font-weight: bold;
 }
@@ -108,17 +108,17 @@ a:hover
 	width: 24%;
 }
 
-.doc-dataattrlist table tr:first-child
+.doc-dataattrlist thead tr
 {
 	font-weight: bold;
 }
 
-.doc-functionlist table tr:first-child
+.doc-functionlist thead tr
 {
 	font-weight: bold;
 }
 
-.doc-callbackfunctionlist table tr:first-child
+.doc-callbackfunctionlist thead tr
 {
 	font-weight: bold;
 }
