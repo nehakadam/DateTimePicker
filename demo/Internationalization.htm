@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Internationalization</title>
+	
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../src/DateTimePicker.js"></script>
+		<script type="text/javascript" src="../src/i18n/DateTimePicker-i18n.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+		
+		<style type="text/css">
+		
+			p
+			{
+				margin-left: 20px;
+			}
+		
+			input
+			{
+				width: 200px;
+				padding: 10px;
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+		
+		</style>
+	
+	</head>
+
+	<body>
+
+		<label class="forSelLang"> Select Language : </label>
+		<select class="selLang"></select>
+	
+		<p>Date : </p>
+		<input type="text" data-field="date" readonly>
+	
+		<p>Time : </p>
+		<input type="text" data-field="time" readonly>
+	
+		<p>DateTime : </p>
+		<input type="text" data-field="datetime" readonly>
+	
+		<div id="dtBox"></div>
+	
+		<script type="text/javascript">
+		
+			// German Locale Strings Source - https://github.com/solala888/DateTimePicker
+		
+			$(document).ready(function()
+			{
+				var sArrLang = Object.keys($.DateTimePicker.i18n),
+				oDTP;
+
+				$.each(sArrLang, function (iIndex, sTempLang) 
+				{
+					$(".selLang").append($('<option>', { 
+				        value: sTempLang,
+				        text : sTempLang 
+				    }));
+				});
+
+				$(".selLang").change(function() 
+				{
+					var sTempLang = $(".selLang").val();
+					console.log("Language Changed From '" + oDTP.settings.language + "' to '" + sTempLang + "'");
+ 					oDTP = oDTP.setLanguage(sTempLang);
+				});
+
+				$("#dtBox").DateTimePicker(
+				{
+					init: function()
+					{
+						oDTP = this;
+					},
+
+					language: "de"
+				
+				});
+			});
+		
+		</script>
+	
+	</body>
+
+</html>

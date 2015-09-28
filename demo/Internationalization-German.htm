@@ -6,6 +6,7 @@
 	
 		<title>Internationalization - German Locale</title>
 	
+		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
 	
 		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
@@ -58,21 +59,28 @@
 				
 					dateTimeFormat: "dd-MMM-yyyy HH:mm:ss",
 					dateFormat: "dd-MMM-yyyy",
+					timeFormat: "HH:mm:ss",
+					
 					shortDayNames: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
 					fullDayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
-					shortMonthNames: ["Jan", "Feb", "M‰r", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
-					fullMonthNames: ["Januar", "Februar", "M‰rz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
-		
-					titleContentDate: "Datum ausw‰hlen",
-					titleContentTime: "Zeit ausw‰hlen",
-					titleContentDateTime: "Datum & Zeit ausw‰hlen",
+					shortMonthNames: ["Jan", "Feb", "M√§r", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+					fullMonthNames: ["Januar", "Februar", "M√§rz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+
+					titleContentDate: "Datum ausw√§hlen",
+					titleContentTime: "Zeit ausw√§hlen",
+					titleContentDateTime: "Datum & Zeit ausw√§hlen",
 				
-					setButtonContent: "Ausw‰hlen",
-					clearButtonContent: "Zur¸cksetzen",
+					setButtonContent: "Ausw√§hlen",
+					clearButtonContent: "Zur√ºcksetzen",
 					
-					formatHumanDate: function(date)
+					formatHumanDate: function(oDate, sMode, sFormat)
 					{
-						return date.dayShort + ", " + date.dd + " " + date.month+ ", " + date.yyyy;
+						if(sMode === "date")
+							return oDate.dayShort + ", " + oDate.dd + " " + oDate.month+ ", " + oDate.yyyy;
+						else if(sMode === "time")
+							return oDate.HH + ":" + oDate.mm + ":" + oDate.ss;
+						else if(sMode === "datetime")
+							return oDate.dayShort + ", " + oDate.dd + " " + oDate.month+ ", " + oDate.yyyy + " " + oDate.HH + ":" + oDate.mm + ":" + oDate.ss;
 					}
 				
 				});

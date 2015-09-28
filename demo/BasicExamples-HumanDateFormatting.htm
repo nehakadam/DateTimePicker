@@ -49,11 +49,17 @@
 		
 			$(document).ready(function()
 			{
-				$("#dtBox").DateTimePicker({
+				$("#dtBox").DateTimePicker(
+				{
 				
-					formatHumanDate: function(date)
+					formatHumanDate: function(oDate, sMode, sFormat)
 					{
-						return date.day + ", " + date.month + " " + date.dd + ", " + date.yyyy;
+						if(sMode === "date")
+							return oDate.dayShort + ", " + oDate.dd + " " + oDate.month+ ", " + oDate.yyyy;
+						else if(sMode === "time")
+							return oDate.HH + ":" + oDate.mm + ":" + oDate.ss;
+						else if(sMode === "datetime")
+							return oDate.dayShort + ", " + oDate.dd + " " + oDate.month+ ", " + oDate.yyyy + " " + oDate.HH + ":" + oDate.mm + ":" + oDate.ss;
 					}
 				
 				});

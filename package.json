@@ -16,7 +16,7 @@
         "input"
     ],
 
-    "version": "0.1.12",
+    "version": "0.1.13",
 
     "homepage": "http://curioussolutions.github.io/DateTimePicker/",
 
@@ -36,6 +36,7 @@
         "grunt-contrib-cssmin": "~0.5.0",
         "grunt-contrib-uglify": "~0.4.0",
         "grunt-contrib-copy": "~0.4.0",
+        "grunt-contrib-concat": "^0.5.0",
 
         "grunt-contrib-jshint": "^0.11.0",
         "grunt-contrib-csslint": "^0.4.0"

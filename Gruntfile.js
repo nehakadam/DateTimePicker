@@ -15,13 +15,41 @@ module.exports = function(grunt)
 
 		pkg: grunt.file.readJSON('package.json'),
 
-		copy: {
-		  	main: {
+		concat:
+		{
+			lang: 
+		    {
+		    	options: 
+				{
+					separator: '\n\n\n\n',
+		      		stripBanners: true,
+					banner: sBanner
+				},
+				
+		      	src: ['src/i18n/*', '!src/i18n/DateTimePicker-i18n.js'],
+		      	dest: 'src/i18n/DateTimePicker-i18n.js',
+		     	nonull: true
+		    }
+		},
+
+		copy: 
+		{
+
+		  	main: 
+		  	{
 		    	expand: true,
 		    	cwd: 'src/',
 		    	src: '**',
 		    	dest: 'dist'
 		  	},
+
+		  	lang: 
+		  	{
+		    	expand: true,
+		    	cwd: 'src/i18n',
+		    	src: '**',
+		    	dest: 'dist/i18n'
+		  	}
 		},
 
 		uglify: 
@@ -104,12 +132,11 @@ module.exports = function(grunt)
 				"box-sizing": false,
 				"display-property-grouping": false
 			}
-			
 		}
-
 	});
 
  	// Load the plugin that provides the "uglify" task.
+ 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
@@ -118,5 +145,6 @@ module.exports = function(grunt)
 
 	// Default task(s).
   	grunt.registerTask('default', ['uglify', 'cssmin', 'copy']);
+  	grunt.registerTask('lang', ['concat:lang', 'copy:lang']);
   	grunt.registerTask('lint', ['jshint', 'csslint']);
 };

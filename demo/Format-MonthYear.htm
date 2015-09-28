@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Format - Month Year</title>
+	
+		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../src/DateTimePicker.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+	
+		<style type="text/css">
+		
+			p
+			{
+				margin-left: 20px;
+			}
+		
+			input
+			{
+				width: 200px;
+				padding: 10px;
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+		
+		</style>
+		
+	</head>
+
+	<body>
+	
+		<div class="separator-1">
+			<p>Format - "MM-yyyy"</p>
+			<input type="text" data-field="date" data-format="MM-yyyy" readonly>
+		</div>
+		
+
+		<div class="separator-2">
+			<p>Format - "MMM yyyy"</p>
+			<input type="text" data-field="date" data-format="MMM yyyy" data-min="Jan 2015" data-max="Dec 2015" readonly>
+
+			<p>Format - "MMMM yyyy"</p>
+			<input type="text" data-field="date" data-format="MMMM yyyy" readonly>
+		</div>
+	
+		<div id="dtBox-1"></div>
+
+		<div id="dtBox-2"></div>
+	
+		<script type="text/javascript">
+		
+			$(document).ready(function()
+			{
+				$("#dtBox-1").DateTimePicker(
+				{
+					parentElement: ".separator-1",
+					monthYearSeparator: "-"
+				});
+
+				$("#dtBox-2").DateTimePicker(
+				{
+					parentElement: ".separator-2",
+
+					defaultDate: "Jul 2015"
+				});
+			});
+		
+		</script>
+		
+	</body>
+
+</html>
