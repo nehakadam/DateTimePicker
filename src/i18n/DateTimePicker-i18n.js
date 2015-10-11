@@ -81,3 +81,80 @@
         
     });
 })(jQuery);
+
+
+
+/*
+
+	language: French
+	file: DateTimePicker-i18n-fr
+	author: LivioGama(https://github.com/LivioGama)
+
+*/
+
+(function ($) {
+    $.DateTimePicker.i18n["fr"] = $.extend($.DateTimePicker.i18n["fr"], {
+        
+    	language: "fr",
+
+    	dateTimeFormat: "dd-MM-yyyy HH:mm",
+		dateFormat: "dd-MM-yyyy",
+		timeFormat: "HH:mm",
+
+		shortDayNames: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
+		fullDayNames: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+		shortMonthNames: ["Jan", "Fév", "Mar", "Avr", "Mai", "Jun", "Jul", "Aoû", "Sep", "Oct", "Nov", "Déc"],
+		fullMonthNames: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+
+		titleContentDate: "Choisir une date",
+		titleContentTime: "Choisir un horaire",
+		titleContentDateTime: "Choisir une date et un horaire",
+	
+		setButtonContent: "Choisir",
+		clearButtonContent: "Effacer",
+		formatHumanDate: function(oDate, sMode, sFormat)
+		{
+			if(sMode === "date")
+				return oDate.dayShort + " " + oDate.dd + " " + oDate.month+ " " + oDate.yyyy;
+			else if(sMode === "time")
+				return oDate.HH + ":" + oDate.mm + ":" + oDate.ss;
+			else if(sMode === "datetime")
+				return oDate.dayShort + " " + oDate.dd + " " + oDate.month+ " " + oDate.yyyy + ", " + oDate.HH + ":" + oDate.mm + ":" + oDate.ss;
+		}
+        
+    });
+})(jQuery);
+
+
+
+/*
+
+	language: Dutch
+	file: DateTimePicker-i18n-nl
+	author: Bernardo(https://github.com/bhulsman)
+
+*/
+
+(function ($) {
+    $.DateTimePicker.i18n["nl"] = $.extend($.DateTimePicker.i18n["nl"], {
+        
+    	language: "nl",
+
+    	dateTimeFormat: "dd-MM-yyyy HH:mm",
+		dateFormat: "dd-MM-yyyy",
+		timeFormat: "HH:mm",
+
+		shortDayNames: ["zo", "ma", "di", "wo", "do", "vr", "za"],
+		fullDayNames: ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"],
+		shortMonthNames: ["jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"],
+		fullMonthNames: ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"],
+
+		titleContentDate: "Kies datum",
+		titleContentTime: "Kies tijd",
+		titleContentDateTime: "Kies datum & tijd",
+	
+		setButtonContent: "Kiezen",
+		clearButtonContent: "Leegmaken"
+        
+    });
+})(jQuery);
