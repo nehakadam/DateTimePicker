@@ -140,22 +140,27 @@ $.cf = {
 
 };
 
+var sLibrary = "zepto";
+
 (function (factory) 
 {
     if(typeof define === 'function' && define.amd) 
     {
         // AMD. Register as an anonymous module.
-        define(['jquery'], factory);
+        define([sLibrary], factory);
     }
     else if(typeof exports === 'object') 
     {
         // Node/CommonJS
-        module.exports = factory(require('jquery'));
+        module.exports = factory(require(sLibrary));
     }
     else 
     {
         // Browser globals
-        factory(jQuery);
+        if(sLibrary === "zepto")
+        	factory(Zepto);
+        else if(sLibrary === "jquery")
+        	factory(jQuery);
     }
 }(function ($) 
 {
@@ -242,9 +247,9 @@ $.cf = {
 		{
 			return this.each(function() 
 			{
-				$.removeData(this, "plugin_DateTimePicker");
-				if(!$.data(this, "plugin_DateTimePicker"))
-					$.data(this, "plugin_DateTimePicker", new DateTimePicker(this, options));
+				$(this).removeData("plugin_DateTimePicker");
+				if(!$(this).data("plugin_DateTimePicker"))
+					$(this).data("plugin_DateTimePicker", new DateTimePicker(this, options));
 			});
 		}
 	};
@@ -1416,6 +1421,7 @@ $.cf = {
 		
 			$('.dtpicker-compValue').blur(function()
 			{
+				console.log("Executed blur");
 				oDTP._getValuesFromInputBoxes();
 				oDTP._setCurrentDate();
 			
