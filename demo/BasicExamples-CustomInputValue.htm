@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Custom Input Value</title>
+	
+		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
+		
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../src/DateTimePicker.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+	
+		<style>
+		
+			p
+			{
+				margin-left: 20px;
+			}
+		
+			input
+			{
+				width: 200px;
+				padding: 10px;
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+		
+		</style>
+	
+	</head>
+	
+	<body>
+	
+		<div class="container">
+		
+			<div id="datePicker">
+				<p>Date : </p>
+				<input type="text" data-field="date" value="Friday, 23 October" readonly>
+			</div>
+		
+		</div>
+		
+		<div id="dtBox"></div>
+		
+		<script type="text/javascript">
+		
+			$(document).ready(function()
+			{
+				$("#dtBox").DateTimePicker(
+				{
+					parseDateTimeString: function(sDateTime, sMode, oInputElement)
+					{
+						var oDTP = this;
+						var dThisDate = new Date(),
+						iArrDateTimeComps, sRegex;
+						
+						if($.cf._isValid(sDateTime))
+						{
+							// "Friday, 23 October"
+							sRegex = /([a-zA-Z]+)(, )(\d{1,2})( )([a-zA-Z]+)/;
+
+							iArrDateTimeComps = sDateTime.match(sRegex);
+							
+							dThisDate = new Date(
+								dThisDate.getFullYear(),
+								oDTP.settings.fullMonthNames.indexOf(iArrDateTimeComps[5]),
+								parseInt(iArrDateTimeComps[3]),
+								0, 0, 0, 0
+							);
+						}
+						
+						return dThisDate;
+					},
+
+					formatDateTimeString: function(oDate, sMode, $oElem)
+					{
+						var oDTP = this;
+					
+						return oDate.day + ", " + oDate.dd + " " + oDate.month;
+					}
+				});
+			});
+
+		</script>
+	
+	</body>
+
+</html>
