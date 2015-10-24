@@ -39,21 +39,33 @@
 	
 		<div class="container">
 		
-			<div id="datePicker">
+			<div class="cont-date">
 				<p>Date : </p>
 				<input type="text" data-field="date" value="Friday, 23 October" readonly>
+			</div>
+			
+			<div class="cont-datetime">
+				<p>Time : </p>
+				<input type="text" data-field="time" readonly>
+
+				<p>DateTime : </p>
+				<input type="text" data-field="datetime" readonly>
 			</div>
 		
 		</div>
 		
+		<div id="dateBox"></div>
+
 		<div id="dtBox"></div>
 		
 		<script type="text/javascript">
 		
 			$(document).ready(function()
 			{
-				$("#dtBox").DateTimePicker(
+				$("#dateBox").DateTimePicker(
 				{
+					parentElement: ".cont-date",
+
 					parseDateTimeString: function(sDateTime, sMode, oInputElement)
 					{
 						var oDTP = this;
@@ -84,6 +96,11 @@
 					
 						return oDate.day + ", " + oDate.dd + " " + oDate.month;
 					}
+				});
+
+				$("#dtBox").DateTimePicker(
+				{
+					parentElement: ".cont-datetime",
 				});
 			});
 
