@@ -19,21 +19,17 @@
           <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         
+        <!--
         <script type='text/javascript' src="javascripts/jquery-1.11.0.min.js"></script>
         <script type='text/javascript' src="javascripts/bootstrap.min.js"></script>
-        
-        <!--
+    
         <link rel="stylesheet" type="text/css" href="stylesheets/DateTimePicker.min.css" />
 		<script type="text/javascript" src="javascripts/DateTimePicker.min.js"></script>
-	
-		
-		<link rel="stylesheet" type="text/css" href="stylesheets/DateTimePicker-ltie9.min.css" />
-		<script type="text/javascript" src="javascripts/DateTimePicker-ltie9.min.js"></script>
 		-->
-	
+		
 		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.css" />
 		<script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.js"></script>
-	
+		
 		<!--[if lt IE 9]>
 			<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker-ltie9.min.css" />
 			<script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker-ltie9.min.js"></script>
@@ -134,7 +130,7 @@
 		
 			<div class="row doc-optionslist">
 			
-				<h3 class="">Parameter Options List</h3>
+				<h3>Parameter Options List</h3>
 
 				<table class="table table-responsive table-bordered">
 
@@ -483,8 +479,8 @@
 			
 			<div class="row doc-dataattrlist">
 			
-				<h3 class="">HTML5 Custom Data Attribute List</h3>
-				
+				<h3>HTML5 Custom Data Attribute List</h3>
+
 				<table class="table table-responsive table-bordered">
 				
 					<thead>
@@ -572,7 +568,7 @@
 							</td>
 						</tr>
 
-					</tbody>>
+					</tbody>
 				
 				</table>
 				
@@ -580,7 +576,7 @@
 			
 			<div class="row doc-functionlist">
 			
-				<h3 class="">Function List</h3>
+				<h3>Function List</h3>
 				
 				<table class="table table-responsive table-bordered">
 				
@@ -648,7 +644,7 @@
 
 			<div class="row doc-callbackfunctionlist">
 			
-				<h3 class="">Callback Function List</h3>
+				<h3>Callback Function List</h3>
 				
 				<table class="table table-responsive table-bordered">
 				
@@ -764,6 +760,112 @@
 
 							<td></td>
 							<td colspan="3">Attributes of "date" parameter passed to formatHumanDate() -
+							    <table cellpadding="5">
+							        <tbody>
+							            <tr>
+							                <td>Attribute</td>
+							                <td>Value</td>
+							            </tr>
+							            <tr>
+							                <td>dd</td>
+							                <td>day of the month(two-digit)</td>
+							            </tr>
+							            <tr>
+							                <td>MM</td>
+							                <td>month(two-digit)</td>
+							            </tr>
+							            <tr>
+							                <td>yyyy</td>
+							                <td>year(four-digit)</td>
+							            </tr>
+							            <tr>
+							                <td>day</td>
+							                <td>day of the week (as specified in fullDayNames settings)</td>
+							            </tr>
+							            <tr>
+							                <td>dayShort</td>
+							                <td>day of the week (as specified in shortDayNames settings)</td>
+							            </tr>
+							            <tr>
+							                <td>month</td>
+							                <td>month name(as specified in fullMonthNames settings)</td>
+							            </tr>
+							            <tr>
+							                <td>monthShort</td>
+							                <td>short month name(as specified in shortMonthNames settings)</td>
+							            </tr>
+							            <tr>
+							                <td>H</td>
+							                <td>hour(24-Hour; number)</td>
+							            </tr>
+							            <tr>
+							                <td>h</td>
+							                <td>hour(12-Hour; number)</td>
+							            </tr>
+							            <tr>
+							                <td>HH</td>
+							                <td>hour(24-Hour; Two Digit String)</td>
+							            </tr>
+							            <tr>
+							                <td>hh</td>
+							                <td>hour(12-Hour; Two Digit String)</td>
+							            </tr>
+							            <tr>
+							                <td>m</td>
+							                <td>minutes(number)</td>
+							            </tr>
+							            <tr>
+							                <td>mm</td>
+							                <td>minutes(Two Digit String)</td>
+							            </tr>
+							            <tr>
+							                <td>s</td>
+							                <td>seconds(number)</td>
+							            </tr>
+							            <tr>
+							                <td>ss</td>
+							                <td>seconds(Two Digit String)</td>
+							            </tr>
+							        </tbody>
+							    </table>
+							</td>
+
+						</tr>
+
+						<tr>
+							<td>9</td>
+							<td>parseDateTimeString</td>
+							<td>
+								This function can be used to return Date Object created by parsing DateTime string.
+							</td>
+							<td>
+								<ul>
+									<li>DateTime String</li>
+									<li>mode</li>
+									<li>Input Element</li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+							<td>10</td>
+							<td>formatDateTimeString</td>
+							<td>
+								This function can be used to return a formatted DateTime string created using attributes of DateTime Object.
+							</td>
+							<td>
+								<ul>
+									<li>DateTime Object</li>
+									<li>mode</li>
+									<li>Input Element</li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+
+							<td></td>
+							<td colspan="3">Attributes of DateTime Object parameter of formatDateTimeString() -
 							    <table cellpadding="5">
 							        <tbody>
 							            <tr>
