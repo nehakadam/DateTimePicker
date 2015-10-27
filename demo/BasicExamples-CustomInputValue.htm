@@ -30,6 +30,22 @@
 				margin-left: 20px;
 				margin-bottom: 20px;
 			}
+
+			.btn
+			{
+				background: #FFFFFF;
+				color: #A3A3CC;
+
+				border: 2px solid #A3A3CC;
+				border-radius: 5px;
+
+				padding: 10px 20px;
+				margin: 20px;
+			
+				font-size: 12px;
+
+				cursor: pointer;
+			}
 		
 		</style>
 	
@@ -41,15 +57,22 @@
 		
 			<div class="cont-date">
 				<p>Date : </p>
-				<input type="text" data-field="date" value="Friday, 23 October" readonly>
+				<input id="input-date" type="text" data-field="date" value="Friday, 23 October" readonly>
+				<span id="btnCurrentDate" class="btn">Today</span>
+				<span id="btnGetDate" class="btn">Get Date</span>
 			</div>
 			
 			<div class="cont-datetime">
 				<p>Time : </p>
-				<input type="text" data-field="time" readonly>
+				<input id="input-time" type="text" data-field="time" value="12:35" readonly>
+				<span id="btnCurrentTime" class="btn">Now</span>
+				<span id="btnGetTime" class="btn">Get Time</span>
 
 				<p>DateTime : </p>
-				<input type="text" data-field="datetime" readonly>
+				<input id="input-datetime" type="text" data-field="datetime" value="23-10-2015 00:00" readonly>
+				<span id="btnCurrentDateTime" class="btn">This Moment</span>
+				<span id="btnGetDateTime" class="btn">Get DateTime</span>
+
 			</div>
 		
 		</div>
@@ -62,13 +85,22 @@
 		
 			$(document).ready(function()
 			{
+				var oDTP1, oDTP2;
+
 				$("#dateBox").DateTimePicker(
 				{
+					init: function()
+					{
+						oDTP1 = this;
+					},
+
 					parentElement: ".cont-date",
 
 					parseDateTimeString: function(sDateTime, sMode, oInputElement)
 					{
-						var oDTP = this;
+						oDTP1 = this;
+
+						console.log(sDateTime + " " + sMode);
 						var dThisDate = new Date(),
 						iArrDateTimeComps, sRegex;
 						
@@ -79,9 +111,10 @@
 
 							iArrDateTimeComps = sDateTime.match(sRegex);
 							
+
 							dThisDate = new Date(
 								dThisDate.getFullYear(),
-								oDTP.settings.fullMonthNames.indexOf(iArrDateTimeComps[5]),
+								oDTP1.settings.fullMonthNames.indexOf(iArrDateTimeComps[5]),
 								parseInt(iArrDateTimeComps[3]),
 								0, 0, 0, 0
 							);
@@ -90,17 +123,53 @@
 						return dThisDate;
 					},
 
-					formatDateTimeString: function(oDate, sMode, $oElem)
+					formatDateTimeString: function(oDate, sMode)
 					{
-						var oDTP = this;
+						oDTP1 = this;
 					
+						console.log(oDate);
 						return oDate.day + ", " + oDate.dd + " " + oDate.month;
 					}
 				});
 
 				$("#dtBox").DateTimePicker(
 				{
+					init: function()
+					{
+						oDTP2 = this;
+					},
+
 					parentElement: ".cont-datetime",
+				});
+
+				$("#btnCurrentDate").click(function()
+				{
+					oDTP1.setDateTimeStringInInputField($("#input-date"), new Date());
+				});
+
+				$("#btnCurrentTime").click(function()
+				{
+					oDTP2.setDateTimeStringInInputField($("#input-time"), new Date());
+				});
+
+				$("#btnCurrentDateTime").click(function()
+				{
+					oDTP2.setDateTimeStringInInputField($("#input-datetime"), new Date());
+				});
+
+				$("#btnGetDate").click(function()
+				{
+					alert("Date is : " + oDTP1.getDateObjectForInputField($("#input-date")));
+				});
+
+				$("#btnGetTime").click(function()
+				{
+					alert("Time is : " + oDTP2.getDateObjectForInputField($("#input-time")));
+				});
+
+				$("#btnGetDateTime").click(function()
+				{
+					alert("DateTime is : " + oDTP2.getDateObjectForInputField($("#input-datetime")));
 				});
 			});
 

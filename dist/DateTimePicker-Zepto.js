@@ -2284,7 +2284,9 @@ var sLibrary = "zepto";
 				"h": iHour12,
 				"hh": sHour12,
 				"hour": sHour,
+				"m": oDTP.oData.iCurrentMinutes,
 				"mm": sMinutes,
+				"s": oDTP.oData.iCurrentSeconds,
 				"ss": sSeconds,
 				"ME": oDTP.oData.sCurrentMeridiem
 			};
