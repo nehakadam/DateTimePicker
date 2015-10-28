@@ -17,7 +17,7 @@ $.DateTimePicker = $.DateTimePicker || {
 	defaults:  //Plugin Defaults
 	{
 		mode: "date",
-		defaultDate: new Date(),
+		defaultDate: null,
 	
 		dateSeparator: "-",
 		timeSeparator: ":",
@@ -1659,7 +1659,7 @@ $.cf = {
 		{
 			var oDTP = this;
 
-			var dTempDate = new Date(oDTP.settings.defaultDate),
+			var dTempDate = (oDTP.settings.defaultDate ? new Date(oDTP.settings.defaultDate) : new Date()),
 			iDate = dTempDate.getDate(),
 			iMonth = dTempDate.getMonth(),
 			iYear = dTempDate.getFullYear();
@@ -1724,7 +1724,7 @@ $.cf = {
 		{
 			var oDTP = this;
 		
-			var dTempDate = new Date(oDTP.settings.defaultDate),
+			var dTempDate = (oDTP.settings.defaultDate ? new Date(oDTP.settings.defaultDate) : new Date()),
 			iDate = dTempDate.getDate(),
 			iMonth = dTempDate.getMonth(),
 			iYear = dTempDate.getFullYear(),
@@ -1775,7 +1775,7 @@ $.cf = {
 		{
 			var oDTP = this;
 		
-			var dTempDate = new Date(oDTP.settings.defaultDate),
+			var dTempDate = (oDTP.settings.defaultDate ? new Date(oDTP.settings.defaultDate) : new Date()),
 			iDate = dTempDate.getDate(),
 			iMonth = dTempDate.getMonth(),
 			iYear = dTempDate.getFullYear(),
