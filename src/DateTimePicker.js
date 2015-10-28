@@ -1830,34 +1830,37 @@ $.cf = {
 				}
 			
 				sTime = sArrDateTime[1];
-				if(oDTP.oData.bIs12Hour)
+				if($.cf._isValid(sTime))
 				{
-					if($.cf._compare(oDTP.settings.dateTimeSeparator, oDTP.settings.timeMeridiemSeparator) && (sArrDateTime.length === 3))
-						sMeridiem = sArrDateTime[2];
-					else
+					if(oDTP.oData.bIs12Hour)
 					{
-						sArrTimeComp = sTime.split(oDTP.settings.timeMeridiemSeparator);
-						sTime = sArrTimeComp[0];
-						sMeridiem = sArrTimeComp[1];
+						if($.cf._compare(oDTP.settings.dateTimeSeparator, oDTP.settings.timeMeridiemSeparator) && (sArrDateTime.length === 3))
+							sMeridiem = sArrDateTime[2];
+						else
+						{
+							sArrTimeComp = sTime.split(oDTP.settings.timeMeridiemSeparator);
+							sTime = sArrTimeComp[0];
+							sMeridiem = sArrTimeComp[1];
+						}
+					
+						if(!($.cf._compare(sMeridiem, "AM") || $.cf._compare(sMeridiem, "PM")))
+							sMeridiem = "";
 					}
-				
-					if(!($.cf._compare(sMeridiem, "AM") || $.cf._compare(sMeridiem, "PM")))
-						sMeridiem = "";
-				}
-				
-				sArrTime = sTime.split(oDTP.settings.timeSeparator);
+					
+					sArrTime = sTime.split(oDTP.settings.timeSeparator);
 
-				iHour = parseInt(sArrTime[0]);
-				iMinutes = parseInt(sArrTime[1]);
-				if(bShowSeconds)
-				{
-					iSeconds = parseInt(sArrTime[2]);
-				}
+					iHour = parseInt(sArrTime[0]);
+					iMinutes = parseInt(sArrTime[1]);
+					if(bShowSeconds)
+					{
+						iSeconds = parseInt(sArrTime[2]);
+					}
 
-				if(iHour === 12 && $.cf._compare(sMeridiem, "AM"))
-					iHour = 0;
-				else if(iHour < 12 && $.cf._compare(sMeridiem, "PM"))
-					iHour += 12;
+					if(iHour === 12 && $.cf._compare(sMeridiem, "AM"))
+						iHour = 0;
+					else if(iHour < 12 && $.cf._compare(sMeridiem, "PM"))
+						iHour += 12;
+				}
 			}
 			iMinutes = oDTP._adjustMinutes(iMinutes);
     	
