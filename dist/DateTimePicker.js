@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.18
+  Version 0.1.19
   Copyright (c)2015 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -17,7 +17,7 @@ $.DateTimePicker = $.DateTimePicker || {
 	defaults:  //Plugin Defaults
 	{
 		mode: "date",
-		defaultDate: new Date(),
+		defaultDate: null,
 	
 		dateSeparator: "-",
 		timeSeparator: ":",
@@ -1586,7 +1586,7 @@ $.cf = {
 				oDTP._setOutputOnIncrementOrDecrement();
 			});
 		
-			$(oDTP.element).find(".meridiem .dtpicker-compButton").click(function(e)
+			$(oDTP.element).find(".meridiem .dtpicker-compButton *").click(function(e)
 			{
 				if($.cf._compare(oDTP.oData.sCurrentMeridiem, "AM"))
 				{
@@ -1659,7 +1659,7 @@ $.cf = {
 		{
 			var oDTP = this;
 
-			var dTempDate = new Date(oDTP.settings.defaultDate),
+			var dTempDate = (oDTP.settings.defaultDate ? new Date(oDTP.settings.defaultDate) : new Date()),
 			iDate = dTempDate.getDate(),
 			iMonth = dTempDate.getMonth(),
 			iYear = dTempDate.getFullYear();
@@ -1724,7 +1724,7 @@ $.cf = {
 		{
 			var oDTP = this;
 		
-			var dTempDate = new Date(oDTP.settings.defaultDate),
+			var dTempDate = (oDTP.settings.defaultDate ? new Date(oDTP.settings.defaultDate) : new Date()),
 			iDate = dTempDate.getDate(),
 			iMonth = dTempDate.getMonth(),
 			iYear = dTempDate.getFullYear(),
@@ -1775,7 +1775,7 @@ $.cf = {
 		{
 			var oDTP = this;
 		
-			var dTempDate = new Date(oDTP.settings.defaultDate),
+			var dTempDate = (oDTP.settings.defaultDate ? new Date(oDTP.settings.defaultDate) : new Date()),
 			iDate = dTempDate.getDate(),
 			iMonth = dTempDate.getMonth(),
 			iYear = dTempDate.getFullYear(),
