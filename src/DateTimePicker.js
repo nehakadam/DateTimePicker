@@ -1586,7 +1586,7 @@ $.cf = {
 				oDTP._setOutputOnIncrementOrDecrement();
 			});
 		
-			$(oDTP.element).find(".meridiem .dtpicker-compButton").click(function(e)
+			$(oDTP.element).find(".meridiem .dtpicker-compButton *").click(function(e)
 			{
 				if($.cf._compare(oDTP.oData.sCurrentMeridiem, "AM"))
 				{
