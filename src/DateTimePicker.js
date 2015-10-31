@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.19
+  Version 0.1.20
   Copyright (c)2015 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -282,31 +282,31 @@ $.cf = {
 			oDTP.oData.sArrInputDateFormats = [];		
 			var sDate = "";
 		
-			//  "dd-MM-yyyy"
+			//  0 - "dd-MM-yyyy"
 			sDate = "dd" + oDTP.settings.dateSeparator + "MM" + oDTP.settings.dateSeparator + "yyyy";
 			oDTP.oData.sArrInputDateFormats.push(sDate);
 		
-			//  "MM-dd-yyyy"
+			//  1 - "MM-dd-yyyy"
 			sDate = "MM" + oDTP.settings.dateSeparator + "dd" + oDTP.settings.dateSeparator + "yyyy";
 			oDTP.oData.sArrInputDateFormats.push(sDate);
 		
-			//  "yyyy-MM-dd"
+			//  2 - "yyyy-MM-dd"
 			sDate = "yyyy" + oDTP.settings.dateSeparator + "MM" + oDTP.settings.dateSeparator + "dd";
 			oDTP.oData.sArrInputDateFormats.push(sDate);
 		
-			// "dd-MMM-yyyy"
+			//  3 - "dd-MMM-yyyy"
 			sDate = "dd" + oDTP.settings.dateSeparator + "MMM" + oDTP.settings.dateSeparator + "yyyy";
 			oDTP.oData.sArrInputDateFormats.push(sDate);
 
-			//  "MM yyyy"
+			//  4 - "MM yyyy"
 			sDate = "MM" + oDTP.settings.monthYearSeparator + "yyyy";
 			oDTP.oData.sArrInputDateFormats.push(sDate);
 
-			//  "MMM yyyy"
+			//  5 - "MMM yyyy"
 			sDate = "MMM" + oDTP.settings.monthYearSeparator + "yyyy";
 			oDTP.oData.sArrInputDateFormats.push(sDate);
 
-			//  "MMM yyyy"
+			//  6 - "MMM yyyy"
 			sDate = "MMMM" + oDTP.settings.monthYearSeparator + "yyyy";
 			oDTP.oData.sArrInputDateFormats.push(sDate);
 		},
@@ -318,19 +318,19 @@ $.cf = {
 			oDTP.oData.sArrInputTimeFormats = [];
 			var sTime = "";
 
-			//  "hh:mm:ss AA"
+			//  0 - "hh:mm:ss AA"
 			sTime = "hh" + oDTP.settings.timeSeparator + "mm" + oDTP.settings.timeSeparator + "ss" + oDTP.settings.timeMeridiemSeparator + "AA";
 			oDTP.oData.sArrInputTimeFormats.push(sTime);
 		
-			//  "HH:mm:ss"
+			//  1 - "HH:mm:ss"
 			sTime = "HH" + oDTP.settings.timeSeparator + "mm" + oDTP.settings.timeSeparator + "ss";
 			oDTP.oData.sArrInputTimeFormats.push(sTime);
 		
-			//  "hh:mm AA"
+			//  2 - "hh:mm AA"
 			sTime = "hh" + oDTP.settings.timeSeparator + "mm" + oDTP.settings.timeMeridiemSeparator + "AA";
 			oDTP.oData.sArrInputTimeFormats.push(sTime);
 		
-			//  "HH:mm"
+			//  3 - "HH:mm"
 			sTime = "HH" + oDTP.settings.timeSeparator + "mm";
 			oDTP.oData.sArrInputTimeFormats.push(sTime);
 		},
@@ -342,49 +342,49 @@ $.cf = {
 			oDTP.oData.sArrInputDateTimeFormats = [];
 			var sDate = "", sTime = "", sDateTime = "";
 
-			//  "dd-MM-yyyy HH:mm:ss"
+			//  0 - "dd-MM-yyyy HH:mm:ss"
 			sDate = "dd" + oDTP.settings.dateSeparator + "MM" + oDTP.settings.dateSeparator + "yyyy";
 			sTime = "HH" + oDTP.settings.timeSeparator + "mm" + oDTP.settings.timeSeparator + "ss";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
 			oDTP.oData.sArrInputDateTimeFormats.push(sDateTime);
 		
-			//  "dd-MM-yyyy hh:mm:ss AA"
+			//  1 - "dd-MM-yyyy hh:mm:ss AA"
 			sDate = "dd" + oDTP.settings.dateSeparator + "MM" + oDTP.settings.dateSeparator + "yyyy";
 			sTime = "hh" + oDTP.settings.timeSeparator + "mm" + oDTP.settings.timeSeparator + "ss" + oDTP.settings.timeMeridiemSeparator + "AA";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
 			oDTP.oData.sArrInputDateTimeFormats.push(sDateTime);
 		
-			//  "MM-dd-yyyy HH:mm:ss"
+			//  2 - "MM-dd-yyyy HH:mm:ss"
 			sDate = "MM" + oDTP.settings.dateSeparator + "dd" + oDTP.settings.dateSeparator + "yyyy";
 			sTime = "HH" + oDTP.settings.timeSeparator + "mm" + oDTP.settings.timeSeparator + "ss";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
 			oDTP.oData.sArrInputDateTimeFormats.push(sDateTime);
 		
-			//  "MM-dd-yyyy hh:mm:ss AA"
+			//  3 - "MM-dd-yyyy hh:mm:ss AA"
 			sDate = "MM" + oDTP.settings.dateSeparator + "dd" + oDTP.settings.dateSeparator + "yyyy";
 			sTime = "hh" + oDTP.settings.timeSeparator + "mm" + oDTP.settings.timeSeparator + "ss" + oDTP.settings.timeMeridiemSeparator + "AA";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
 			oDTP.oData.sArrInputDateTimeFormats.push(sDateTime);
 		
-			//  "yyyy-MM-dd HH:mm:ss"
+			//  4 - "yyyy-MM-dd HH:mm:ss"
 			sDate = "yyyy" + oDTP.settings.dateSeparator + "MM" + oDTP.settings.dateSeparator + "dd";
 			sTime = "HH" + oDTP.settings.timeSeparator + "mm" + oDTP.settings.timeSeparator + "ss";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
 			oDTP.oData.sArrInputDateTimeFormats.push(sDateTime);
 		
-			//  "yyyy-MM-dd hh:mm:ss AA"
+			//  5 - "yyyy-MM-dd hh:mm:ss AA"
 			sDate = "yyyy" + oDTP.settings.dateSeparator + "MM" + oDTP.settings.dateSeparator + "dd";
 			sTime = "hh" + oDTP.settings.timeSeparator + "mm" + oDTP.settings.timeSeparator + "ss" + oDTP.settings.timeMeridiemSeparator + "AA";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
 			oDTP.oData.sArrInputDateTimeFormats.push(sDateTime);
 			
-			//  "dd-MMM-yyyy hh:mm:ss"
+			//  6 - "dd-MMM-yyyy hh:mm:ss"
 			sDate = "dd" + oDTP.settings.dateSeparator + "MMM" + oDTP.settings.dateSeparator + "yyyy";
 			sTime = "hh" + oDTP.settings.timeSeparator + "mm" + oDTP.settings.timeSeparator + "ss";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
 			oDTP.oData.sArrInputDateTimeFormats.push(sDateTime);
 			
-			//  "dd-MMM-yyyy hh:mm:ss AA"
+			//  7 - "dd-MMM-yyyy hh:mm:ss AA"
 			sDate = "dd" + oDTP.settings.dateSeparator + "MMM" + oDTP.settings.dateSeparator + "yyyy";
 			sTime = "hh" + oDTP.settings.timeSeparator + "mm" + oDTP.settings.timeSeparator + "ss" + oDTP.settings.timeMeridiemSeparator + "AA";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
@@ -392,49 +392,49 @@ $.cf = {
 
 			//--------------
 		
-			//  "dd-MM-yyyy HH:mm"
+			//  8 - "dd-MM-yyyy HH:mm"
 			sDate = "dd" + oDTP.settings.dateSeparator + "MM" + oDTP.settings.dateSeparator + "yyyy";
 			sTime = "HH" + oDTP.settings.timeSeparator + "mm";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
 			oDTP.oData.sArrInputDateTimeFormats.push(sDateTime);
 		
-			//  "dd-MM-yyyy hh:mm AA"
+			//  9 - "dd-MM-yyyy hh:mm AA"
 			sDate = "dd" + oDTP.settings.dateSeparator + "MM" + oDTP.settings.dateSeparator + "yyyy";
 			sTime = "hh" + oDTP.settings.timeSeparator + "mm" + oDTP.settings.timeMeridiemSeparator + "AA";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
 			oDTP.oData.sArrInputDateTimeFormats.push(sDateTime);
 		
-			//  "MM-dd-yyyy HH:mm"
+			//  10 - "MM-dd-yyyy HH:mm"
 			sDate = "MM" + oDTP.settings.dateSeparator + "dd" + oDTP.settings.dateSeparator + "yyyy";
 			sTime = "HH" + oDTP.settings.timeSeparator + "mm";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
 			oDTP.oData.sArrInputDateTimeFormats.push(sDateTime);
 		
-			//  "MM-dd-yyyy hh:mm AA"
+			//  11 - "MM-dd-yyyy hh:mm AA"
 			sDate = "MM" + oDTP.settings.dateSeparator + "dd" + oDTP.settings.dateSeparator + "yyyy";
 			sTime = "hh" + oDTP.settings.timeSeparator + "mm" + oDTP.settings.timeMeridiemSeparator + "AA";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
 			oDTP.oData.sArrInputDateTimeFormats.push(sDateTime);
 		
-			//  "yyyy-MM-dd HH:mm"
+			//  12 - "yyyy-MM-dd HH:mm"
 			sDate = "yyyy" + oDTP.settings.dateSeparator + "MM" + oDTP.settings.dateSeparator + "dd";
 			sTime = "HH" + oDTP.settings.timeSeparator + "mm";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
 			oDTP.oData.sArrInputDateTimeFormats.push(sDateTime);
 		
-			//  "yyyy-MM-dd hh:mm AA"
+			//  13 - "yyyy-MM-dd hh:mm AA"
 			sDate = "yyyy" + oDTP.settings.dateSeparator + "MM" + oDTP.settings.dateSeparator + "dd";
 			sTime = "hh" + oDTP.settings.timeSeparator + "mm" + oDTP.settings.timeMeridiemSeparator + "AA";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
 			oDTP.oData.sArrInputDateTimeFormats.push(sDateTime);
 			
-			//  "dd-MMM-yyyy hh:mm"
+			//  14 - "dd-MMM-yyyy hh:mm"
 			sDate = "dd" + oDTP.settings.dateSeparator + "MMM" + oDTP.settings.dateSeparator + "yyyy";
 			sTime = "hh" + oDTP.settings.timeSeparator + "mm";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
 			oDTP.oData.sArrInputDateTimeFormats.push(sDateTime);
 			
-			//  "dd-MMM-yyyy hh:mm AA"
+			//  15 - "dd-MMM-yyyy hh:mm AA"
 			sDate = "dd" + oDTP.settings.dateSeparator + "MMM" + oDTP.settings.dateSeparator + "yyyy";
 			sTime = "hh" + oDTP.settings.timeSeparator + "mm" + oDTP.settings.timeMeridiemSeparator + "AA";
 			sDateTime = sDate + oDTP.settings.dateTimeSeparator + sTime;
@@ -1784,14 +1784,14 @@ $.cf = {
 			iSeconds = dTempDate.getSeconds(),
 			sMeridiem = "",
 			sArrDateTime, sArrDate, sTime, sArrTimeComp, sArrTime,
-			bShowSeconds = oDTP.oData.bArrMatchFormat[0] || 
-							oDTP.oData.bArrMatchFormat[1] ||
-							oDTP.oData.bArrMatchFormat[2] || 
-							oDTP.oData.bArrMatchFormat[3] ||
-							oDTP.oData.bArrMatchFormat[4] || 
-							oDTP.oData.bArrMatchFormat[5] ||
-							oDTP.oData.bArrMatchFormat[6] || 
-							oDTP.oData.bArrMatchFormat[7];
+			bShowSeconds = oDTP.oData.bArrMatchFormat[0] || // "dd-MM-yyyy HH:mm:ss"
+							oDTP.oData.bArrMatchFormat[1] || // ""dd-MM-yyyy hh:mm:ss AA"
+							oDTP.oData.bArrMatchFormat[2] || // "MM-dd-yyyy HH:mm:ss"
+							oDTP.oData.bArrMatchFormat[3] || // "MM-dd-yyyy hh:mm:ss AA"
+							oDTP.oData.bArrMatchFormat[4] || // "yyyy-MM-dd HH:mm:ss"
+							oDTP.oData.bArrMatchFormat[5] || // "yyyy-MM-dd hh:mm:ss AA"
+							oDTP.oData.bArrMatchFormat[6] || // "dd-MMM-yyyy HH:mm:ss"
+							oDTP.oData.bArrMatchFormat[7]; // "dd-MMM-yyyy hh:mm:ss AA"
 
 			iSeconds = bShowSeconds ? oDTP._adjustSeconds(iSeconds) : 0;
 		
@@ -1801,28 +1801,36 @@ $.cf = {
 				sArrDate = sArrDateTime[0].split(oDTP.settings.dateSeparator);
 			
 				if(oDTP.oData.bArrMatchFormat[0] || // "dd-MM-yyyy HH:mm:ss"
-					oDTP.oData.bArrMatchFormat[1]) // ""dd-MM-yyyy hh:mm:ss AA"
+					oDTP.oData.bArrMatchFormat[1] || // ""dd-MM-yyyy hh:mm:ss AA"
+					oDTP.oData.bArrMatchFormat[8] || // "dd-MM-yyyy HH:mm"
+					oDTP.oData.bArrMatchFormat[9]) // "dd-MM-yyyy hh:mm AA"
 				{
 					iDate = parseInt(sArrDate[0]);
 					iMonth = parseInt(sArrDate[1] - 1);
 					iYear = parseInt(sArrDate[2]);
 				}
 				else if(oDTP.oData.bArrMatchFormat[2] ||  // "MM-dd-yyyy HH:mm:ss"
-					oDTP.oData.bArrMatchFormat[3]) // "MM-dd-yyyy hh:mm:ss AA"
+					oDTP.oData.bArrMatchFormat[3] || // "MM-dd-yyyy hh:mm:ss AA"
+					oDTP.oData.bArrMatchFormat[10] ||  // "MM-dd-yyyy HH:mm"
+					oDTP.oData.bArrMatchFormat[11]) // "MM-dd-yyyy hh:mm AA"
 				{
 					iMonth = parseInt(sArrDate[0] - 1);
 					iDate = parseInt(sArrDate[1]);
 					iYear = parseInt(sArrDate[2]);
 				}
 				else if(oDTP.oData.bArrMatchFormat[4] ||  // "yyyy-MM-dd HH:mm:ss"
-					oDTP.oData.bArrMatchFormat[5]) // "yyyy-MM-dd hh:mm:ss AA"
+					oDTP.oData.bArrMatchFormat[5] || // "yyyy-MM-dd hh:mm:ss AA"
+					oDTP.oData.bArrMatchFormat[12] ||  // "yyyy-MM-dd HH:mm"
+					oDTP.oData.bArrMatchFormat[13]) // "yyyy-MM-dd hh:mm AA"
 				{
 					iYear = parseInt(sArrDate[0]);
 					iMonth = parseInt(sArrDate[1] - 1);
 					iDate = parseInt(sArrDate[2]);
 				}
 				else if(oDTP.oData.bArrMatchFormat[6] || // "dd-MMM-yyyy HH:mm:ss"
-					oDTP.oData.bArrMatchFormat[7]) // "dd-MMM-yyyy hh:mm:ss AA"
+					oDTP.oData.bArrMatchFormat[7] || // "dd-MMM-yyyy hh:mm:ss AA"
+					oDTP.oData.bArrMatchFormat[14] || // "dd-MMM-yyyy HH:mm:ss"
+					oDTP.oData.bArrMatchFormat[15]) // "dd-MMM-yyyy hh:mm:ss AA"
 				{
 					iDate = parseInt(sArrDate[0]);
 					iMonth = oDTP._getShortMonthIndex(sArrDate[1]);
