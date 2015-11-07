@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.20
+  Version 0.1.21
   Copyright (c)2015 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -1586,7 +1586,7 @@ $.cf = {
 				oDTP._setOutputOnIncrementOrDecrement();
 			});
 		
-			$(oDTP.element).find(".meridiem .dtpicker-compButton *").click(function(e)
+			$(oDTP.element).find(".meridiem .dtpicker-compButton, .meridiem .dtpicker-compButton *").click(function(e)
 			{
 				if($.cf._compare(oDTP.oData.sCurrentMeridiem, "AM"))
 				{
