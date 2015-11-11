@@ -182,7 +182,7 @@ $.cf = {
 	$.fn.DateTimePicker = function (options)
 	{
 		var oDTP = $(this).data(),
-		sArrDataKeys = Object.keys(oDTP),
+		sArrDataKeys = oDTP ? Object.keys(oDTP) : [],
 		iKey, sKey;
 		
 		if(typeof options === "string")
