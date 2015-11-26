@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.22
+  Version 0.1.23
   Copyright (c)2015 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -74,6 +74,7 @@ $.DateTimePicker = $.DateTimePicker || {
 		beforeHide: null,  // beforeHide(oInputElement)
 		afterHide: null,  // afterHide(oInputElement)
 		buttonClicked: null,  // buttonClicked(sButtonType, oInputElement) where sButtonType = "SET"|"CLEAR"|"CANCEL"
+		settingValueOfElement: null, // settingValueOfElement(sValue, dDateTime, oInputElement)
 		formatHumanDate: null,  // formatHumanDate(oDateTime, sMode, sFormat)
 	
 		parseDateTimeString: null, // parseDateTimeString(sDateTime, sMode, oInputField)
@@ -1647,8 +1648,12 @@ $.cf = {
 				$oElem.val(sElemValue);
 			else
 				$oElem.html(sElemValue);
+
+			var dElemValue = oDTP.getDateObjectForInputField($oElem);
+
+			oDTP.settings.settingValueOfElement.call(oDTP, sElemValue, dElemValue, $oElem);
 		
-			$oElem.change();
+			$oElem.change();		
 		
 			return sElemValue;
 		},

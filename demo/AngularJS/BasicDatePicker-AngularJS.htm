@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Date Picker with AngularJS</title>
+
+		<link rel="stylesheet" type="text/css" href="../../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="../jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="angular-1.4.2.min.js"></script>
+
+		<script type="text/javascript" src="../../src/DateTimePicker.js"></script>
+		
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+		
+		<style type="text/css">
+		
+			p
+			{
+				margin-left: 20px;
+			}
+		
+			input
+			{
+				width: 200px;
+				padding: 10px;
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+		
+		</style>
+
+		<script type="text/javascript">
+
+			var dDate1;
+
+			angular.module("App-DTP", []).controller("Ctrl-DTP", function($scope) 
+			{
+			    $scope.date1 = new Date(2015, 11, 26, 0, 0, 0, 0);
+			    $scope.datestring1 = "26-11-2015";
+
+			    $scope.setValue = function()
+				{
+					console.log("Before setValue : " + $scope.date1 + " " + $scope.datestring1);
+				    $scope.date1 = new Date(dDate1);
+				    console.log("After setValue : " + $scope.date1 + " " + $scope.datestring1);
+				};
+			});
+		
+			$(document).ready(function()
+			{
+				$("#dtBox").DateTimePicker(
+				{
+			    	settingValueOfElement: function(sValue, dValue, oInputElement)
+			        {
+		        		dDate1 = dValue;
+		        		console.log("settingValueOfElement : " + dDate1+ " " + sValue);
+			    	}
+			    });
+			});
+
+		</script>
+		
+	</head>
+
+	<body ng-app="App-DTP" ng-controller="Ctrl-DTP">
+		
+		<p>Date : </p>
+		<input type="text" data-field="date" id="ipDate1" ng-model="datestring1" ng-change="setValue()" readonly>
+
+		<div>Date 1 : {{ datestring1 }}</div>
+	
+		<div id="dtBox"></div>
+		
+	</body>
+
+</html>
