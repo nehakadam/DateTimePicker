@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.24
+  Version 0.1.25
   Copyright (c)2015 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -42,7 +42,7 @@ $.DateTimePicker = $.DateTimePicker || {
 		fullDayNames: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 		shortMonthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 		fullMonthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-		labels: null, /*{'year': 'Year','month': 'Month',	'day': 'Day',	'hour': 'Hour','minutes': 'Minutes','seconds': 'Seconds','meridiem':'Meridiem'}*/
+		labels: null, /*{"year": "Year", "month": "Month", "day": "Day", "hour": "Hour", "minutes": "Minutes", "seconds": "Seconds", "meridiem": "Meridiem"}*/
 
 		minuteInterval: 1,
 		roundOffMinutes: true,
@@ -173,6 +173,7 @@ $.cf = {
 		var sLanguage = "";
 		sLanguage = ($.cf._isValid(options) && $.cf._isValid(options.language)) ? options.language : $.DateTimePicker.defaults.language;
 		this.settings = $.extend({}, $.DateTimePicker.defaults, options, $.DateTimePicker.i18n[sLanguage]);
+		this.options = options;
 
 		this.oData = $.extend({}, $.DateTimePicker.dataObject);
 		this._defaults = $.DateTimePicker.defaults;
@@ -682,9 +683,13 @@ $.cf = {
 			if(oDTP.oData.oInputElement !== null)
 			{
 				oDTP._setValueOfElement(oDTP._setOutput());
-				oDTP.settings.buttonClicked.call(oDTP, "TAB", oDTP.oData.oInputElement);
+				
 				if(bFromTab)
+				{
+					if(oDTP.settings.buttonClicked)
+						oDTP.settings.buttonClicked.call(oDTP, "TAB", oDTP.oData.oInputElement);
 					oDTP._hidePicker(0);
+				}
 				else
 					oDTP._hidePicker("");					
 			}
@@ -1357,7 +1362,7 @@ $.cf = {
 				sDTPickerComp += "<input type='text' class='dtpicker-compValue'></input>";
 				sDTPickerComp += "<a class='dtpicker-compButton decrement'>" + oDTP.settings.decrementButtonContent + "</a>";
 				if(oDTP.settings.labels)
-					sDTPickerComp += "<div class='dtpicker-label'>" + oDTP.settings.labels[sFieldName] + "</div>"
+					sDTPickerComp += "<div class='dtpicker-label'>" + oDTP.settings.labels[sFieldName] + "</div>";
 				sDTPickerComp += "</div>";
 				sDTPickerComp += "</div>";
 			}
@@ -2561,7 +2566,7 @@ $.cf = {
 		{
 			var oDTP = this;
 
-			oDTP.settings = $.extend({}, oDTP.settings, $.DateTimePicker.i18n[sLanguage]);
+			oDTP.settings = $.extend({}, $.DateTimePicker.defaults, oDTP.options, $.DateTimePicker.i18n[sLanguage]);
 		
 			oDTP._setDateFormatArray(); // Set DateFormatArray
 			oDTP._setTimeFormatArray(); // Set TimeFormatArray
