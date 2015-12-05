@@ -74,7 +74,7 @@ $.DateTimePicker = $.DateTimePicker || {
 		afterShow: null,  // afterShow(oInputElement)
 		beforeHide: null,  // beforeHide(oInputElement)
 		afterHide: null,  // afterHide(oInputElement)
-		buttonClicked: null,  // buttonClicked(sButtonType, oInputElement) where sButtonType = "SET"|"CLEAR"|"CANCEL"
+		buttonClicked: null,  // buttonClicked(sButtonType, oInputElement) where sButtonType = "SET"|"CLEAR"|"CANCEL"|"TAB"
 		settingValueOfElement: null, // settingValueOfElement(sValue, dDateTime, oInputElement)
 		formatHumanDate: null,  // formatHumanDate(oDateTime, sMode, sFormat)
 	
@@ -682,6 +682,7 @@ $.cf = {
 			if(oDTP.oData.oInputElement !== null)
 			{
 				oDTP._setValueOfElement(oDTP._setOutput());
+				oDTP.settings.buttonClicked.call(oDTP, "TAB", oDTP.oData.oInputElement);
 				if(bFromTab)
 					oDTP._hidePicker(0);
 				else
@@ -1957,7 +1958,11 @@ $.cf = {
 			}
 			else
 			{
-				dTemp = new Date(oDTP.oData.dCurrentDate);
+				if (Object.prototype.toString.call(oDTP.oData.dCurrentDate) === '[object Date]' && isFinite(oDTP.oData.dCurrentDate))
+    		  			dTemp = new Date(oDTP.oData.dCurrentDate);
+  				else 
+    					dTemp = new Date();
+    					
 				if(!$.cf._isValid(bIncludeTime))
 					bIncludeTime = (oDTP.oData.bTimeMode || oDTP.oData.bDateTimeMode);
 				if(!$.cf._isValid(bSetMeridiem))
