@@ -31,7 +31,6 @@
 		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.css" />
 		<script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.js"></script>
 		
-		
 		<!--[if lt IE 9]>
 			<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker-ltie9.min.css" />
 			<script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker-ltie9.min.js"></script>
@@ -129,7 +128,7 @@
 				<script src="https://gist.github.com/nehakadam/8752223.js"></script>
 			
 			</div>
-		
+
 			<div class="row doc-optionslist">
 			
 				<h3>Parameter Options List</h3>
@@ -470,6 +469,43 @@
 				            <td></td>
 				            <td colspan="3">
 				            	i18n folder in plugin distribution file has DateTimePicker-i18n.js file, which contains localized strings and date format. You can add strings for other languages as per requirement.	
+
+				            	Languages for which Locale Files are added -
+				            	<ul>
+				            		<li>"de" (German)</li>
+				            		<li>"en" (English)</li>
+				            		<li>"es" (Spanish)</li>
+				            		<li>"fr" (French)</li>
+				            		<li>"nl" (Dutch)</li>
+				            		<li>"zh-CN" (Simple Chinese)</li>
+				            	</ul>
+
+				            </td>
+				        </tr>
+
+				        <tr>
+				            <td>36</td>
+				            <td>label</td>
+				            <td>null</td>
+				            <td>Object</td>
+				        </tr>
+
+				        <tr>
+				            <td></td>
+				            <td colspan="3">
+				            	
+				            label is displayed below DateTime fields in DateTimePicker UI. label object should be of the form -
+
+				            <pre>{
+  "year": "Year", 
+  "month": "Month", 
+  "day": "Day", 
+  "hour": "Hour", 
+  "minutes": "Minutes", 
+  "seconds": "Seconds", 
+  "meridiem": "Meridiem"
+}</pre>
+
 				            </td>
 				        </tr>
 
@@ -736,7 +772,7 @@
 							<td>7</td>
 							<td>buttonClicked</td>
 							<td>
-								This function is called when button on DateTimePicker UI is clicked. ButtonType value can be "SET", "CLEAR" or "CLOSE". 
+								This function is called when button on DateTimePicker UI is clicked. ButtonType value can be "SET", "CLEAR", "CLOSE" or "TAB". 
 							</td>
 							<td>
 								<ul>
@@ -941,6 +977,19 @@
 							    </table>
 							</td>
 
+						</tr>
+
+						<tr>
+							<td>11</td>
+							<td>settingValueOfElement</td>
+							<td>This function is called before setting value in the input field. This method is added primarily to make DateTimePicker work with AngularJS. See [Angular Demo](https://github.com/CuriousSolutions/DateTimePicker/blob/master/demo/AngularJS/BasicDatePicker-AngularJS.htm).</td>
+							<td>
+								<ul>
+									<li>sInputValue</li>
+									<li>dDateTime</li>
+									<li>oInputElement</li>
+								</ul>
+							</td>
 						</tr>
 
 					</tbody>
