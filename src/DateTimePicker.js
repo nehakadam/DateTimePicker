@@ -42,7 +42,8 @@ $.DateTimePicker = $.DateTimePicker || {
 		fullDayNames: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 		shortMonthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 		fullMonthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-		
+		labels: null, /*{'year': 'Year','month': 'Month',	'day': 'Day',	'hour': 'Hour','minutes': 'Minutes','seconds': 'Seconds','meridiem':'Meridiem'}*/
+
 		minuteInterval: 1,
 		roundOffMinutes: true,
 
@@ -1344,16 +1345,18 @@ $.cf = {
 		
 			var sDTPickerComp = "";
 			sDTPickerComp += "<div class='dtpicker-components'>";
-		
+
 			for(iTempIndex = 0; iTempIndex < iNumberOfColumns; iTempIndex++)
 			{
 				var sFieldName = sArrFields[iTempIndex];
-			
+
 				sDTPickerComp += "<div class='dtpicker-compOutline " + sColumnClass + "'>";
 				sDTPickerComp += "<div class='dtpicker-comp " + sFieldName + "'>";
 				sDTPickerComp += "<a class='dtpicker-compButton increment'>" + oDTP.settings.incrementButtonContent + "</a>";
 				sDTPickerComp += "<input type='text' class='dtpicker-compValue'></input>";
 				sDTPickerComp += "<a class='dtpicker-compButton decrement'>" + oDTP.settings.decrementButtonContent + "</a>";
+				if(oDTP.settings.labels)
+					sDTPickerComp += "<div class='dtpicker-label'>" + oDTP.settings.labels[sFieldName] + "</div>"
 				sDTPickerComp += "</div>";
 				sDTPickerComp += "</div>";
 			}
