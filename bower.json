@@ -19,7 +19,7 @@
   
   "homepage": "http://curioussolutions.github.io/DateTimePicker/",
   
-  "main": ["dist/datetimepicker.js", "dist/datetimepicker.css"],
+  "main": ["dist/DateTimePicker.js", "dist/DateTimePicker.css"],
   
   "authors": [
     {"name": "nehakadam"}
