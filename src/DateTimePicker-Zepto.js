@@ -522,8 +522,8 @@ var sLibrary = "zepto";
 
 			$(oDTP.settings.parentElement).find("input[type='date'], input[type='time'], input[type='datetime']").each(function()
 			{
-				$(this).attr("type", "text");
 				$(this).attr("data-field", $(this).attr("type"));
+				$(this).attr("type", "text");
 			});	
         
 			var sel = "[data-field='date'], [data-field='time'], [data-field='datetime']";
