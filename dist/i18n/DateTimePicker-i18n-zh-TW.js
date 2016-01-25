@@ -10,9 +10,9 @@
 
 /*
 
-	language: Traditional Chinese
-	file: DateTimePicker-i18n-zh-TW
-	author: JasonYCHuang(https://github.com/JasonYCHuang)
+  language: Traditional Chinese
+  file: DateTimePicker-i18n-zh-TW
+  author: JasonYCHuang (https://github.com/JasonYCHuang)
 
 */
 
