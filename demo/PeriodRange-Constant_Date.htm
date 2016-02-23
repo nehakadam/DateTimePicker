@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Period Range - Minimum Date Today</title>
+	
+		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../src/DateTimePicker.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+	
+		<style type="text/css">
+		
+			p
+			{
+				margin-left: 20px;
+			}
+		
+			input
+			{
+				width: 200px;
+				padding: 10px;
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+		
+		</style>
+	
+	</head>
+
+	<body>
+	
+		<form>
+
+		<!------------------------ Date Picker ------------------------>
+		<p>Date : </p>
+		<input id="in-date" type="text" data-field="date" data-format="dd-MM-yyyy" readonly>
+
+		<p>Time : </p>
+		<input  id="in-time" type="text" data-field="time" data-format="hh:mm AA" readonly>
+	
+		</form>
+
+		<div id="dtBox"></div>
+	
+		<script type="text/javascript">
+
+			var oDTP, dDate, dTime, dDateTime,
+			sDateFormat = "";
+		
+			$(document).ready(function()
+			{
+				$("#dtBox").DateTimePicker({
+
+					addEventHandlers: function()
+					{
+						oDTP = this;
+
+						if(oDTP.settings.defaultDate)
+							dDateTime = new Date(oDTP.settings.defaultDate);
+						else
+							dDateTime = new Date();
+					
+						oDTP.settings.minDate = oDTP.getDateTimeStringInFormat("Date", "dd-MM-yyyy", new Date(dDateTime));
+
+						oDTP.settings.minTime = oDTP.getDateTimeStringInFormat("Time", "hh:mm AA", new Date(dDateTime));
+					},
+
+					settingValueOfElement: function(sElemValue, dElemValue, oElem)
+					{
+						oDTP = this;
+
+						if(oDTP.settings.mode === "date")
+						{
+							dDateTime = new Date(dElemValue.getFullYear(), dElemValue.getMonth(), dElemValue.getDate(), dDateTime.getHours(), dDateTime.getMinutes(), 0, 0);
+						}
+						else if(oDTP.settings.mode === "time")
+						{
+							dDateTime = new Date(dDateTime.getFullYear(), dDateTime.getMonth(), dDateTime.getDate(), dElemValue.getHours(), dElemValue.getMinutes(), 0, 0);
+						}
+
+						console.log(dDateTime);
+					},
+
+					formatHumanDate: function(oDateTime, sMode, sFormat)
+					{
+						oDTP = this;
+
+						if(sMode === "date")
+						{					
+							sDateFormat = oDateTime.dayShort + ", " + oDateTime.dd + " " + oDateTime.month+ ", " + oDateTime.yyyy;
+							return sDateFormat;
+						}
+						else if(sMode === "time")
+						{
+							if(sDateFormat !== "")
+							{
+								return sDateFormat + " " + oDateTime.HH + ":" + oDateTime.mm + ":" + oDateTime.ss;	
+							}
+							else
+							{
+								return (oDTP.settings.shortDayNames[dDateTime.getDay()] + ", " + dDateTime.getDate() + " " + oDTP.settings.fullMonthNames[dDateTime.getMonth()] + " " + dDateTime.getFullYear()) + " " + oDateTime.HH + ":" + oDateTime.mm + ":" + oDateTime.ss;
+							}
+						}
+					},
+
+					buttonClicked: function(sButtonType, oElement)
+					{
+						oDTP = this;
+
+						if(sButtonType === "CLEAR" && $(oElement).attr("id") === "in-date")
+						{
+							dDateTime = new Date();
+							sDateFormat = "";
+						}
+					}
+
+				});
+			});
+
+		</script>
+	
+		<!-- Default dateFormat: "dd-MM-yyyy" 
+			
+				dateFormat Options : 
+					1. "dd-MM-yyyy"
+					2. "MM-dd-yyyy"
+					3. "yyyy-MM-dd"
+				
+				Specify (data-min & data-max) / (minDate & maxDate) values in the same dateFormat specified in settings parameters	
+		-->
+	
+		<!-- Default timeFormat: "HH:mm"  
+			
+				timeFormat Options : 
+					1. "HH:mm"
+					2. "hh:mm AA"
+				
+				Specify (data-min & data-max) / (minTime & maxTime) values in the same timeFormat specified in settings parameters			
+		-->
+	
+		<!-- Default dateTimeFormat: "dd-MM-yyyy HH:mm:ss"  
+			
+				dateTimeFormat Options : 
+					1. "dd-MM-yyyy HH:mm:ss"
+					2. "dd-MM-yyyy hh:mm:ss AA"
+					3. "MM-dd-yyyy HH:mm:ss"
+					4. "MM-dd-yyyy hh:mm:ss AA"
+					5. "yyyy-MM-dd HH:mm:ss"
+					6. "yyyy-MM-dd hh:mm:ss AA"
+				
+				Specify (data-min & data-max) / (minDateTime & maxDateTime) values in the same dateTimeFormat specified in settings parameters		
+		-->
+	
+	</body>
+
+</html>

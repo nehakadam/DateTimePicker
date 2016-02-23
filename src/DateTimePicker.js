@@ -1,8 +1,8 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.25
-  Copyright (c)2015 Curious Solutions LLP and Neha Kadam
+  Version 0.1.26
+  Copyright (c)2016 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
 
@@ -172,7 +172,7 @@ $.cf = {
 
 		var sLanguage = "";
 		sLanguage = ($.cf._isValid(options) && $.cf._isValid(options.language)) ? options.language : $.DateTimePicker.defaults.language;
-		this.settings = $.extend({}, $.DateTimePicker.defaults, options, $.DateTimePicker.i18n[sLanguage]);
+		this.settings = $.extend({}, $.DateTimePicker.defaults, $.DateTimePicker.i18n[sLanguage], options);
 		this.options = options;
 
 		this.oData = $.extend({}, $.DateTimePicker.dataObject);
@@ -701,7 +701,7 @@ $.cf = {
 		
 			dCurrentDate = $.cf._isValid(dCurrentDate) ? dCurrentDate : oDTP.oData.dCurrentDate;
 			bIs12Hour = bIs12Hour || oDTP.oData.bIs12Hour;
-
+		
 			var oDTV = oDTP._setVariablesForDate(dCurrentDate, true, true);
 		
 			var sOutput = "",
@@ -996,12 +996,13 @@ $.cf = {
 					sMax = sMaxValue || oDTP.settings.maxTime;
 				
 					oDTP.oData.sTimeFormat = sFormat;
+					oDTP.oData.bIs12Hour = oDTP.getIs12Hour();
 				
 					if($.cf._isValid(sMin))
 						oDTP.oData.dMinValue = oDTP._parseTime(sMin);
 					if($.cf._isValid(sMax))
 						oDTP.oData.dMaxValue = oDTP._parseTime(sMax);
-				
+
 					if(sStartEnd !== "" && ($.cf._compare(sStartEnd, "start") || $.cf._compare(sStartEnd, "end")) && sStartEndElem !== "")
 					{
 						if($(sStartEndElem).length >= 1)
@@ -1040,7 +1041,6 @@ $.cf = {
 						}
 					}
 				
-					oDTP.oData.bIs12Hour = oDTP.getIs12Hour();
 					if(oDTP.settings.parseDateTimeString)
 						oDTP.oData.dCurrentDate = oDTP.settings.parseDateTimeString.call(oDTP, sCurrent, sMode, $(oElement));
 					else
@@ -1052,6 +1052,7 @@ $.cf = {
 					sMax = sMaxValue || oDTP.settings.maxDateTime;
 				
 					oDTP.oData.sDateTimeFormat = sFormat;
+					oDTP.oData.bIs12Hour = oDTP.getIs12Hour();
 				
 					if($.cf._isValid(sMin))
 						oDTP.oData.dMinValue = oDTP._parseDateTime(sMin);
@@ -1094,7 +1095,6 @@ $.cf = {
 						}
 					}
 				
-					oDTP.oData.bIs12Hour = oDTP.getIs12Hour();
 					if(oDTP.settings.parseDateTimeString)
 						oDTP.oData.dCurrentDate = oDTP.settings.parseDateTimeString.call(oDTP, sCurrent, sMode, $(oElement));
 					else
@@ -1435,6 +1435,7 @@ $.cf = {
 			$('.dtpicker-compValue').focus(function()
 			{
 				oDTP.oData.bElemFocused = true;
+				$(this).select();
 			});
 		
 			$('.dtpicker-compValue').blur(function()
@@ -1453,7 +1454,7 @@ $.cf = {
 				}, 50);			
 			});
 		
-			$(".dtpicker-compValue").keyup(function()
+			$(".dtpicker-compValue").keyup(function(e)
 			{
 				var $oTextField = $(this),
 			
@@ -1485,6 +1486,9 @@ $.cf = {
 						$oTextField.val(sNewTextBoxVal);
 					}
 				}
+				
+				if(parseInt(e.keyCode ? e.keyCode : e.which) === 9)
+					$(this).select();
 			});
 
 			//-----------------------------------------------------------------------
@@ -2134,7 +2138,7 @@ $.cf = {
 		
 			oDTP.oData.dCurrentDate = new Date(dTempDate);
 			oDTP._setVariablesForDate();
-
+		
 			oDate = {}; sDate = ""; sTime = ""; sDateTime = "";
 
 			if(oDTP.oData.bDateMode || oDTP.oData.bDateTimeMode)
@@ -2182,7 +2186,7 @@ $.cf = {
 			if(oDTP.oData.bTimeMode || oDTP.oData.bDateTimeMode)
 			{
 				oFormattedTime = oDTP._formatTime();
-
+			
 				if(oDTP.oData.bIs12Hour)
 					$(oDTP.element).find('.meridiem .dtpicker-compValue').val(oDTP.oData.sCurrentMeridiem);
 				$(oDTP.element).find('.hour .dtpicker-compValue').val(oFormattedTime.hour);
@@ -2310,7 +2314,7 @@ $.cf = {
 			iHour12 = oDTV.iCurrentHour;
 			if(iHour12 > 12)
 				iHour12 -= 12;
-			if(sHour === 0)
+			if(sHour === "00")
 				iHour12 = 12;
 			sHour12 = (iHour12 < 10) ? ("0" + iHour12) : iHour12;
 			if(oDTP.oData.bIs12Hour)
@@ -2566,12 +2570,12 @@ $.cf = {
 		{
 			var oDTP = this;
 
-			oDTP.settings = $.extend({}, $.DateTimePicker.defaults, oDTP.options, $.DateTimePicker.i18n[sLanguage]);
+			oDTP.settings = $.extend({}, $.DateTimePicker.defaults, $.DateTimePicker.i18n[sLanguage], oDTP.options);
 		
 			oDTP._setDateFormatArray(); // Set DateFormatArray
 			oDTP._setTimeFormatArray(); // Set TimeFormatArray
 			oDTP._setDateTimeFormatArray(); // Set DateTimeFormatArray
-
+		
 			return oDTP;
 		}
 
