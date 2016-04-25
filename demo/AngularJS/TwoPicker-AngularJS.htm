@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Date Picker with AngularJS</title>
+
+		<link rel="stylesheet" type="text/css" href="../../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="../jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="angular-1.4.2.min.js"></script>
+
+		<script type="text/javascript" src="../../src/DateTimePicker.js"></script>
+		
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+		
+		<style type="text/css">
+		
+			p
+			{
+				margin-left: 20px;
+			}
+		
+			input
+			{
+				width: 200px;
+				padding: 10px;
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+		
+		</style>
+
+		<script type="text/javascript">
+
+			var dQuestionDate, dReviewDate;
+
+			angular.module("App-DTP", []).controller("Ctrl-DTP", function($scope) 
+			{
+				$scope.question = {};
+			    $scope.question.date = new Date(2016, 2, 1, 0, 0, 0, 0);
+			    $scope.question.datestr = "01-Mar-2016";
+			    $scope.question.setValue = function()
+				{
+					console.log("Before question.setValue : " + $scope.question.date + " " + $scope.question.datestr);
+				    $scope.question.date = new Date(dQuestionDate);
+				    console.log("After question.setValue : " + $scope.question.date + " " + $scope.question.datestr);
+				};
+
+				$scope.reviews = {};
+			    $scope.reviews.date = new Date(2016, 2, 15, 0, 0, 0, 0);
+			    $scope.reviews.datestr = "15-Mar-2016";
+			    $scope.reviews.setValue = function()
+				{
+					console.log("Before review.setValue : " + $scope.reviews.date + " " + $scope.reviews.datestr);
+				    $scope.reviews.date = new Date(dQuestionDate);
+				    console.log("After review.setValue : " + $scope.reviews.date + " " + $scope.reviews.datestr);
+				};
+			});
+		
+			$(document).ready(function()
+			{
+				$('#dtBox-1').DateTimePicker(
+				{
+		           	parentElement: ".questionsDateDiv",
+		          	dateFormat: "dd-MMM-yyyy",
+		          	addEventHandlers: function()
+		            {
+		                var oDTP = this;
+
+		                oDTP.settings.minDate = oDTP.getDateTimeStringInFormat("Date", "dd-MMM-yyyy", new Date());
+		            },
+		            settingValueOfElement: function(sValue, dValue, oInputElement)
+			        {
+		        		dQuestionDate = dValue;
+		        		console.log("settingValueOfElement dQuestionDate : " + dQuestionDate+ " " + sValue);
+			    	}
+		  		});
+
+		  		$('#dtBox-2').DateTimePicker(
+		  		{
+		         	parentElement: ".reviewDateDiv",
+		        	dateFormat: "dd-MMM-yyyy",
+		        	addEventHandlers: function()
+		            {
+		                var oDTP = this;
+
+		                oDTP.settings.maxDate = oDTP.getDateTimeStringInFormat("Date", "dd-MMM-yyyy", new Date());
+		            },
+		            settingValueOfElement: function(sValue, dValue, oInputElement)
+			        {
+		        		dReviewDate = dValue;
+		        		console.log("settingValueOfElement dReviewDate : " + dReviewDate+ " " + sValue);
+			    	}
+		  		});
+			});
+
+		</script>
+		
+	</head>
+
+	<body ng-app="App-DTP" ng-controller="Ctrl-DTP">
+
+		<div class="questionsDateDiv">
+			<p>Question Date : {{ question.datestr }}</p>
+            <input type="text" name="questionDate" id="question_date" data-field="date"  ng-model="question.datestr" placeholder="Pick a suitable date" ng-change="question.setValue()" readonly required />
+     	</div>
+
+     	<div class="reviewDateDiv">
+            <p>Review Date : {{ reviews.datestr }}</p>
+            <input type="text" name="reviewDate" id="review_date" data-field="date" ng-model="reviews.datestr" placeholder="Date Hired (optional)" ng-change="reviews.setValue()" readonly required />
+      	</div>
+	
+		
+     	<div id="dtBox-1"></div>
+     	<div id="dtBox-2"></div>
+		
+	</body>
+
+</html>
