@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.27
+  Version 0.1.28
   Copyright (c)2016 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -999,9 +999,41 @@ $.cf = {
 					oDTP.oData.bIs12Hour = oDTP.getIs12Hour();
 				
 					if($.cf._isValid(sMin))
+					{
 						oDTP.oData.dMinValue = oDTP._parseTime(sMin);
+
+						if(!$.cf._isValid(sMax))
+						{
+							if(oDTP.oData.sTimeFormat === oDTP.oData.sArrInputTimeFormats[0])
+								sMax = "11:59:59 PM";
+							else if(oDTP.oData.sTimeFormat === oDTP.oData.sArrInputTimeFormats[1])
+								sMax = "23:59:59";
+							else if(oDTP.oData.sTimeFormat === oDTP.oData.sArrInputTimeFormats[2])
+								sMax = "11:59 PM";
+							else if(oDTP.oData.sTimeFormat === oDTP.oData.sArrInputTimeFormats[3])
+								sMax = "23:59";
+
+							oDTP.oData.dMaxValue = oDTP._parseTime(sMax);
+						}
+					}
 					if($.cf._isValid(sMax))
+					{
 						oDTP.oData.dMaxValue = oDTP._parseTime(sMax);
+
+						if(!$.cf._isValid(sMin))
+						{
+							if(oDTP.oData.sTimeFormat === oDTP.oData.sArrInputTimeFormats[0])
+								sMin = "12:00:00 AM";
+							else if(oDTP.oData.sTimeFormat === oDTP.oData.sArrInputTimeFormats[1])
+								sMin = "00:00:00";
+							else if(oDTP.oData.sTimeFormat === oDTP.oData.sArrInputTimeFormats[2])
+								sMin = "12:00 AM";
+							else if(oDTP.oData.sTimeFormat === oDTP.oData.sArrInputTimeFormats[3])
+								sMin = "00:00";
+
+							oDTP.oData.dMinValue = oDTP._parseTime(sMin);
+						}
+					}
 
 					if(sStartEnd !== "" && ($.cf._compare(sStartEnd, "start") || $.cf._compare(sStartEnd, "end")) && sStartEndElem !== "")
 					{
@@ -1014,7 +1046,7 @@ $.cf = {
 									dTempDate = oDTP.settings.parseDateTimeString.call(oDTP, sTempTime, sMode, $(sStartEndElem));
 								else
 									dTempTime = oDTP._parseTime(sTempTime);
-							
+
 								if($.cf._compare(sStartEnd, "start"))
 								{
 									dTempTime.setMinutes(dTempTime.getMinutes() - 1);
