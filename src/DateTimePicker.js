@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.28
+  Version 0.1.29
   Copyright (c)2016 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -2603,7 +2603,8 @@ $.cf = {
 			var oDTP = this;
 
 			oDTP.settings = $.extend({}, $.DateTimePicker.defaults, $.DateTimePicker.i18n[sLanguage], oDTP.options);
-		
+			oDTP.settings.language = sLanguage;
+
 			oDTP._setDateFormatArray(); // Set DateFormatArray
 			oDTP._setTimeFormatArray(); // Set TimeFormatArray
 			oDTP._setDateTimeFormatArray(); // Set DateTimeFormatArray

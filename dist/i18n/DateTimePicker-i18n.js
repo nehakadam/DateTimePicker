@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.28
+  Version 0.1.29
   Copyright (c)2016 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -12,6 +12,7 @@
 
 	language: German
 	file: DateTimePicker-i18n-de
+	author: Lu, Feng (https://github.com/solala888)
 
 */
 
@@ -217,6 +218,43 @@
             else if (sMode === "datetime")
                 return oDate.dayShort + ", " + oDate.yyyy + "年" +  oDate.month +"月" + oDate.dd + "日 " + oDate.HH + "時" + oDate.mm + "分";
         }
+    });
+})(jQuery);
+
+
+
+
+/*
+
+  language: Norsk Bokmål
+  file: DateTimePicker-i18n-nb
+  author: Tommy Eliassen (https://github.com/pusle)
+
+ */
+
+(function ($) {
+    $.DateTimePicker.i18n["nb"] = $.extend($.DateTimePicker.i18n["nb"], {
+
+        language: "nb",
+
+        dateTimeFormat: "dd.MM.yyyy HH:mm",
+        dateFormat: "dd.MM.yyyy",
+        timeFormat: "HH:mm",
+
+        dateSeparator: ".",
+
+        shortDayNames: ["Søn", "Man", "Tir", "Ons", "Tor", "Fre", "Lør"],
+        fullDayNames: ["Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag"],
+        shortMonthNames: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Des"],
+        fullMonthNames: ["Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember"],
+
+        titleContentDate: "Sett Dato",
+        titleContentTime: "Sett Klokkeslett",
+        titleContentDateTime: "Sett Dato & Klokkeslett",
+
+        setButtonContent: "Bruk",
+        clearButtonContent: "Nullstill"
+
     });
 })(jQuery);
 
