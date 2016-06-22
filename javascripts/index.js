@@ -10,11 +10,14 @@ $(document).ready(function()
     	{
     		var dtPickerObj = this;
     	
-    		$(window).resize(function()
-    		{
-    			bIsPopup = displayPopup();
-    			dtPickerObj.setIsPopup(bIsPopup);
-    		});
+            if(!bIsPopup)
+            {
+        		$(window).resize(function()
+        		{
+        			bIsPopup = displayPopup();
+        			dtPickerObj.setIsPopup(bIsPopup);
+        		});
+            }
     	}
     });
 });
