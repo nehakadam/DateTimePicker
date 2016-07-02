@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.29
+  Version 0.1.30
   Copyright (c)2016 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -62,6 +62,9 @@ $.DateTimePicker = $.DateTimePicker || {
 		setValueInTextboxOnEveryClick: false,
 	
 		animationDuration: 400,
+
+		touchHoldInterval: 300, // in Milliseconds
+		captureTouchHold: false, // capture Touch Hold Event
 	
 		isPopup: true,
 		parentElement: "body",
@@ -79,7 +82,7 @@ $.DateTimePicker = $.DateTimePicker || {
 		formatHumanDate: null,  // formatHumanDate(oDateTime, sMode, sFormat)
 	
 		parseDateTimeString: null, // parseDateTimeString(sDateTime, sMode, oInputField)
-		formatDateTimeString: null, // formatDateTimeString(oDateTime, sMode, oInputField)
+		formatDateTimeString: null // formatDateTimeString(oDateTime, sMode, oInputField)
 	},
 
 	dataObject: // Temporary Variables For Calculation Specific to DateTimePicker Instance
@@ -116,7 +119,11 @@ $.DateTimePicker = $.DateTimePicker || {
 		iTabIndex: 0,
 		bElemFocused: false,
 	
-		bIs12Hour: false	
+		bIs12Hour: false,
+
+		sTouchButton: null,
+		iTouchStart: null,
+		oTimeInterval: null
 	}
 
 };
@@ -1548,89 +1555,106 @@ $.cf = {
 		
 			// ----------------------------------------------------------------------------
 		
-			$(oDTP.element).find(".day .increment, .day .increment *").click(function(e)
+			if(oDTP.settings.captureTouchHold)
 			{
-				oDTP.oData.iCurrentDay++;
-				oDTP._setCurrentDate();
-				oDTP._setOutputOnIncrementOrDecrement();
-			});
-		
-			$(oDTP.element).find(".day .decrement, .day .decrement *").click(function(e)
-			{
-				oDTP.oData.iCurrentDay--;
-				oDTP._setCurrentDate();
-				oDTP._setOutputOnIncrementOrDecrement();
-			});
-		
-			$(oDTP.element).find(".month .increment, .month .increment *").click(function(e)
-			{
-				oDTP.oData.iCurrentMonth++;
-				oDTP._setCurrentDate();
-				oDTP._setOutputOnIncrementOrDecrement();
-			});
-		
-			$(oDTP.element).find(".month .decrement, .month .decrement *").click(function(e)
-			{
-				oDTP.oData.iCurrentMonth--;
-				oDTP._setCurrentDate();
-				oDTP._setOutputOnIncrementOrDecrement();
-			});
-		
-			$(oDTP.element).find(".year .increment, .year .increment *").click(function(e)
-			{
-				oDTP.oData.iCurrentYear++;
-				oDTP._setCurrentDate();
-				oDTP._setOutputOnIncrementOrDecrement();
-			});
-		
-			$(oDTP.element).find(".year .decrement, .year .decrement *").click(function(e)
-			{
-				oDTP.oData.iCurrentYear--;
-				oDTP._setCurrentDate();
-				oDTP._setOutputOnIncrementOrDecrement();
-			});
-		
-			$(oDTP.element).find(".hour .increment, .hour .increment *").click(function(e)
-			{
-				oDTP.oData.iCurrentHour++;
-				oDTP._setCurrentDate();
-				oDTP._setOutputOnIncrementOrDecrement();
-			});
-		
-			$(oDTP.element).find(".hour .decrement, .hour .decrement *").click(function(e)
-			{
-				oDTP.oData.iCurrentHour--;
-				oDTP._setCurrentDate();
-				oDTP._setOutputOnIncrementOrDecrement();
-			});
-		
-			$(oDTP.element).find(".minutes .increment, .minutes .increment *").click(function(e)
-			{
-				oDTP.oData.iCurrentMinutes += oDTP.settings.minuteInterval;
-				oDTP._setCurrentDate();
-				oDTP._setOutputOnIncrementOrDecrement();
-			});
-		
-			$(oDTP.element).find(".minutes .decrement, .minutes .decrement *").click(function(e)
-			{
-				oDTP.oData.iCurrentMinutes -= oDTP.settings.minuteInterval;
-				oDTP._setCurrentDate();
-				oDTP._setOutputOnIncrementOrDecrement();
-			});
+				$(".dtpicker-cont *").on('touchstart touchmove touchend', function(e)
+				{
+					oDTP._clearIntervalForTouchEvents();
+				});
 
-			$(oDTP.element).find(".seconds .increment, .seconds .increment *").click(function(e)
+				oDTP._bindTouchEvents("day");
+				oDTP._bindTouchEvents("month");
+				oDTP._bindTouchEvents("year");
+				oDTP._bindTouchEvents("hour");
+				oDTP._bindTouchEvents("minutes");
+				oDTP._bindTouchEvents("seconds");
+			}
+			else
 			{
-				oDTP.oData.iCurrentSeconds += oDTP.settings.secondsInterval;
-				oDTP._setCurrentDate();
-				oDTP._setOutputOnIncrementOrDecrement();
-			});
-		
-			$(oDTP.element).find(".seconds .decrement, .seconds .decrement *").click(function(e)
-			{
-				oDTP.oData.iCurrentSeconds -= oDTP.settings.secondsInterval;
-				oDTP._setCurrentDate();
-				oDTP._setOutputOnIncrementOrDecrement();
-			});
+				$(oDTP.element).find(".day .increment, .day .increment *").click(function(e)
+				{
+					oDTP.oData.iCurrentDay++;
+					oDTP._setCurrentDate();
+					oDTP._setOutputOnIncrementOrDecrement();
+				});
+			
+				$(oDTP.element).find(".day .decrement, .day .decrement *").click(function(e)
+				{
+					oDTP.oData.iCurrentDay--;
+					oDTP._setCurrentDate();
+					oDTP._setOutputOnIncrementOrDecrement();
+				});
+			
+				$(oDTP.element).find(".month .increment, .month .increment *").click(function(e)
+				{
+					oDTP.oData.iCurrentMonth++;
+					oDTP._setCurrentDate();
+					oDTP._setOutputOnIncrementOrDecrement();
+				});
+			
+				$(oDTP.element).find(".month .decrement, .month .decrement *").click(function(e)
+				{
+					oDTP.oData.iCurrentMonth--;
+					oDTP._setCurrentDate();
+					oDTP._setOutputOnIncrementOrDecrement();
+				});
+			
+				$(oDTP.element).find(".year .increment, .year .increment *").click(function(e)
+				{
+					oDTP.oData.iCurrentYear++;
+					oDTP._setCurrentDate();
+					oDTP._setOutputOnIncrementOrDecrement();
+				});
+			
+				$(oDTP.element).find(".year .decrement, .year .decrement *").click(function(e)
+				{
+					oDTP.oData.iCurrentYear--;
+					oDTP._setCurrentDate();
+					oDTP._setOutputOnIncrementOrDecrement();
+				});
+			
+				$(oDTP.element).find(".hour .increment, .hour .increment *").click(function(e)
+				{
+					oDTP.oData.iCurrentHour++;
+					oDTP._setCurrentDate();
+					oDTP._setOutputOnIncrementOrDecrement();
+				});
+			
+				$(oDTP.element).find(".hour .decrement, .hour .decrement *").click(function(e)
+				{
+					oDTP.oData.iCurrentHour--;
+					oDTP._setCurrentDate();
+					oDTP._setOutputOnIncrementOrDecrement();
+				});
+			
+				$(oDTP.element).find(".minutes .increment, .minutes .increment *").click(function(e)
+				{
+					oDTP.oData.iCurrentMinutes += oDTP.settings.minuteInterval;
+					oDTP._setCurrentDate();
+					oDTP._setOutputOnIncrementOrDecrement();
+				});
+			
+				$(oDTP.element).find(".minutes .decrement, .minutes .decrement *").click(function(e)
+				{
+					oDTP.oData.iCurrentMinutes -= oDTP.settings.minuteInterval;
+					oDTP._setCurrentDate();
+					oDTP._setOutputOnIncrementOrDecrement();
+				});
+
+				$(oDTP.element).find(".seconds .increment, .seconds .increment *").click(function(e)
+				{
+					oDTP.oData.iCurrentSeconds += oDTP.settings.secondsInterval;
+					oDTP._setCurrentDate();
+					oDTP._setOutputOnIncrementOrDecrement();
+				});
+			
+				$(oDTP.element).find(".seconds .decrement, .seconds .decrement *").click(function(e)
+				{
+					oDTP.oData.iCurrentSeconds -= oDTP.settings.secondsInterval;
+					oDTP._setCurrentDate();
+					oDTP._setOutputOnIncrementOrDecrement();
+				});
+			}
 		
 			$(oDTP.element).find(".meridiem .dtpicker-compButton, .meridiem .dtpicker-compButton *").click(function(e)
 			{
@@ -1643,7 +1667,7 @@ $.cf = {
 				{
 					oDTP.oData.sCurrentMeridiem = "AM";
 					oDTP.oData.iCurrentHour -= 12;
-				}				
+				}
 				oDTP._setCurrentDate();
 				oDTP._setOutputOnIncrementOrDecrement();
 			});
@@ -1702,6 +1726,131 @@ $.cf = {
 			$oElem.change();		
 		
 			return sElemValue;
+		},
+
+		_bindTouchEvents: function(type)
+		{
+			var oDTP = this;
+
+			$(oDTP.element).find("." + type + " .increment, ." + type + " .increment *").on('touchstart', function(e)
+			{
+				e.stopPropagation();
+				if(!$.cf._isValid(oDTP.oData.sTouchButton))
+				{
+					oDTP.oData.iTouchStart = (new Date()).getTime();
+					oDTP.oData.sTouchButton = type + "-inc";
+
+					oDTP._setIntervalForTouchEvents();
+				}
+			});
+
+			$(oDTP.element).find("." + type + " .increment, ." + type + " .increment *").on('touchend', function(e)
+			{
+				e.stopPropagation();
+				oDTP._clearIntervalForTouchEvents();
+			});
+
+			$(oDTP.element).find("." + type + " .decrement, ." + type + " .decrement *").on('touchstart', function(e)
+			{
+				e.stopPropagation();
+				if(!$.cf._isValid(oDTP.oData.sTouchButton))
+				{
+					oDTP.oData.iTouchStart = (new Date()).getTime();
+					oDTP.oData.sTouchButton = type + "-dec";
+
+					oDTP._setIntervalForTouchEvents();
+				}
+			});
+
+			$(oDTP.element).find("." + type + " .decrement, ." + type + " .decrement *").on('touchend', function(e)
+			{
+				e.stopPropagation();
+				oDTP._clearIntervalForTouchEvents();
+			});
+		},
+
+		_setIntervalForTouchEvents: function()
+		{
+			var oDTP = this;
+
+			if(!$.cf._isValid(oDTP.oData.oTimeInterval))
+			{
+				var iDiff;
+
+				oDTP.oData.oTimeInterval = setInterval(function()
+				{
+					iDiff = ((new Date()).getTime() - oDTP.oData.iTouchStart);
+					if(iDiff > oDTP.settings.touchHoldInterval && $.cf._isValid(oDTP.oData.sTouchButton))
+					{
+						if(oDTP.oData.sTouchButton === "day-inc")
+						{
+							oDTP.oData.iCurrentDay++;
+						}
+						else if(oDTP.oData.sTouchButton === "day-dec")
+						{
+							oDTP.oData.iCurrentDay--;
+						}
+						else if(oDTP.oData.sTouchButton === "month-inc")
+						{
+							oDTP.oData.iCurrentMonth++;
+						}
+						else if(oDTP.oData.sTouchButton === "month-dec")
+						{
+							oDTP.oData.iCurrentMonth--;
+						}
+						else if(oDTP.oData.sTouchButton === "year-inc")
+						{
+							oDTP.oData.iCurrentYear++;
+						}
+						else if(oDTP.oData.sTouchButton === "year-dec")
+						{
+							oDTP.oData.iCurrentYear--;
+						}
+						else if(oDTP.oData.sTouchButton === "hour-inc")
+						{
+							oDTP.oData.iCurrentHour++;
+						}
+						else if(oDTP.oData.sTouchButton === "hour-dec")
+						{
+							oDTP.oData.iCurrentHour--;
+						}
+						else if(oDTP.oData.sTouchButton === "minute-inc")
+						{
+							oDTP.oData.iCurrentMinutes += oDTP.settings.minuteInterval;
+						}
+						else if(oDTP.oData.sTouchButton === "minute-dec")
+						{
+							oDTP.oData.iCurrentMinutes -= oDTP.settings.minuteInterval;
+						}
+						else if(oDTP.oData.sTouchButton === "second-inc")
+						{
+							oDTP.oData.iCurrentSeconds += oDTP.settings.secondsInterval;
+						}
+						else if(oDTP.oData.sTouchButton === "second-dec")
+						{
+							oDTP.oData.iCurrentSeconds -= oDTP.settings.secondsInterval;
+						}
+
+						oDTP._setCurrentDate();
+						oDTP._setOutputOnIncrementOrDecrement();
+
+						oDTP.oData.iTouchStart = (new Date()).getTime();
+					}
+				}, oDTP.settings.touchHoldInterval);
+			}
+		},
+
+		_clearIntervalForTouchEvents: function()
+		{
+			var oDTP = this;
+
+			clearInterval(oDTP.oData.oTimeInterval);
+			if($.cf._isValid(oDTP.oData.sTouchButton))
+			{
+				oDTP.oData.sTouchButton = null;
+				oDTP.oData.iTouchStart = 0;
+			}
+			oDTP.oData.oTimeInterval = null;
 		},
 	
 		//-----------------------------------------------------------------
