@@ -8,6 +8,21 @@
 
  ----------------------------------------------------------------------------- */
 
+/* Support Object.keys in IE8- */
+if (!Object.keys) {
+	Object.keys = function(obj) {
+		var keys = [];
+
+		for (var i in obj) {
+			if (obj.hasOwnProperty(i)) {
+				keys.push(i);
+			}
+		}
+		
+		return keys;
+	};
+}
+
 $.DateTimePicker = $.DateTimePicker || {
 
 	name: "DateTimePicker",
@@ -2764,4 +2779,3 @@ $.cf = {
 	};
 	
 }));
-
