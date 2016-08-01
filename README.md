@@ -18,7 +18,7 @@ For web, picker can be binded relative to reference element, were it will appear
 
 
 ##Browser Support
-- Chrome, Firefox, Safari, Opera, IE 9+
+- Chrome, Firefox, Safari, Opera, IE 6+
 - Android 2.3+, iOS 6+, Windows Phone 8
 
 
