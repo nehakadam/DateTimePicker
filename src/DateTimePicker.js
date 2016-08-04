@@ -214,7 +214,7 @@ $.cf = {
 		var oDTP = $(this).data(),
 		sArrDataKeys = oDTP ? Object.keys(oDTP) : [],
 		iKey, sKey;
-		
+
 		if(typeof options === "string")
 		{			
 			if($.cf._isValid(oDTP))
@@ -228,9 +228,7 @@ $.cf = {
 							sKey = sArrDataKeys[iKey];
 							if(sKey.search("plugin_DateTimePicker") !== -1)
 							{
-								$(document).unbind("click.DateTimePicker");
-								$(document).unbind("keydown.DateTimePicker");
-								$(document).unbind("keyup.DateTimePicker");
+								$(document).unbind("click.DateTimePicker keydown.DateTimePicker keyup.DateTimePicker");
 							
 								$(this).children().remove();
 								$(this).removeData();
@@ -566,11 +564,11 @@ $.cf = {
 				});	
 	        
 				var sel = "[data-field='date'], [data-field='time'], [data-field='datetime']";
-				$(oDTP.settings.parentElement).off("focus", sel, oDTP._inputFieldFocus);
-				$(oDTP.settings.parentElement).on ("focus", sel, {"obj": oDTP}, oDTP._inputFieldFocus);
-			
-				$(oDTP.settings.parentElement).off("click", sel, oDTP._inputFieldClick);
-				$(oDTP.settings.parentElement).on ("click", sel, {"obj": oDTP}, oDTP._inputFieldClick);
+				$(oDTP.settings.parentElement).off("focus", sel, oDTP._inputFieldFocus)
+											  .on ("focus", sel, {"obj": oDTP}, oDTP._inputFieldFocus)
+											  
+				$(oDTP.settings.parentElement).off("click", sel, oDTP._inputFieldClick)
+											  .on ("click", sel, {"obj": oDTP}, oDTP._inputFieldClick);
 			}
 
 			if(oDTP.settings.addEventHandlers)
@@ -1228,9 +1226,7 @@ $.cf = {
 				}, iDuration);
 			}
 
-			$(document).unbind("click.DateTimePicker");
-			$(document).unbind("keydown.DateTimePicker");
-			$(document).unbind("keyup.DateTimePicker");
+			$(document).unbind("click.DateTimePicker keydown.DateTimePicker keyup.DateTimePicker");
 
 			if(oDTP.settings.afterHide)
 			{
@@ -1977,53 +1973,35 @@ $.cf = {
 		{
 			var oDTP = this;
 
-			if(type.includes("day") && action === "inc")
+			if(type.includes("day"))
 			{
-				oDTP.oData.iCurrentDay++;
+				if (action === "inc") oDTP.oData.iCurrentDay++;
+				else if (action === "dec") oDTP.oData.iCurrentDay--;
 			}
-			else if(type.includes("day") && action === "dec")
+			else if(type.includes("month"))
 			{
-				oDTP.oData.iCurrentDay--;
+				if (action === "inc") oDTP.oData.iCurrentMonth++;
+				else if (action === "dec") oDTP.oData.iCurrentMonth--;
 			}
-			else if(type.includes("month") && action === "inc")
+			else if(type.includes("year"))
 			{
-				oDTP.oData.iCurrentMonth++;
+				if (action === "inc") oDTP.oData.iCurrentYear++;
+				else if (action === "dec") oDTP.oData.iCurrentYear--;
 			}
-			else if(type.includes("month") && action === "dec")
+			else if(type.includes("hour"))
 			{
-				oDTP.oData.iCurrentMonth--;
+				if (action === "inc") oDTP.oData.iCurrentHour++;
+				else if (action === "dec") oDTP.oData.iCurrentHour--;
 			}
-			else if(type.includes("year") && action === "inc")
+			else if(type.includes("minutes"))
 			{
-				oDTP.oData.iCurrentYear++;
+				if (action === "inc") oDTP.oData.iCurrentMinutes += oDTP.settings.minuteInterval;
+				else if (action === "dec") oDTP.oData.iCurrentMinutes -= oDTP.settings.minuteInterval;
 			}
-			else if(type.includes("year") && action === "dec")
+			else if(type.includes("seconds"))
 			{
-				oDTP.oData.iCurrentYear--;
-			}
-			else if(type.includes("hour") && action === "inc")
-			{
-				oDTP.oData.iCurrentHour++;
-			}
-			else if(type.includes("hour") && action === "dec")
-			{
-				oDTP.oData.iCurrentHour--;
-			}
-			else if(type.includes("minutes") && action === "inc")
-			{
-				oDTP.oData.iCurrentMinutes += oDTP.settings.minuteInterval;
-			}
-			else if(type.includes("minutes") && action === "dec")
-			{
-				oDTP.oData.iCurrentMinutes -= oDTP.settings.minuteInterval;
-			}
-			else if(type.includes("seconds") && action === "inc")
-			{
-				oDTP.oData.iCurrentSeconds += oDTP.settings.secondsInterval;
-			}
-			else if(type.includes("seconds") && action === "dec")
-			{
-				oDTP.oData.iCurrentSeconds -= oDTP.settings.secondsInterval;
+				if (action === "inc") oDTP.oData.iCurrentSeconds += oDTP.settings.secondsInterval;
+				else if (action === "dec") oDTP.oData.iCurrentSeconds -= oDTP.settings.secondsInterval;
 			}
 
 			oDTP._setCurrentDate();
@@ -2878,7 +2856,6 @@ $.cf = {
 		_compareDates: function(dDate1, dDate2)
 		{
 			dDate1 = new Date(dDate1.getDate(), dDate1.getMonth(), dDate1.getFullYear(), 0, 0, 0, 0);
-			dDate1 = new Date(dDate1.getDate(), dDate1.getMonth(), dDate1.getFullYear(), 0, 0, 0, 0);
 			var iDateDiff = (dDate1.getTime() - dDate2.getTime()) / 864E5;
 			return (iDateDiff === 0) ? iDateDiff: (iDateDiff/Math.abs(iDateDiff));
 		},
@@ -2913,14 +2890,10 @@ $.cf = {
 
 		_determineMeridiemFromHourAndMinutes: function(iHour, iMinutes)
 		{
-			if(iHour > 12) 
+			if(iHour > 12 || (iHour === 12 && iMinutes >= 0)) 
 			{
 				return "PM";
-			} 
-			else if(iHour === 12 && iMinutes >= 0) 
-			{
-				return "PM";
-			} 
+			}
 			else 
 			{
 				return "AM";
