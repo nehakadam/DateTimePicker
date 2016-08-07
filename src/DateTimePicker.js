@@ -1673,7 +1673,7 @@ $.cf = {
 		
 			if(oDTP.settings.captureTouchHold)
 			{
-				$(".dtpicker-cont *").on("touchstart touchmove touchend", function(e)
+				$(".dtpicker-cont *").on("touchstart touchmove touchend mousedown mouseup", function(e)
 				{
 					oDTP._clearIntervalForTouchEvents();
 				});
@@ -1848,7 +1848,7 @@ $.cf = {
 		{
 			var oDTP = this;
 
-			$(oDTP.element).find("." + type + " .increment, ." + type + " .increment *").on("touchstart", function(e)
+			$(oDTP.element).find("." + type + " .increment, ." + type + " .increment *").on("touchstart mousedown", function(e)
 			{
 				e.stopPropagation();
 				if(!$.cf._isValid(oDTP.oData.sTouchButton))
@@ -1860,13 +1860,13 @@ $.cf = {
 				}
 			});
 
-			$(oDTP.element).find("." + type + " .increment, ." + type + " .increment *").on("touchend", function(e)
+			$(oDTP.element).find("." + type + " .increment, ." + type + " .increment *").on("touchend mouseup", function(e)
 			{
 				e.stopPropagation();
 				oDTP._clearIntervalForTouchEvents();
 			});
 
-			$(oDTP.element).find("." + type + " .decrement, ." + type + " .decrement *").on("touchstart", function(e)
+			$(oDTP.element).find("." + type + " .decrement, ." + type + " .decrement *").on("touchstart mousedown", function(e)
 			{
 				e.stopPropagation();
 				if(!$.cf._isValid(oDTP.oData.sTouchButton))
@@ -1878,7 +1878,7 @@ $.cf = {
 				}
 			});
 
-			$(oDTP.element).find("." + type + " .decrement, ." + type + " .decrement *").on("touchend", function(e)
+			$(oDTP.element).find("." + type + " .decrement, ." + type + " .decrement *").on("touchend mouseup", function(e)
 			{
 				e.stopPropagation();
 				oDTP._clearIntervalForTouchEvents();
