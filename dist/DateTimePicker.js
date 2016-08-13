@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.31
+  Version 0.1.32
   Copyright (c)2016 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -82,6 +82,9 @@ $.DateTimePicker = $.DateTimePicker || {
 
 		touchHoldInterval: 300, // in Milliseconds
 		captureTouchHold: false, // capture Touch Hold Event
+
+		mouseHoldInterval: 50, // in Milliseconds
+		captureMouseHold: false, // capture Mouse Hold Event
 	
 		isPopup: true,
 		parentElement: "body",
@@ -143,7 +146,8 @@ $.DateTimePicker = $.DateTimePicker || {
 
 		sTouchButton: null,
 		iTouchStart: null,
-		oTimeInterval: null
+		oTimeInterval: null,
+		bIsTouchDevice: "ontouchstart" in document.documentElement
 	}
 
 };
@@ -214,7 +218,7 @@ $.cf = {
 		var oDTP = $(this).data(),
 		sArrDataKeys = oDTP ? Object.keys(oDTP) : [],
 		iKey, sKey;
-		
+
 		if(typeof options === "string")
 		{			
 			if($.cf._isValid(oDTP))
@@ -228,9 +232,7 @@ $.cf = {
 							sKey = sArrDataKeys[iKey];
 							if(sKey.search("plugin_DateTimePicker") !== -1)
 							{
-								$(document).unbind("click.DateTimePicker");
-								$(document).unbind("keydown.DateTimePicker");
-								$(document).unbind("keyup.DateTimePicker");
+								$(document).unbind("click.DateTimePicker keydown.DateTimePicker keyup.DateTimePicker");
 							
 								$(this).children().remove();
 								$(this).removeData();
@@ -566,11 +568,11 @@ $.cf = {
 				});	
 	        
 				var sel = "[data-field='date'], [data-field='time'], [data-field='datetime']";
-				$(oDTP.settings.parentElement).off("focus", sel, oDTP._inputFieldFocus);
-				$(oDTP.settings.parentElement).on ("focus", sel, {"obj": oDTP}, oDTP._inputFieldFocus);
-			
-				$(oDTP.settings.parentElement).off("click", sel, oDTP._inputFieldClick);
-				$(oDTP.settings.parentElement).on ("click", sel, {"obj": oDTP}, oDTP._inputFieldClick);
+				$(oDTP.settings.parentElement).off("focus", sel, oDTP._inputFieldFocus)
+											  .on ("focus", sel, {"obj": oDTP}, oDTP._inputFieldFocus)
+											  
+				$(oDTP.settings.parentElement).off("click", sel, oDTP._inputFieldClick)
+											  .on ("click", sel, {"obj": oDTP}, oDTP._inputFieldClick);
 			}
 
 			if(oDTP.settings.addEventHandlers)
@@ -1228,9 +1230,7 @@ $.cf = {
 				}, iDuration);
 			}
 
-			$(document).unbind("click.DateTimePicker");
-			$(document).unbind("keydown.DateTimePicker");
-			$(document).unbind("keyup.DateTimePicker");
+			$(document).unbind("click.DateTimePicker keydown.DateTimePicker keyup.DateTimePicker");
 
 			if(oDTP.settings.afterHide)
 			{
@@ -1675,9 +1675,16 @@ $.cf = {
 		
 			// ----------------------------------------------------------------------------
 		
-			if(oDTP.settings.captureTouchHold)
+			//console.log((oDTP.settings.captureTouchHold || oDTP.settings.captureMouseHold));
+			if(oDTP.settings.captureTouchHold || oDTP.settings.captureMouseHold)
 			{
-				$(".dtpicker-cont *").on("touchstart touchmove touchend", function(e)
+				var sHoldEvents = "";
+				if(oDTP.settings.captureTouchHold && oDTP.oData.bIsTouchDevice)
+					sHoldEvents += "touchstart touchmove touchend ";
+				if(oDTP.settings.captureMouseHold)
+					sHoldEvents += "mousedown mouseup";
+ 
+				$(".dtpicker-cont *").on(sHoldEvents, function(e)
 				{
 					oDTP._clearIntervalForTouchEvents();
 				});
@@ -1852,7 +1859,7 @@ $.cf = {
 		{
 			var oDTP = this;
 
-			$(oDTP.element).find("." + type + " .increment, ." + type + " .increment *").on("touchstart", function(e)
+			$(oDTP.element).find("." + type + " .increment, ." + type + " .increment *").on("touchstart mousedown", function(e)
 			{
 				e.stopPropagation();
 				if(!$.cf._isValid(oDTP.oData.sTouchButton))
@@ -1864,13 +1871,13 @@ $.cf = {
 				}
 			});
 
-			$(oDTP.element).find("." + type + " .increment, ." + type + " .increment *").on("touchend", function(e)
+			$(oDTP.element).find("." + type + " .increment, ." + type + " .increment *").on("touchend mouseup", function(e)
 			{
 				e.stopPropagation();
 				oDTP._clearIntervalForTouchEvents();
 			});
 
-			$(oDTP.element).find("." + type + " .decrement, ." + type + " .decrement *").on("touchstart", function(e)
+			$(oDTP.element).find("." + type + " .decrement, ." + type + " .decrement *").on("touchstart mousedown", function(e)
 			{
 				e.stopPropagation();
 				if(!$.cf._isValid(oDTP.oData.sTouchButton))
@@ -1882,7 +1889,7 @@ $.cf = {
 				}
 			});
 
-			$(oDTP.element).find("." + type + " .decrement, ." + type + " .decrement *").on("touchend", function(e)
+			$(oDTP.element).find("." + type + " .decrement, ." + type + " .decrement *").on("touchend mouseup", function(e)
 			{
 				e.stopPropagation();
 				oDTP._clearIntervalForTouchEvents();
@@ -1893,6 +1900,7 @@ $.cf = {
 		{
 			var oDTP = this;
 
+			var iInterval = oDTP.oData.bIsTouchDevice ? oDTP.settings.touchHoldInterval : oDTP.settings.mouseHoldInterval;
 			if(!$.cf._isValid(oDTP.oData.oTimeInterval))
 			{
 				var iDiff;
@@ -1900,7 +1908,7 @@ $.cf = {
 				oDTP.oData.oTimeInterval = setInterval(function()
 				{
 					iDiff = ((new Date()).getTime() - oDTP.oData.iTouchStart);
-					if(iDiff > oDTP.settings.touchHoldInterval && $.cf._isValid(oDTP.oData.sTouchButton))
+					if(iDiff > iInterval && $.cf._isValid(oDTP.oData.sTouchButton))
 					{
 						if(oDTP.oData.sTouchButton === "day-inc")
 						{
@@ -1956,7 +1964,7 @@ $.cf = {
 
 						oDTP.oData.iTouchStart = (new Date()).getTime();
 					}
-				}, oDTP.settings.touchHoldInterval);
+				}, iInterval);
 			}
 		},
 
@@ -1977,53 +1985,35 @@ $.cf = {
 		{
 			var oDTP = this;
 
-			if(type.includes("day") && action === "inc")
+			if(type.includes("day"))
 			{
-				oDTP.oData.iCurrentDay++;
+				if (action === "inc") oDTP.oData.iCurrentDay++;
+				else if (action === "dec") oDTP.oData.iCurrentDay--;
 			}
-			else if(type.includes("day") && action === "dec")
+			else if(type.includes("month"))
 			{
-				oDTP.oData.iCurrentDay--;
+				if (action === "inc") oDTP.oData.iCurrentMonth++;
+				else if (action === "dec") oDTP.oData.iCurrentMonth--;
 			}
-			else if(type.includes("month") && action === "inc")
+			else if(type.includes("year"))
 			{
-				oDTP.oData.iCurrentMonth++;
+				if (action === "inc") oDTP.oData.iCurrentYear++;
+				else if (action === "dec") oDTP.oData.iCurrentYear--;
 			}
-			else if(type.includes("month") && action === "dec")
+			else if(type.includes("hour"))
 			{
-				oDTP.oData.iCurrentMonth--;
+				if (action === "inc") oDTP.oData.iCurrentHour++;
+				else if (action === "dec") oDTP.oData.iCurrentHour--;
 			}
-			else if(type.includes("year") && action === "inc")
+			else if(type.includes("minutes"))
 			{
-				oDTP.oData.iCurrentYear++;
+				if (action === "inc") oDTP.oData.iCurrentMinutes += oDTP.settings.minuteInterval;
+				else if (action === "dec") oDTP.oData.iCurrentMinutes -= oDTP.settings.minuteInterval;
 			}
-			else if(type.includes("year") && action === "dec")
+			else if(type.includes("seconds"))
 			{
-				oDTP.oData.iCurrentYear--;
-			}
-			else if(type.includes("hour") && action === "inc")
-			{
-				oDTP.oData.iCurrentHour++;
-			}
-			else if(type.includes("hour") && action === "dec")
-			{
-				oDTP.oData.iCurrentHour--;
-			}
-			else if(type.includes("minutes") && action === "inc")
-			{
-				oDTP.oData.iCurrentMinutes += oDTP.settings.minuteInterval;
-			}
-			else if(type.includes("minutes") && action === "dec")
-			{
-				oDTP.oData.iCurrentMinutes -= oDTP.settings.minuteInterval;
-			}
-			else if(type.includes("seconds") && action === "inc")
-			{
-				oDTP.oData.iCurrentSeconds += oDTP.settings.secondsInterval;
-			}
-			else if(type.includes("seconds") && action === "dec")
-			{
-				oDTP.oData.iCurrentSeconds -= oDTP.settings.secondsInterval;
+				if (action === "inc") oDTP.oData.iCurrentSeconds += oDTP.settings.secondsInterval;
+				else if (action === "dec") oDTP.oData.iCurrentSeconds -= oDTP.settings.secondsInterval;
 			}
 
 			oDTP._setCurrentDate();
@@ -2878,7 +2868,6 @@ $.cf = {
 		_compareDates: function(dDate1, dDate2)
 		{
 			dDate1 = new Date(dDate1.getDate(), dDate1.getMonth(), dDate1.getFullYear(), 0, 0, 0, 0);
-			dDate1 = new Date(dDate1.getDate(), dDate1.getMonth(), dDate1.getFullYear(), 0, 0, 0, 0);
 			var iDateDiff = (dDate1.getTime() - dDate2.getTime()) / 864E5;
 			return (iDateDiff === 0) ? iDateDiff: (iDateDiff/Math.abs(iDateDiff));
 		},
@@ -2913,14 +2902,10 @@ $.cf = {
 
 		_determineMeridiemFromHourAndMinutes: function(iHour, iMinutes)
 		{
-			if(iHour > 12) 
+			if(iHour > 12 || (iHour === 12 && iMinutes >= 0)) 
 			{
 				return "PM";
-			} 
-			else if(iHour === 12 && iMinutes >= 0) 
-			{
-				return "PM";
-			} 
+			}
 			else 
 			{
 				return "AM";
