@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>DateTime Picker</title>
+	
+		<link rel="stylesheet" type="text/css" href="jquery-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="jquery-ui.theme.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="../jquery-1.11.0.min.js"></script>
+
+		<script type="text/javascript" src="jquery-ui.min.js"></script>
+
+		<script type="text/javascript" src="../../src/DateTimePicker.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+		
+		<style type="text/css">
+		
+			p
+			{
+				margin-left: 20px;
+			}
+		
+			input
+			{
+				width: 200px;
+				padding: 10px;
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+		
+		</style>
+	
+	</head>
+
+	<body>
+
+		<div id="tabs">
+			
+			<ul>
+				<li><a href="#datepicker-tab">Date Picker</a></li>
+				<li><a href="#timepicker-tab">Time Picker</a></li>
+				<li><a href="#datetimepicker-tab">DateTime Picker</a></li>
+			</ul>
+
+
+			<div id="datepicker-tab">
+
+				<p>Date : </p>
+				<input type="text" data-field="date" readonly>
+
+			</div>
+
+			<div id="timepicker-tab">
+
+				<p>Time : </p>
+				<input type="text" data-field="time" readonly>
+
+			</div>
+
+			<div id="datetimepicker-tab">
+
+				<p>DateTime : </p>
+				<input type="text" data-field="datetime" readonly>
+
+			</div>
+
+		</div>
+
+
+		<div id="dtBox"></div>
+
+	
+		<script type="text/javascript">
+
+			var objDateTimePicker;
+
+			$(document).ready(function()
+			{
+				$("#tabs").tabs();
+
+				$("#dtBox").DateTimePicker({
+
+					isPopup: false,
+
+					init: function()
+					{
+						objDateTimePicker = this;
+					}
+
+				});
+
+				console.log("DateTimePicker : ");
+				console.log(objDateTimePicker);
+			});
+
+		</script>
+	
+	</body>
+
+</html>
