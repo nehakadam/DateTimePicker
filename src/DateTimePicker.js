@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.31
+  Version 0.1.32
   Copyright (c)2016 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -82,6 +82,9 @@ $.DateTimePicker = $.DateTimePicker || {
 
 		touchHoldInterval: 300, // in Milliseconds
 		captureTouchHold: false, // capture Touch Hold Event
+
+		mouseHoldInterval: 50, // in Milliseconds
+		captureMouseHold: false, // capture Mouse Hold Event
 	
 		isPopup: true,
 		parentElement: "body",
@@ -143,7 +146,8 @@ $.DateTimePicker = $.DateTimePicker || {
 
 		sTouchButton: null,
 		iTouchStart: null,
-		oTimeInterval: null
+		oTimeInterval: null,
+		bIsTouchDevice: "ontouchstart" in document.documentElement
 	}
 
 };
@@ -1671,9 +1675,16 @@ $.cf = {
 		
 			// ----------------------------------------------------------------------------
 		
-			if(oDTP.settings.captureTouchHold)
+			//console.log((oDTP.settings.captureTouchHold || oDTP.settings.captureMouseHold));
+			if(oDTP.settings.captureTouchHold || oDTP.settings.captureMouseHold)
 			{
-				$(".dtpicker-cont *").on("touchstart touchmove touchend mousedown mouseup", function(e)
+				var sHoldEvents = "";
+				if(oDTP.settings.captureTouchHold && oDTP.oData.bIsTouchDevice)
+					sHoldEvents += "touchstart touchmove touchend ";
+				if(oDTP.settings.captureMouseHold)
+					sHoldEvents += "mousedown mouseup";
+ 
+				$(".dtpicker-cont *").on(sHoldEvents, function(e)
 				{
 					oDTP._clearIntervalForTouchEvents();
 				});
@@ -1889,6 +1900,7 @@ $.cf = {
 		{
 			var oDTP = this;
 
+			var iInterval = oDTP.oData.bIsTouchDevice ? oDTP.settings.touchHoldInterval : oDTP.settings.mouseHoldInterval;
 			if(!$.cf._isValid(oDTP.oData.oTimeInterval))
 			{
 				var iDiff;
@@ -1896,7 +1908,7 @@ $.cf = {
 				oDTP.oData.oTimeInterval = setInterval(function()
 				{
 					iDiff = ((new Date()).getTime() - oDTP.oData.iTouchStart);
-					if(iDiff > oDTP.settings.touchHoldInterval && $.cf._isValid(oDTP.oData.sTouchButton))
+					if(iDiff > iInterval && $.cf._isValid(oDTP.oData.sTouchButton))
 					{
 						if(oDTP.oData.sTouchButton === "day-inc")
 						{
@@ -1952,7 +1964,7 @@ $.cf = {
 
 						oDTP.oData.iTouchStart = (new Date()).getTime();
 					}
-				}, oDTP.settings.touchHoldInterval);
+				}, iInterval);
 			}
 		},
 
