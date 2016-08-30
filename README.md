@@ -65,13 +65,12 @@ Files - Particular Version
 ```
 
 ##Authors
-[Neha Kadam](https://github.com/nehakadam): Principle Developer
+[Neha Kadam](https://github.com/nehakadam): Developer
 
 Special thanks:
-- Shweta Matkar for her contributions <br/>
 - Jean-Christophe Hoelt - NPM packaging. Few customization options.
 
-Copyright 2015 [Curious Solutions LLP](https://github.com/CuriousSolutions)
+Copyright 2016 [Curious Solutions LLP](https://github.com/CuriousSolutions)
 
 
 
