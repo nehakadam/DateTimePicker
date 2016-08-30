@@ -1,9 +1,3 @@
-##NEW AnyPicker
-Check our newly released picker library for Mobile OS - [AnyPicker](https://curioussolutions.in/libraries/anypicker/ "AnyPicker
-Details")
-![](http://curioussolutions.in/libraries/anypicker/content/images/github-datepicker.png)
-
-
 **Responsive jQuery DateTime Picker library for Web & Mobile**
 <br /><br />
 ![](https://raw.github.com/CuriousSolutions/DateTimePicker/gh-pages/images/dp-screenshot.png)
