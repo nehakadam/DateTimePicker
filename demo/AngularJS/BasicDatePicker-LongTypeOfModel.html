@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>long type of model in AngularJS</title>
+
+		<link rel="stylesheet" type="text/css" href="../../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="../jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="angular-1.4.2.min.js"></script>
+
+		<script type="text/javascript" src="../../src/DateTimePicker.js"></script>
+		
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+		
+		<style type="text/css">
+		
+			p
+			{
+				margin-left: 20px;
+			}
+		
+			input
+			{
+				width: 200px;
+				padding: 10px;
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+		
+		</style>
+
+		<script type="text/javascript">
+
+			var dDate1;
+
+			angular.module("App-DTP", []).controller("Ctrl-DTP", function($scope) 
+			{
+			    $scope.datestring = "3600000";
+			})
+			.directive('dateFormat', ['$filter',function($filter) {  
+			    var dateFilter = $filter('date');  
+			    return {  
+			        require: 'ngModel',  
+			        link: function(scope, elm, attrs, ctrl) {  
+			            function formatter(value) {  
+			                return dateFilter(value, 'HH:mm'); //format  
+			            }  
+			            ctrl.$formatters.push(formatter);   
+			        }
+			    };  
+			}]);  
+
+
+		
+			$(document).ready(function()
+			{
+				$("#dtBox").DateTimePicker(
+				{
+			    	
+			    });
+			});
+
+		</script>
+		
+	</head>
+
+	<body ng-app="App-DTP" ng-controller="Ctrl-DTP">
+		
+		<p>Time : </p>
+		<input type="text" date-format data-field="time" ng-model="datestring"  >
+
+		<div>Time : {{ datestring }}</div>
+	
+		<div id="dtBox"></div>
+		
+	</body>
+
+</html>
