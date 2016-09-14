@@ -56,7 +56,10 @@ module.exports = function(grunt)
 		{
 			options: 
 			{
-				banner: sBanner
+				banner: sBanner,
+				compress: {
+			    	drop_console: true
+			    }
 			},
 			build: 
 			{

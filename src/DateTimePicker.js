@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.32
+  Version 0.1.33
   Copyright (c)2016 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -1548,7 +1548,7 @@ $.cf = {
 				$(document).on("keydown.DateTimePicker", function(e)
 				{
 					keyCode = parseInt(e.keyCode ? e.keyCode : e.which);
-					console.log("keydown " + keyCode);
+					// console.log("keydown " + keyCode);
 					if(! $(".dtpicker-compValue").is(":focus") && keyCode !== 9)
 					{
 						//if(keyCode !== 37 && keyCode !== 39)

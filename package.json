@@ -16,13 +16,13 @@
         "input"
     ],
 
-    "version": "0.1.32",
+    "version": "0.1.33",
 
     "homepage": "http://curioussolutions.github.io/DateTimePicker/",
 
     "author": "nehakadam",
 
-    "main":"dist/DateTimePicker.js",
+    "main":"dist/DateTimePicker.min.js",
 
     "repository":
     {
