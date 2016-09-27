@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.33
+  Version 0.1.34
   Copyright (c)2016 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -9,12 +9,16 @@
  ----------------------------------------------------------------------------- */
 
 /* Support Object.keys in IE8 */
-if (!Object.keys) {
-    Object.keys = function(obj) {
+if(!Object.keys) 
+{
+    Object.keys = function(obj) 
+    {
         var keys = [];
 
-        for (var i in obj) {
-            if (obj.hasOwnProperty(i)) {
+        for (var i in obj) 
+        {
+            if (obj.hasOwnProperty(i)) 
+            {
                 keys.push(i);
             }
         }
@@ -1142,7 +1146,7 @@ $.cf = {
 						oDTP.oData.dMinValue = oDTP._parseDateTime(sMin);
 					if($.cf._isValid(sMax))
 						oDTP.oData.dMaxValue = oDTP._parseDateTime(sMax);
-				
+								
 					if(sStartEnd !== "" && ($.cf._compare(sStartEnd, "start") || $.cf._compare(sStartEnd, "end")) && sStartEndElem !== "")
 					{
 						if($(sStartEndElem).length >= 1)
@@ -2033,53 +2037,62 @@ $.cf = {
 		
 			if($.cf._isValid(sDate))
 			{
-				var sArrDate;
-				if(oDTP.oData.bArrMatchFormat[4] || oDTP.oData.bArrMatchFormat[5] || oDTP.oData.bArrMatchFormat[6])
-					sArrDate = sDate.split(oDTP.settings.monthYearSeparator);
+				if(typeof sDate === "string")
+				{
+					var sArrDate;
+					if(oDTP.oData.bArrMatchFormat[4] || oDTP.oData.bArrMatchFormat[5] || oDTP.oData.bArrMatchFormat[6])
+						sArrDate = sDate.split(oDTP.settings.monthYearSeparator);
+					else
+						sArrDate = sDate.split(oDTP.settings.dateSeparator);
+				
+					if(oDTP.oData.bArrMatchFormat[0])  // "dd-MM-yyyy"
+					{
+						iDate = parseInt(sArrDate[0]);
+						iMonth = parseInt(sArrDate[1] - 1);
+						iYear = parseInt(sArrDate[2]);
+					}
+					else if(oDTP.oData.bArrMatchFormat[1])  // "MM-dd-yyyy"
+					{
+						iMonth = parseInt(sArrDate[0] - 1);
+						iDate = parseInt(sArrDate[1]);
+						iYear = parseInt(sArrDate[2]);
+					}
+					else if(oDTP.oData.bArrMatchFormat[2])  // "yyyy-MM-dd"
+					{
+						iYear = parseInt(sArrDate[0]);
+						iMonth = parseInt(sArrDate[1] - 1);
+						iDate = parseInt(sArrDate[2]);
+					}
+					else if(oDTP.oData.bArrMatchFormat[3])  // "dd-MMM-yyyy"
+					{
+						iDate = parseInt(sArrDate[0]);
+						iMonth = oDTP._getShortMonthIndex(sArrDate[1]);
+						iYear = parseInt(sArrDate[2]);
+					}
+					else if(oDTP.oData.bArrMatchFormat[4])  // "MM-yyyy"
+					{
+						iDate = 1;
+						iMonth = parseInt(sArrDate[0]) - 1;
+						iYear = parseInt(sArrDate[1]);
+					}
+					else if(oDTP.oData.bArrMatchFormat[5])  // "MMM yyyy"
+					{
+						iDate = 1;
+						iMonth = oDTP._getShortMonthIndex(sArrDate[0]);
+						iYear = parseInt(sArrDate[1]);
+					}
+					else if(oDTP.oData.bArrMatchFormat[6])  // "MMMM yyyy"
+					{
+						iDate = 1;
+						iMonth = oDTP._getFullMonthIndex(sArrDate[0]);
+						iYear = parseInt(sArrDate[1]);
+					}
+				}
 				else
-					sArrDate = sDate.split(oDTP.settings.dateSeparator);
-			
-				if(oDTP.oData.bArrMatchFormat[0])  // "dd-MM-yyyy"
 				{
-					iDate = parseInt(sArrDate[0]);
-					iMonth = parseInt(sArrDate[1] - 1);
-					iYear = parseInt(sArrDate[2]);
-				}
-				else if(oDTP.oData.bArrMatchFormat[1])  // "MM-dd-yyyy"
-				{
-					iMonth = parseInt(sArrDate[0] - 1);
-					iDate = parseInt(sArrDate[1]);
-					iYear = parseInt(sArrDate[2]);
-				}
-				else if(oDTP.oData.bArrMatchFormat[2])  // "yyyy-MM-dd"
-				{
-					iYear = parseInt(sArrDate[0]);
-					iMonth = parseInt(sArrDate[1] - 1);
-					iDate = parseInt(sArrDate[2]);
-				}
-				else if(oDTP.oData.bArrMatchFormat[3])  // "dd-MMM-yyyy"
-				{
-					iDate = parseInt(sArrDate[0]);
-					iMonth = oDTP._getShortMonthIndex(sArrDate[1]);
-					iYear = parseInt(sArrDate[2]);
-				}
-				else if(oDTP.oData.bArrMatchFormat[4])  // "MM-yyyy"
-				{
-					iDate = 1;
-					iMonth = parseInt(sArrDate[0]) - 1;
-					iYear = parseInt(sArrDate[1]);
-				}
-				else if(oDTP.oData.bArrMatchFormat[5])  // "MMM yyyy"
-				{
-					iDate = 1;
-					iMonth = oDTP._getShortMonthIndex(sArrDate[0]);
-					iYear = parseInt(sArrDate[1]);
-				}
-				else if(oDTP.oData.bArrMatchFormat[6])  // "MMMM yyyy"
-				{
-					iDate = 1;
-					iMonth = oDTP._getFullMonthIndex(sArrDate[0]);
-					iYear = parseInt(sArrDate[1]);
+					iDate = sDate.getDate();
+					iMonth = sDate.getMonth();
+					iYear = sDate.getFullYear();
 				}
 			}
 
@@ -2106,30 +2119,44 @@ $.cf = {
 		
 			if($.cf._isValid(sTime))
 			{
-				if(oDTP.oData.bIs12Hour)
+				if(typeof sTime === "string")
 				{
-					sArrTime = sTime.split(oDTP.settings.timeMeridiemSeparator);
-					sTime = sArrTime[0];
-					sMeridiem = sArrTime[1];
+					if(oDTP.oData.bIs12Hour)
+					{
+						sArrTime = sTime.split(oDTP.settings.timeMeridiemSeparator);
+						sTime = sArrTime[0];
+						sMeridiem = sArrTime[1];
 
-					if(!($.cf._compare(sMeridiem, "AM") || $.cf._compare(sMeridiem, "PM")))
-						sMeridiem = "";
+						if(!($.cf._compare(sMeridiem, "AM") || $.cf._compare(sMeridiem, "PM")))
+							sMeridiem = "";
+					}
+
+					sArrTimeComp = sTime.split(oDTP.settings.timeSeparator);
+					iHour = parseInt(sArrTimeComp[0]);
+					iMinutes = parseInt(sArrTimeComp[1]);
+
+					if(bShowSeconds)
+					{
+						iSeconds = parseInt(sArrTimeComp[2]);
+						iSeconds = oDTP._adjustSeconds(iSeconds);
+					}
+
+					if(iHour === 12 && $.cf._compare(sMeridiem, "AM"))
+						iHour = 0;
+					else if(iHour < 12 && $.cf._compare(sMeridiem, "PM"))
+						iHour += 12;
 				}
-
-				sArrTimeComp = sTime.split(oDTP.settings.timeSeparator);
-				iHour = parseInt(sArrTimeComp[0]);
-				iMinutes = parseInt(sArrTimeComp[1]);
-
-				if(bShowSeconds)
+				else
 				{
-					iSeconds = parseInt(sArrTimeComp[2]);
-					iSeconds = oDTP._adjustSeconds(iSeconds);
-				}
+					iHour = sTime.getHours();
+					iMinutes = sTime.getMinutes();
 
-				if(iHour === 12 && $.cf._compare(sMeridiem, "AM"))
-					iHour = 0;
-				else if(iHour < 12 && $.cf._compare(sMeridiem, "PM"))
-					iHour += 12;
+					if(bShowSeconds)
+					{
+						iSeconds = sTime.getSeconds();
+						iSeconds = oDTP._adjustSeconds(iSeconds);
+					}
+				}
 			}
 			iMinutes = oDTP._adjustMinutes(iMinutes);
 		
@@ -2164,77 +2191,95 @@ $.cf = {
 		
 			if($.cf._isValid(sDateTime))
 			{
-				sArrDateTime = sDateTime.split(oDTP.settings.dateTimeSeparator);
-				sArrDate = sArrDateTime[0].split(oDTP.settings.dateSeparator);
-			
-				if(oDTP.oData.bArrMatchFormat[0] || // "dd-MM-yyyy HH:mm:ss"
-					oDTP.oData.bArrMatchFormat[1] || // ""dd-MM-yyyy hh:mm:ss AA"
-					oDTP.oData.bArrMatchFormat[8] || // "dd-MM-yyyy HH:mm"
-					oDTP.oData.bArrMatchFormat[9]) // "dd-MM-yyyy hh:mm AA"
+				if(typeof sDateTime === "string")
 				{
-					iDate = parseInt(sArrDate[0]);
-					iMonth = parseInt(sArrDate[1] - 1);
-					iYear = parseInt(sArrDate[2]);
-				}
-				else if(oDTP.oData.bArrMatchFormat[2] ||  // "MM-dd-yyyy HH:mm:ss"
-					oDTP.oData.bArrMatchFormat[3] || // "MM-dd-yyyy hh:mm:ss AA"
-					oDTP.oData.bArrMatchFormat[10] ||  // "MM-dd-yyyy HH:mm"
-					oDTP.oData.bArrMatchFormat[11]) // "MM-dd-yyyy hh:mm AA"
-				{
-					iMonth = parseInt(sArrDate[0] - 1);
-					iDate = parseInt(sArrDate[1]);
-					iYear = parseInt(sArrDate[2]);
-				}
-				else if(oDTP.oData.bArrMatchFormat[4] ||  // "yyyy-MM-dd HH:mm:ss"
-					oDTP.oData.bArrMatchFormat[5] || // "yyyy-MM-dd hh:mm:ss AA"
-					oDTP.oData.bArrMatchFormat[12] ||  // "yyyy-MM-dd HH:mm"
-					oDTP.oData.bArrMatchFormat[13]) // "yyyy-MM-dd hh:mm AA"
-				{
-					iYear = parseInt(sArrDate[0]);
-					iMonth = parseInt(sArrDate[1] - 1);
-					iDate = parseInt(sArrDate[2]);
-				}
-				else if(oDTP.oData.bArrMatchFormat[6] || // "dd-MMM-yyyy HH:mm:ss"
-					oDTP.oData.bArrMatchFormat[7] || // "dd-MMM-yyyy hh:mm:ss AA"
-					oDTP.oData.bArrMatchFormat[14] || // "dd-MMM-yyyy HH:mm:ss"
-					oDTP.oData.bArrMatchFormat[15]) // "dd-MMM-yyyy hh:mm:ss AA"
-				{
-					iDate = parseInt(sArrDate[0]);
-					iMonth = oDTP._getShortMonthIndex(sArrDate[1]);
-					iYear = parseInt(sArrDate[2]);
-				}
-			
-				sTime = sArrDateTime[1];
-				if($.cf._isValid(sTime))
-				{
-					if(oDTP.oData.bIs12Hour)
+					sArrDateTime = sDateTime.split(oDTP.settings.dateTimeSeparator);
+					sArrDate = sArrDateTime[0].split(oDTP.settings.dateSeparator);
+				
+					if(oDTP.oData.bArrMatchFormat[0] || // "dd-MM-yyyy HH:mm:ss"
+						oDTP.oData.bArrMatchFormat[1] || // ""dd-MM-yyyy hh:mm:ss AA"
+						oDTP.oData.bArrMatchFormat[8] || // "dd-MM-yyyy HH:mm"
+						oDTP.oData.bArrMatchFormat[9]) // "dd-MM-yyyy hh:mm AA"
 					{
-						if($.cf._compare(oDTP.settings.dateTimeSeparator, oDTP.settings.timeMeridiemSeparator) && (sArrDateTime.length === 3))
-							sMeridiem = sArrDateTime[2];
-						else
-						{
-							sArrTimeComp = sTime.split(oDTP.settings.timeMeridiemSeparator);
-							sTime = sArrTimeComp[0];
-							sMeridiem = sArrTimeComp[1];
-						}
-					
-						if(!($.cf._compare(sMeridiem, "AM") || $.cf._compare(sMeridiem, "PM")))
-							sMeridiem = "";
+						iDate = parseInt(sArrDate[0]);
+						iMonth = parseInt(sArrDate[1] - 1);
+						iYear = parseInt(sArrDate[2]);
 					}
-					
-					sArrTime = sTime.split(oDTP.settings.timeSeparator);
+					else if(oDTP.oData.bArrMatchFormat[2] ||  // "MM-dd-yyyy HH:mm:ss"
+						oDTP.oData.bArrMatchFormat[3] || // "MM-dd-yyyy hh:mm:ss AA"
+						oDTP.oData.bArrMatchFormat[10] ||  // "MM-dd-yyyy HH:mm"
+						oDTP.oData.bArrMatchFormat[11]) // "MM-dd-yyyy hh:mm AA"
+					{
+						iMonth = parseInt(sArrDate[0] - 1);
+						iDate = parseInt(sArrDate[1]);
+						iYear = parseInt(sArrDate[2]);
+					}
+					else if(oDTP.oData.bArrMatchFormat[4] ||  // "yyyy-MM-dd HH:mm:ss"
+						oDTP.oData.bArrMatchFormat[5] || // "yyyy-MM-dd hh:mm:ss AA"
+						oDTP.oData.bArrMatchFormat[12] ||  // "yyyy-MM-dd HH:mm"
+						oDTP.oData.bArrMatchFormat[13]) // "yyyy-MM-dd hh:mm AA"
+					{
+						iYear = parseInt(sArrDate[0]);
+						iMonth = parseInt(sArrDate[1] - 1);
+						iDate = parseInt(sArrDate[2]);
+					}
+					else if(oDTP.oData.bArrMatchFormat[6] || // "dd-MMM-yyyy HH:mm:ss"
+						oDTP.oData.bArrMatchFormat[7] || // "dd-MMM-yyyy hh:mm:ss AA"
+						oDTP.oData.bArrMatchFormat[14] || // "dd-MMM-yyyy HH:mm:ss"
+						oDTP.oData.bArrMatchFormat[15]) // "dd-MMM-yyyy hh:mm:ss AA"
+					{
+						iDate = parseInt(sArrDate[0]);
+						iMonth = oDTP._getShortMonthIndex(sArrDate[1]);
+						iYear = parseInt(sArrDate[2]);
+					}
+				
+					sTime = sArrDateTime[1];
+					if($.cf._isValid(sTime))
+					{
+						if(oDTP.oData.bIs12Hour)
+						{
+							if($.cf._compare(oDTP.settings.dateTimeSeparator, oDTP.settings.timeMeridiemSeparator) && (sArrDateTime.length === 3))
+								sMeridiem = sArrDateTime[2];
+							else
+							{
+								sArrTimeComp = sTime.split(oDTP.settings.timeMeridiemSeparator);
+								sTime = sArrTimeComp[0];
+								sMeridiem = sArrTimeComp[1];
+							}
+						
+							if(!($.cf._compare(sMeridiem, "AM") || $.cf._compare(sMeridiem, "PM")))
+								sMeridiem = "";
+						}
+						
+						sArrTime = sTime.split(oDTP.settings.timeSeparator);
 
-					iHour = parseInt(sArrTime[0]);
-					iMinutes = parseInt(sArrTime[1]);
+						iHour = parseInt(sArrTime[0]);
+						iMinutes = parseInt(sArrTime[1]);
+						if(bShowSeconds)
+						{
+							iSeconds = parseInt(sArrTime[2]);
+						}
+
+						if(iHour === 12 && $.cf._compare(sMeridiem, "AM"))
+							iHour = 0;
+						else if(iHour < 12 && $.cf._compare(sMeridiem, "PM"))
+							iHour += 12;
+					}
+				}
+				else
+				{
+					iDate = sDateTime.getDate();
+					iMonth = sDateTime.getMonth();
+					iYear = sDateTime.getFullYear();
+
+					iHour = sDateTime.getHours();
+					iMinutes = sDateTime.getMinutes();
+
 					if(bShowSeconds)
 					{
-						iSeconds = parseInt(sArrTime[2]);
+						iSeconds = sDateTime.getSeconds();
+						iSeconds = oDTP._adjustSeconds(iSeconds);
 					}
-
-					if(iHour === 12 && $.cf._compare(sMeridiem, "AM"))
-						iHour = 0;
-					else if(iHour < 12 && $.cf._compare(sMeridiem, "PM"))
-						iHour += 12;
 				}
 			}
 			iMinutes = oDTP._adjustMinutes(iMinutes);
