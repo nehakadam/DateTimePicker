@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Basic Examples -- Elements Group</title>
+	
+		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../src/DateTimePicker.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+	
+		<style type="text/css">
+		
+			p
+			{
+				margin-left: 20px;
+			}
+		
+			input
+			{
+				width: 200px;
+				padding: 10px;
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+			
+			.group1
+			{
+				border: 1px solid skyblue;
+				margin: 20px;
+				border-radius: 3px;
+			}
+			
+			.group2
+			{
+				border: 1px solid orange;
+				margin: 20px;
+				border-radius: 3px;
+			}
+		
+		</style>
+	
+	</head>
+
+	<body>
+	
+		<div class="group1">
+		
+			<!------------------------ Date Picker ------------------------>
+			<p>Date : </p>
+			<input type="text" data-field="date" readonly>
+		
+			<!------------------------ Time Picker ------------------------>
+			<p>Time : </p>
+			<input type="text" data-field="time" readonly>
+		
+			<!---------------------- DateTime Picker ---------------------->
+			<p>DateTime : </p>
+			<input type="text" data-field="datetime" readonly>
+			
+		</div>
+		
+		<div class="group2">
+		
+			<!------------------------ Date Picker ------------------------>
+			<p>Date : </p>
+			<input type="text" data-field="date" readonly>
+		
+			<!------------------------ Time Picker ------------------------>
+			<p>Time : </p>
+			<input type="text" data-field="time" readonly>
+		
+			<!---------------------- DateTime Picker ---------------------->
+			<p>DateTime : </p>
+			<input type="text" data-field="datetime" readonly>
+			
+		</div>
+	
+		<div id="dtBox1" data-parentelement=".group1"></div>
+		
+		<div id="dtBox2" data-parentelement=".group2"></div>
+	
+		<script type="text/javascript">
+		
+			$(document).ready(function()
+			{
+			
+				$("#dtBox1").DateTimePicker(
+				{
+					
+				});
+			
+				$("#dtBox2").DateTimePicker(
+				{
+					dateFormat: "dd-MMM-yyyy"
+				});
+							
+			});
+		
+		</script>
+	
+	
+	</body>
+
+</html>

@@ -7,6 +7,8 @@
 
 	"keywords": ["date", "time", "datetime", "plugin", "picker", "DatePicker", "TimePicker", "DateTimePicker", "Responsive", "Flat", "Mobile", "jquery"],
 
+	"version": "0.1.35",
+
 	"author": {
         "name": "Curious Solutions",
         "url": "http://curioussolutions.in/"
@@ -28,8 +30,6 @@
 	"homepage": "http://curioussolutions.github.io/DateTimePicker/",
 
 	"docs": "http://curioussolutions.github.io/DateTimePicker/",
-
-	"version": "0.1.34",
 
 	"licenses": [
         {
