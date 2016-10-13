@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.35
+  Version 0.1.36
   Copyright (c)2016 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -356,6 +356,10 @@ $.cf = {
 
 			//  6 - "MMM yyyy"
 			sDate = "MMMM" + oDTP.settings.monthYearSeparator + "yyyy";
+			oDTP.oData.sArrInputDateFormats.push(sDate);
+
+			//  7 - "yyyy MM"
+			sDate = "yyyy" + oDTP.settings.monthYearSeparator + "MM";
 			oDTP.oData.sArrInputDateFormats.push(sDate);
 		},
 	
@@ -813,6 +817,10 @@ $.cf = {
 					else if(oDTP.oData.bArrMatchFormat[6])
 					{
 						sOutput = oFDT.month + oDTP.settings.monthYearSeparator + oFDT.yyyy;
+					}
+					else if(oDTP.oData.bArrMatchFormat[7])
+					{
+						sOutput = oFDT.yyyy + oDTP.settings.monthYearSeparator + oFDT.MM;
 					}
 				}
 				else if(oDTP.oData.bTimeMode)
@@ -1303,6 +1311,11 @@ $.cf = {
 				{
 					iNumberOfColumns = 2;
 					sArrFields = ["month", "year"];
+				}
+				else if(oDTP.oData.bArrMatchFormat[7])  // "yyyy-MM"
+				{
+					iNumberOfColumns = 2;
+					sArrFields = ["year", "month"];
 				}
 			}
 			else if(oDTP.oData.bTimeMode)
@@ -2094,6 +2107,12 @@ $.cf = {
 						iMonth = oDTP._getFullMonthIndex(sArrDate[0]);
 						iYear = parseInt(sArrDate[1]);
 					}
+					else if(oDTP.oData.bArrMatchFormat[7])  // "yyyy MM"
+					{
+						iDate = 1;
+						iMonth = parseInt(sArrDate[1]) - 1;
+						iYear = parseInt(sArrDate[0]);
+					}
 				}
 				else
 				{
@@ -2552,7 +2571,7 @@ $.cf = {
 			
 				if(oDTP.oData.bDateMode)
 				{
-					if(oDTP.oData.bArrMatchFormat[4])  // "MM-yyyy"
+					if(oDTP.oData.bArrMatchFormat[4] || oDTP.oData.bArrMatchFormat[7])  // "MM-yyyy"
 						$(oDTP.element).find(".month .dtpicker-compValue").val(oFormattedDate.MM);
 					else if(oDTP.oData.bArrMatchFormat[6])  // "MMMM yyyy"
 						$(oDTP.element).find(".month .dtpicker-compValue").val(oFormattedDate.month);
@@ -2570,7 +2589,7 @@ $.cf = {
 				}
 				else
 				{
-					if(oDTP.oData.bDateMode && (oDTP.oData.bArrMatchFormat[4] || oDTP.oData.bArrMatchFormat[5] || oDTP.oData.bArrMatchFormat[6]))
+					if(oDTP.oData.bDateMode && (oDTP.oData.bArrMatchFormat[4] || oDTP.oData.bArrMatchFormat[5] || oDTP.oData.bArrMatchFormat[6] || oDTP.oData.bArrMatchFormat[7]))
 					{
 						if(oDTP.oData.bArrMatchFormat[4])
 							sDate = oFormattedDate.MM + oDTP.settings.monthYearSeparator + oFormattedDate.yyyy;
@@ -2578,6 +2597,8 @@ $.cf = {
 							sDate = oFormattedDate.monthShort + oDTP.settings.monthYearSeparator + oFormattedDate.yyyy;
 						else if(oDTP.oData.bArrMatchFormat[6])
 							sDate = oFormattedDate.month + oDTP.settings.monthYearSeparator + oFormattedDate.yyyy;
+						else if(oDTP.oData.bArrMatchFormat[7])
+							sDate = oFormattedDate.yyyy + oDTP.settings.monthYearSeparator + oFormattedDate.MM;
 					}
 					else
 						sDate = oFormattedDate.dayShort + ", " + oFormattedDate.month + " " + oFormattedDate.dd + ", " + oFormattedDate.yyyy;
