@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------- 
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-  Version 0.1.36
+  Version 0.1.37
   Copyright (c)2016 Curious Solutions LLP and Neha Kadam
   http://curioussolutions.github.io/DateTimePicker
   https://github.com/CuriousSolutions/DateTimePicker
@@ -108,8 +108,8 @@ $.DateTimePicker = $.DateTimePicker || {
 		settingValueOfElement: null, // settingValueOfElement(sValue, dDateTime, oInputElement)
 		formatHumanDate: null,  // formatHumanDate(oDateTime, sMode, sFormat)
 	
-		parseDateTimeString: null, // parseDateTimeString(sDateTime, sMode, oInputField)
-		formatDateTimeString: null // formatDateTimeString(oDateTime, sMode, oInputField)
+		parseDateTimeString: null, // parseDateTimeString(sDateTime, sMode, sFormat, oInputField)
+		formatDateTimeString: null // formatDateTimeString(oDateTime, sMode, sFormat, oInputField)
 	},
 
 	dataObject: // Temporary Variables For Calculation Specific to DateTimePicker Instance
@@ -530,7 +530,7 @@ $.cf = {
 				);
 			}
 		},
-
+	
 		_setMatchFormat: function(iArgsLength, sMode, sFormat)
 		{
 			var oDTP = this;
@@ -650,7 +650,7 @@ $.cf = {
 				}
 				else
 				{
-					dInput = oDTP.settings.parseDateTimeString.call(oDTP, sDateTime, sMode, $(oInputField));
+					dInput = oDTP.settings.parseDateTimeString.call(oDTP, sDateTime, sMode, sFormat, $(oInputField));
 				}
 
 		        return dInput;
@@ -781,7 +781,7 @@ $.cf = {
 
 			if(oDTP.settings.formatDateTimeString)
 			{
-				sOutput = oDTP.settings.formatDateTimeString.call(oDTP, oFDT, sMode, oElement);
+				sOutput = oDTP.settings.formatDateTimeString.call(oDTP, oFDT, sMode, sFormat, oElement);
 			}
 			else
 			{
@@ -1024,7 +1024,7 @@ $.cf = {
 							if(sTempDate !== "")
 							{
 								if(oDTP.settings.parseDateTimeString)
-									dTempDate = oDTP.settings.parseDateTimeString.call(oDTP, sTempDate, sMode, $(sStartEndElem));
+									dTempDate = oDTP.settings.parseDateTimeString.call(oDTP, sTempDate, sMode, sFormat, $(sStartEndElem));
 								else
 									dTempDate = oDTP._parseDate(sTempDate);
 
@@ -1053,7 +1053,7 @@ $.cf = {
 					}
 				
 					if(oDTP.settings.parseDateTimeString)
-						oDTP.oData.dCurrentDate = oDTP.settings.parseDateTimeString.call(oDTP, sCurrent, sMode, $(oElement));
+						oDTP.oData.dCurrentDate = oDTP.settings.parseDateTimeString.call(oDTP, sCurrent, sMode, sFormat, $(oElement));
 					else
 						oDTP.oData.dCurrentDate = oDTP._parseDate(sCurrent);
 
@@ -1114,7 +1114,7 @@ $.cf = {
 							if(sTempTime !== "")
 							{
 								if(oDTP.settings.parseDateTimeString)
-									dTempDate = oDTP.settings.parseDateTimeString.call(oDTP, sTempTime, sMode, $(sStartEndElem));
+									dTempDate = oDTP.settings.parseDateTimeString.call(oDTP, sTempTime, sMode, sFormat, $(sStartEndElem));
 								else
 									dTempTime = oDTP._parseTime(sTempTime);
 
@@ -1145,7 +1145,7 @@ $.cf = {
 					}
 				
 					if(oDTP.settings.parseDateTimeString)
-						oDTP.oData.dCurrentDate = oDTP.settings.parseDateTimeString.call(oDTP, sCurrent, sMode, $(oElement));
+						oDTP.oData.dCurrentDate = oDTP.settings.parseDateTimeString.call(oDTP, sCurrent, sMode, sFormat, $(oElement));
 					else
 						oDTP.oData.dCurrentDate = oDTP._parseTime(sCurrent);
 				}
@@ -1170,7 +1170,7 @@ $.cf = {
 							if(sTempDateTime !== "")
 							{
 								if(oDTP.settings.parseDateTimeString)
-									dTempDateTime = oDTP.settings.parseDateTimeString.call(oDTP, sTempDateTime, sMode, $(sStartEndElem));
+									dTempDateTime = oDTP.settings.parseDateTimeString.call(oDTP, sTempDateTime, sMode, sFormat, $(sStartEndElem));
 								else
 									dTempDateTime = oDTP._parseDateTime(sTempDateTime);
 								
@@ -1199,7 +1199,7 @@ $.cf = {
 					}
 				
 					if(oDTP.settings.parseDateTimeString)
-						oDTP.oData.dCurrentDate = oDTP.settings.parseDateTimeString.call(oDTP, sCurrent, sMode, $(oElement));
+						oDTP.oData.dCurrentDate = oDTP.settings.parseDateTimeString.call(oDTP, sCurrent, sMode, sFormat, $(oElement));
 					else
 						oDTP.oData.dCurrentDate = oDTP._parseDateTime(sCurrent);
 				}

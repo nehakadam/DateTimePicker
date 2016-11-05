@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Custom Input Value</title>
+	
+		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
+		
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../src/DateTimePicker.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+	
+		<style>
+		
+			p
+			{
+				margin-left: 20px;
+			}
+		
+			input
+			{
+				width: 200px;
+				padding: 10px;
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+
+			.btn
+			{
+				background: #FFFFFF;
+				color: #A3A3CC;
+
+				border: 2px solid #A3A3CC;
+				border-radius: 5px;
+
+				padding: 10px 20px;
+				margin: 20px;
+			
+				font-size: 12px;
+
+				cursor: pointer;
+			}
+		
+		</style>
+	
+	</head>
+	
+	<body>
+		
+		<p>Date : </p>
+		<input id="input-date" type="text" data-field="date" data-format="dd-MM-yyyy" value="2016-07-05" readonly>
+
+		<div id="dateBox"></div>
+		
+		<script type="text/javascript">
+		
+			$(document).ready(function()
+			{
+				var oDTP1;
+
+				$("#dateBox").DateTimePicker(
+				{
+					addEventHandlers: function()
+					{
+						oDTP = this;
+						
+						oDTP.settings.maxDate = oDTP.getDateTimeStringInFormat("date", "dd-MM-yyyy", new Date());
+					},
+
+					parseDateTimeString: function(sDateTime, sMode, sFormat, oInputElement)
+					{
+						oDTP1 = this;
+					
+						console.log(sDateTime + " " + sMode);
+						var dThisDate = new Date(),
+						iArrDateTimeComps, sRegex;
+						
+						if($.cf._isValid(sDateTime))
+						{
+							// "2016-10-26"
+							sRegex = /(\d{1,4})(-)(\d{1,2})(-)(\d{1,2})/;
+
+							iArrDateTimeComps = sDateTime.match(sRegex);
+							
+
+							dThisDate = new Date(
+								parseInt(iArrDateTimeComps[1]),
+								parseInt(iArrDateTimeComps[3]) - 1,
+								parseInt(iArrDateTimeComps[5]),
+								0, 0, 0, 0
+							);
+						}
+						
+						return dThisDate;
+					},
+
+					formatDateTimeString: function(oDate, sMode, sFormat, oInputElement)
+					{
+						oDTP1 = this;
+					
+						console.log("formatDateTimeString " + sFormat);
+						console.log(oDate);
+						if(sFormat === "yyyy-MM-dd")
+							return oDate.yyyy + "-" + oDate.MM + "-" + oDate.dd;
+						else if(sFormat === "dd-MM-yyyy")
+							return oDate.dd + "-" + oDate.MM + "-" + oDate.yyyy;
+					}
+				});
+			});
+
+		</script>
+	
+	</body>
+
+</html>

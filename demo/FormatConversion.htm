@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Basic Examples - Set DateTime In Input Field</title>
+	
+		<link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" />
+	
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../src/DateTimePicker.js"></script>
+	
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="../src/DateTimePicker-ltie9.css" />
+			<script type="text/javascript" src="../src/DateTimePicker-ltie9.js"></script>
+		<![endif]-->
+		
+		<style type="text/css">
+		
+			p
+			{
+				margin-left: 20px;
+			}
+		
+			input
+			{
+				width: 200px;
+				padding: 10px;
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+		
+		</style>
+	
+	</head>
+
+	<body>
+
+		<p>Date : </p>
+		<input type="text" data-field="date" data-format="dd-MM-yyyy" readonly>
+
+		<div id="dtBox"></div>
+	
+		<script type="text/javascript">
+		
+			var inputDateString = "2016-10-22", outputDateString, dDateTime;
+
+			$(document).ready(function()
+			{
+				$("#dtBox").DateTimePicker(
+				{
+
+					addEventHandlers: function()
+					{
+						oDTP = this;
+						var inputDateStringComp = inputDateString.split("-");
+
+						// Set Date 
+						oDTP.settings.defaultDate = new Date(parseInt(inputDateStringComp[0]), parseInt(inputDateStringComp[1]) - 1, parseInt(inputDateStringComp[2]), 0, 0, 0, 0);
+						dDateTime = new Date(oDTP.settings.defaultDate);
+
+						oDTP.setDateTimeStringInInputField($("input"), oDTP.settings.defaultDate);
+					},
+
+					settingValueOfElement: function(sElemValue, dElemValue, oElem)
+					{
+						oDTP = this;
+
+						if(oDTP.settings.mode === "date")
+						{
+							dDateTime = new Date(dElemValue.getFullYear(), dElemValue.getMonth(), dElemValue.getDate(), 0, 0, 0, 0);
+
+							outputDateString = oDTP.getDateTimeStringInFormat("date", "yyyy-MM-dd");
+						}
+
+						console.log(dDateTime + " -- " + outputDateString);
+					}
+				});
+			});
+		
+		</script>
+
+	</body>
+
+</html>
