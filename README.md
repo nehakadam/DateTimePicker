@@ -1,8 +1,8 @@
 **Responsive jQuery DateTime Picker library for Web & Mobile**
 <br /><br />
-![](https://raw.github.com/CuriousSolutions/DateTimePicker/gh-pages/images/dp-screenshot.png)
-![](https://raw.github.com/CuriousSolutions/DateTimePicker/gh-pages/images/tp-screenshot.png)
-![](https://raw.github.com/CuriousSolutions/DateTimePicker/gh-pages/images/dtp-screenshot.png)
+![](https://raw.github.com/nehakadam/DateTimePicker/gh-pages/images/dp-screenshot.png)
+![](https://raw.github.com/nehakadam/DateTimePicker/gh-pages/images/tp-screenshot.png)
+![](https://raw.github.com/nehakadam/DateTimePicker/gh-pages/images/dtp-screenshot.png)
 
 DateTime Picker is a quick highly customizable jQuery plugin. The design is clutter free & well suited for embedding it into mobile application development.
 
@@ -17,7 +17,7 @@ For web, picker can be binded relative to reference element, were it will appear
 
 
 ## More Details
-For demo & api documentation visit [Plugin Page](http://curioussolutions.github.io/DateTimePicker/ "DateTime Picker Plugin
+For demo & api documentation visit [Plugin Page](http://nehakadam.github.io/DateTimePicker/ "DateTime Picker Plugin
 Details")
 
 
@@ -67,12 +67,11 @@ Files - Particular Version
 ##Authors
 [Neha Kadam](https://github.com/nehakadam): Developer
 
-Special thanks:
-- Jean-Christophe Hoelt - NPM packaging. Few customization options.
+Special Thanks:
+- [Jean-Christophe Hoelt](https://github.com/j3k0) - NPM packaging. Few customization options.
+- [All Contributors](https://github.com/nehakadam/DateTimePicker/contributors)
 
-Copyright 2016 [Curious Solutions LLP](https://github.com/CuriousSolutions)
-
-
+Copyright 2016 [Lajpat Shah](https://github.com/lajpatshah)
 
 
 ##License
