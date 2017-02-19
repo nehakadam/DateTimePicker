@@ -1,6 +1,8 @@
 {
     "name": "datetimepicker",
 
+    "version": "0.1.38",
+
     "description": "Responsive flat design jQuery DateTime Picker plugin for Web & Mobile",
     
     "keywords":
@@ -16,18 +18,26 @@
         "input"
     ],
 
-    "version": "0.1.37",
+    "bugs": {
+        "url": "https://github.com/nehakadam/DateTimePicker/issues",
+        "email": "nehakadam9@gmail.com"
+    },
 
-    "homepage": "http://curioussolutions.github.io/DateTimePicker/",
+    "author": "Neha Kadam <nehakadam9@gmail.com> (https://github.com/nehakadam)",
 
-    "author": "nehakadam",
+    "_npmUser": {
+        "name": "nehakadam",
+        "email": "nehakadam9@gmail.com"
+    },
+
+    "homepage": "https://nehakadam.github.io/DateTimePicker/",
 
     "main":"dist/DateTimePicker.min.js",
 
     "repository":
     {
         "type": "git",
-        "url": "git://github.com:CuriousSolutions/DateTimePicker.git"
+        "url": "git://github.com:nehakadam/DateTimePicker.git"
     },
 
     "devDependencies":
@@ -40,11 +50,6 @@
 
         "grunt-contrib-jshint": "^0.11.0",
         "grunt-contrib-csslint": "^0.5.0"
-    },
-
-    "bugs":
-    {
-        "url": "https://github.com/CuriousSolutions/DateTimePicker/issues"
     },
 
     "peerDependencies":

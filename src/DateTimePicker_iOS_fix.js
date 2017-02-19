@@ -1,12 +1,17 @@
 /* ----------------------------------------------------------------------------- 
 
-jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
-Version 0.1.37
-Copyright (c)2016 Curious Solutions LLP, Neha Kadam, and Yanike Mann
-http://curioussolutions.github.io/DateTimePicker
-https://github.com/CuriousSolutions/DateTimePicker
+  jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
+  Version 0.1.38
+  Copyright (c)2017 Lajpat Shah
+  Contributors : https://github.com/nehakadam/DateTimePicker/contributors
+  Repository : https://github.com/nehakadam/DateTimePicker
+  Documentation : https://nehakadam.github.io/DateTimePicker
+
+  Author : Yanike Mann (https://github.com/yanike)
 
 ----------------------------------------------------------------------------- */
+
+
 
 /* Detect iOS device */
 var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
