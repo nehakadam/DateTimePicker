@@ -17,7 +17,7 @@ For web, picker can be binded relative to reference element, were it will appear
 
 
 ## More Details
-For demo & api documentation visit [Plugin Page](http://nehakadam.github.io/DateTimePicker/ "DateTime Picker Plugin Details")
+For demo & api documentation visit [Plugin Page](http://nehakadam.github.io/DateTimePicker/)
 
 
 ##Build System
