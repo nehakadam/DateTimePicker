@@ -44,7 +44,7 @@ Tasks configured in "Gruntfile.js"
 
 - bower
 
-    `bower install curioussolutions-datetimepicker`
+    `bower install flat-datetimepicker`
 
 ##CDN
 DateTimePicker is hosted on [jsDelivr](http://www.jsdelivr.com).
