@@ -52,15 +52,15 @@ DateTimePicker is hosted on [jsDelivr](http://www.jsdelivr.com).
 Files - Latest
 
 ```
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.css" />
-<script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/datetimepicker@latest/dist/DateTimePicker.min.css" />
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/datetimepicker@latest/dist/DateTimePicker.min.js"></script>
 ```
 
 Files - Particular Version
 
 ```
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/<version>/DateTimePicker.min.css" />
-<script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/<version>/DateTimePicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/datetimepicker@<version>/dist/DateTimePicker.min.css" />
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/datetimepicker@<version>/dist/DateTimePicker.min.js"></script>
 ```
 
 ##Authors
