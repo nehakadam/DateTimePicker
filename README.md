@@ -70,7 +70,11 @@ Special Thanks:
 - [Jean-Christophe Hoelt](https://github.com/j3k0) - NPM packaging. Few customization options.
 - [All Contributors](https://github.com/nehakadam/DateTimePicker/contributors)
 
-Copyright 2017 [Lajpat Shah](https://github.com/lajpatshah)
+
+Copyright 2014-2019 [Lajpat Shah](https://github.com/lajpatshah)
+
+
+##I can not maintain/reply quickly due to time constraints, please consider this point while using plugin.
 
 
 ##License
