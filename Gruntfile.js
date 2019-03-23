@@ -3,7 +3,7 @@ module.exports = function(grunt)
 	var sBanner = '/* ----------------------------------------------------------------------------- ' +
 	'\n\n  jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile' +
 	'\n  Version <%= pkg.version %>' + 
-	'\n  Copyright (c)<%= grunt.template.today("yyyy") %> Lajpat Shah' +
+	'\n  Copyright (c)2014-<%= grunt.template.today("yyyy") %> Lajpat Shah' +
 	'\n  Contributors : https://github.com/nehakadam/DateTimePicker/contributors' +
 	'\n  Repository : https://github.com/nehakadam/DateTimePicker' +
 	'\n  Documentation : https://nehakadam.github.io/DateTimePicker' +
@@ -23,12 +23,12 @@ module.exports = function(grunt)
 		    	options: 
 				{
 					separator: '\n\n\n\n',
-		      		stripBanners: true,
+		      stripBanners: true,
 					banner: sBanner
 				},
 				
-		      	src: ['src/i18n/*', '!src/i18n/DateTimePicker-i18n.js'],
-		      	dest: 'src/i18n/DateTimePicker-i18n.js',
+	      	src: ['src/i18n/*', '!src/i18n/DateTimePicker-i18n.js'],
+	      	dest: 'src/i18n/DateTimePicker-i18n.js',
 		     	nonull: true
 		    }
 		},
@@ -59,8 +59,8 @@ module.exports = function(grunt)
 			{
 				banner: sBanner,
 				compress: {
-			    	drop_console: true
-			    }
+			    drop_console: true
+			  }
 			},
 			build: 
 			{
@@ -98,12 +98,10 @@ module.exports = function(grunt)
 			options:
 			{
 				strict: false,
-
 				curly: false,
-			
-      			eqeqeq: true,
-      			eqnull: true,
-      			browser: true,
+  			eqeqeq: true,
+  			eqnull: true,
+  			browser: true,
 				devel: true,
 				//unused: true,
 				//undef: true,
@@ -111,14 +109,14 @@ module.exports = function(grunt)
 				globals: 
 				{
 					$: false,
-        			jQuery: false,
-        			define: false,
-        			require: false,
-        			module: false,
-        			DateTimePicker: true
-      			},
+    			jQuery: false,
+    			define: false,
+    			require: false,
+    			module: false,
+    			DateTimePicker: true
+  			},
 
-      			force: true
+  			force: true
 			}
 		},
 
@@ -147,8 +145,9 @@ module.exports = function(grunt)
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-csslint');
 
-	// Default task(s).
-  	grunt.registerTask('default', ['uglify', 'cssmin', 'copy']);
-  	grunt.registerTask('lang', ['concat:lang', 'copy:lang']);
-  	grunt.registerTask('lint', ['jshint', 'csslint']);
+	// Default task(s).  
+	// 
+	grunt.registerTask('default', ['uglify', 'cssmin', 'copy']);
+	grunt.registerTask('lang', ['concat:lang', 'copy:lang']);
+	grunt.registerTask('lint', ['jshint', 'csslint']);
 };

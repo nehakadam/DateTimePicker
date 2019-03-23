@@ -2,7 +2,7 @@
 
   jQuery DateTimePicker - Responsive flat design jQuery DateTime Picker plugin for Web & Mobile
   Version 0.1.17
-  Copyright (c)2017 Lajpat Shah
+  Copyright (c)2014-2019 Lajpat Shah
   Contributors : https://github.com/nehakadam/DateTimePicker/contributors
   Repository : https://nehakadam.github.io/DateTimePicker
   Documentation : https://github.com/nehakadam/DateTimePicker
