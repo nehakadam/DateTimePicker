@@ -1518,7 +1518,8 @@ $.cf = {
 			{
 				$(document).on("click.DateTimePicker", function(e)
 				{
-					oDTP._hidePicker("");
+					if (oDTP.oData.bElemFocused)
+						oDTP._hidePicker("");
 				});
 			}
 		
