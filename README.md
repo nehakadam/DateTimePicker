@@ -11,7 +11,7 @@ Users can change values using +/- buttons or type values directly into the textb
 For web, picker can be binded relative to reference element, were it will appear at the bottom of the element. For mobile, the picker can appear as a dialog box covering entire window. 
 
 
-##Browser Support
+## Browser Support
 - Chrome, Firefox, Safari, Opera, IE 6+
 - Android 2.3+, iOS 6+, Windows Phone 8
 
@@ -20,7 +20,7 @@ For web, picker can be binded relative to reference element, were it will appear
 For demo & api documentation visit [Plugin Page](http://nehakadam.github.io/DateTimePicker/)
 
 
-##Build System
+## Build System
 
 - Install devDependencies listed in "package.json" 
 
@@ -36,7 +36,7 @@ Tasks configured in "Gruntfile.js"
 - Minify "src/DateTimePicker.css" to "dist/DateTimePicker.min.css"
 
 
-##Installations
+## Installations
 
 - npm
 
@@ -46,7 +46,7 @@ Tasks configured in "Gruntfile.js"
 
     `bower install flat-datetimepicker`
 
-##CDN
+## CDN
 DateTimePicker is hosted on [jsDelivr](http://www.jsdelivr.com).
 
 Files - Latest
@@ -63,7 +63,7 @@ Files - Particular Version
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/datetimepicker@<version>/dist/DateTimePicker.min.js"></script>
 ```
 
-##Authors
+## Authors
 [Neha Kadam](https://github.com/nehakadam): Developer
 
 Special Thanks:
@@ -74,9 +74,9 @@ Special Thanks:
 Copyright 2014-2019 [Lajpat Shah](https://github.com/lajpatshah)
 
 
-##I can not maintain/reply quickly due to time constraints, please consider this point while using plugin.
+**I can not actively maintain or reply quickly due to time constraints, please consider this point before using plugin.**
 
 
-##License
+## License
 
 Licensed under the MIT License
