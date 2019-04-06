@@ -16,87 +16,69 @@ module.exports = function(grunt)
 
 		pkg: grunt.file.readJSON('package.json'),
 
-		concat:
-		{
-			lang: 
-		    {
-		    	options: 
-				{
+		concat: {
+			lang: {
+	    	options: {
 					separator: '\n\n\n\n',
 		      stripBanners: true,
 					banner: sBanner
 				},
 				
-	      	src: ['src/i18n/*', '!src/i18n/DateTimePicker-i18n.js'],
-	      	dest: 'src/i18n/DateTimePicker-i18n.js',
-		     	nonull: true
-		    }
+      	src: ['src/i18n/*', '!src/i18n/DateTimePicker-i18n.js'],
+      	dest: 'src/i18n/DateTimePicker-i18n.js',
+	     	nonull: true
+	    }
 		},
 
-		copy: 
-		{
+		copy: {
+	  	main: {
+	    	expand: true,
+	    	cwd: 'src/',
+	    	src: '**',
+	    	dest: 'dist'
+	  	},
 
-		  	main: 
-		  	{
-		    	expand: true,
-		    	cwd: 'src/',
-		    	src: '**',
-		    	dest: 'dist'
-		  	},
-
-		  	lang: 
-		  	{
-		    	expand: true,
-		    	cwd: 'src/i18n',
-		    	src: '**',
-		    	dest: 'dist/i18n'
-		  	}
+	  	lang: {
+	    	expand: true,
+	    	cwd: 'src/i18n',
+	    	src: '**',
+	    	dest: 'dist/i18n'
+	  	}
 		},
 
-		uglify: 
-		{
-			options: 
-			{
+		uglify: {
+			options: {
 				banner: sBanner,
 				compress: {
 			    drop_console: true
 			  }
 			},
-			build: 
-			{
-				files:
-				{
+			build: {
+				files: {
 					'dist/<%= pkg.name %>.min.js': ['src/<%= pkg.name %>.js'],
 					'dist/<%= pkg.name %>-ltie9.min.js': ['src/<%= pkg.name %>-ltie9.js']
 				}
 			}
 		},
 
-		cssmin: 
-		{
-			options: 
-			{
+		cssmin: {
+			options: {
 				banner: sBanner
 			},
-			build: 
-			{
-				files:
-				{
+			build: {
+				files: {
 					'dist/<%= pkg.name %>.min.css': ['src/<%= pkg.name %>.css'],
 					'dist/<%= pkg.name %>-ltie9.min.css': ['src/<%= pkg.name %>-ltie9.css']
 				}
 			}
 		},
 
-		jshint: 
-		{
-			dist:
-			{
+		jshint: {
+			dist: {
 				src: ['src/DateTimePicker.js']
 			},
 
-			options:
-			{
+			options: {
 				strict: false,
 				curly: false,
   			eqeqeq: true,
@@ -106,8 +88,7 @@ module.exports = function(grunt)
 				//unused: true,
 				//undef: true,
 			
-				globals: 
-				{
+				globals: {
 					$: false,
     			jQuery: false,
     			define: false,
@@ -120,15 +101,12 @@ module.exports = function(grunt)
 			}
 		},
 
-		csslint:
-		{
-			dist:
-			{
+		csslint: {
+			dist: {
 				src: ['src/DateTimePicker.css']
 			},
 			
-			options:
-			{
+			options: {
 				"fallback-colors": false,
 				"universal-selector": false,
 				"box-sizing": false,

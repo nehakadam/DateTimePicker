@@ -1,48 +1,48 @@
 {
-    "name": "datetimepicker",
-    "version": "0.1.38",
-    "description": "Responsive flat design jQuery DateTime Picker plugin for Web & Mobile",
-    "keywords": [
-        "date",
-        "time",
-        "picker",
-        "flat",
-        "jquery",
-        "datetimepicker",
-        "datepicker",
-        "timepicker",
-        "input"
-    ],
-    "bugs": {
-        "url": "https://github.com/nehakadam/DateTimePicker/issues",
-        "email": "nehakadam9@gmail.com"
-    },
-    "author": "Neha Kadam <nehakadam9@gmail.com> (https://github.com/nehakadam)",
-    "_npmUser": {
-        "name": "nehakadam",
-        "email": "nehakadam9@gmail.com"
-    },
-    "homepage": "https://nehakadam.github.io/DateTimePicker/",
-    "main": "dist/DateTimePicker.min.js",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com:nehakadam/DateTimePicker.git"
-    },
-    "devDependencies": {
-        "grunt": "^1.0.4",
-        "grunt-contrib-concat": "^1.0.1",
-        "grunt-contrib-copy": "^1.0.0",
-        "grunt-contrib-csslint": "^2.0.0",
-        "grunt-contrib-cssmin": "^3.0.0",
-        "grunt-contrib-jshint": "^2.1.0",
-        "grunt-contrib-uglify": "^4.0.1"
-    },
-    "peerDependencies": {
-        "jquery": ">=1.0.0"
-    },
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "license": "MIT",
-    "dependencies": {}
+  "name": "datetimepicker",
+  "version": "0.1.39",
+  "description": "Responsive flat design jQuery DateTime Picker plugin for Web & Mobile",
+  "keywords": [
+      "date",
+      "time",
+      "picker",
+      "flat",
+      "jquery",
+      "datetimepicker",
+      "datepicker",
+      "timepicker",
+      "input"
+  ],
+  "bugs": {
+      "url": "https://github.com/nehakadam/DateTimePicker/issues",
+      "email": "nehakadam9@gmail.com"
+  },
+  "author": "Neha Kadam <nehakadam9@gmail.com> (https://github.com/nehakadam)",
+  "_npmUser": {
+      "name": "nehakadam",
+      "email": "nehakadam9@gmail.com"
+  },
+  "homepage": "https://nehakadam.github.io/DateTimePicker/",
+  "main": "dist/DateTimePicker.min.js",
+  "repository": {
+      "type": "git",
+      "url": "git://github.com:nehakadam/DateTimePicker.git"
+  },
+  "devDependencies": {
+      "grunt": "^1.0.4",
+      "grunt-contrib-concat": "^1.0.1",
+      "grunt-contrib-copy": "^1.0.0",
+      "grunt-contrib-csslint": "^2.0.0",
+      "grunt-contrib-cssmin": "^3.0.0",
+      "grunt-contrib-jshint": "^2.1.0",
+      "grunt-contrib-uglify": "^4.0.1"
+  },
+  "peerDependencies": {
+      "jquery": ">=1.0.0"
+  },
+  "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "dependencies": {}
 }

@@ -7,19 +7,19 @@
 
 	"keywords": ["date", "time", "datetime", "plugin", "picker", "DatePicker", "TimePicker", "DateTimePicker", "Responsive", "Flat", "Mobile", "jquery"],
 
-	"version": "0.1.38",
+	"version": "0.1.39",
 
 	"author": {
-        "name": "Lajpat Shah",
-        "url": "https://github.com/lajpatshah"
-    },
+    "name": "Lajpat Shah",
+    "url": "https://github.com/lajpatshah"
+  },
 
 	"maintainers": [
-        {
-            "name": "Neha Kadam",
-            "url": "https://github.com/nehakadam"
-        }
-    ],
+    {
+      "name": "Neha Kadam",
+      "url": "https://github.com/nehakadam"
+    }
+  ],
 
 	"repository": 
 	{
@@ -32,11 +32,11 @@
 	"docs": "https://nehakadam.github.io/DateTimePicker/",
 
 	"licenses": [
-        {
-            "type": "MIT",
-            "url": "https://github.com/nehakadam/DateTimePicker/blob/master/LICENSE"
-        }
-    ],
+    {
+      "type": "MIT",
+      "url": "https://github.com/nehakadam/DateTimePicker/blob/master/LICENSE"
+    }
+  ],
 
 	"dependencies": 
 	{
