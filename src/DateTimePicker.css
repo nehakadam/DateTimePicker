@@ -77,10 +77,9 @@
 {
 	margin: 0 auto;
 	padding: 1em 0;
-
 	max-width: 500px;
-
 	background: #fff;
+	border-radius: 5px;
 }
 
 .dtpicker-mobile .dtpicker-content
@@ -96,41 +95,41 @@
 .dtpicker-header
 {
 	margin: 0.2em 1em;
+	position: relative;
 }
 
 .dtpicker-header .dtpicker-title
 {
-	color: #2980B9;
+	color: #03A9F4;
 	text-align: center;
-	font-size: 1.1em;
+	font-size: 2.1em;
 }
 
 .dtpicker-header .dtpicker-close
 {
 	position: absolute;
-	top: -0.7em;
-	right: 0.3em;
-	
-	padding: 0.5em 0.5em 1em 1em;
-	
-	color: #FF3B30;
-	font-size: 1.5em;
-	
+	top: -14px;
+	right: -12px;
+	color: #9E9E9E;
+	font-size: 27px;
 	cursor: pointer;
+	padding: 8px 15px;
 }
 
 .dtpicker-header .dtpicker-close:hover
 {
-	color: #FF3B30;
+	color: #000;
+	border-left: 1px solid #eee;
+	border-bottom: 1px solid #eee;
 }
 
 .dtpicker-header .dtpicker-value
 {
-	padding:  0.8em 0.2em 0.2em 0.2em;
-	color: #FF3B30;
+	padding: 0.8em 0.2em 0.2em 0.2em;
+	color: #000;
 	text-align: center;
-
 	font-size: 1.4em;
+	font-weight: 600;
 }
 
 .dtpicker-components
@@ -151,6 +150,7 @@
 {
 	display: inline-block;
 	float: left;
+	margin: 0.3rem 0px;
 }
 
 .dtpicker-comp2
@@ -185,7 +185,7 @@
 
 .dtpicker-components .dtpicker-comp
 {
-	margin: 2%;
+	margin: 0px 31%;
 	text-align: center;
 }
 
@@ -217,10 +217,16 @@
 
 .dtpicker-components .dtpicker-compButton
 {
-	background: #FFFFFF;
-	font-size: 140%;
-
+	background: #fff;
+	font-size: 1.3rem;
 	cursor: pointer;
+	color: #aaa;
+	border-radius: 5px;
+	box-shadow: 0px 1px 5px #ddd;
+}
+
+.dtpicker-components .dtpicker-compButton:hover{
+	border: 1px solid #aaa;
 }
 
 .dtpicker-components .dtpicker-compValue
@@ -245,25 +251,29 @@
 .dtpicker-buttonCont
 {
 	overflow: hidden;
-	margin: 0.2em 1em;
+	width: 65%;
+	margin: 0 auto;
+	margin-top: 2em;
+	margin-bottom: 1em;
 }
 
 .dtpicker-buttonCont .dtpicker-button
 {
 	display: block;
 	padding: 0.6em 0;
-	width: 47%;
-	background: #FF3B30;
+	width: 46%;
+	background: #5C6BC0;
 	color: #FFFFFF;
 	text-align: center;
 	font-size: 1.3em;
-
 	cursor: pointer;
+	border-radius: 3px;
 }
 
 .dtpicker-buttonCont .dtpicker-button:hover
 {
 	color: #FFFFFF;
+	background-color: #283593;
 }
 
 .dtpicker-singleButton .dtpicker-button
