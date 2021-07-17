@@ -38,6 +38,8 @@ $.DateTimePicker = $.DateTimePicker || {
 	{
 		mode: "date",
 		defaultDate: null,
+		
+		inputElementId:"",
 	
 		dateSeparator: "-",
 		timeSeparator: ":",
@@ -576,14 +578,17 @@ $.cf = {
 			if(!oDTP.settings.isInline)
 			{
 				oDTP.oData.oInputElement = null;
-
+				var sel="";
+				if (oDTP.options.inputElementId=="" || oDTP.options.inputElementId===undefined){
 				$(oDTP.settings.parentElement).find("input[type='date'], input[type='time'], input[type='datetime']").each(function()
 				{
 					$(this).attr("data-field", $(this).attr("type"));
 					$(this).attr("type", "text");
 				});	
-	        
-				var sel = "[data-field='date'], [data-field='time'], [data-field='datetime']";
+				 sel = "[data-field='date'], [data-field='time'], [data-field='datetime']";
+				}else{
+				sel = "[id='"+oDTP.options.inputElementId+"']";
+				}
 				$(oDTP.settings.parentElement).off("focus", sel, oDTP._inputFieldFocus)
 											  .on ("focus", sel, {"obj": oDTP}, oDTP._inputFieldFocus)
 											  
